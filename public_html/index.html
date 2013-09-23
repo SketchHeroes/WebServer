@@ -1,0 +1,67 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link rel="stylesheet" type="text/css" href="css/master.css" />
+        <!--<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />-->
+        <!--<link rel="stylesheet" type="text/css" href="css/styles.css" />-->
+
+        <script type="text/javascript" src="js/libs/jquery-1.9.1/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="js/libs/jqueryui-1.10.3/jquery-ui-1.10.3.custom.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery.rest/jquery.rest.min.js"></script>
+    </head>
+    <body>
+        <div id="target"></div>
+        <script>
+            $(function(){
+        
+                $.ajax({
+
+                    type: "GET",
+                    url: "http://localhost/Server/users",
+                    dataType: 'json',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "X-User-Token":"d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d",
+                        "X-Caller-SKHR-ID":"3"
+                    },
+                    crossDomain:true,
+                    /*
+                    beforeSend: function (request)
+                    {
+                        //request.setRequestHeader("Authority", authorizationToken);
+                        request.setRequestHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
+                        request.setRequestHeader("X-Caller-SKHR-ID","3");
+                        request.setRequestHeader("Content-Type","application/json");
+                    },
+                    */
+                    complete: function(data) 
+                    {
+                        alert("complete: "+data);
+                    },
+                    success: function(data){
+                        var json = $.parseJSON(data); // create an object with the key of the array
+                        alert(json.html); // where html is the key of array that you want, $response['html'] = "<a>something..</a>";
+                     },
+                     error: function(data){
+                        var json = $.parseJSON(data);
+                        alert(json.error);
+                     }, 
+                    data: {
+                        start: 0,
+                        how_many: 50
+                    }
+                });
+            });
+
+</script>   
+        <input type="button" value="Request" name="request" onclick="send()"/>
+    </body>
+</html>
