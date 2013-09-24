@@ -13,55 +13,80 @@ and open the template in the editor.
         <!--<link rel="stylesheet" type="text/css" href="css/styles.css" />-->
 
         <script type="text/javascript" src="js/libs/jquery-1.9.1/jquery-1.9.1.js"></script>
+        <!--<script type="text/javascript" src="js/libs/jquery-1.9.0/jquery.min.js"></script>-->
         <script type="text/javascript" src="js/libs/jqueryui-1.10.3/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="js/libs/jquery.rest/jquery.rest.min.js"></script>
     </head>
     <body>
-        <div id="target"></div>
+        <div id="complete"></div>
+        <br />
+        <div id="success"></div>
+        <br />
+        <div id="error"></div>
+        <br />
+        <div id="data"></div>
+        <br />
+        <div id="data_success"></div>
+        <br />
+        <div id="data_error"></div>
+        <br />
+        <br />
         <script>
             $(function(){
-        
+                
+                $('#complete').html("...loading");
+                $('#success').html("...waiting for success");
+                $('#error').html("...waiting for error");
+                
                 $.ajax({
-
+                    cache: false,
+                    //timeout: 60000,
+                    //async: false,
                     type: "GET",
                     url: "http://localhost/Server/users",
-                    dataType: 'json',
+                    //dataType: 'json',
                     headers: {
+                        //"Origin":"*",
                         "Content-Type": "application/json",
                         "Accept": "application/json",
                         "X-User-Token":"d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d",
                         "X-Caller-SKHR-ID":"3"
                     },
                     crossDomain:true,
-                    /*
-                    beforeSend: function (request)
-                    {
-                        //request.setRequestHeader("Authority", authorizationToken);
-                        request.setRequestHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
-                        request.setRequestHeader("X-Caller-SKHR-ID","3");
-                        request.setRequestHeader("Content-Type","application/json");
-                    },
-                    */
                     complete: function(data) 
                     {
-                        alert("complete: "+data);
+                        $('#complete').html("loaded!");
+                        $('#data').html(JSON.stringify(data));
+                        //console.log(data);
+                        //$('#data2').html(JSON.stringify(data.responseText));
+                        //console.log("data = "+data);
+                        //alert("complete: "+data);
                     },
                     success: function(data){
-                        var json = $.parseJSON(data); // create an object with the key of the array
-                        alert(json.html); // where html is the key of array that you want, $response['html'] = "<a>something..</a>";
+                        $('#success').html("success");
+                        $('#data_success').html(JSON.stringify(data.users));
+                        
+                        $.each(data.users, function (i, record) {
+                            var div = $("<div></div>");
+                            $.each(record, function (key, value) {
+                                div.append($("<b>"+key+" : " + value + ", </b>"));
+                            });                   
+                            $("body").append(div);
+                        });
+                        
                      },
-                     error: function(data){
-                        var json = $.parseJSON(data);
-                        alert(json.error);
+                    error: function(data){
+                        $('#error').html("error");
+                        $('#data_error').html(JSON.stringify(data));
                      }, 
                     data: {
                         start: 0,
                         how_many: 50
                     }
                 });
+   
+                
             });
-
 </script>   
-        <input type="button" value="Request" name="request" onclick="send()"/>
     </body>
 </html>
