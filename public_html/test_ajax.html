@@ -1,0 +1,92 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link rel="stylesheet" type="text/css" href="css/master.css" />
+        <!--<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />-->
+        <!--<link rel="stylesheet" type="text/css" href="css/styles.css" />-->
+
+        <script type="text/javascript" src="js/libs/jquery-1.9.1/jquery-1.9.1.js"></script>
+        <!--<script type="text/javascript" src="js/libs/jquery-1.9.0/jquery.min.js"></script>-->
+        <script type="text/javascript" src="js/libs/jqueryui-1.10.3/jquery-ui-1.10.3.custom.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery.rest/jquery.rest.min.js"></script>
+    </head>
+    <body>
+        <div id="complete"></div>
+        <br />
+        <div id="success"></div>
+        <br />
+        <div id="error"></div>
+        <br />
+        <div id="data"></div>
+        <br />
+        <div id="data_success"></div>
+        <br />
+        <div id="data_error"></div>
+        <br />
+        <br />
+        <script>
+            $(function(){
+                
+                $('#complete').html("...loading");
+                $('#success').html("...waiting for success");
+                $('#error').html("...waiting for error");
+                
+                $.ajax({
+                    cache: false,
+                    //timeout: 60000,
+                    //async: false,
+                    type: "GET",
+                    url: "http://localhost/Server/users",
+                    //dataType: 'json',
+                    headers: {
+                        //"Origin":"*",
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "X-User-Token":"d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d",
+                        "X-Caller-SKHR-ID":"3"
+                    },
+                    crossDomain:true,
+                    complete: function(data) 
+                    {
+                        $('#complete').html("loaded!");
+                        //$('#data').html(JSON.stringify(data));
+                        //console.log(data);
+                        //$('#data2').html(JSON.stringify(data.responseText));
+                        //console.log("data = "+data);
+                        //alert("complete: "+data);
+                    },
+                    success: function(data){
+                        $('#success').html("success");
+                        //$('#data_success').html(JSON.stringify(data.users));
+                        
+                        $.each(data.users, function (i, record) {
+                            var div = $("<div></div>");
+                            $.each(record, function (key, value) {
+                                div.append($("<b>"+key+" : " + value + ", </b>"));
+                            });                   
+                            $("body").append(div);
+                        });
+                        
+                     },
+                    error: function(data){
+                        $('#error').html("error");
+                        $('#data_error').html(JSON.stringify(data));
+                     }, 
+                    data: {
+                        start: 0,
+                        how_many: 50
+                    }
+                });
+   
+                
+            });
+</script>   
+    </body>
+</html>
