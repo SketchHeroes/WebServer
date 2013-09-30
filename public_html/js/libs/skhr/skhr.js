@@ -3,10 +3,19 @@
  * and open the template in the editor.
  */
 
-function ajax_rest_call(domain, request, verb, custom_headers, request_data)
+//------------------------------------------------------------------------------
+
+function printData(data)
 {
+    $('#data').html("Data:<br /> "+JSON.stringify(data));  
+}
+
+function ajax_request(domain, request, verb, custom_headers, request_data)
+{
+    
     if(typeof(custom_headers)==='undefined') custom_headers = {};
     if(typeof(request_data)==='undefined') request_data = {};
+    
     
     $.ajax({
         cache: false,

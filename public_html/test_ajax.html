@@ -13,8 +13,8 @@ and open the template in the editor.
         <!--<link rel="stylesheet" type="text/css" href="css/styles.css" />-->
 
         <script type="text/javascript" src="js/libs/jquery-1.9.0/jquery.min.js"></script>
+        <script type="text/javascript" src="js/libs/skhr/rest_caller.js"></script>
         <script type="text/javascript" src="js/libs/skhr/skhr.js"></script>
-        <!--<script type="text/javascript" src="js/libs/jquery-1.9.0/jquery.min.js"></script>-->
         <!--<script type="text/javascript" src="js/libs/jqueryui-1.10.3/jquery-ui-1.10.3.custom.min.js"></script>-->
         <!--<script type="text/javascript" src="js/libs/jquery.rest/jquery.rest.min.js"></script>-->
     </head>
@@ -34,77 +34,28 @@ and open the template in the editor.
         <br />
         <script>
             $(function(){
-                /*
-                $('#complete').html("...loading");
-                $('#success').html("...waiting for success");
-                $('#error').html("...waiting for error");
                 
-                $.ajax({
-                    cache: false,
-                    //timeout: 60000,
-                    //async: false,
-                    type: "GET",
-                    //url: "http://localhost/Server/users",
-                    url: "http://serverkizidev-env.elasticbeanstalk.com/users",
-                    dataType: 'json',
-                    headers: {
-                        //"Origin":"*",
-                        "Content-Type": "application/json",
-                        "Accept": "application/json",
-                        "X-User-Token":"d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d",
-                        "X-Caller-SKHR-ID":"3"
-                    },
-                    crossDomain:true,
-                    complete: function(data) 
-                    {
-                        $('#complete').html("loaded!");
-                        //$('#data').html(JSON.stringify(data));
-                        //console.log(data);
-                        //$('#data2').html(JSON.stringify(data.responseText));
-                        //console.log("data = "+data);
-                        //alert("complete: "+data);
-                    },
-                    success: function(data){
-                        $('#success').html("success");
-                        //$('#data_success').html(JSON.stringify(data.users));
-                        
-                        $.each(data.users, function (i, record) {
-                            var div = $("<div></div>");
-                            $.each(record, function (key, value) {
-                                div.append($("<b>"+key+" : " + value + ", </b>"));
-                            });                   
-                            $("body").append(div);
-                        });
-                        
-                        
-                     },
-                    error: function(data){
-                        $('#error').html("error");
-                        $('#data_error').html(JSON.stringify(data));
-                     }, 
-                    data: {
-                        start: 0,
-                        how_many: 50
-                    }
-                });
-                */
-               var custom_headers = {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json",
-                        "X-User-Token":"d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d",
-                        "X-Caller-SKHR-ID":"3"
-                    }
-                    
-               var request_data = {
-                        start: 0,
-                        how_many: 50
-                    };
-   
-               var data = ajax_rest_call( "http://serverkizidev-env.elasticbeanstalk.com", 
-                                "/users", 
-                                "GET", 
-                                custom_headers, 
-                                request_data);
+               
+               var rest_caller = new RestCaller();                         
+               
+               rest_caller.getUsers(window["printData"]);
+               
+               /*
+               rest_caller.setResource("/users");
+               rest_caller.setVerb("GET");
+               //rest_caller.clearCustomHeaders();
+               rest_caller.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+               rest_caller.setCustomHeader("Accept","application/json");
+               //rest_caller.setCustomHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
+               //rest_caller.setCustomHeader("X-Caller-SKHR-ID","3");
+               rest_caller.setRequestParam("start","0");
+               rest_caller.setRequestParam("how_many","50");
+               rest_caller.setCompleteHandler(window["printData"]);
+               
+               rest_caller.ajax();
+               */
+              
+              //alert(rest_caller.toString());
                                 
                $('#data').html("Waiting...");             
                 
