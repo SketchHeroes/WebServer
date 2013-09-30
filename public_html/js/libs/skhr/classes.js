@@ -137,3 +137,69 @@ RestCaller.prototype.getUsers = function(complete_handler)
     
     this.ajax();
 }
+
+RestCaller.prototype.getFeaturedTutorials = function(complete_handler)
+{
+    this.setResource("/users");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("Accept","application/json"); 
+    //this.setCustomHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
+    //this.setCustomHeader("X-Caller-SKHR-ID","3");  
+    
+    this.setRequestParam("start","0");
+    this.setRequestParam("how_many","50");
+    
+    this.setCompleteHandler(complete_handler);
+    
+    this.ajax();
+}
+
+
+
+RestCaller.prototype.getTopTutorials = function(complete_handler)
+{
+    this.setResource("/users");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("Accept","application/json"); 
+    //this.setCustomHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
+    //this.setCustomHeader("X-Caller-SKHR-ID","3");  
+    
+    this.setRequestParam("start","0");
+    this.setRequestParam("how_many","50");
+    
+    this.setCompleteHandler(complete_handler);
+    
+    this.ajax();
+}
+
+RestCaller.prototype.getRecentTutorials = function(complete_handler)
+{
+    this.setResource("/users");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("Accept","application/json"); 
+    //this.setCustomHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
+    //this.setCustomHeader("X-Caller-SKHR-ID","3");  
+    
+    this.setRequestParam("start","0");
+    this.setRequestParam("how_many","50");
+    
+    this.setCompleteHandler(complete_handler);
+    
+    this.ajax();
+}
+
+//-------------------- Template class ------------------------------------------
+
+function TemplateGenerator()
+{
+    
+} 
