@@ -32,7 +32,7 @@ function ajax_request(domain, request, verb, custom_headers, request_data)
             $('#data').html("Data:<br /> "+JSON.stringify(data));  
             return data;
         },
-        /*
+        
         success: function(data){
             //alert("success");
             $('#data').html(JSON.stringify(data));   
@@ -44,7 +44,7 @@ function ajax_request(domain, request, verb, custom_headers, request_data)
             $('#data').html(JSON.stringify(data));            
             return data;
          },
-         */
+         
     });
 }
 

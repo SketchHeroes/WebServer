@@ -12,7 +12,7 @@ and open the template in the editor.
         <!--<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />-->
         <!--<link rel="stylesheet" type="text/css" href="css/styles.css" />-->
 
-        <script type="text/javascript" src="js/libs/jquery-1.9.0/jquery.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery-1.9.1/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="js/libs/skhr/classes.js"></script>
         <script type="text/javascript" src="js/libs/skhr/functions.js"></script>
         <!--<script type="text/javascript" src="js/libs/jqueryui-1.10.3/jquery-ui-1.10.3.custom.min.js"></script>-->
@@ -25,7 +25,7 @@ and open the template in the editor.
         <br />
         <div id="error"></div>
         <br />
-        <div id="data">Waiting for response...</div>
+        <div id="data">Initial waiting ...</div>
         <br />
         <div id="data_success"></div>
         <br />
@@ -38,7 +38,8 @@ and open the template in the editor.
                
                var rest_caller = new RestCaller();                         
                
-               rest_caller.getUsers(window["printData"]);
+               //rest_caller.getUsers(window["printData"]);
+               rest_caller.getFeaturedTutorials(window["printData"]);
                
                /*
                rest_caller.setResource("/users");
@@ -57,7 +58,7 @@ and open the template in the editor.
               
               //alert(rest_caller.toString());
                                 
-               $('#data').html("Waiting...");             
+               $('#data').html("Waiting after json request ...");             
                 
             });
 </script>   
