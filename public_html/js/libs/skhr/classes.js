@@ -172,8 +172,8 @@ RestCaller.prototype.getTopTutorials = function(complete_handler)
     
     this.setRequestParam("start","0");
     this.setRequestParam("how_many","50");
-    this.setRequestParam("tutorial_order_by",'{"order_by_content_id":"DESC"}');
-    this.setRequestParam("tutorial_order_by_count",'{"order_by_count_comments":"DESC"}');
+    this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
+    this.setRequestParam("tutorial_order_by_count",{"order_by_count_views":"DESC"});
     
     this.setCompleteHandler(complete_handler);
     
@@ -182,7 +182,7 @@ RestCaller.prototype.getTopTutorials = function(complete_handler)
 
 RestCaller.prototype.getRecentTutorials = function(complete_handler)
 {
-    this.setResource("/users");
+    this.setResource("/tutorials");
     this.setVerb("GET");
     //this.clearCustomHeaders();
     
@@ -193,7 +193,7 @@ RestCaller.prototype.getRecentTutorials = function(complete_handler)
     
     this.setRequestParam("start","0");
     this.setRequestParam("how_many","50");
-    this.setRequestParam("tutorial_order_by",'{"order_by_content_id":"DESC"}');
+    this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
     
     this.setCompleteHandler(complete_handler);
     
