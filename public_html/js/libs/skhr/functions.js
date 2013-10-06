@@ -10,6 +10,12 @@ function printData(data)
     $('#data').html("Data:<br /> "+JSON.stringify(data));  
 }
 
+function displayData(data)
+{
+    $('#data').html("Data:<br /> "+JSON.stringify(data));  
+}
+
+
 function ajax_request(domain, request, verb, custom_headers, request_data)
 {
     

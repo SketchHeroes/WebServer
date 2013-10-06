@@ -17,7 +17,7 @@ function RestCaller()
     this.resource           = null;
     this.request_params     = {};
     this.custom_headers     = {"X-App-Token":"db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65"};
-    this.complete_handler   = function(data){alert("Data Complete: "+JSON.stringify(data));};
+    this.complete_handler   = function(data){};
     this.success_handler    = function(data){};
     this.error_handler      = function(data){};
 }   
@@ -101,7 +101,7 @@ RestCaller.prototype.clearRequestParams = function()
 RestCaller.prototype.ajax = function()
 {
     //e.preventDefault();
-    $.ajax({
+    return $.ajax({
         //async:false,
         cache: this.cache,
         type: this.verb,
@@ -120,7 +120,7 @@ RestCaller.prototype.ajax = function()
 
 // request abstraction methods
 
-RestCaller.prototype.getUsers = function(complete_handler)
+RestCaller.prototype.getUsers = function()
 {
     this.setResource("/users");
     this.setVerb("GET");
@@ -134,12 +134,10 @@ RestCaller.prototype.getUsers = function(complete_handler)
     this.setRequestParam("start","0");
     this.setRequestParam("how_many","50");
     
-    this.setCompleteHandler(complete_handler);
-    
-    this.ajax();
+    return this.ajax();
 };
 
-RestCaller.prototype.getFeaturedTutorials = function(complete_handler)
+RestCaller.prototype.getFeaturedTutorials = function()
 {
     this.setResource("/tutorials");
     this.setVerb("GET");
@@ -152,14 +150,12 @@ RestCaller.prototype.getFeaturedTutorials = function(complete_handler)
     this.setRequestParam("how_many","50");
     this.setRequestParam("featured","1");
     
-    this.setCompleteHandler(complete_handler);
-    
-    this.ajax();
+    return this.ajax();
 };
 
 
 
-RestCaller.prototype.getTopTutorials = function(complete_handler)
+RestCaller.prototype.getTopTutorials = function()
 {
     this.setResource("/tutorials");
     this.setVerb("GET");
@@ -175,12 +171,10 @@ RestCaller.prototype.getTopTutorials = function(complete_handler)
     this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
     this.setRequestParam("tutorial_order_by_count",{"order_by_count_views":"DESC"});
     
-    this.setCompleteHandler(complete_handler);
-    
-    this.ajax();
+    return this.ajax();
 };
 
-RestCaller.prototype.getRecentTutorials = function(complete_handler)
+RestCaller.prototype.getRecentTutorials = function()
 {
     this.setResource("/tutorials");
     this.setVerb("GET");
@@ -195,14 +189,75 @@ RestCaller.prototype.getRecentTutorials = function(complete_handler)
     this.setRequestParam("how_many","50");
     this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
     
-    this.setCompleteHandler(complete_handler);
-    
-    this.ajax();
+    return this.ajax();
 };
 
 //-------------------- Template class ------------------------------------------
 
 function TemplateGenerator()
 {
-    
+    //this.records = {};
+    //this.placeholder_id = null;
 } 
+
+TemplateGenerator.prototype.displayFeaturedTutorials = function(data)
+{
+    //alert(data.tutorials);
+    
+    $('#data').html("Tutorials:<br /><br />");  
+    /*
+    $.each(data.tutorials, function( index, value ) 
+    {
+        $('#data').append("<br />"+index+". "+value.title+"<br /><br />");
+        //$('#data').append('<b>'+index+'.'+value+'</b>');
+    });
+    */
+   
+    var list = $('<ul></ul>');
+    
+    $.each(data.tutorials, function( index, value ) 
+    {
+        var single_record   = $('<li class="singlevideo item"></li>');
+        
+        var div = $('<div class="pic"></div>');
+        single_record.append(div);
+        
+        var link = $('<a href="'+value.tutorial_path+'"></a>');
+        div.append(link);
+        
+        var image = $('<img src="'+value.thumbnail_path+'" class="replacethumb">');
+        link.append(image);
+        
+        var h4 = $('<h4></h4>');
+        single_record.append(h4);
+        
+        var link = $('<a href="'+value.tutorial_path+'">'+value.title+'</a>');
+        h4.append(link);
+        
+        list.append(single_record);
+    });
+
+    
+    $("#featured_tutorials").append(list);
+    
+};
+
+// setters
+
+TemplateGenerator.prototype.setRecords = function(records)
+{
+    this.records = records;
+};
+/*
+'               <li class='singlevideo item'> 
+                    <div class="pic">
+                            <a href='http://www.sketchheroes.com/account/otakulover0228/how_to_draw/rapunzel-'> 
+                                    <img src="http://www.sketchheroes.com/media/tutorials/by_date/2013.02.11/nr76xnd5f7.jpg" class='replacethumb' >
+                            </a>
+                    </div>	
+                    <h4>
+                        <a href='http://www.sketchheroes.com/account/otakulover0228/how_to_draw/rapunzel-'>rapunzel-
+                        </a>
+                    </h4>
+                </li>'
+                */

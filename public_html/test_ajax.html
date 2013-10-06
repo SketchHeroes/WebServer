@@ -31,17 +31,24 @@ and open the template in the editor.
         <br />
         <div id="data_error"></div>
         <br />
-        <br />
+    <div class="carousel gradient" id="featured_tutorials">
+        Waiting for content...
+    </div>
         <script>
             $(function(){
                 
                
-               var rest_caller = new RestCaller();                         
+               var rest_caller          = new RestCaller();
+               var template_generator   = new TemplateGenerator();
                
                //rest_caller.getUsers(window["printData"]);
                //rest_caller.getFeaturedTutorials(window["printData"]);
                //rest_caller.getTopTutorials(window["printData"]);
-               rest_caller.getRecentTutorials(window["printData"]);
+               var promise = rest_caller.getRecentTutorials();
+               
+               //var template_generator.alertTest();
+               
+               promise.then(template_generator.displayFeaturedTutorials);
                
                /*
                rest_caller.setResource("/users");
@@ -60,9 +67,9 @@ and open the template in the editor.
               
               //alert(rest_caller.toString());
                                 
-               $('#data').html("Waiting after json request ...");             
+               //$('#data').html("Waiting after json request ...");             
                 
             });
-</script>   
+</script>
     </body>
 </html>
