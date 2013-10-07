@@ -19,7 +19,7 @@ function RestCaller()
     this.custom_headers     = {"X-App-Token":"db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65"};
     this.complete_handler   = function(data){};
     this.success_handler    = function(data){};
-    this.error_handler      = function(data){};
+    this.error_handler      = function(data){$('body').html(JSON.stringify(data));};
 }   
 
 // setters
@@ -112,15 +112,15 @@ RestCaller.prototype.ajax = function()
         crossDomain:this.cross_domain, 
         data: this.request_params,
         
-        complete: this.complete_handler,
-        success: this.success_handler,
+        //complete: this.complete_handler,
+        //success: this.success_handler,
         error: this.error_handler,
     });
 };
 
 // request abstraction methods
 
-RestCaller.prototype.getUsers = function()
+RestCaller.prototype.getTopUsers = function()
 {
     this.setResource("/users");
     this.setVerb("GET");
@@ -169,7 +169,7 @@ RestCaller.prototype.getTopTutorials = function()
     this.setRequestParam("start","0");
     this.setRequestParam("how_many","50");
     this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
-    this.setRequestParam("tutorial_order_by_count",{"order_by_count_views":"DESC"});
+    this.setRequestParam("tutorial_count",{"count_views":"DESC"});
     
     return this.ajax();
 };
@@ -235,11 +235,11 @@ TemplateGenerator.prototype.displayFeaturedTutorials = function(data)
 
 TemplateGenerator.prototype.displayTopTutorials = function(data)
 {
-    var list = $('<div class=row"></ul>');
+    var list = $('<div></div>');
     
     $.each(data.tutorials, function( index, value ) 
     {
-        var single_record = $('<div class="singlevideo item"></li>');
+        var single_record = $('<div class="singlevideo item"></div>');
         
         var h4 = $('<h4></h4>');
         single_record.append(h4);
@@ -282,33 +282,56 @@ TemplateGenerator.prototype.displayTopTutorials = function(data)
     $("#top_tutorials").append(list);
     
 };
-/*
-            <div class='row'> 
 
-                    <div class='singlevideo item'> 
-                        <h4>	
-                            <a href='http://www.sketchheroes.com/account/sketchadmin/how_to_draw/How-to-draw-Roronoa-Zoro-One-Piece'> 
-                                How to draw Roronoa Zoro (One Piece)
-                            </a>
-                        </h4>
+TemplateGenerator.prototype.displayRecentTutorials = function(data)
+{
+    var list = $('<div></div>');
+    
+    $.each(data.tutorials, function( index, value ) 
+    {
+        var single_record = $('<div class="singlevideo item"></div>');
+        
+        var h4 = $('<h4></h4>');
+        single_record.append(h4);
+        
+        var link = $('<a href="'+value.tutorial_path+'">'+value.title+'</a>');
+        h4.append(link);
+        
+        var div = $('<div class="pic"></div>');
+        single_record.append(div);
+        
+        var link = $('<a href="'+value.tutorial_path+'"></a>');
+        div.append(link);
+        
+        var image = $('<img src="'+value.thumbnail_path+'" class="replacethumb">');
+        link.append(image);
+        /*
+        var div = $('<div class="info"></div>');
+        single_record.append(div);
+        
+        var link = $('<a class="avatar" href="'+value.tutorial_path+'"></a>');
+        div.append(link);
+        
+        var image = $('<img src="'+value.thumbnail_path+'" class="userthumb">');
+        link.append(image);
+        
+        var span = $('<span likes="1" class="replacethumb"></span>');
+        div.append(image);
+        
+        var span = $('<span views="2" class="replacethumb"></span>');
+        div.append(image);
+        
+        var span = $('<span admin="" class="replacethumb"></span>');
+        div.append(image);
+        */
+        
+        list.append(single_record);
+    });
 
-                        <div class="pic">
-                                <a href='http://www.sketchheroes.com/account/sketchadmin/how_to_draw/How-to-draw-Roronoa-Zoro-One-Piece'> 
-                                        <img src="http://www.sketchheroes.com/media/tutorials/old/upl4/13.jpg" class='replacethumb' > 
-                                </a>
-                        </div>	
-
-                        <div class='info'> 
-                                <a class="avatar" href='http://www.sketchheroes.com/account/sketchadmin'> 
-                                    <img src='https://graph.facebook.com/635510703/picture'  class='userthumb' alt='sketchadmin' title='sketchadmin'>
-                                </a>
-                                <span class="likes">
-                                <i></i>74</span>
-                                <span class="views"><i></i>18758</span> 
-                                <span class='admin'>  </span>
-                        </div> 
-                    </div>
-                    */
+    
+    $("#recent_tutorials").append(list);
+    
+};
 
 // setters
 
