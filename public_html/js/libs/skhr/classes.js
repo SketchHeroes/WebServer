@@ -200,7 +200,7 @@ function TemplateGenerator()
     //this.placeholder_id = null;
 } 
 
-TemplateGenerator.prototype.displayFeaturedTutorials = function(data)
+TemplateGenerator.prototype.displayFeaturedTutorials = function(data,target)
 {
     //$('#data').html("Tutorials:<br /><br />");  
    
@@ -220,7 +220,7 @@ TemplateGenerator.prototype.displayFeaturedTutorials = function(data)
         link.append(image);
         
         var h4 = $('<h4></h4>');
-        single_record.append(h4);
+        div.append(h4);
         
         var link = $('<a href="'+value.tutorial_path+'">'+value.title+'</a>');
         h4.append(link);
@@ -229,11 +229,11 @@ TemplateGenerator.prototype.displayFeaturedTutorials = function(data)
     });
 
     
-    $("#featured_tutorials").append(list);
+    $(target).append(list);
     
 };
 
-TemplateGenerator.prototype.displayTopTutorials = function(data)
+TemplateGenerator.prototype.displayTopTutorials = function(data,target)
 {
     var list = $('<div></div>');
     
@@ -279,11 +279,11 @@ TemplateGenerator.prototype.displayTopTutorials = function(data)
     });
 
     
-    $("#top_tutorials").append(list);
+    $(target).append(list);
     
 };
 
-TemplateGenerator.prototype.displayRecentTutorials = function(data)
+TemplateGenerator.prototype.displayRecentTutorials = function(data,target)
 {
     var list = $('<div></div>');
     
@@ -329,7 +329,7 @@ TemplateGenerator.prototype.displayRecentTutorials = function(data)
     });
 
     
-    $("#recent_tutorials").append(list);
+    $(target).append(list);
     
 };
 

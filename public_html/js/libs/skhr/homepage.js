@@ -12,10 +12,10 @@ $(function(){
                var promise_featured = rest_caller.getFeaturedTutorials();
                var promise_top      = rest_caller.getTopTutorials();
                var promise_recent   = rest_caller.getRecentTutorials();
-
-               promise_featured.done(template_generator.displayFeaturedTutorials);
-               promise_top.done(template_generator.displayTopTutorials);
-               promise_recent.done(template_generator.displayRecentTutorials);
+         
+               promise_top.done(function(data){template_generator.displayTopTutorials(data,"#top_tutorials")});
+               promise_recent.done(function(data){template_generator.displayRecentTutorials(data,"#recent_tutorials")});
+               promise_featured.done(function(data){template_generator.displayFeaturedTutorials(data,"#featured_tutorials")});
             
                 
 });
