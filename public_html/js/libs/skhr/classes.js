@@ -19,7 +19,8 @@ function RestCaller()
     this.custom_headers     = {"X-App-Token":"db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65"};
     this.complete_handler   = function(data){};
     this.success_handler    = function(data){};
-    this.error_handler      = function(data){$('body').html(JSON.stringify(data));};
+    //this.error_handler      = function(data){$('body').html(JSON.stringify(data));};
+    this.error_handler      = function(data){};
 }   
 
 // setters
@@ -188,6 +189,27 @@ RestCaller.prototype.getRecentTutorials = function()
     this.setRequestParam("start","0");
     this.setRequestParam("how_many","50");
     this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
+    
+    return this.ajax();
+};
+
+RestCaller.prototype.getTopUsers = function(time_constraint)
+{
+    this.setResource("/users/top");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("Accept","application/json"); 
+    //this.setCustomHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
+    //this.setCustomHeader("X-Caller-SKHR-ID","3");  
+    
+    this.setRequestParam("start","0");
+    this.setRequestParam("how_many","50");
+    this.setRequestParam("top_user_content","tutorials");
+    this.setRequestParam("top_user_count",{"count_views":"DESC"});
+    if(a !== 'undefined')
+        this.setRequestParam("time_constraint",{"timestamp_field":"created_at","operator":"younger_then","time_amount":"1","time_interval":time_constraint});
     
     return this.ajax();
 };
