@@ -81,3 +81,34 @@
  .nomargin { margin: 0; }
  .nopadding { padding: 0; }
  .nobullet { list-style: none; list-style-image: none; }
+ 
+ 
+ /* ----------------------------MY ADDITIONS--------------------------------- */
+ 
+ /* ClearFix */
+ 
+.clearfix:before,
+.clearfix:after {
+    content:"";
+    display:table;
+}
+.clearfix:after {
+    clear:both;
+}
+/* For IE 6/7 (trigger hasLayout) */
+.clearfix {
+    zoom:1;
+}
+
+.clearfix2{
+    overflow: auto;
+    zoom:1;
+}
+/* ------ */
+
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
