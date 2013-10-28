@@ -221,6 +221,39 @@ TemplateGenerator.prototype.displayFeaturedTutorials = function(data,target)
 {
     //$('#data').html("Tutorials:<br /><br />");  
    
+    var list = $('<ul class = "inline_block_extented gallery"></ul>');
+    
+    $.each(data.tutorials, function( index, value ) 
+    {
+        var single_record = $('<li></li>');
+        
+            var div = $('<div></div>');
+            single_record.append(div);
+        
+                var link = $('<a href="'+value.tutorial_path+'"></a>');
+                div.append(link);
+        
+                    var image = $('<img src="'+value.thumbnail_path+'">');
+                    link.append(image);
+        
+                var h4 = $('<h4></h4>');
+                div.append(h4);
+        
+                    var link = $('<a href="'+value.tutorial_path+'">'+value.title+'</a>');
+                    h4.append(link);
+        
+        list.append(single_record);
+    });
+
+    
+    $(target).append(list);
+    
+}; 
+
+TemplateGenerator.prototype.displayFeaturedTutorialsOLD = function(data,target)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+   
     var list = $('<ul></ul>');
     
     $.each(data.tutorials, function( index, value ) 

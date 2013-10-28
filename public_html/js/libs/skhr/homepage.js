@@ -4,7 +4,6 @@
  */
 
 $(function(){
-                
                
     var rest_caller          = new RestCaller();
     var template_generator   = new TemplateGenerator();

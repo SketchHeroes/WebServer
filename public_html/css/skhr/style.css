@@ -1,7 +1,7 @@
 /* 
-    Document   : style
-    Created on : Oct 10, 2013, 12:12:12 PM
-    Author     : michael chekin
+    Document   : styles
+    Created on : Oct 28, 2013, 10:37:11 AM
+    Author     : michael
     Description:
         Purpose of the stylesheet follows.
 */
@@ -13,163 +13,157 @@ root {
 body {
     width: 100%;
     background: #ffffff url(../../images/main_bg.jpg) center 0 no-repeat;
+    background-size:1124px auto;
+    /*background: color position size repeat origin clip attachment image;*/
 
 }
 
 .wrapper {
-    width: 807px;
+    width: 1024px;
     margin: 0 auto;
-    /*background: purple;*/
+    background: purple;
 }
 
 header 
 {
     position:relative;
-    margin-top: 16px;
-    /*background: black;*/
+    /*margin-top: 20px;*/
+    background: red;
 }
 
 /* LOGO */
 
 .logo {
     position: absolute;
-    left: 0px;
-    top: 0px; 
-    /*background: red;*/
+    left: 10px;
+    top: 10px; 
+    background: orange;
 }
 
 .logo img{
-        width: 113;  
-        height:123;
+    height:80px;
+    width:80px;
 }
+
 
 /* MAIN MENU */
 
 .main_menu {
   float: left;
-  margin: 60px 0 0 120px;
+  margin: 25px 0 0 100px; 
+  background: yellow;
 }
-.main_menu li {
-  display: inline-block;
-  margin-right: 20px;
+.main_menu li {      
+    width: 130px;
+    min-height: 70px;
+    _height: 70px;
 }
+
 .main_menu a {
-  color: #104b6c;
-  font-size: 20px;
   text-decoration: none;
 }
 .main_menu a:hover {
   text-decoration: underline;
 }
 
-nav ul, nav ol, menu {
-    list-style: none outside none;
-    margin: 0;
-    padding: 0;
+.main_menu img { 
+    
+    height:70px;
+    width:130px;
 }
 
-/* LOGIN */
-
-.login {
-  float: right;
-  width: 210px;
-  margin: 5px 0 10px;
-}
-.login .avatar, .login .options, .login .scores {
+/* SECONDARY MENU */
+.secondary_menu {
+  padding: 40px 0px 40px 0px;
+  margin: 20px 20px 20px 20px; 
   float: left;
+  background: yellowgreen;
 }
-.login .avatar {
-  margin: 0 5px 2px 0;
+
+.secondary_menu li {      
+    width: 150px;
+    min-height: 150px;
+    _height: 150px;
 }
-.login ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+
+.secondary_menu a {
+    text-decoration: none;
 }
-.login .options {
-  margin-right: 10px;
+
+.secondary_menu img { 
+    
+    height:130px;
+    width:130px;
+    padding:5px;
 }
-.login .options li {
-  line-height: 19px;
+.secondary_menu a:hover {
+  text-decoration: underline;
 }
-.login .options li a {
-  color: #005281;
-  font-size: 13px;
-}
-.login .scores {
-  margin-top: 10px;
-}
-.login .scores li {
+
+/* GALLERY */
+
+.gallery{
   float: left;
-  margin-left: 5px;
-  font-size: 14px;
-  color: #000;
-  font-weight: bold;
-  text-align: center;
-}
-.login .scores li a span {
-  display: inline-block;
-  height: 26px;
-  width: 22px;
-  background-image: url(../../images/user_items.png);
-}
-.login .scores li span {
-  display: block;
-  line-height: 1;
-}
-.login .scores li:first-child {
-  margin: 0;
-}
-.login .crystal {
-  background-position: 0 0;
-}
-.login .star {
-  background-position: -38px 0;
-}
-.login .badge {
-  background-position: right 0;
-}
-.login .status {
-  clear: both;
-  margin: 4px 0 2px;
+  background:#1c94c4;
 }
 
-/* SEARCH FORM */
-/*
-.searchoform{
-  float:none;
- 
-}  
-.searchoform  input[type="submit"] {
-  float: right;
-  width: 22px;
-  height: 20px;
-  text-indent: -999px;
-  overflow: hidden;
-  border: none;
-  background-color: none;
-  background-color: transparent;
+.gallery li {      
+    width: 200px;
+    min-height: 200px;
+    _height: 250px;
 }
 
-.searchoform input[type="text"] {
-  float: left;
-  width: 160px;
-  height: 20px;
-  margin: 0 0 0 5px;
-  border: none;
-  background-color: transparent;
-  font-size: 12px;
-  color: #7e7e7e;
-}
-*/
-
-/* MAIN PIC */
-
-
-.main_pic {
-  margin-top: 10px;
+.gallery a {
+    text-decoration: none;
 }
 
+.gallery img { 
+    
+    height:200px;
+    width:200px;
+}
+.gallery a:hover {
+  text-decoration: underline;
+}
 
+/* FEATURED_TUTORIALS */
 
+#featured_tutorials
+{   
+    width: 70%;
+    background:#1c94c4;
+}
 
+/* ASIDE */
+
+#messages
+{
+    margin-left: 70%;
+    background:#1c94c4;
+}
+
+/* INLINE BLOCK */
+.inline_block li {
+        display: -moz-inline-stack;
+        display: inline-block;
+        vertical-align: top;
+        zoom: 1;
+        *display: inline;
+}
+
+.inline_block_extented li {    
+        border: 1px solid #000;
+        display: -moz-inline-stack;
+        display: inline-block;
+        vertical-align: top;
+        margin: 5px;
+        zoom: 1;
+        *display: inline;
+    }
+
+/* CLEARFIX */
+
+.clearfix {
+  overflow: auto;
+  zoom: 1;
+}
