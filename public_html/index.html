@@ -6,6 +6,7 @@ and open the template in the editor.
 <html>
     <head>
         <title></title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <link rel="stylesheet" type="text/css" href="css/master.css" />
@@ -23,7 +24,7 @@ and open the template in the editor.
                     </a>
                 </div>
                 
-                <menu class="main_menu inline_block">
+                <ul class="main_menu inline_block">
                     <li class="active">
                         <a href="/">
                             <img src="images/tabs/guides.jpg" alt="guides" />
@@ -45,11 +46,11 @@ and open the template in the editor.
                             <img src="images/tabs/competitions.jpg" alt="competitions" />
                         </a>
                     </li>
-                </menu>
+                </ul>
             </header>
             
             <nav class="clearfix">
-                <menu class="secondary_menu inline_block">
+                <ul class="secondary_menu inline_block flex-box">
                     <li class="active">
                         <a href="/">
                             <img src="images/tabs/people.jpg" alt="people" />
@@ -81,15 +82,20 @@ and open the template in the editor.
                             <img src="images/tabs/people.jpg" alt="people" />
                         </a>
                     </li>
-                </menu>
+                </ul>
             </nav >
                 
-            <section class="clearfix">
+            <section class="clearfix" id="first_section">
                 <article  id="featured_tutorials">
                     
                 </article>
-                <aside id="messages">
-                    
+                <aside id="side_panel">
+                    <div id="create_button">
+                        
+                    </div> 
+                    <ul id="notifications">
+                        
+                    </ul> 
                 </aside>
             </section>
             wow
@@ -97,9 +103,11 @@ and open the template in the editor.
                 
             </footer>
             
+            <!--<script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>-->
             
             <script type="text/javascript" src="js/libs/jquery-1.9.1/jquery-1.9.1.js"></script>
-            <script type="text/javascript" src="js/libs/jqueryui-1.10.3/jquery-ui-1.10.3.custom.min.js"></script>
+            <script type="text/javascript" src="js/libs/jquery.xdomainrequest/jquery.xdomainrequest.js"></script>
+            <!--<script type="text/javascript" src="js/libs/jqueryui-1.10.3/jquery-ui-1.10.3.custom.min.js"></script>-->
             
             <script type="text/javascript" src="js/libs/skhr/classes.js"></script>
             <script type="text/javascript" src="js/libs/skhr/homepage.js"></script>

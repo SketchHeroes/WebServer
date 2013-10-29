@@ -8,7 +8,8 @@
 
 function RestCaller()
 {
-    this.domain             = "http://serverkizidev-env.elasticbeanstalk.com";
+    this.domain             = "http://serverkizidev-env.elasticbeanstalk.com"
+    //this.domain             = "http://localhost/Server";
     this.cross_domain       = true;
     this.verb               = null;
     this.cache              = false;
@@ -17,10 +18,12 @@ function RestCaller()
     this.resource           = null;
     this.request_params     = {};
     this.custom_headers     = {};
-    this.complete_handler   = function(data){};
-    this.success_handler    = function(data){};
-    //this.error_handler      = function(data){$('body').html(JSON.stringify(data));};
-    this.error_handler      = function(data){};
+    this.complete_handler   = function(data){$('body').append("");};
+    this.success_handler    = function(data){$('body').append("");};
+    this.error_handler      = function(data){$('body').append("<br />error: <br />"+JSON.stringify(data));};
+    //this.complete_handler   = function(data){$('body').html("complete: <br />"+JSON.stringify(data));};
+    //this.success_handler    = function(data){$('body').html("success: <br />"+JSON.stringify(data));};
+    //this.error_handler      = function(data){$('body').html("error: <br />"+JSON.stringify(data));};
 }   
 
 // setters
@@ -101,6 +104,12 @@ RestCaller.prototype.clearRequestParams = function()
 
 RestCaller.prototype.ajax = function()
 {
+    /*
+    if ( window.XDomainRequest )
+        alert("window.XDomainRequest");
+    else   
+        alert("window.XHR");
+    */
     //e.preventDefault();
     return $.ajax({
         //async:false,
@@ -113,8 +122,8 @@ RestCaller.prototype.ajax = function()
         crossDomain:this.cross_domain, 
         data: this.request_params,
         
-        //complete: this.complete_handler,
-        //success: this.success_handler,
+        complete: this.complete_handler,
+        success: this.success_handler,
         error: this.error_handler,
     });
 };
@@ -217,11 +226,77 @@ function TemplateGenerator()
     //this.placeholder_id = null;
 } 
 
+TemplateGenerator.prototype.addGallery = function(target, size)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+   
+    var list = $('<ul class = "inline_block gallery"></ul>');
+    
+    for(var i=0; i<size; i++)
+    {
+        var single_record = $('<li></li>');
+        
+            var div = $('<div></div>');
+            single_record.append(div);
+        
+                var tutorial_name = $('<h4></h4>');
+                div.append(tutorial_name);
+        
+                    var link = $('<a href=""></a>');
+                    tutorial_name.append(link);
+
+                        var image = $('<img class="tutorial_name" src="images/dots_loader.gif">');
+                        link.append(image);
+        
+                var link = $('<a href=""></a>');
+                div.append(link);
+        
+                    image = $('<img class="thumbnail" src="images/ajax-loader.gif">');
+                    link.append(image);
+        
+                var info_panel = $('<div class="info_panel"></div>');
+                div.append(info_panel);
+                    
+                    image = $('<img class="likes_image" src="images/tabs/like.jpg">');
+                    info_panel.append(image);
+                    
+                    image = $('<img class="likes" src="images/dots_loader.gif">');
+                    info_panel.append(image);
+                    
+                    image = $('<img class="views_image"src="images/tabs/view.jpg">');
+                    info_panel.append(image);
+                    
+                    image = $('<img class="views" src="images/dots_loader.gif">');
+                    info_panel.append(image);
+                    
+                    image = $('<img class="comments_image" src="images/tabs/comment.jpg">');
+                    info_panel.append(image);
+                    
+                    image = $('<img class="comments" src="images/dots_loader.gif">');
+                    info_panel.append(image);
+                    
+                    image = $('<img class="user_avatar" src="images/spinner.gif">');
+                    info_panel.append(image);
+                    
+                    image = $('<img class="user_name" src="images/dots_loader.gif">');
+                    info_panel.append(image);
+                    
+                    image = $('<img class="follow_button" src="images/tabs/follow.jpg">');
+                    info_panel.append(image);
+        
+        list.append(single_record);
+    };
+
+    
+    $(target).append(list);
+    
+}; 
+
 TemplateGenerator.prototype.displayFeaturedTutorials = function(data,target)
 {
     //$('#data').html("Tutorials:<br /><br />");  
    
-    var list = $('<ul class = "inline_block_extented gallery"></ul>');
+    var list = $('<ul class = "inline_block gallery"></ul>');
     
     $.each(data.tutorials, function( index, value ) 
     {
