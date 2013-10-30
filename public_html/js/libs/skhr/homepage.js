@@ -21,14 +21,44 @@ $(function(){
     var rest_caller          = new RestCaller();
     var template_generator   = new TemplateGenerator();
     
-    template_generator.addGallery("#featured_tutorials",6);
-
-    //var promise_featured    = rest_caller.getFeaturedTutorials();
+    var gallery_length = 6;
     
-    //printObject(promise_featured);
+    template_generator.addGallery("#featured_tutorials",gallery_length);
+
+    var promise_featured    = rest_caller.getFeaturedTutorials();
     //var promise_top         = rest_caller.getTopTutorials();
     //var promise_recent      = rest_caller.getRecentTutorials();
     //var promise_top_users   = rest_caller.getTopUsers();
+    
+    promise_featured.done(
+            function(data)
+            {
+                template_generator.featured_tutorials = data.tutorials;
+                template_generator.displayFeaturedTutorials("#featured_tutorials");
+                
+                //alert("featured_tutorials length: "+template_generator.featured_tutorials.length);
+                //alert("gallery_length: "+gallery_length.length);
+                /*
+                var promise={};
+                
+                for(var i=0; i<gallery_length; i++)
+                {
+                //$.each( template_generator.featured_tutorials, function( index, tutorial ){
+                    
+                    alert(i);
+                    promise[i] = rest_caller.getTutorialLinkedData(template_generator.featured_tutorials[i].content_id);
+                    promise[i].done(
+                        function(data)
+                        {
+                            template_generator.featured_tutorials[i] = data;
+                            template_generator.displayTutorialLinkedData("#featured_tutorials");
+                        });
+                };
+                */
+            });
+            
+
+    
    
     //promise_featured.done(function(data){template_generator.displayFeaturedTutorials(data,"#featured_tutorials")});
     //promise_top.done(function(data){template_generator.displayTopTutorials(data,"#top_tutorials")});

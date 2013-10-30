@@ -98,7 +98,6 @@ header
 .secondary_menu img { 
     
     /*height:100%;*/
-    padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
     width:100%;
     padding:20px;
@@ -118,8 +117,8 @@ header
 
 .gallery li {      
     width: 240px;
-    min-height: 240px;
-    _height: 240px;
+    min-height: 140px;
+    _height: 140px;
     border:1px solid #ff0;
     margin: 20px 10px 20px 10px;
 }
@@ -136,7 +135,7 @@ header
 .gallery img.thumbnail{ 
     
     margin: 5px 20px 0px 20px;
-    height:200px;
+    height:100px;
     width:200px;
     border:1px solid #0f0;
     background:#ffffff;
@@ -145,6 +144,17 @@ header
 .gallery img.likes,
 .gallery img.views,
 .gallery img.comments{ 
+    
+    margin: 0px 0px 0px 0px;
+    height:10px;
+    width:30px;
+    border:1px solid #0ff;
+    background:#ffffff;
+}
+
+.gallery span.likes,
+.gallery span.views,
+.gallery span.comments{ 
     
     margin: 0px 0px 0px 0px;
     height:10px;
@@ -172,20 +182,29 @@ header
     background:#ffffff;
 }
 
-.gallery img.user_avatar{ 
+.gallery img.author_avatar{ 
     margin: 0px 10px 0px 10px;
-    height:30px;
-    width:30px;
+    height:40px;
+    width:40px;
     border:1px solid #0ff;
     background:#ffffff;
 }
 
-.gallery img.tutorial_name,
-.gallery img.user_name{ 
+.gallery img.tutorial_title,
+.gallery img.author_name{ 
     margin: 0px 10px 0px 0px;
     height:15px;
     width:50px;
-    border:1px solid #0ff;
+    border:1px solid #FFCCFF;
+    background:#ffffff;
+}
+
+.gallery span.tutorial_title,
+.gallery span.author_name{ 
+    margin: 0px 10px 0px 0px;
+    height:15px;
+    width:50px;
+    border:1px solid #FFCCFF;
     background:#ffffff;
 }
 
