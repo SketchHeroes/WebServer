@@ -184,9 +184,9 @@ header
 .gallery img.likes,
 .gallery img.views,
 .gallery img.comments{ 
-    margin: 5px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
     height:10px;
-    width:32px;
+    width:42px;
     border:1px solid #0ff;
     background:#ffffff;
 }
@@ -199,9 +199,9 @@ header
     overflow:hidden; 
     text-overflow:ellipsis;
     
-    margin: 5px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     height:20px;
-    width:32px;
+    width:42px;
     border:1px solid #0ff;
     background:#ffffff;
 }
@@ -209,16 +209,16 @@ header
 .gallery img.likes_image,
 .gallery img.views_image{ 
     margin: 0px 0px 0px 0px;
-    height:30px;
-    width:30px;
+    height:20px;
+    width:20px;
     border:1px solid #0ff;
     background:#ffffff;
 }
 
 .gallery img.comments_image{ 
     margin: 0px 0px 0px 0px;
-    height:30px;
-    width:40px;
+    height:20px;
+    width:25px;
     border:1px solid #0ff;
     background:#ffffff;
 }
@@ -226,7 +226,7 @@ header
 .gallery img.author_avatar{
     clear:left;
     margin: 0px 0px 0px 0px; 
-    padding: 0px 0px 0px 0px;
+    padding: 3px 3px 3px 3px;
     height:30px;
     width:30px;
     border:1px solid #0ff;
@@ -236,7 +236,7 @@ header
 .gallery img.follow_button{ 
     margin: 0px 0px 0px 0px;
     height:30px;
-    width:65px;
+    width:60px;
     border:1px solid #0ff;
     background:#ffffff;
 }
