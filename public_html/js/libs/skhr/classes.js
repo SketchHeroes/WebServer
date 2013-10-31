@@ -266,7 +266,7 @@ TemplateGenerator.prototype.addGallery = function(target, size)
             var div = $('<div></div>');
             single_record.append(div);
         
-                var tutorial_title = $('<h4 class="tutorial_title"></h4>');
+                var tutorial_title = $('<div class="tutorial_title"></div>');
                 div.append(tutorial_title);
                 
                     var image = $('<img class="tutorial_title" src="images/dots_loader.gif">');
@@ -302,9 +302,12 @@ TemplateGenerator.prototype.addGallery = function(target, size)
                     image = $('<img class="author_avatar" src="images/spinner.gif">');
                     info_panel.append(image);
                     
-                    image = $('<img class="author_name" src="images/dots_loader.gif">');
-                    info_panel.append(image);
-                    
+                    var author_name = $('<div class="author_name" style="text-overflow:ellipsis;"></div>');
+                    info_panel.append(author_name);
+                
+                        var image = $('<img class="author_name" src="images/dots_loader.gif">');
+                        author_name.append(image);
+                        
                     image = $('<img class="follow_button" src="images/tabs/follow.jpg">');
                     info_panel.append(image);
         
@@ -328,25 +331,18 @@ TemplateGenerator.prototype.displayFeaturedTutorials = function(target)
     $(target+' > ul.gallery > li').each(
             function()
             {
-                //alert($(this));
-                //('body').html("<br />li: <br />");
+                
                 // adding tutorial_title
-                var link = $('<a href=""></a>');
-                var tutorial_title = $('<span class="tutorial_title">'+featured_tutorials[i].title+'</span>');
-                link.append(tutorial_title);
-                $(this).find("img.tutorial_title").after(link).remove();
-        
-                // adding tutorial_title
-                //var link = $('<a href="">'+featured_tutorials[i].title+'</a>');
-                //$(this).find("span.tutorial_title").append(link);  
+                var link = $('<a href="">'+featured_tutorials[i].title+'</a>');
+                $(this).find("img.tutorial_title").after(link).remove(); 
                 
                 // adding tutorial thumbnail
                 $(this).find("img.thumbnail").attr("src",featured_tutorials[i].thumbnail_path);
                 
-                
-                $(this).find('img.likes').after('<span class="likes">'+featured_tutorials[i].likes.num_of_likes+'</span>').remove();
-                $(this).find('img.views').after('<span class="views">'+featured_tutorials[i].views.num_of_views+'</span>').remove();
-                $(this).find('img.comments').after('<span class="comments">'+featured_tutorials[i].comments.num_of_comments+'</span>').remove();
+                // adding related data
+                $(this).find('img.likes').after('<div class="likes">'+featured_tutorials[i].likes.num_of_likes+'0</div>').remove();
+                $(this).find('img.views').after('<div class="views">'+featured_tutorials[i].views.num_of_views+'0</div>').remove();
+                $(this).find('img.comments').after('<div class="comments">'+featured_tutorials[i].comments.num_of_comments+'0</div>').remove();
                 
                 if(featured_tutorials[i].author.avatar_path === null)     
                     $(this).find('img.author_avatar').attr("src","images/no_avatar.png");
@@ -354,9 +350,7 @@ TemplateGenerator.prototype.displayFeaturedTutorials = function(target)
                     $(this).find('img.author_avatar').attr("src",featured_tutorials[i].author.avatar_path);
                 
                 // adding author_name
-                var link = $('<a href=""></a>');
-                var author_name = $('<span class="author_name">'+featured_tutorials[i].author.username+'</span>');
-                link.append(author_name);
+                var link = $('<a href="">'+featured_tutorials[i].author.username+'</a>');
                 $(this).find("img.author_name").after(link).remove();
         
                 i++;

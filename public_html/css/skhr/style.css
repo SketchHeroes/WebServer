@@ -120,20 +120,60 @@ header
     min-height: 140px;
     _height: 140px;
     border:1px solid #ff0;
-    margin: 20px 10px 20px 10px;
+    margin: 20px 10px 0px 10px;
 }
 
-.gallery h4 {
+
+
+.gallery img.tutorial_title,
+.gallery img.author_name{ 
+    margin: 0px 0px 0px 0px;
+    height:15px;
+    width:30px;
+    border:1px solid #FFCCFF;
+    background:#ffffff;
+}
+
+.gallery div.tutorial_title {
+    float: left;
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    
+    height:20px;
+    width:200px;
+    
     margin: 20px 20px 0px 20px;
     background:#ffff00;
+}
+
+.gallery div.author_name{ 
+    float: left;
+    
+    white-space:nowrap; 
+    overflow:hidden;
+    text-overflow:ellipsis;
+    
+    margin: 5px 0px 0px 0px;
+    
+    height:20px;
+    width:100px;
+    
+    border:1px solid #FFCCFF;
+    background:#ffffff;
 }
 
 .gallery a {
     text-decoration: none;
 }
 
+.gallery img, 
+.gallery div{
+    float: left;
+}
+
 .gallery img.thumbnail{ 
-    
     margin: 5px 20px 0px 20px;
     height:100px;
     width:200px;
@@ -144,28 +184,30 @@ header
 .gallery img.likes,
 .gallery img.views,
 .gallery img.comments{ 
-    
-    margin: 0px 0px 0px 0px;
+    margin: 5px 0px 0px 0px;
     height:10px;
-    width:30px;
+    width:32px;
     border:1px solid #0ff;
     background:#ffffff;
 }
 
-.gallery span.likes,
-.gallery span.views,
-.gallery span.comments{ 
+.gallery div.likes,
+.gallery div.views,
+.gallery div.comments{ 
     
-    margin: 0px 0px 0px 0px;
-    height:10px;
-    width:30px;
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    
+    margin: 5px 0px 0px 0px;
+    height:20px;
+    width:32px;
     border:1px solid #0ff;
     background:#ffffff;
 }
 
 .gallery img.likes_image,
 .gallery img.views_image{ 
-    
     margin: 0px 0px 0px 0px;
     height:30px;
     width:30px;
@@ -174,7 +216,6 @@ header
 }
 
 .gallery img.comments_image{ 
-    
     margin: 0px 0px 0px 0px;
     height:30px;
     width:40px;
@@ -182,36 +223,20 @@ header
     background:#ffffff;
 }
 
-.gallery img.author_avatar{ 
-    margin: 0px 10px 0px 10px;
-    height:40px;
-    width:40px;
+.gallery img.author_avatar{
+    clear:left;
+    margin: 0px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px;
+    height:30px;
+    width:30px;
     border:1px solid #0ff;
-    background:#ffffff;
-}
-
-.gallery img.tutorial_title,
-.gallery img.author_name{ 
-    margin: 0px 10px 0px 0px;
-    height:15px;
-    width:50px;
-    border:1px solid #FFCCFF;
-    background:#ffffff;
-}
-
-.gallery span.tutorial_title,
-.gallery span.author_name{ 
-    margin: 0px 10px 0px 0px;
-    height:15px;
-    width:50px;
-    border:1px solid #FFCCFF;
     background:#ffffff;
 }
 
 .gallery img.follow_button{ 
     margin: 0px 0px 0px 0px;
     height:30px;
-    width:80px;
+    width:65px;
     border:1px solid #0ff;
     background:#ffffff;
 }
@@ -219,7 +244,7 @@ header
 .gallery .info_panel { 
     
     margin: 0px 20px 20px 20px;
-    height:80px;
+    /*height:80px;*/
     width:200px;
     border:1px solid #0f0;
     background:#ffff00;
