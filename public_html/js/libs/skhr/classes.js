@@ -340,9 +340,9 @@ TemplateGenerator.prototype.displayFeaturedTutorials = function(target)
                 $(this).find("img.thumbnail").attr("src",featured_tutorials[i].thumbnail_path);
                 
                 // adding related data
-                $(this).find('img.likes').after('<div class="likes">'+featured_tutorials[i].likes.num_of_likes+'0</div>').remove();
-                $(this).find('img.views').after('<div class="views">'+featured_tutorials[i].views.num_of_views+'0</div>').remove();
-                $(this).find('img.comments').after('<div class="comments">'+featured_tutorials[i].comments.num_of_comments+'0</div>').remove();
+                $(this).find('img.likes').after('<div class="likes">'+featured_tutorials[i].likes.num_of_likes+'</div>').remove();
+                $(this).find('img.views').after('<div class="views">'+featured_tutorials[i].views.num_of_views+'</div>').remove();
+                $(this).find('img.comments').after('<div class="comments">'+featured_tutorials[i].comments.num_of_comments+'</div>').remove();
                 
                 if(featured_tutorials[i].author.avatar_path === null)     
                     $(this).find('img.author_avatar').attr("src","images/no_avatar.png");
