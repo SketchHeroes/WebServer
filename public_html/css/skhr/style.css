@@ -34,9 +34,9 @@ header
 /* LOGO */
 
 .logo {
-    position: absolute;
-    left: 10px;
-    top: 10px; 
+    /*position: absolute;*/
+    float:left;
+    margin: 10px 0px 0px 10px; 
     background: orange;
 }
 
@@ -46,252 +46,6 @@ header
 }
 
 
-/* MAIN MENU */
-
-.main_menu {
-  float: left;
-  margin: 25px 0 0 100px; 
-  background: yellow;
-}
-.main_menu li {      
-    width: 130px;
-    min-height: 70px;
-    _height: 70px;
-}
-
-.main_menu a {
-  text-decoration: none;
-}
-.main_menu a:hover {
-  text-decoration: underline;
-}
-
-.main_menu img { 
-    
-    height:70px;
-    width:130px;
-}
-
-/* SECONDARY MENU */
-.secondary_menu {
-    width: 100%;
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
-    /*float: left;*/
-    background: yellowgreen;
-}
-
-.secondary_menu li {
-    /*
-    width:167px;
-    min-height: 180px;
-    _height: 180px;*/
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
-    border:1px solid red;
-}
-
-.secondary_menu a {
-    text-decoration: none;
-}
-
-.secondary_menu img { 
-    
-    /*height:100%;*/
-    margin: 0px 0px 0px 0px;
-    width:100%;
-    padding:20px;
-    border:1px solid blue;
-}
-.secondary_menu a:hover {
-  text-decoration: underline;
-}
-
-/* GALLERY */
-
-.gallery{
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
-    background:#cd0a0a;
-}
-
-.gallery li {      
-    width: 240px;
-    min-height: 140px;
-    _height: 140px;
-    border:1px solid #ff0;
-    margin: 20px 10px 0px 10px;
-}
-
-
-
-.gallery img.tutorial_title,
-.gallery img.author_name{ 
-    margin: 0px 0px 0px 0px;
-    height:15px;
-    width:30px;
-    border:1px solid #FFCCFF;
-    background:#ffffff;
-}
-
-.gallery div.tutorial_title {
-    float: left;
-    
-    white-space:nowrap; 
-    overflow:hidden; 
-    text-overflow:ellipsis;
-    
-    height:20px;
-    width:200px;
-    
-    margin: 20px 20px 0px 20px;
-    background:#ffff00;
-}
-
-.gallery div.author_name{ 
-    float: left;
-    
-    white-space:nowrap; 
-    overflow:hidden;
-    text-overflow:ellipsis;
-    
-    margin: 5px 0px 0px 0px;
-    
-    height:20px;
-    width:100px;
-    
-    border:1px solid #FFCCFF;
-    background:#ffffff;
-}
-
-.gallery a {
-    text-decoration: none;
-}
-
-.gallery img, 
-.gallery div{
-    float: left;
-}
-
-.gallery img.thumbnail{ 
-    margin: 5px 20px 0px 20px;
-    height:100px;
-    width:200px;
-    border:1px solid #0f0;
-    background:#ffffff;
-}
-
-.gallery img.likes,
-.gallery img.views,
-.gallery img.comments{ 
-    margin: 10px 0px 0px 0px;
-    height:10px;
-    width:42px;
-    border:1px solid #0ff;
-    background:#ffffff;
-}
-
-.gallery div.likes,
-.gallery div.views,
-.gallery div.comments{ 
-    
-    white-space:nowrap; 
-    overflow:hidden; 
-    text-overflow:ellipsis;
-    
-    margin: 0px 0px 0px 0px;
-    height:20px;
-    width:42px;
-    border:1px solid #0ff;
-    background:#ffffff;
-}
-
-.gallery img.likes_image,
-.gallery img.views_image{ 
-    margin: 0px 0px 0px 0px;
-    height:20px;
-    width:20px;
-    border:1px solid #0ff;
-    background:#ffffff;
-}
-
-.gallery img.comments_image{ 
-    margin: 0px 0px 0px 0px;
-    height:20px;
-    width:25px;
-    border:1px solid #0ff;
-    background:#ffffff;
-}
-
-.gallery img.author_avatar{
-    clear:left;
-    margin: 0px 0px 0px 0px; 
-    padding: 3px 3px 3px 3px;
-    height:30px;
-    width:30px;
-    border:1px solid #0ff;
-    background:#ffffff;
-}
-
-.gallery img.follow_button{ 
-    margin: 0px 0px 0px 0px;
-    height:30px;
-    width:60px;
-    border:1px solid #0ff;
-    background:#ffffff;
-}
-
-.gallery .info_panel { 
-    
-    margin: 0px 20px 20px 20px;
-    /*height:80px;*/
-    width:200px;
-    border:1px solid #0f0;
-    background:#ffff00;
-}
-.gallery a:hover {
-  text-decoration: underline;
-}
-
-/* FIRST_SECTION */
-
-#first_section{  
-    margin: 40px 0px 0px 0px;
-}
-
-/* FEATURED_TUTORIALS */
-
-#featured_tutorials
-{  
-    float: left;
-    width: 780px;
-    background:#1c94c4;
-}
-
-/* ASIDE */
-
-#side_panel
-{
-    margin-left: 780px;
-    height: 600px;
-    background:#FFCC33;
-    
-}
-
-#create_button
-{
-    width: 150;
-    height: 100px;
-    background:#FFCC00;
-    
-}
-#notifications
-{
-    width: 200;
-    height: 500px;
-    background:#FFCCFF;
-    
-}
 
 /* INLINE BLOCK */
 .inline_block li {
@@ -324,4 +78,358 @@ header
 .clearfix {
   overflow: auto;
   zoom: 1;
+}
+
+
+/* MAIN MENU */
+
+.main_menu {
+  float: left;
+  margin: 25px 0 0 10px; 
+  background: yellow;
+}
+.main_menu li {      
+    width: 120px;
+    min-height: 50px;
+    _height: 50px;
+    margin: 0px 5px 0px 5px;
+}
+
+.main_menu a {
+  text-decoration: none;
+}
+.main_menu a:hover {
+  text-decoration: underline;
+}
+
+.main_menu img { 
+    
+    height:50px;
+    width:120px;
+    background: #E8E7F5;
+}
+
+/* LOGIN */
+
+.login {
+  float: right;
+  width: 210px;
+  margin: 5px 0 10px;
+}
+.login .avatar, .login .options, .login .scores {
+  float: left;
+}
+/*
+.login .avatar {
+  margin: 0 5px 2px 0;
+}
+*/
+.login ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.login .status {
+  clear: both;
+  margin: 4px 0 2px;
+}
+
+
+/* FB LOGO */
+
+.fb_logo {
+    /*position: absolute;*/
+    float:left;
+    margin: 0px 0px 0px 0px; 
+    background: orange;
+}
+
+.fb_logo img{
+    height:50px;
+    width:50px;
+}
+
+/* COVER */
+
+.panel_down{
+    width:100%;
+    background: #E8E7F5;
+    background: #ffffff url(../../images/cover_down_frame.png) center 0 no-repeat;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+/* SECONDARY MENU */
+.secondary_menu {
+    /*width: 100%;*/
+    padding: 0px 0px 0px 0px;
+    margin: 25px 25px 34px 25px;
+    /*float: left;*/
+    background: yellowgreen;
+}
+
+.secondary_menu li {
+    
+    width:135px;
+    min-height: 120px;
+    _height: 120px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    /*background: green;*/
+    border:1px solid red;
+}
+
+.secondary_menu a {
+    text-decoration: none;  
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    /*background:red; */
+}
+
+.secondary_menu img { 
+    
+    width:135px;
+    min-height: 120px;
+    _height: 120px;
+    /*height:100%;*/
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    background: blue;
+    /*border:1px solid blue;*/
+}
+.secondary_menu a:hover {
+  text-decoration: underline;
+}
+
+
+/* FIRST_SECTION */
+
+#first_section{  
+    margin: 40px 0px 0px 0px;
+}
+
+/* FEATURED_TUTORIALS */
+
+#featured_tutorials
+{  
+    float: left;
+    width: 730px;
+    background:#1c94c4;
+}
+
+#featured_tutorials_gallery
+{  
+    float: left;
+    width: 650px;
+    background:black;
+    
+    padding: 0px 0px 0px 20px;
+    margin: 0px 0px 0px 0px;
+}
+
+
+/* ASIDE */
+
+#side_panel
+{
+    margin-left: 730px;
+    height: 600px;
+    background:#FFCC33;
+    
+}
+
+#create_button
+{
+    width: 150;
+    height: 100px;
+    background:#FFCC00;
+    
+}
+#notifications
+{
+    width: 200;
+    height: 500px;
+    background:#FFCCFF;
+    
+}
+/* ARROWS */
+
+#arrow_left{
+ float: left;
+ width: 40px;
+ margin: 230px 0px 0px 0px;
+ background: blue;
+ 
+}
+
+#arrow_right{
+    
+ float: left;
+ width: 40px;
+ margin: 230px 0px 0px 0px;
+ background: blue;
+ 
+}
+
+#arrow_left img{
+ background: red;
+ 
+}
+
+#arrow_right img{ 
+ background: red;
+}
+
+
+
+/* GALLERY */
+
+.gallery{
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    background:#cd0a0a;
+    width: 603px;
+}
+
+.gallery li {      
+    width: 181px;
+    min-height: 140px;
+    _height: 140px;
+    border:1px solid #ff0;
+    margin: 20px 10px 0px 10px;
+}
+
+
+
+.gallery img.tutorial_title,
+.gallery img.author_name{ 
+    margin: 0px 0px 0px 0px;
+    height:10px;
+    width:30px;
+    border:1px solid #FFCCFF;
+    background:#ffffff;
+}
+
+.gallery div.tutorial_title {
+    float: left;
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    
+    height:20px;
+    width:141px;
+    
+    margin: 20px 20px 0px 20px;
+    background:#ffff00;
+}
+
+.gallery div.author_name{ 
+    float: left;
+    
+    white-space:nowrap; 
+    overflow:hidden;
+    text-overflow:ellipsis;
+    
+    margin: 5px 0px 0px 0px;
+    
+    height:20px;
+    width:55px;
+    
+    border:1px solid #FFCCFF;
+    background:#ffffff;
+}
+
+.gallery a {
+    text-decoration: none;
+}
+
+.gallery img, 
+.gallery div{
+    float: left;
+}
+
+.gallery img.thumbnail{ 
+    margin: 5px 20px 0px 20px;
+    height:102px;
+    width:141px;
+    /*
+    height:100px;
+    width:200px;
+    */
+    /*border:1px solid #0f0;*/
+    background:#ffffff;
+}
+
+.gallery img.likes,
+.gallery img.views,
+.gallery img.comments{ 
+    margin: 10px 0px 0px 0px;
+    height:10px;
+    width:25px;
+    border:1px solid #0ff;
+    background:#ffffff;
+}
+
+.gallery div.likes,
+.gallery div.views,
+.gallery div.comments{ 
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    
+    margin: 0px 0px 0px 0px;
+    height:20px;
+    width:25px;
+    border:1px solid #0ff;
+    background:#ffffff;
+}
+
+.gallery img.likes_image,
+.gallery img.views_image{ 
+    margin: 0px 0px 0px 0px;
+    height:19px;
+    width:19px;
+    border:1px solid #0ff;
+    background:#ffffff;
+}
+
+.gallery img.comments_image{ 
+    margin: 0px 0px 0px 0px;
+    height:20px;
+    width:25px;
+    border:1px solid #0ff;
+    background:#ffffff;
+}
+
+.gallery img.author_avatar{
+    clear:left;
+    margin: 0px 0px 0px 0px; 
+    padding: 3px 3px 3px 3px;
+    height:25px;
+    width:25px;
+    border:1px solid #0ff;
+    background:#ffffff;
+}
+
+.gallery img.follow_button{ 
+    margin: 0px 0px 0px 0px;
+    height:30px;
+    width:55px;
+    border:1px solid #0ff;
+    background:#ffffff;
+}
+
+.gallery .info_panel { 
+    
+    margin: 0px 20px 20px 20px;
+    /*height:80px;*/
+    width:141px;
+    border:1px solid #0f0;
+    background:#ffff00;
+}
+.gallery a:hover {
+  text-decoration: underline;
 }

@@ -23,7 +23,7 @@ $(function(){
     
     var gallery_length = 6;
     
-    template_generator.addGallery("#featured_tutorials",gallery_length);
+    template_generator.addGallery("#featured_tutorials_gallery",gallery_length);
 
     var promise_featured    = rest_caller.getFeaturedTutorials();
     //var promise_top         = rest_caller.getTopTutorials();
@@ -34,7 +34,7 @@ $(function(){
             function(data)
             {
                 template_generator.featured_tutorials = data.tutorials;
-                template_generator.displayFeaturedTutorials("#featured_tutorials");
+                template_generator.displayFeaturedTutorials("#featured_tutorials_gallery");
                 
             });
             

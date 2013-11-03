@@ -172,7 +172,7 @@ RestCaller.prototype.getFeaturedTutorials = function()
     this.setRequestParam("start","0");
     this.setRequestParam("how_many","50");
     this.setRequestParam("featured","1");
-    this.setRequestParam("tutorial_count",{"count_views":"DESC"});
+    this.setRequestParam("tutorial_count",{"count_views_skhr":"DESC"});
     this.setRequestParam("tutorial_related_data",{"tutorial_author":"tutorial_author","tutorial_views":"tutorial_views","tutorial_likes":"tutorial_likes","tutorial_comments":"tutorial_comments"});
     
     return this.ajax();
@@ -261,7 +261,7 @@ TemplateGenerator.prototype.addGallery = function(target, size)
     
     for(var i=0; i<size; i++)
     {
-        var single_record = $('<li class="test"></li>');
+        var single_record = $('<li></li>');
         
             var div = $('<div></div>');
             single_record.append(div);
@@ -281,19 +281,19 @@ TemplateGenerator.prototype.addGallery = function(target, size)
                 var info_panel = $('<div class="info_panel"></div>');
                 div.append(info_panel);
                     
-                    image = $('<img class="likes_image" src="images/tabs/like.jpg">');
+                    image = $('<img class="likes_image" src="images/like.png">');
                     info_panel.append(image);
                     
                     image = $('<img class="likes" src="images/dots_loader.gif">');
                     info_panel.append(image);
                     
-                    image = $('<img class="views_image"src="images/tabs/view.jpg">');
+                    image = $('<img class="views_image"src="images/view.png">');
                     info_panel.append(image);
                     
                     image = $('<img class="views" src="images/dots_loader.gif">');
                     info_panel.append(image);
                     
-                    image = $('<img class="comments_image" src="images/tabs/comment.jpg">');
+                    image = $('<img class="comments_image" src="images/comment.png">');
                     info_panel.append(image);
                     
                     image = $('<img class="comments" src="images/dots_loader.gif">');
@@ -308,7 +308,7 @@ TemplateGenerator.prototype.addGallery = function(target, size)
                         var image = $('<img class="author_name" src="images/dots_loader.gif">');
                         author_name.append(image);
                         
-                    image = $('<img class="follow_button" src="images/tabs/follow.jpg">');
+                    image = $('<img class="follow_button" src="images/follow-button.png">');
                     info_panel.append(image);
         
         list.append(single_record);
@@ -340,9 +340,9 @@ TemplateGenerator.prototype.displayFeaturedTutorials = function(target)
                 $(this).find("img.thumbnail").attr("src",featured_tutorials[i].thumbnail_path);
                 
                 // adding related data
-                $(this).find('img.likes').after('<div class="likes">'+featured_tutorials[i].likes.num_of_likes+'</div>').remove();
-                $(this).find('img.views').after('<div class="views">'+featured_tutorials[i].views.num_of_views+'</div>').remove();
-                $(this).find('img.comments').after('<div class="comments">'+featured_tutorials[i].comments.num_of_comments+'</div>').remove();
+                $(this).find('img.likes').after('<div class="likes">'+featured_tutorials[i].likes.likes_skhr+'</div>').remove();
+                $(this).find('img.views').after('<div class="views">'+featured_tutorials[i].views.views_skhr+'</div>').remove();
+                $(this).find('img.comments').after('<div class="comments">'+featured_tutorials[i].comments.comments_skhr+'</div>').remove();
                 
                 if(featured_tutorials[i].author.avatar_path === null)     
                     $(this).find('img.author_avatar').attr("src","images/no_avatar.png");
