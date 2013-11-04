@@ -155,7 +155,7 @@ RestCaller.prototype.getTutorialLinkedData = function(content_id)
 
 // request abstraction methods
 
-RestCaller.prototype.getFeaturedTutorials = function()
+RestCaller.prototype.getFeaturedTutorials = function(start,how_many)
 {
     this.setResource("/tutorials");
     this.setVerb("GET");
@@ -169,8 +169,8 @@ RestCaller.prototype.getFeaturedTutorials = function()
     //this.setCustomHeader("X-Caller-SKHR-ID","3");  
     
     this.clearRequestParams();
-    this.setRequestParam("start","0");
-    this.setRequestParam("how_many","50");
+    this.setRequestParam("start",start);
+    this.setRequestParam("how_many",how_many);
     this.setRequestParam("featured","1");
     this.setRequestParam("tutorial_count",{"count_views_skhr":"DESC"});
     this.setRequestParam("tutorial_related_data",{"tutorial_author":"tutorial_author","tutorial_views":"tutorial_views","tutorial_likes":"tutorial_likes","tutorial_comments":"tutorial_comments"});
@@ -178,51 +178,7 @@ RestCaller.prototype.getFeaturedTutorials = function()
     return this.ajax();
 };
 
-
-
-RestCaller.prototype.getTopTutorials = function(time_constraint)
-{
-    this.setResource("/tutorials");
-    this.setVerb("GET");
-    //this.clearCustomHeaders();
-    
-    this.clearCustomHeaders();
-    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
-    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65");
-    this.setCustomHeader("Accept","application/json");
-    
-    this.clearRequestParams();
-    this.setRequestParam("start","0");
-    this.setRequestParam("how_many","50");
-    this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
-    this.setRequestParam("tutorial_count",{"count_views":"DESC"});
-    
-    if(typeof time_constraint !== 'undefined')
-        this.setRequestParam("time_constraint",{"timestamp_field":"created_at","operator":"younger_then","time_amount":"1","time_interval":""+time_constraint+""});
-    
-    return this.ajax();
-};
-
-RestCaller.prototype.getRecentTutorials = function()
-{
-    this.setResource("/tutorials");
-    this.setVerb("GET");
-    //this.clearCustomHeaders();
-    
-    this.clearCustomHeaders();
-    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
-    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65");
-    this.setCustomHeader("Accept","application/json"); 
-    
-    this.clearRequestParams();
-    this.setRequestParam("start","0");
-    this.setRequestParam("how_many","50");
-    this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
-    
-    return this.ajax();
-};
-
-RestCaller.prototype.getTopUsers = function(time_constraint)
+RestCaller.prototype.getTopUsers = function(start, how_many, time_constraint)
 {
     this.setResource("/users/top");
     this.setVerb("GET");
@@ -234,13 +190,57 @@ RestCaller.prototype.getTopUsers = function(time_constraint)
     this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65"); 
     
     this.clearRequestParams();
-    this.setRequestParam("start","0");
-    this.setRequestParam("how_many","5");
+    this.setRequestParam("start",start);
+    this.setRequestParam("how_many",how_many);
     this.setRequestParam("top_user_content","tutorials");
     this.setRequestParam("top_user_count",{"count_views":"DESC"});
     
     if(typeof time_constraint !== 'undefined')
         this.setRequestParam("time_constraint",{"timestamp_field":"created_at","operator":"younger_then","time_amount":"1","time_interval":""+time_constraint+""});
+    
+    return this.ajax();
+};
+
+
+
+RestCaller.prototype.getTopTutorials = function(start, how_many, time_constraint)
+{
+    this.setResource("/tutorials");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65");
+    this.setCustomHeader("Accept","application/json");
+    
+    this.clearRequestParams();
+    this.setRequestParam("start",start);
+    this.setRequestParam("how_many",how_many);
+    this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
+    this.setRequestParam("tutorial_count",{"count_views":"DESC"});
+    
+    if(typeof time_constraint !== 'undefined')
+        this.setRequestParam("time_constraint",{"timestamp_field":"created_at","operator":"younger_then","time_amount":"1","time_interval":""+time_constraint+""});
+    
+    return this.ajax();
+};
+
+RestCaller.prototype.getRecentTutorials = function(start, how_many)
+{
+    this.setResource("/tutorials");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65");
+    this.setCustomHeader("Accept","application/json"); 
+    
+    this.clearRequestParams();
+    this.setRequestParam("start","0");
+    this.setRequestParam("how_many","50");
+    this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
     
     return this.ajax();
 };
@@ -257,7 +257,7 @@ TemplateGenerator.prototype.addGallery = function(target, size)
 {
     //$('#data').html("Tutorials:<br /><br />");  
    
-    var list = $('<ul class = "inline_block gallery"></ul>');
+    var list = $('<ul class = "inline_block_list gallery"></ul>');
     
     for(var i=0; i<size; i++)
     {
@@ -302,7 +302,7 @@ TemplateGenerator.prototype.addGallery = function(target, size)
                     image = $('<img class="author_avatar" src="images/spinner.gif">');
                     info_panel.append(image);
                     
-                    var author_name = $('<div class="author_name" style="text-overflow:ellipsis;"></div>');
+                    var author_name = $('<div class="author_name"></div>');
                     info_panel.append(author_name);
                 
                         var image = $('<img class="author_name" src="images/dots_loader.gif">');
@@ -310,6 +310,42 @@ TemplateGenerator.prototype.addGallery = function(target, size)
                         
                     image = $('<img class="follow_button" src="images/follow-button.png">');
                     info_panel.append(image);
+        
+        list.append(single_record);
+    };
+
+    
+    $(target).append(list);
+    
+};  
+
+TemplateGenerator.prototype.addNotificationList = function(target)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+   
+    var list = $('<ul id="notification_list"></ul>');
+    
+    for(var i=0; i<40; i++)
+    {
+        var single_record = $('<li>New message '+i+'</li>');
+        
+        list.append(single_record);
+    };
+
+    
+    $(target).append(list);
+    
+};   
+
+TemplateGenerator.prototype.addTopUserList = function(target, length)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+   
+    var list = $('<ul id="top_users_list"></ul>');
+    
+    for(var i=0; i<length; i++)
+    {
+        var single_record = $('<li></li>');
         
         list.append(single_record);
     };
@@ -358,17 +394,41 @@ TemplateGenerator.prototype.displayFeaturedTutorials = function(target)
     
 }; 
 
-TemplateGenerator.prototype.displayTutorialLinkedData = function(target, index)
+
+TemplateGenerator.prototype.displayTopUsers= function(target)
 {
-    var featured_tutorials = this.featured_tutorials;
+    var top_users = this.top_users;
     
-    //alert("index "+index+": "+$(target+'> ul.gallery').children().eq(index).attr('class'));
+    var list = $('<ul></ul>');
     
-    // getting the info panel of this tutorial
-    var info_panel= $(target+' > ul.gallery > li:nth-child('+index+') > div.info_panel'); 
+    $.each(top_users, function( index, value ) 
+    {
+        var single_record = $('<il></il>');
+        
+        var p = $('<p></p>');
+        single_record.append(p);
+        
+        var span = $('<span class="number">'+count+'</span>');
+        p.append(span);
+        
+        var link = $('<a href="#">'+value.username+'</a>');
+        p.append(link);
+        
+        var link = $('<a href="#" class="award"></a>');
+        p.append(link);
+        
+        var image = $('<img src="images/award.png" alt="award" alt="sketchadmin" title="sketchadmin">');
+        link.append(image);
+        
+        list.append(single_record);
+     
+        count++;
+    });
+
     
-    info_panel.find('img.likes').after("<h4>"+featured_tutorials[index].likes.num_of_likes+"</h4>").remove();
-}
+    $(target).append(list);
+    
+};
 
 TemplateGenerator.prototype.displayFeaturedTutorialsOLD = function(data,target)
 {
@@ -397,6 +457,41 @@ TemplateGenerator.prototype.displayFeaturedTutorialsOLD = function(data,target)
         
         list.append(single_record);
     });
+
+TemplateGenerator.prototype.displayTopUsers= function(data,target)
+{
+    var list = $('<div></div>');
+    
+    var count = 1;
+    
+    $.each(data.users, function( index, value ) 
+    {
+        var single_record = $('<div class="item singletop">');
+        
+        var p = $('<p></p>');
+        single_record.append(p);
+        
+        var span = $('<span class="number">'+count+'</span>');
+        p.append(span);
+        
+        var link = $('<a href="#">'+value.username+'</a>');
+        p.append(link);
+        
+        var link = $('<a href="#" class="award"></a>');
+        p.append(link);
+        
+        var image = $('<img src="images/award.png" alt="award" alt="sketchadmin" title="sketchadmin">');
+        link.append(image);
+        
+        list.append(single_record);
+     
+        count++;
+    });
+
+    
+    $(target).append(list);
+    
+};
 
     
     $(target).append(list);
@@ -496,41 +591,6 @@ TemplateGenerator.prototype.displayRecentTutorials = function(data,target)
         */
         
         list.append(single_record);
-    });
-
-    
-    $(target).append(list);
-    
-};
-
-TemplateGenerator.prototype.displayTopUsers= function(data,target)
-{
-    var list = $('<div></div>');
-    
-    var count = 1;
-    
-    $.each(data.users, function( index, value ) 
-    {
-        var single_record = $('<div class="item singletop">');
-        
-        var p = $('<p></p>');
-        single_record.append(p);
-        
-        var span = $('<span class="number">'+count+'</span>');
-        p.append(span);
-        
-        var link = $('<a href="#">'+value.username+'</a>');
-        p.append(link);
-        
-        var link = $('<a href="#" class="award"></a>');
-        p.append(link);
-        
-        var image = $('<img src="images/award.png" alt="award" alt="sketchadmin" title="sketchadmin">');
-        link.append(image);
-        
-        list.append(single_record);
-     
-        count++;
     });
 
     

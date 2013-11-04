@@ -22,19 +22,31 @@ $(function(){
     var template_generator   = new TemplateGenerator();
     
     var gallery_length = 6;
+    var top_users_length = 5;
     
     template_generator.addGallery("#featured_tutorials_gallery",gallery_length);
+    template_generator.addNotificationList("#notifications");
+    template_generator.addTopUserList("#top_heroes",top_users_length);
 
-    var promise_featured    = rest_caller.getFeaturedTutorials();
+    var promise_featured    = rest_caller.getFeaturedTutorials(0,gallery_length);
     //var promise_top         = rest_caller.getTopTutorials();
     //var promise_recent      = rest_caller.getRecentTutorials();
-    //var promise_top_users   = rest_caller.getTopUsers();
+    var promise_top_users   = rest_caller.getTopUsers(0,top_users_length,"month");
     
     promise_featured.done(
             function(data)
             {
                 template_generator.featured_tutorials = data.tutorials;
                 template_generator.displayFeaturedTutorials("#featured_tutorials_gallery");
+                
+            });
+            
+    
+    promise_top_users.done(
+            function(data)
+            {
+                template_generator.top_users = data.users;
+                template_generator.displayTopUsers("#top_heroes");
                 
             });
             
