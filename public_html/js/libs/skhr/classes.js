@@ -193,7 +193,9 @@ RestCaller.prototype.getTopUsers = function(start, how_many, time_constraint)
     this.setRequestParam("start",start);
     this.setRequestParam("how_many",how_many);
     this.setRequestParam("top_user_content","tutorials");
-    this.setRequestParam("top_user_count",{"count_views":"DESC"});
+    this.setRequestParam("top_user_count",{"count_views_skhr":"DESC"});
+    
+    //alert(time_constraint);
     
     if(typeof time_constraint !== 'undefined')
         this.setRequestParam("time_constraint",{"timestamp_field":"created_at","operator":"younger_then","time_amount":"1","time_interval":""+time_constraint+""});
@@ -335,25 +337,7 @@ TemplateGenerator.prototype.addNotificationList = function(target)
     
     $(target).append(list);
     
-};   
-
-TemplateGenerator.prototype.addTopUserList = function(target, length)
-{
-    //$('#data').html("Tutorials:<br /><br />");  
-   
-    var list = $('<ul id="top_users_list"></ul>');
-    
-    for(var i=0; i<length; i++)
-    {
-        var single_record = $('<li></li>');
-        
-        list.append(single_record);
-    };
-
-    
-    $(target).append(list);
-    
-}; 
+};  
 
 TemplateGenerator.prototype.displayFeaturedTutorials = function(target)
 {
@@ -392,109 +376,59 @@ TemplateGenerator.prototype.displayFeaturedTutorials = function(target)
                 i++;
             });
     
-}; 
+};   
+
+TemplateGenerator.prototype.addTopUserList = function(target, length)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+   
+    var list = $('<ul class="users_list"></ul>');
+    
+    for(var i=0; i<length; i++)
+    {
+        var single_record = $('<li></li>');
+        
+            var user_place = $('<div class="user_place">'+i+'</div>');
+            single_record.append(user_place); 
+            
+            var user_name = $('<div class="user_name"></div>');
+            single_record.append(user_name); 
+            
+                var link = $('<a href="/"></a>');
+                user_name.append(link); 
+            
+            var image = $('<img class="follow_button" src="images/follow-button.png">');
+            single_record.append(image);
+        
+        list.append(single_record);
+    };
+
+    
+    $(target).append(list);
+    
+};
 
 
 TemplateGenerator.prototype.displayTopUsers= function(target)
 {
     var top_users = this.top_users;
+    //alert(top_users[0].username);
     
-    var list = $('<ul></ul>');
-    
-    $.each(top_users, function( index, value ) 
-    {
-        var single_record = $('<il></il>');
+    var i = 0;
+    $(target+' > ul.users_list > li').each(
+            function()
+            {
+                //alert(JSON.stringify($(this)));
+                // adding tutorial_title
+                if(top_users[i] !== undefined) 
+                {                                     
+                    //alert(JSON.stringify(top_users[i]));
+                    $(this).find(".user_name a").text(top_users[i].username);
+                }
         
-        var p = $('<p></p>');
-        single_record.append(p);
-        
-        var span = $('<span class="number">'+count+'</span>');
-        p.append(span);
-        
-        var link = $('<a href="#">'+value.username+'</a>');
-        p.append(link);
-        
-        var link = $('<a href="#" class="award"></a>');
-        p.append(link);
-        
-        var image = $('<img src="images/award.png" alt="award" alt="sketchadmin" title="sketchadmin">');
-        link.append(image);
-        
-        list.append(single_record);
-     
-        count++;
-    });
-
-    
-    $(target).append(list);
-    
-};
-
-TemplateGenerator.prototype.displayFeaturedTutorialsOLD = function(data,target)
-{
-    //$('#data').html("Tutorials:<br /><br />");  
-   
-    var list = $('<ul></ul>');
-    
-    $.each(data.tutorials, function( index, value ) 
-    {
-        var single_record = $('<li class="singlevideo item"></li>');
-        
-        var div = $('<div class="pic"></div>');
-        single_record.append(div);
-        
-        var link = $('<a href="'+value.tutorial_path+'"></a>');
-        div.append(link);
-        
-        var image = $('<img src="'+value.thumbnail_path+'" class="replacethumb">');
-        link.append(image);
-        
-        var h4 = $('<h4></h4>');
-        div.append(h4);
-        
-        var link = $('<a href="'+value.tutorial_path+'">'+value.title+'</a>');
-        h4.append(link);
-        
-        list.append(single_record);
-    });
-
-TemplateGenerator.prototype.displayTopUsers= function(data,target)
-{
-    var list = $('<div></div>');
-    
-    var count = 1;
-    
-    $.each(data.users, function( index, value ) 
-    {
-        var single_record = $('<div class="item singletop">');
-        
-        var p = $('<p></p>');
-        single_record.append(p);
-        
-        var span = $('<span class="number">'+count+'</span>');
-        p.append(span);
-        
-        var link = $('<a href="#">'+value.username+'</a>');
-        p.append(link);
-        
-        var link = $('<a href="#" class="award"></a>');
-        p.append(link);
-        
-        var image = $('<img src="images/award.png" alt="award" alt="sketchadmin" title="sketchadmin">');
-        link.append(image);
-        
-        list.append(single_record);
-     
-        count++;
-    });
-
-    
-    $(target).append(list);
-    
-};
-
-    
-    $(target).append(list);
+                i++;
+            });
+    //alert(i);
     
 };
 

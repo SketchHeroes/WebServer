@@ -196,7 +196,7 @@ header
 }
 
 .secondary_menu img { 
-    
+    float:left;
     width:135px;
     min-height: 120px;
     _height: 120px;
@@ -227,12 +227,15 @@ header
     margin: 55px 0px 0px 0px; 
     float: left;
     width: 730px;
+    height: 634px;
     background:#1c94c4;
 }
 
 #featured_tutorials_gallery
 {  
     float: left;
+    height: 634px;
+    width: 670px;
     /*width: 650px;*/
     background:black;
     
@@ -327,12 +330,13 @@ header
     margin: 20px 0px 20px 0px;
     background:#cd0a0a;
     width: 670px;
+    height: 594px;
 }
 
 .gallery li {      
     width: 222px;
-    min-height: 140px;
-    _height: 140px;
+    min-height: 248px;
+    _height: 248px;
     border:1px solid #ff0;
     margin: 10px 0px 10px 0px;
 }
@@ -494,6 +498,13 @@ header
     
 }
 
+/* VIEW MORE */
+.view_more
+{
+    width:97;
+    height:31;
+}
+
 
 /* LATEST COMPETITION */
 
@@ -502,17 +513,51 @@ header
     float:left;
     margin: 0px 0px 0px 0px; 
     height: 558px;
-    width:650px;
+    width:600px;
     background: #ECECEC;
     
 }
 
 #latest_competition img.header_img
 {
-    
+    float:left;
     margin: 0px 0px 0px 100px;
     height:61px;
     width:467px;
+    border:1px solid #0ff;
+}
+
+#latest_competition img.header_shadow
+{
+    float:left;
+    margin: 0px 0px 0px 116px;
+    height:31px;
+    width:432px;
+    border:1px solid #0ff;
+}
+
+.competition_thumbnail{  
+    float:left;
+    margin: 0px 0px 0px 116px;  
+    height:260px;
+    width:432px;
+    border:1px solid #0ff;
+}
+
+.competition_thumbnail img{  
+    float:left;
+    margin: 10px 10px 10px 10px;  
+    height:240px;
+    width:412px;
+    border:1px solid #0ff;
+}
+
+.competition .latest_submissions{  
+    float:left;
+    margin: 10px 10px 10px 10px;  
+    height:600px;
+    width:412px;
+    border:1px solid #0ff;
 }
 
 
@@ -533,7 +578,7 @@ header
 
 #top_heroes
 {
-    margin: 0px 0px 0px 761px; 
+    margin: 0px 0px 0px 711px; 
     height: 558px;    
     /*background: white;*/
     background: #D8D9D4;
@@ -542,41 +587,88 @@ header
 
 #top_heroes img.header_img
 {
-    
+    float:left;
     margin: 0px 0px 0px 5px;
     height:81px;
     width:185px;
 }
 
-#top_heroes img#week
+#top_heroes .view_more
 {
-    
-    margin: 20px 0px 0px 0x;
-    height:40px;
-    width:80px;
+    float:right;
+    margin: 0px 0px 0px 0px;
 }
 
-#top_heroes img#month
+#period_panel
 {
-    
-    margin: 20px 0px 0px 0px;
-    height:40px;
-    width:80px;
+    float:left;
+    background: red;
+    border:1px solid black; 
+    margin: 10px 0px 10px 15px;
 }
 
-#top_heroes img#year
+#top_heroes #week
 {
     
-    margin: 20px 0px 0px 0px;
-    height:40px;
-    width:80px;
+    margin: 0px 0px 0px 0x;
+    height:45px;
+    width:90px;
 }
 
-#top_heroes #top_users_list
+#top_heroes #month
 {
+    
+    margin: 0px 0px 0px 0px;
+    height:45px;
+    width:90px;
+}
+
+#top_heroes #year
+{
+    
+    margin: 0px 0px 0px 0px;
+    height:45px;
+    width:90px;
+}
+
+/* TOP USER LIST */
+
+.users_list
+{
+    float:left;
     margin: 0px 0px 0px 0px; 
-    height: 400px;
-    width: 250px;
+    height: 350px;
+    width: 300px;
     background: white;
-    width 
+    list-style-type: none;
+}
+
+.users_list li{
+    height: 70px;
+    width: 300px;
+    border:1px solid red;
+}
+
+.users_list .user_place{
+    float: left;
+    margin: 20px 0px 0px 0px; 
+    height: 30px;
+    width: 30px;
+    border:1px solid red;
+}
+
+.users_list .user_name{
+    float: left;
+    margin: 20px 0px 0px 0px; 
+    height: 30px;
+    width: 190px;
+    border:1px solid red;
+}
+
+.users_list img.follow_button{ 
+    float: right;
+    margin: 20px 0px 0px 0px;
+    height:30px;
+    width:70px;
+    border:1px solid #0ff;
 }
