@@ -26,17 +26,18 @@ $(function(){
     
     var gallery_length = 6;
     var top_users_length = 5;
+    var latest_submissions_length = 4;
     
     
     // getting INITIAL data from the server
     
     template_generator.addGallery("#featured_tutorials_gallery",gallery_length);
-    template_generator.addNotificationList("#notifications");
     template_generator.addTopUserList("#top_heroes",top_users_length);
+   
+    template_generator.addNotificationList("#notifications");
+    template_generator.addLatestSubmitions("#latest_submissions", latest_submissions_length);
 
     var promise_featured    = rest_caller.getFeaturedTutorials(0,gallery_length);
-    //var promise_top         = rest_caller.getTopTutorials();
-    //var promise_recent      = rest_caller.getRecentTutorials();
     var promise_top_users   = rest_caller.getTopUsers(0,top_users_length,$( "#top_heroes .active" ).attr('id'));
     
     promise_featured.done(

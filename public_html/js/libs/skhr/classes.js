@@ -321,24 +321,6 @@ TemplateGenerator.prototype.addGallery = function(target, size)
     
 };  
 
-TemplateGenerator.prototype.addNotificationList = function(target)
-{
-    //$('#data').html("Tutorials:<br /><br />");  
-   
-    var list = $('<ul id="notification_list"></ul>');
-    
-    for(var i=0; i<40; i++)
-    {
-        var single_record = $('<li>New message '+i+'</li>');
-        
-        list.append(single_record);
-    };
-
-    
-    $(target).append(list);
-    
-};  
-
 TemplateGenerator.prototype.displayFeaturedTutorials = function(target)
 {
     //$('#data').html("Tutorials:<br /><br />");  
@@ -432,105 +414,51 @@ TemplateGenerator.prototype.displayTopUsers= function(target)
     
 };
 
-TemplateGenerator.prototype.displayTopTutorials = function(data,target)
+
+TemplateGenerator.prototype.addNotificationList = function(target)
 {
-    var list = $('<div></div>');
+    //$('#data').html("Tutorials:<br /><br />");  
+   
+    var list = $('<ul class="notification_list"></ul>');
     
-    $.each(data.tutorials, function( index, value ) 
+    for(var i=0; i<40; i++)
     {
-        var single_record = $('<div class="singlevideo item"></div>');
-        
-        var h4 = $('<h4></h4>');
-        single_record.append(h4);
-        
-        var link = $('<a href="'+value.tutorial_path+'">'+value.title+'</a>');
-        h4.append(link);
-        
-        var div = $('<div class="pic"></div>');
-        single_record.append(div);
-        
-        var link = $('<a href="'+value.tutorial_path+'"></a>');
-        div.append(link);
-        
-        var image = $('<img src="'+value.thumbnail_path+'" class="replacethumb">');
-        link.append(image);
-        /*
-        var div = $('<div class="info"></div>');
-        single_record.append(div);
-        
-        var link = $('<a class="avatar" href="'+value.tutorial_path+'"></a>');
-        div.append(link);
-        
-        var image = $('<img src="'+value.thumbnail_path+'" class="userthumb">');
-        link.append(image);
-        
-        var span = $('<span likes="1" class="replacethumb"></span>');
-        div.append(image);
-        
-        var span = $('<span views="2" class="replacethumb"></span>');
-        div.append(image);
-        
-        var span = $('<span admin="" class="replacethumb"></span>');
-        div.append(image);
-        */
+        var single_record = $('<li>New message '+i+'</li>');
         
         list.append(single_record);
-    });
+    };
 
     
     $(target).append(list);
     
-};
+};  
 
-TemplateGenerator.prototype.displayRecentTutorials = function(data,target)
+TemplateGenerator.prototype.addLatestSubmitions = function(target, length)
 {
-    var list = $('<div></div>');
+    //$('#data').html("Tutorials:<br /><br />");  
+   
+    var list = $('<ul class="inline_block_list simple_gallery"></ul>');
     
-    $.each(data.tutorials, function( index, value ) 
+    for(var i=0; i<length; i++)
     {
-        var single_record = $('<div class="singlevideo item"></div>');
+        var single_record = $('<li></li>');
         
-        var h4 = $('<h4></h4>');
-        single_record.append(h4);
+            var tutorial = $('<img class="thumbnail"></img>');
+            single_record.append(tutorial);
         
-        var link = $('<a href="'+value.tutorial_path+'">'+value.title+'</a>');
-        h4.append(link);
-        
-        var div = $('<div class="pic"></div>');
-        single_record.append(div);
-        
-        var link = $('<a href="'+value.tutorial_path+'"></a>');
-        div.append(link);
-        
-        var image = $('<img src="'+value.thumbnail_path+'" class="replacethumb">');
-        link.append(image);
-        /*
-        var div = $('<div class="info"></div>');
-        single_record.append(div);
-        
-        var link = $('<a class="avatar" href="'+value.tutorial_path+'"></a>');
-        div.append(link);
-        
-        var image = $('<img src="'+value.thumbnail_path+'" class="userthumb">');
-        link.append(image);
-        
-        var span = $('<span likes="1" class="replacethumb"></span>');
-        div.append(image);
-        
-        var span = $('<span views="2" class="replacethumb"></span>');
-        div.append(image);
-        
-        var span = $('<span admin="" class="replacethumb"></span>');
-        div.append(image);
-        */
+            var div = $('<div class="tutorial_title"></div>');
+            single_record.append(div);
+            
+            var div = $('<div class="views"></div>');
+            single_record.append(div);
         
         list.append(single_record);
-    });
+    };
 
     
     $(target).append(list);
     
-};
+};  
 
 // setters
 
