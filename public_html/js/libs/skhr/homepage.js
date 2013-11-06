@@ -27,18 +27,24 @@ $(function(){
     var gallery_length = 6;
     var top_users_length = 5;
     var latest_submissions_length = 4;
+    var top_tutorials_length = 6;
+    var recent_tutorials_length = 3;
     
     
     // getting INITIAL data from the server
     
     template_generator.addGallery("#featured_tutorials_gallery",gallery_length);
     template_generator.addTopUserList("#top_heroes",top_users_length);
+    template_generator.addGallery("#top_tutorials_gallery",gallery_length);
+    template_generator.addGalleryLess("#recent_tutorials_gallery", recent_tutorials_length);
    
     template_generator.addNotificationList("#notifications");
-    template_generator.addLatestSubmitions("#latest_submissions", latest_submissions_length);
+    template_generator.addSimpleGallery("#latest_submissions", latest_submissions_length);
 
     var promise_featured    = rest_caller.getFeaturedTutorials(0,gallery_length);
     var promise_top_users   = rest_caller.getTopUsers(0,top_users_length,$( "#top_heroes .active" ).attr('id'));
+    var promise_top         = rest_caller.getTopTutorials(0,top_tutorials_length);
+    var promise_recent      = rest_caller.getRecentTutorials(0,recent_tutorials_length);
     
     promise_featured.done(
             function(data)
@@ -54,6 +60,24 @@ $(function(){
             {
                 template_generator.top_users = data.users;
                 template_generator.displayTopUsers("#top_heroes");
+                
+            });
+            
+    
+    promise_top.done(
+            function(data)
+            {
+                template_generator.top_tutorials = data.tutorials;
+                template_generator.displayTopTutorials("#top_tutorials_gallery");
+                
+            });
+            
+    
+    promise_recent.done(
+            function(data)
+            {
+                template_generator.recent_tutorials = data.tutorials;
+                template_generator.displayRecentTutorials("#recent_tutorials_gallery");
                 
             });
             
@@ -73,6 +97,8 @@ $(function(){
     //promise_top_users.fail(function(data){$("#top_users").html(error_image)});
     
     
+    // jump to the bottom of the page (for building only)
+    $('html, body').scrollTop( $(document).height() );
     
     
     // top user period buttons
@@ -92,6 +118,27 @@ $(function(){
             {
                 template_generator.top_users = data.users;
                 template_generator.displayTopUsers("#top_heroes");
+                
+            });
+    });
+    
+    // top tutorials period buttons
+    
+    $( "#top_tutorials_gallery .period" ).click(function(event) {
+        
+        //alert("clicked");
+        //alert(event.target.id);
+        $( "#top_tutorials_gallery .period" ).attr("src","images/top-tutorials-unselected-button.png").removeClass("active");
+        $( "#"+event.target.id ).attr("src","images/top-tutorials-selected-button.png").addClass("active");
+        //alert( "id = "+$(this).id );
+        
+        var promise_top_users   = rest_caller.getTopTutorials(0,top_users_length,$( "#"+event.target.id ).attr('id'));
+        
+        promise_top_users.done(
+            function(data)
+            {
+                template_generator.top_users = data.users;
+                template_generator.displayTopTutorials("#top_tutorials_gallery");
                 
             });
     });
