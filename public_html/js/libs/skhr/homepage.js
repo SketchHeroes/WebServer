@@ -34,7 +34,7 @@ $(function(){
     // getting INITIAL data from the server
     
     template_generator.addGallery("#featured_tutorials_gallery",gallery_length);
-    template_generator.addTopUserList("#top_heroes",top_users_length);
+    template_generator.addUserList("#top_heroes",top_users_length);
     template_generator.addGallery("#top_tutorials_gallery",gallery_length);
     template_generator.addGalleryLess("#recent_tutorials_gallery", recent_tutorials_length);
    
@@ -50,7 +50,7 @@ $(function(){
             function(data)
             {
                 template_generator.featured_tutorials = data.tutorials;
-                template_generator.displayFeaturedTutorials("#featured_tutorials_gallery");
+                template_generator.displayTutorialGallery("#featured_tutorials_gallery", template_generator.featured_tutorials);
                 
             });
             
@@ -59,7 +59,7 @@ $(function(){
             function(data)
             {
                 template_generator.top_users = data.users;
-                template_generator.displayTopUsers("#top_heroes");
+                template_generator.displayUserList("#top_heroes", template_generator.top_users);
                 
             });
             
@@ -68,7 +68,7 @@ $(function(){
             function(data)
             {
                 template_generator.top_tutorials = data.tutorials;
-                template_generator.displayTopTutorials("#top_tutorials_gallery");
+                template_generator.displayTutorialGallery("#top_tutorials_gallery", template_generator.top_tutorials);
                 
             });
             
@@ -77,7 +77,7 @@ $(function(){
             function(data)
             {
                 template_generator.recent_tutorials = data.tutorials;
-                template_generator.displayRecentTutorials("#recent_tutorials_gallery");
+                template_generator.displayTutorialGalleryLess("#recent_tutorials_gallery",template_generator.recent_tutorials);
                 
             });
             
@@ -117,7 +117,7 @@ $(function(){
             function(data)
             {
                 template_generator.top_users = data.users;
-                template_generator.displayTopUsers("#top_heroes");
+                template_generator.displayUserList("#top_heroes",template_generator.top_users);
                 
             });
     });
@@ -132,13 +132,13 @@ $(function(){
         $( "#top_tutorials_gallery #"+event.target.id ).attr("src","images/top-tutorials-selected-button.png").addClass("active");
         //alert( "id = "+$(this).id );
         
-        var promise_top_users   = rest_caller.getTopTutorials(0,top_users_length,$( "#"+event.target.id ).attr('id'));
+        var promise_top   = rest_caller.getTopTutorials(0,top_tutorials_length,$( "#"+event.target.id ).attr('id'));
         
-        promise_top_users.done(
+        promise_top.done(
             function(data)
             {
-                template_generator.top_users = data.users;
-                template_generator.displayTopTutorials("#top_tutorials_gallery");
+                template_generator.top_tutorials = data.tutorials;
+                template_generator.displayTutorialGallery("#top_tutorials_gallery",template_generator.top_tutorials);
                 
             });
     });

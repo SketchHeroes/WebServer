@@ -389,7 +389,7 @@ TemplateGenerator.prototype.addSimpleGallery = function(target, length)
     
 };    
 
-TemplateGenerator.prototype.addTopUserList = function(target, length)
+TemplateGenerator.prototype.addUserList = function(target, length)
 {
     //$('#data').html("Tutorials:<br /><br />");  
    
@@ -438,27 +438,39 @@ TemplateGenerator.prototype.addNotificationList = function(target)
     
 }; 
 
-TemplateGenerator.prototype.displayFeaturedTutorials = function(target)
+TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
 {
     //$('#data').html("Tutorials:<br /><br />");  
     //$('body').html("found:<br />");
     //alert(this.featured_tutorials[0].thumbnail_path);
     
-    var tutorials = this.featured_tutorials;
-    
     var i = 0;
     $(target+' > ul.gallery > li').each(
             function()
             {
+                //clearing old data from gallery
+                
+                $(this).find("div.tutorial_title a").remove(); 
+                $(this).find("div.thumbnail img").remove();
+                
+                $(this).find('div.likes').text('');
+                $(this).find('div.views').text('');
+                $(this).find('div.comments').text('');
+                
+                $(this).find('img.author_avatar').attr("src","images/avatar_default.png");
+                
+                $(this).find("div.thumbnail a").remove(); 
+                
+                // if there is data adding new data to gallery
                 if(tutorials[i] !== undefined) 
                 { 
                     // adding tutorial_title
-                    $(this).find("div.tutorial_title a").remove(); 
+                    
                     var link = $('<a href="">'+tutorials[i].title+'</a>');
                     $(this).find("div.tutorial_title").append(link); 
 
                     // adding tutorial thumbnail
-                    $(this).find("div.thumbnail img").remove();
+                    //alert($(this).find("div.thumbnail img").attr('src'));
                     var thumbnail_img = $('<img class="thumbnail" src="'+tutorials[i].thumbnail_path+'">');
                     $(this).find("div.thumbnail").append(thumbnail_img);
 
@@ -470,8 +482,7 @@ TemplateGenerator.prototype.displayFeaturedTutorials = function(target)
                     if(tutorials[i].author.avatar_path !== null)              
                         $(this).find('img.author_avatar').attr("src",tutorials[i].author.avatar_path);
 
-                    // adding author_name
-                    $(this).find("div.thumbnail a").remove();  
+                    // adding author_name 
                     var link = $('<a href="">'+tutorials[i].author.username+'</a>');      
                     $(this).find("div.author_name").append(link);
                 }
@@ -480,85 +491,45 @@ TemplateGenerator.prototype.displayFeaturedTutorials = function(target)
             });
             
     
-};   
-
-TemplateGenerator.prototype.displayTopTutorials = function(target)
-{
-    //$('#data').html("Tutorials:<br /><br />");  
-    //$('body').html("found:<br />");
-    //alert(this.tutorials[0].thumbnail_path);
-    
-    var tutorials = this.top_tutorials;
-    
-    var i = 0;
-    $(target+' > ul.gallery > li').each(
-            function()
-            {
-                if(tutorials[i] !== undefined) 
-                { 
-                    // adding tutorial_title
-                    $(this).find("div.tutorial_title a").remove(); 
-                    var link = $('<a href="">'+tutorials[i].title+'</a>');
-                    $(this).find("div.tutorial_title").append(link); 
-
-                    // adding tutorial thumbnail
-                    $(this).find("div.thumbnail img").remove();
-                    var thumbnail_img = $('<img class="thumbnail" src="'+tutorials[i].thumbnail_path+'">');
-                    $(this).find("div.thumbnail").append(thumbnail_img);
-
-                    // adding related data
-                    $(this).find('div.likes').text(tutorials[i].likes.likes_skhr);
-                    $(this).find('div.views').text(tutorials[i].views.views_skhr);
-                    $(this).find('div.comments').text(tutorials[i].comments.comments_skhr);
-
-                    if(tutorials[i].author.avatar_path !== null)              
-                        $(this).find('img.author_avatar').attr("src",tutorials[i].author.avatar_path);
-
-                    // adding author_name
-                    $(this).find("div.thumbnail a").remove();  
-                    var link = $('<a href="">'+tutorials[i].author.username+'</a>');      
-                    $(this).find("div.author_name").append(link);
-                }
-        
-                i++;
-            });
-            
-    //alert(i);
-    
-}; 
+};    
 
 
-TemplateGenerator.prototype.displayRecentTutorials = function(target)
+TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutorials)
 {
     //$('#data').html("Tutorials:<br /><br />");  
     //$('body').html("found:<br />");
     //alert(this.recent_tutorials[0].thumbnail_path);
-    
-    var tutorials = this.recent_tutorials;
     
     var i = 0;
     $(target+' > ul.gallery_less > li').each(
             function()
             {
                 //alert(tutorials[i]);
+                //
+                //clearing old data from gallery
                 
+                $(this).find("div.tutorial_title a").remove(); 
+                $(this).find("div.thumbnail img").remove();
+                
+                $(this).find('img.author_avatar').attr("src","images/avatar_default.png");
+                
+                $(this).find("div.thumbnail a").remove(); 
+                
+                // if there is data adding new data to gallery
                 if(tutorials[i] !== undefined) 
                 { 
                     // adding tutorial_title
-                    $(this).find("div.tutorial_title a").remove(); 
                     var link = $('<a href="">'+tutorials[i].title+'</a>');
                     $(this).find("div.tutorial_title").append(link); 
 
                     // adding tutorial thumbnail
-                    $(this).find("div.thumbnail img").remove();
                     var thumbnail_img = $('<img class="thumbnail" src="'+tutorials[i].thumbnail_path+'">');
                     $(this).find("div.thumbnail").append(thumbnail_img);
 
                     if(tutorials[i].author.avatar_path !== null)              
                         $(this).find('img.author_avatar').attr("src",tutorials[i].author.avatar_path);
 
-                    // adding author_name
-                    $(this).find("div.thumbnail a").remove();  
+                    // adding author_name 
                     var link = $('<a href="">'+tutorials[i].author.username+'</a>');      
                     $(this).find("div.author_name").append(link);
                 }
@@ -569,9 +540,8 @@ TemplateGenerator.prototype.displayRecentTutorials = function(target)
 };   
 
 
-TemplateGenerator.prototype.displayTopUsers= function(target)
+TemplateGenerator.prototype.displayUserList= function(target, users)
 {
-    var top_users = this.top_users;
     //alert(top_users[0].username);
     
     var i = 0;
@@ -580,10 +550,14 @@ TemplateGenerator.prototype.displayTopUsers= function(target)
             {
                 //alert(JSON.stringify($(this)));
                 // adding tutorial_title
-                if(top_users[i] !== undefined) 
+                
+                $(this).find(".user_name a").remove();
+                
+                if(users[i] !== undefined) 
                 {                                     
                     //alert(JSON.stringify(top_users[i]));
-                    $(this).find(".user_name a").text(top_users[i].username);
+                    var link = $('<a href="">'+users[i].username+'</a>');  
+                    $(this).find(".user_name").append(link);
                 }
         
                 i++;
