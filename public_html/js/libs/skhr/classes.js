@@ -277,9 +277,6 @@ TemplateGenerator.prototype.addGallery = function(target, size)
         
                 var thumbnail = $('<div class="thumbnail">');
                 div.append(thumbnail);
-                
-                    var link = $('<a href=""></a>');
-                    thumbnail.append(link);
         
                 var info_panel = $('<div class="info_panel"></div>');
                 div.append(info_panel);
@@ -322,89 +319,75 @@ TemplateGenerator.prototype.addGallery = function(target, size)
     
 };  
 
-TemplateGenerator.prototype.displayFeaturedTutorials = function(target)
+
+TemplateGenerator.prototype.addGalleryLess = function(target, size)
 {
     //$('#data').html("Tutorials:<br /><br />");  
-    //$('body').html("found:<br />");
-    //alert(this.featured_tutorials[0].thumbnail_path);
+   
+    var list = $('<ul class = "inline_block_list gallery_less"></ul>');
     
-    var featured_tutorials = this.featured_tutorials;
-    
-    var i = 0;
-    $(target+' > ul.gallery > li').each(
-            function()
-            {
-                
-                // adding tutorial_title
-                var link = $('<a href="">'+featured_tutorials[i].title+'</a>');
-                $(this).find("div.tutorial_title").append(link); 
-                
-                // adding tutorial thumbnail
-                var thumbnail_img = $('<img class="thumbnail" src="'+featured_tutorials[i].thumbnail_path+'">');
-                $(this).find(".thumbnail").append(thumbnail_img);
-                
-                // adding related data
-                $(this).find('div.likes').text(featured_tutorials[i].likes.likes_skhr);
-                $(this).find('div.views').text(featured_tutorials[i].views.views_skhr);
-                $(this).find('div.comments').text(featured_tutorials[i].comments.comments_skhr);
-                
-                if(featured_tutorials[i].author.avatar_path !== null)              
-                    $(this).find('img.author_avatar').attr("src",featured_tutorials[i].author.avatar_path);
-                
-                // adding author_name
-                var link = $('<a href="">'+featured_tutorials[i].author.username+'</a>');
-                        
-                $(this).find("div.author_name").append(link);
+    for(var i=0; i<size; i++)
+    {
+        var single_record = $('<li></li>');
         
-                i++;
-            });
+            var div = $('<div></div>');
+            single_record.append(div);
+        
+                var tutorial_title = $('<div class="tutorial_title"></div>');
+                div.append(tutorial_title);
+        
+                var thumbnail = $('<div class="thumbnail">');
+                div.append(thumbnail);
+        
+                var info_panel = $('<div class="info_panel"></div>');
+                div.append(info_panel);
+                    
+                    var author_avatar = $('<div class="author_avatar">');
+                    info_panel.append(author_avatar);
+                    
+                        var image = $('<img class="author_avatar" src="images/avatar_default.png">');
+                        author_avatar.append(image);
+                    
+                    var author_name = $('<div class="author_name"></div>');
+                    info_panel.append(author_name);
+                        
+                    image = $('<img class="follow_button" src="images/follow-button.png">');
+                    info_panel.append(image);
+        
+        list.append(single_record);
+    };
+
+    
+    $(target).append(list);
     
 };   
 
-TemplateGenerator.prototype.displayTopTutorials = function(target)
+TemplateGenerator.prototype.addSimpleGallery = function(target, length)
 {
     //$('#data').html("Tutorials:<br /><br />");  
-    //$('body').html("found:<br />");
-    //alert(this.tutorials[0].thumbnail_path);
+   
+    var list = $('<ul class="inline_block_list simple_gallery"></ul>');
     
-    var tutorials = this.top_tutorials;
-    
-    var i = 0;
-    $(target+' > ul.gallery > li').each(
-            function()
-            {
-                
-                // adding tutorial_title
-                $(this).find("div.tutorial_title a").remove(); 
-                var link = $('<a href="">'+tutorials[i].title+'</a>');
-                $(this).find("div.tutorial_title").append(link); 
-                
-                // adding tutorial thumbnail
-                $(this).find("div.thumbnail img").remove();
-                var link = $('<a href="">'+tutorials[i].title+'</a>');
-                var thumbnail_img = $('<img class="thumbnail" src="'+tutorials[i].thumbnail_path+'">');
-                link.append(thumbnail_img);
-                $(this).find("div.thumbnail").append(thumbnail_img);
-                
-                // adding related data
-                $(this).find('div.likes').text(tutorials[i].likes.likes_skhr);
-                $(this).find('div.views').text(tutorials[i].views.views_skhr);
-                $(this).find('div.comments').text(tutorials[i].comments.comments_skhr);
-                
-                if(tutorials[i].author.avatar_path !== null)              
-                    $(this).find('img.author_avatar').attr("src",tutorials[i].author.avatar_path);
-                
-                // adding author_name
-                $(this).find("div.thumbnail a").remove();  
-                var link = $('<a href="">'+tutorials[i].author.username+'</a>');      
-                $(this).find("div.author_name").append(link);
+    for(var i=0; i<length; i++)
+    {
+        var single_record = $('<li></li>');
         
-                i++;
-            });
+            var tutorial = $('<img class="thumbnail"></img>');
+            single_record.append(tutorial);
+        
+            var div = $('<div class="tutorial_title"></div>');
+            single_record.append(div);
             
-    //alert(i);
+            var div = $('<div class="views"></div>');
+            single_record.append(div);
+        
+        list.append(single_record);
+    };
+
     
-};   
+    $(target).append(list);
+    
+};    
 
 TemplateGenerator.prototype.addTopUserList = function(target, length)
 {
@@ -437,6 +420,155 @@ TemplateGenerator.prototype.addTopUserList = function(target, length)
 };
 
 
+TemplateGenerator.prototype.addNotificationList = function(target)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+   
+    var list = $('<ul class="notification_list"></ul>');
+    
+    for(var i=0; i<40; i++)
+    {
+        var single_record = $('<li>New message '+i+'</li>');
+        
+        list.append(single_record);
+    };
+
+    
+    $(target).append(list);
+    
+}; 
+
+TemplateGenerator.prototype.displayFeaturedTutorials = function(target)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+    //$('body').html("found:<br />");
+    //alert(this.featured_tutorials[0].thumbnail_path);
+    
+    var tutorials = this.featured_tutorials;
+    
+    var i = 0;
+    $(target+' > ul.gallery > li').each(
+            function()
+            {
+                if(tutorials[i] !== undefined) 
+                { 
+                    // adding tutorial_title
+                    $(this).find("div.tutorial_title a").remove(); 
+                    var link = $('<a href="">'+tutorials[i].title+'</a>');
+                    $(this).find("div.tutorial_title").append(link); 
+
+                    // adding tutorial thumbnail
+                    $(this).find("div.thumbnail img").remove();
+                    var thumbnail_img = $('<img class="thumbnail" src="'+tutorials[i].thumbnail_path+'">');
+                    $(this).find("div.thumbnail").append(thumbnail_img);
+
+                    // adding related data
+                    $(this).find('div.likes').text(tutorials[i].likes.likes_skhr);
+                    $(this).find('div.views').text(tutorials[i].views.views_skhr);
+                    $(this).find('div.comments').text(tutorials[i].comments.comments_skhr);
+
+                    if(tutorials[i].author.avatar_path !== null)              
+                        $(this).find('img.author_avatar').attr("src",tutorials[i].author.avatar_path);
+
+                    // adding author_name
+                    $(this).find("div.thumbnail a").remove();  
+                    var link = $('<a href="">'+tutorials[i].author.username+'</a>');      
+                    $(this).find("div.author_name").append(link);
+                }
+        
+                i++;
+            });
+            
+    
+};   
+
+TemplateGenerator.prototype.displayTopTutorials = function(target)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+    //$('body').html("found:<br />");
+    //alert(this.tutorials[0].thumbnail_path);
+    
+    var tutorials = this.top_tutorials;
+    
+    var i = 0;
+    $(target+' > ul.gallery > li').each(
+            function()
+            {
+                if(tutorials[i] !== undefined) 
+                { 
+                    // adding tutorial_title
+                    $(this).find("div.tutorial_title a").remove(); 
+                    var link = $('<a href="">'+tutorials[i].title+'</a>');
+                    $(this).find("div.tutorial_title").append(link); 
+
+                    // adding tutorial thumbnail
+                    $(this).find("div.thumbnail img").remove();
+                    var thumbnail_img = $('<img class="thumbnail" src="'+tutorials[i].thumbnail_path+'">');
+                    $(this).find("div.thumbnail").append(thumbnail_img);
+
+                    // adding related data
+                    $(this).find('div.likes').text(tutorials[i].likes.likes_skhr);
+                    $(this).find('div.views').text(tutorials[i].views.views_skhr);
+                    $(this).find('div.comments').text(tutorials[i].comments.comments_skhr);
+
+                    if(tutorials[i].author.avatar_path !== null)              
+                        $(this).find('img.author_avatar').attr("src",tutorials[i].author.avatar_path);
+
+                    // adding author_name
+                    $(this).find("div.thumbnail a").remove();  
+                    var link = $('<a href="">'+tutorials[i].author.username+'</a>');      
+                    $(this).find("div.author_name").append(link);
+                }
+        
+                i++;
+            });
+            
+    //alert(i);
+    
+}; 
+
+
+TemplateGenerator.prototype.displayRecentTutorials = function(target)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+    //$('body').html("found:<br />");
+    //alert(this.recent_tutorials[0].thumbnail_path);
+    
+    var tutorials = this.recent_tutorials;
+    
+    var i = 0;
+    $(target+' > ul.gallery_less > li').each(
+            function()
+            {
+                //alert(tutorials[i]);
+                
+                if(tutorials[i] !== undefined) 
+                { 
+                    // adding tutorial_title
+                    $(this).find("div.tutorial_title a").remove(); 
+                    var link = $('<a href="">'+tutorials[i].title+'</a>');
+                    $(this).find("div.tutorial_title").append(link); 
+
+                    // adding tutorial thumbnail
+                    $(this).find("div.thumbnail img").remove();
+                    var thumbnail_img = $('<img class="thumbnail" src="'+tutorials[i].thumbnail_path+'">');
+                    $(this).find("div.thumbnail").append(thumbnail_img);
+
+                    if(tutorials[i].author.avatar_path !== null)              
+                        $(this).find('img.author_avatar').attr("src",tutorials[i].author.avatar_path);
+
+                    // adding author_name
+                    $(this).find("div.thumbnail a").remove();  
+                    var link = $('<a href="">'+tutorials[i].author.username+'</a>');      
+                    $(this).find("div.author_name").append(link);
+                }
+                
+                i++;
+            });
+    //alert(i);
+};   
+
+
 TemplateGenerator.prototype.displayTopUsers= function(target)
 {
     var top_users = this.top_users;
@@ -459,134 +591,6 @@ TemplateGenerator.prototype.displayTopUsers= function(target)
     //alert(i);
     
 };
-
-
-TemplateGenerator.prototype.addNotificationList = function(target)
-{
-    //$('#data').html("Tutorials:<br /><br />");  
-   
-    var list = $('<ul class="notification_list"></ul>');
-    
-    for(var i=0; i<40; i++)
-    {
-        var single_record = $('<li>New message '+i+'</li>');
-        
-        list.append(single_record);
-    };
-
-    
-    $(target).append(list);
-    
-};  
-
-TemplateGenerator.prototype.addSimpleGallery = function(target, length)
-{
-    //$('#data').html("Tutorials:<br /><br />");  
-   
-    var list = $('<ul class="inline_block_list simple_gallery"></ul>');
-    
-    for(var i=0; i<length; i++)
-    {
-        var single_record = $('<li></li>');
-        
-            var tutorial = $('<img class="thumbnail"></img>');
-            single_record.append(tutorial);
-        
-            var div = $('<div class="tutorial_title"></div>');
-            single_record.append(div);
-            
-            var div = $('<div class="views"></div>');
-            single_record.append(div);
-        
-        list.append(single_record);
-    };
-
-    
-    $(target).append(list);
-    
-};  
-
-
-TemplateGenerator.prototype.addGalleryLess = function(target, size)
-{
-    //$('#data').html("Tutorials:<br /><br />");  
-   
-    var list = $('<ul class = "inline_block_list gallery_less"></ul>');
-    
-    for(var i=0; i<size; i++)
-    {
-        var single_record = $('<li></li>');
-        
-            var div = $('<div></div>');
-            single_record.append(div);
-        
-                var tutorial_title = $('<div class="tutorial_title"></div>');
-                div.append(tutorial_title);
-        
-                var thumbnail = $('<div class="thumbnail">');
-                div.append(thumbnail);
-                
-                    var link = $('<a href=""></a>');
-                    thumbnail.append(link);
-        
-                var info_panel = $('<div class="info_panel"></div>');
-                div.append(info_panel);
-                    
-                    var author_avatar = $('<div class="author_avatar">');
-                    info_panel.append(author_avatar);
-                    
-                        var image = $('<img class="author_avatar" src="images/avatar_default.png">');
-                        author_avatar.append(image);
-                    
-                    var author_name = $('<div class="author_name"></div>');
-                    info_panel.append(author_name);
-                        
-                    image = $('<img class="follow_button" src="images/follow-button.png">');
-                    info_panel.append(image);
-        
-        list.append(single_record);
-    };
-
-    
-    $(target).append(list);
-    
-};  
-
-
-TemplateGenerator.prototype.displayRecentTutorials = function(target)
-{
-    //$('#data').html("Tutorials:<br /><br />");  
-    //$('body').html("found:<br />");
-    //alert(this.recent_tutorials[0].thumbnail_path);
-    
-    var recent_tutorials = this.recent_tutorials;
-    
-    var i = 0;
-    $(target+' > ul.gallery_less > li').each(
-            function()
-            {
-                //alert(recent_tutorials[i].title);
-                
-                // adding tutorial_title
-                var link = $('<a href="">'+recent_tutorials[i].title+'</a>');
-                $(this).find("div.tutorial_title").append(link); 
-                
-                // adding tutorial thumbnail
-                var thumbnail_img = $('<img class="thumbnail" src="'+recent_tutorials[i].thumbnail_path+'">');
-                $(this).find(".thumbnail").append(thumbnail_img);
-                
-                if(recent_tutorials[i].author.avatar_path !== null)              
-                    $(this).find('img.author_avatar').attr("src",recent_tutorials[i].author.avatar_path);
-                
-                // adding author_name
-                var link = $('<a href="">'+recent_tutorials[i].author.username+'</a>');
-                        
-                $(this).find("div.author_name").append(link);
-        
-                i++;
-            });
-    //alert(i);
-};   
 
 // setters
 

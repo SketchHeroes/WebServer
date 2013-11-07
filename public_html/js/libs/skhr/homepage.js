@@ -43,7 +43,7 @@ $(function(){
 
     var promise_featured    = rest_caller.getFeaturedTutorials(0,gallery_length);
     var promise_top_users   = rest_caller.getTopUsers(0,top_users_length,$( "#top_heroes .active" ).attr('id'));
-    var promise_top         = rest_caller.getTopTutorials(0,top_tutorials_length);
+    var promise_top         = rest_caller.getTopTutorials(0,top_tutorials_length,$( "#top_tutorials_gallery .active" ).attr('id'));
     var promise_recent      = rest_caller.getRecentTutorials(0,recent_tutorials_length);
     
     promise_featured.done(
@@ -108,7 +108,7 @@ $(function(){
         //alert("clicked");
         //alert(event.target.id);
         $( "#top_heroes .period" ).attr("src","images/flower-unselected-button.png").removeClass("active");
-        $( "#"+event.target.id ).attr("src","images/flower-selected-button.png").addClass("active");
+        $( "#top_heroes #"+event.target.id ).attr("src","images/flower-selected-button.png").addClass("active");
         //alert( "id = "+$(this).id );
         
         var promise_top_users   = rest_caller.getTopUsers(0,top_users_length,$( "#"+event.target.id ).attr('id'));
@@ -129,7 +129,7 @@ $(function(){
         //alert("clicked");
         //alert(event.target.id);
         $( "#top_tutorials_gallery .period" ).attr("src","images/top-tutorials-unselected-button.png").removeClass("active");
-        $( "#"+event.target.id ).attr("src","images/top-tutorials-selected-button.png").addClass("active");
+        $( "#top_tutorials_gallery #"+event.target.id ).attr("src","images/top-tutorials-selected-button.png").addClass("active");
         //alert( "id = "+$(this).id );
         
         var promise_top_users   = rest_caller.getTopTutorials(0,top_users_length,$( "#"+event.target.id ).attr('id'));
