@@ -459,7 +459,7 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                 
                 $(this).find('img.author_avatar').attr("src","images/avatar_default.png");
                 
-                $(this).find("div.thumbnail a").remove(); 
+                $(this).find("div.author_name a").remove(); 
                 
                 // if there is data adding new data to gallery
                 if(tutorials[i] !== undefined) 
@@ -513,7 +513,7 @@ TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutoria
                 
                 $(this).find('img.author_avatar').attr("src","images/avatar_default.png");
                 
-                $(this).find("div.thumbnail a").remove(); 
+                $(this).find("div.author_name a").remove(); 
                 
                 // if there is data adding new data to gallery
                 if(tutorials[i] !== undefined) 

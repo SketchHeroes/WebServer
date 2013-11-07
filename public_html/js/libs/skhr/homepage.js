@@ -98,7 +98,7 @@ $(function(){
     
     
     // jump to the bottom of the page (for building only)
-    $('html, body').scrollTop( $(document).height() );
+    //$('html, body').scrollTop( $(document).height() );
     
     
     // top user period buttons
@@ -141,6 +141,40 @@ $(function(){
                 template_generator.displayTutorialGallery("#top_tutorials_gallery",template_generator.top_tutorials);
                 
             });
+    });
+    
+    
+    
+    $( ".expandable > img" ).click(function(event) {
+   
+        var expandable = $(event.target).parent();
+        if( $("#"+expandable.attr('id')+" .sub-menu").css("display") === 'none' )
+        {
+            $("#"+expandable.attr('id')+" .sub-menu").css("display", "block"); 
+            $("#"+expandable.attr('id')+" img").attr("src", "images/header-icon-selected.png"); 
+        }
+        else
+        {
+            $("#"+expandable.attr('id')+" .sub-menu").css("display", "none"); 
+            $("#"+expandable.attr('id')+" img").attr("src", "images/header-icon-unselected.png"); 
+        
+        }
+    });
+    
+    $(".expandable > img").mouseleave(function(event){
+        
+        var expandable = $(event.target).parent();
+        
+        $("#"+expandable.attr('id')+" .sub-menu").css("display", "none"); 
+        $("#"+expandable.attr('id')+" img").attr("src", "images/header-icon-unselected.png"); 
+    });
+    
+    $(".expandable > img").mouseover(function(event){
+        
+        var expandable = $(event.target).parent();
+        
+        $("#"+expandable.attr('id')+" .sub-menu").css("display", "block"); 
+        $("#"+expandable.attr('id')+" img").attr("src", "images/header-icon-selected.png"); 
     });
 });
    
