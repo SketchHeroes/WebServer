@@ -45,6 +45,7 @@ $(function(){
     var promise_top_users   = rest_caller.getTopUsers(0,top_users_length,$( "#top_heroes .active" ).attr('id'));
     var promise_top         = rest_caller.getTopTutorials(0,top_tutorials_length,$( "#top_tutorials_gallery .active" ).attr('id'));
     var promise_recent      = rest_caller.getRecentTutorials(0,recent_tutorials_length);
+    var promise_latest_competitions = rest_caller.getLatestCompetitions(0,1);
     
     promise_featured.done(
             function(data)
@@ -78,6 +79,15 @@ $(function(){
             {
                 template_generator.recent_tutorials = data.tutorials;
                 template_generator.displayTutorialGalleryLess("#recent_tutorials_gallery",template_generator.recent_tutorials);
+                
+            });
+            
+    
+    promise_latest_competitions.done(
+            function(data)
+            {
+                template_generator.latest_competitions = data.competitions;
+                template_generator.displayLatestCompetition("#latest_competition",template_generator.latest_competitions);
                 
             });
             

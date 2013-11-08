@@ -251,6 +251,26 @@ RestCaller.prototype.getRecentTutorials = function(start, how_many)
     return this.ajax();
 };
 
+RestCaller.prototype.getLatestCompetitions = function(start, how_many)
+{
+    this.setResource("/competitions");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65");
+    this.setCustomHeader("Accept","application/json"); 
+    
+    this.clearRequestParams();
+    this.setRequestParam("start", start);
+    this.setRequestParam("how_many", how_many);
+    this.setRequestParam("competition_order_by",{"order_by_submission_start":"DESC"});
+    this.setRequestParam("status_constraint",{"operator":"different_then","status":"0"});
+    
+    return this.ajax();
+};
+
 //-------------------- Template class ------------------------------------------
 
 function TemplateGenerator()
@@ -451,7 +471,7 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                 //clearing old data from gallery
                 
                 $(this).find("div.tutorial_title a").remove(); 
-                $(this).find("div.thumbnail img").remove();
+                $(this).find("div.thumbnail a").remove();
                 
                 $(this).find('div.likes').text('');
                 $(this).find('div.views').text('');
@@ -471,8 +491,11 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
 
                     // adding tutorial thumbnail
                     //alert($(this).find("div.thumbnail img").attr('src'));
-                    var thumbnail_img = $('<img class="thumbnail" src="'+tutorials[i].thumbnail_path+'">');
-                    $(this).find("div.thumbnail").append(thumbnail_img);
+                    var link = $('<a href="#"></a>');
+                    var thumbnail = $('<img class="thumbnail" alt="tutorial_thumbnail" src="'+tutorials[i].thumbnail_path+'" >');
+                    link.append(thumbnail);
+                    
+                    $(this).find("div.thumbnail").append(link);
 
                     // adding related data
                     $(this).find('div.likes').text(tutorials[i].likes.likes_skhr);
@@ -509,7 +532,7 @@ TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutoria
                 //clearing old data from gallery
                 
                 $(this).find("div.tutorial_title a").remove(); 
-                $(this).find("div.thumbnail img").remove();
+                $(this).find("div.thumbnail a").remove();
                 
                 $(this).find('img.author_avatar').attr("src","images/avatar_default.png");
                 
@@ -523,8 +546,17 @@ TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutoria
                     $(this).find("div.tutorial_title").append(link); 
 
                     // adding tutorial thumbnail
-                    var thumbnail_img = $('<img class="thumbnail" src="'+tutorials[i].thumbnail_path+'">');
-                    $(this).find("div.thumbnail").append(thumbnail_img);
+                    
+                    var link = $('<a href="#"></a>');
+                    var thumbnail = $('<img class="thumbnail" alt="tutorial_thumbnail" src="'+tutorials[i].thumbnail_path+'" >');
+                    link.append(thumbnail);
+                    
+                    
+                    var link = $('<a href="#"></a>');
+                    var thumbnail = $('<img class="thumbnail" alt="tutorial_thumbnail" src="'+tutorials[i].thumbnail_path+'" >');
+                    link.append(thumbnail);
+                    
+                    $(this).find("div.thumbnail").append(link);
 
                     if(tutorials[i].author.avatar_path !== null)              
                         $(this).find('img.author_avatar').attr("src",tutorials[i].author.avatar_path);
@@ -564,6 +596,25 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
             });
     //alert(i);
     
+};   
+
+
+TemplateGenerator.prototype.displayLatestCompetition= function(target, competitions)
+{
+    if(competitions.length > 0)
+    {
+        //alert(competitions[0].logo_path);
+        var link = $('<a href="#"></a>');
+        var thumbnail = $('<img alt="competition_thumbnail" src="'+competitions[0].logo_path+'" >');
+        link.append(thumbnail);
+
+        $(target+' .competition_thumbnail').append(link);
+        
+        $(target+' .competition_caption').html('('+competitions[0].submission_start+') '+competitions[0].title+'');
+
+        //$(target+' .competition_thumbnail img').attr('src',competitions[0].logo_path);
+    }
+
 };
 
 // setters

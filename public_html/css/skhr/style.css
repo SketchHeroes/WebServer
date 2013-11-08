@@ -545,6 +545,10 @@ header
     height:30px;
     width:432px;
     border:1px solid #0ff;
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
 }
 
 #latest_submissions{  
