@@ -580,6 +580,16 @@ header
     border:1px solid red;
 }
 
+.simple_gallery div.thumbnail{ 
+    /*float:left;*/
+    margin: 0px 0px 0px 0px;
+    height:100px;
+    width:138px;
+    border:1px solid blue;
+    background:#ffffff;
+    display: block;
+}
+
 .simple_gallery img.thumbnail{ 
     /*float:left;*/
     margin: 0px 0px 0px 0px;
@@ -590,7 +600,7 @@ header
     display: block;
 }
 
-.simple_gallery div.tutorial_title {
+.simple_gallery div.author_name {
     float: left;
     
     white-space:nowrap; 
@@ -604,7 +614,7 @@ header
     border:1px solid blue;
 }
 
-.simple_gallery div.views {
+.simple_gallery div.votes {
     float: left;
     
     white-space:nowrap; 

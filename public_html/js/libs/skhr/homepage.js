@@ -37,15 +37,15 @@ $(function(){
     template_generator.addUserList("#top_heroes",top_users_length);
     template_generator.addGallery("#top_tutorials_gallery",gallery_length);
     template_generator.addGalleryLess("#recent_tutorials_gallery", recent_tutorials_length);
+    template_generator.addSimpleGallery("#latest_submissions", latest_submissions_length);
    
     template_generator.addNotificationList("#notifications");
-    template_generator.addSimpleGallery("#latest_submissions", latest_submissions_length);
 
     var promise_featured    = rest_caller.getFeaturedTutorials(0,gallery_length);
     var promise_top_users   = rest_caller.getTopUsers(0,top_users_length,$( "#top_heroes .active" ).attr('id'));
     var promise_top         = rest_caller.getTopTutorials(0,top_tutorials_length,$( "#top_tutorials_gallery .active" ).attr('id'));
     var promise_recent      = rest_caller.getRecentTutorials(0,recent_tutorials_length);
-    var promise_latest_competitions = rest_caller.getLatestCompetitions(0,1);
+    var promise_latest_competition = rest_caller.getLatestCompetitions(0,1);
     
     promise_featured.done(
             function(data)
@@ -83,11 +83,28 @@ $(function(){
             });
             
     
-    promise_latest_competitions.done(
+    promise_latest_competition.done(
             function(data)
             {
-                template_generator.latest_competitions = data.competitions;
-                template_generator.displayLatestCompetition("#latest_competition",template_generator.latest_competitions);
+                if(data.competitions.length > 0)
+                {
+                    template_generator.latest_competition = data.competitions[0];
+                    template_generator.displayLatestCompetition("#latest_competition",template_generator.latest_competition);
+                    
+                    var promise_latest_submissions = rest_caller.getLatestCompetitionTutorials(
+                                                        0, 
+                                                        latest_submissions_length, 
+                                                        template_generator.latest_competition.competition_id);
+                                                        
+                    promise_latest_submissions.done(
+                        function(data)
+                        {
+                            template_generator.latest_submissions = data.competition_tutorials;
+                            template_generator.displayTutorialGallerySimple("#latest_submissions",template_generator.latest_submissions);
+                        });
+                        
+                   
+                }
                 
             });
             

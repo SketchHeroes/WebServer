@@ -271,6 +271,26 @@ RestCaller.prototype.getLatestCompetitions = function(start, how_many)
     return this.ajax();
 };
 
+RestCaller.prototype.getLatestCompetitionTutorials = function(start, how_many, competition_id)
+{
+    this.setResource("/competition/tutorials");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65");
+    this.setCustomHeader("Accept","application/json"); 
+    
+    this.clearRequestParams();
+    this.setRequestParam("start", start);
+    this.setRequestParam("how_many", how_many);
+    this.setRequestParam("competition_id",competition_id);
+    this.setRequestParam("competition_tutorials_order_by",{"order_by_votes":"DESC"});
+    
+    return this.ajax();
+};
+
 //-------------------- Template class ------------------------------------------
 
 function TemplateGenerator()
@@ -392,13 +412,13 @@ TemplateGenerator.prototype.addSimpleGallery = function(target, length)
     {
         var single_record = $('<li></li>');
         
-            var tutorial = $('<img class="thumbnail"></img>');
+            var tutorial = $('<div class="thumbnail"></img>');
             single_record.append(tutorial);
         
-            var div = $('<div class="tutorial_title"></div>');
+            var div = $('<div class="author_name"></div>');
             single_record.append(div);
             
-            var div = $('<div class="views"></div>');
+            var div = $('<div class="votes"></div>');
             single_record.append(div);
         
         list.append(single_record);
@@ -551,11 +571,6 @@ TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutoria
                     var thumbnail = $('<img class="thumbnail" alt="tutorial_thumbnail" src="'+tutorials[i].thumbnail_path+'" >');
                     link.append(thumbnail);
                     
-                    
-                    var link = $('<a href="#"></a>');
-                    var thumbnail = $('<img class="thumbnail" alt="tutorial_thumbnail" src="'+tutorials[i].thumbnail_path+'" >');
-                    link.append(thumbnail);
-                    
                     $(this).find("div.thumbnail").append(link);
 
                     if(tutorials[i].author.avatar_path !== null)              
@@ -564,6 +579,49 @@ TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutoria
                     // adding author_name 
                     var link = $('<a href="">'+tutorials[i].author.username+'</a>');      
                     $(this).find("div.author_name").append(link);
+                }
+                
+                i++;
+            });
+    //alert(i);
+};     
+
+
+TemplateGenerator.prototype.displayTutorialGallerySimple = function(target,tutorials)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+    //$('body').html("found:<br />");
+    //alert(this.recent_tutorials[0].thumbnail_path);
+    
+    var i = 0;
+    $(target+' > ul.simple_gallery > li').each(
+            function()
+            {
+                //alert(tutorials[i]);
+                //
+                //clearing old data from gallery
+                $(this).find("div.thumbnail a").remove();
+                
+                $(this).find("div.author_name a").remove(); 
+                
+                $(this).find("div.votes").html(""); 
+                
+                // if there is data adding new data to gallery
+                if(tutorials[i] !== undefined) 
+                { 
+                    // adding tutorial thumbnail
+                    var link = $('<a href="#"></a>');
+                    var thumbnail = $('<img class="thumbnail" alt="tutorial_thumbnail" src="'+tutorials[i].thumbnail_path+'" >');
+                    link.append(thumbnail);
+                    
+                    $(this).find("div.thumbnail").append(link);
+
+                    // adding author_name 
+                    var link = $('<a href="">'+tutorials[i].username+'</a>');      
+                    $(this).find("div.author_name").append(link);
+                    
+                    // adding number of votes
+                    $(this).find("div.votes").html(tutorials[i].votes); 
                 }
                 
                 i++;
@@ -599,22 +657,17 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
 };   
 
 
-TemplateGenerator.prototype.displayLatestCompetition= function(target, competitions)
+TemplateGenerator.prototype.displayLatestCompetition= function(target, competition)
 {
-    if(competitions.length > 0)
-    {
-        //alert(competitions[0].logo_path);
-        var link = $('<a href="#"></a>');
-        var thumbnail = $('<img alt="competition_thumbnail" src="'+competitions[0].logo_path+'" >');
-        link.append(thumbnail);
 
-        $(target+' .competition_thumbnail').append(link);
-        
-        $(target+' .competition_caption').html('('+competitions[0].submission_start+') '+competitions[0].title+'');
+    //alert(competitions[0].logo_path);
+    var link = $('<a href="#"></a>');
+    var thumbnail = $('<img alt="competition_thumbnail" src="'+competition.logo_path+'" >');
+    link.append(thumbnail);
 
-        //$(target+' .competition_thumbnail img').attr('src',competitions[0].logo_path);
-    }
+    $(target+' .competition_thumbnail').append(link);
 
+    $(target+' .competition_caption').html('('+competition.submission_start+') '+competition.title+'');
 };
 
 // setters
