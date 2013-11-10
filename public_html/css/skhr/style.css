@@ -158,12 +158,12 @@ header
 
 /* LOGIN */
 
-.login {
+.account {
   float: right;
   width: 210px;
   margin: 5px 0 10px;
 }
-.login .avatar, .login .options, .login .scores {
+.account .avatar, .account .options, .account .scores {
   float: left;
 }
 /*
@@ -171,18 +171,69 @@ header
   margin: 0 5px 2px 0;
 }
 */
-.login ul {
+.account ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .login .status {
-  clear: both;
+  account: both;
   margin: 4px 0 2px;
 }
 
+/* POP LOGIN */
 
+.popup {
+	
+        padding: 10px 10px 30px 10px;
+	background: #fff;
+	z-index: 999;
+	display: none;
+	position: absolute;
+	right: 0;
+}
+
+.popup .title{
+    display: inline-block;
+    width:150px;
+    margin: 0px 0px 0px 0px; 
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+}
+
+.popup form{  
+    background: #C3C3C3;
+    padding: 10px 10px 10px 10px;
+    display:block;
+}
+.popup p{
+    padding: 10px 10px 0px 10px;
+}
+
+.popup .button{
+    width: 150px;
+}
+
+.popup .close{
+    bottom: 5px;
+    color: #FF0000;
+    float: right;
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+}
+
+.popup form .faceb {
+    background: linear-gradient(to bottom, #5A87AA 0%, #265376 100%) repeat scroll 0 0 transparent;
+    border: 1px solid rgba(20, 59, 89, 0.61);
+    color: #FFFFFF;
+    padding: 5px 5px 5px 5px; 
+    /*font-size: 27px;*/
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
 /* FB LOGO */
 
 .fb_logo {

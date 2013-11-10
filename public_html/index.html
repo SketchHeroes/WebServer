@@ -78,7 +78,7 @@ and open the template in the editor.
                 </ul>
                 
                 
-                <div class="login">
+                <div class="account">
                      <div class="avatar">
                          <a href="http://www.sketchheroes.com/Account/login">
                              <img src="images/avatar_def.png" alt="Login" title="Login"/>
@@ -87,16 +87,48 @@ and open the template in the editor.
                      <div class="options">
                          <ul>
                              <li>
-                                 <a href="http://www.sketchheroes.com/Account/login" class='join'>
+                                 <a href="#" id="login">
                                      &#9658; Login
                                  </a>
+                                 <div class="popup" id="popup_login">
+                                    <form>
+                                        <p>
+                                            <span class="title">Username</span> 
+                                            <input name="username_email" type="text" placeholder="username/email" />
+                                        </p>
+                                        <p>
+                                            <span class="title">Password</span> 
+                                            <input name="" type="password"  placeholder="password" />
+                                        </p>
+                                        <p>
+                                            <input name="" class="button" type="button" value="Login" />
+                                        </p>
+                                        <p>
+                                            <a class="faceb but gradient" href="https://www.facebook.com/dialog/oauth?client_id=149039245261205&amp;redirect_uri=http%3A%2F%2Fwww.sketchheroes.com%2FAccount%2Fregister&amp;state=f51c46f078a7f7ea07107463f179d1f1"><span></span>Connect using Facebook</a>
+                                        </p>
+                                    </form>                                  
+                                    <a href="#" class="close">CLOSE</a>
+                                 </div>
                              </li>
                              <li>
-                                 <a href="http://www.sketchheroes.com/Account/register" class='register'>
-                                     &#9658; Join</a>
+                                 <a href="#" id='register'>
+                                     &#9658; Join
+                                 </a>
+                                 
+                                 <div class="popup" id="popup_register">
+                                    <form>
+                                        <p><span class="title">Username</span> <input name="" type="text" placeholder="username" /></p>
+                                        <p><span class="title">Email</span> <input name="" type="text" placeholder="email" /></p>
+                                        <p><span class="title">Password</span> <input name="" type="password" placeholder="password"/></p>
+                                        <p><span class="title">Repeat password</span> <input name="" type="password" placeholder="password"/></p>
+                                        <p><input name="" class="button" type="button" value="Register" /></p>
+                                    </form>
+                                    <a href="#" class="close">CLOSE</a>
+                                 </div>
+                                 
                              </li> 
                              <li>
-                                 <a href="http://www.sketchheroes.com/Account/register" class='like'>
+                                 <a href="http://www.sketchheroes.com/Account/register" id='like'>
                                      &#9658; Like</a>
                              </li> 
                          </ul>

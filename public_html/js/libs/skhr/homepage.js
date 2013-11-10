@@ -282,5 +282,54 @@ $(function(){
 
         $("#"+non_expandable.attr('id')+" img").attr("src", "images/header-icon-selected.png"); 
     });
+    
+    
+    
+    $(".account #login").click(function(e) 
+    { 
+        e.stopPropagation();
+        if( !$("#popup_login").is(":visible") )
+        {
+            //$("body").append('');  
+            $(".popup").hide();
+            $("#popup_login").show();; 
+            $("#popup_login .close").click(function(e) { 
+                $("#popup_login").hide(); 
+            }); 
+        }
+        else
+        {
+            $("#popup_login").hide(); 
+        }
+    });
+    
+    $(".account #register").click(function(e) 
+    {
+        e.stopPropagation();
+        if( !$("#popup_register").is(":visible") )
+        {
+            //$("body").append(''); 
+            $(".popup").hide();
+            $("#popup_register").show();   
+            $("#popup_register .close").click(function(e) { 
+                $("#popup_register").hide(); 
+            }); 
+        }
+        else
+        {
+            $("#popup_register").hide(); 
+        }
+    });
+    
+    $('.popup').click(function(e) {  
+            e.stopPropagation();
+    });
+    
+    $('html').click(function(e) {  
+        
+            //alert($(e.target).prop("tagName"));
+            $(".popup").hide();
+    });
+    
 });
    
