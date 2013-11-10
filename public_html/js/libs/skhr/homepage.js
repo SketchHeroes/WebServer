@@ -283,7 +283,7 @@ $(function(){
         $("#"+non_expandable.attr('id')+" img").attr("src", "images/header-icon-selected.png"); 
     });
     
-    
+    /*
     
     $(".account #login").click(function(e) 
     { 
@@ -330,6 +330,37 @@ $(function(){
             //alert($(e.target).prop("tagName"));
             $(".popup").hide();
     });
+    
+    */
+   
+   $(".account #login").click(function(e) 
+    { 
+        var overlay = $('<div class="overlay"></div>');
+        $("body").append(overlay);
+
+        $("#popup_login").fadeIn(); 
+            
+    });
+    
+    $("#popup_login .close").click(function(e) { 
+            $("#popup_login").fadeOut(); 
+            $("body .overlay").remove();
+   }); 
+    
+    $(".account #register").click(function(e) 
+    { 
+        var overlay = $('<div class="overlay"></div>');
+        $("body").append(overlay);
+
+        $("#popup_register").fadeIn(); 
+            
+    });
+    
+    $("#popup_register .close").click(function(e) { 
+            $("#popup_register").fadeOut(); 
+            $("body .overlay").remove();
+   }); 
+    
     
 });
    
