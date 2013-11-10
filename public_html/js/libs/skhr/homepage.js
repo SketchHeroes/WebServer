@@ -21,10 +21,12 @@ $(function(){
     
     // difining global variables
     
+    var featured_page = 0;
+    
     var rest_caller          = new RestCaller();
     var template_generator   = new TemplateGenerator();
     
-    var gallery_length = 6;
+    var featured_length = 6;
     var top_users_length = 5;
     var latest_submissions_length = 4;
     var top_tutorials_length = 6;
@@ -33,15 +35,15 @@ $(function(){
     
     // getting INITIAL data from the server
     
-    template_generator.addGallery("#featured_tutorials_gallery",gallery_length);
+    template_generator.addGallery("#featured_tutorials_gallery",featured_length);
     template_generator.addUserList("#top_heroes",top_users_length);
-    template_generator.addGallery("#top_tutorials_gallery",gallery_length);
+    template_generator.addGallery("#top_tutorials_gallery",featured_length);
     template_generator.addGalleryLess("#recent_tutorials_gallery", recent_tutorials_length);
     template_generator.addSimpleGallery("#latest_submissions", latest_submissions_length);
    
     template_generator.addNotificationList("#notifications");
 
-    var promise_featured    = rest_caller.getFeaturedTutorials(0,gallery_length);
+    var promise_featured    = rest_caller.getFeaturedTutorials(0,featured_length);
     var promise_top_users   = rest_caller.getTopUsers(0,top_users_length,$( "#top_heroes .active" ).attr('id'));
     var promise_top         = rest_caller.getTopTutorials(0,top_tutorials_length,$( "#top_tutorials_gallery .active" ).attr('id'));
     var promise_recent      = rest_caller.getRecentTutorials(0,recent_tutorials_length);
@@ -108,7 +110,53 @@ $(function(){
                 
             });
             
+   $( "#featured_tutorials .arrow_right img" ).click(function(event) {
+        
+        //alert(featured_length);
+        
+        if( template_generator.featured_tutorials.length === featured_length)
+        {
+            featured_page++;
+            
+            var featured_start = featured_length*featured_page;
 
+            var promise_featured    = rest_caller.getFeaturedTutorials(featured_start,featured_length);
+
+            promise_featured.done(
+                function(data)
+                {
+                    template_generator.featured_tutorials = data.tutorials;
+                    if(template_generator.featured_tutorials.length > 0)
+                        template_generator.displayTutorialGallery("#featured_tutorials_gallery", template_generator.featured_tutorials);
+
+                });
+        }
+
+    });
+    
+    $( "#featured_tutorials .arrow_left img" ).click(function(event) {
+        
+        //alert(featured_length);
+        
+        if( featured_page > 0)
+        {
+            featured_page--;
+            
+            var featured_start = featured_length*featured_page;
+
+            var promise_featured    = rest_caller.getFeaturedTutorials(featured_start,featured_length);
+
+            promise_featured.done(
+                function(data)
+                {
+                    template_generator.featured_tutorials = data.tutorials;
+                    if(template_generator.featured_tutorials.length > 0)
+                        template_generator.displayTutorialGallery("#featured_tutorials_gallery", template_generator.featured_tutorials);
+
+                });
+        }
+
+    });
     
    
     //promise_featured.done(function(data){template_generator.displayFeaturedTutorials(data,"#featured_tutorials")});
@@ -202,6 +250,37 @@ $(function(){
         
         $("#"+expandable.attr('id')+" .sub-menu").css("display", "block"); 
         $("#"+expandable.attr('id')+" img").attr("src", "images/header-icon-selected.png"); 
+    });
+    
+    
+    
+    
+    $(".non_expandable > img").mouseleave(function(event){
+        
+        var non_expandable = $(event.target).parent();
+
+        $("#"+non_expandable.attr('id')+" img").attr("src", "images/header-icon-unselected.png"); 
+    });
+    
+    $(".non_expandable > img").mouseover(function(event){
+        
+        var non_expandable = $(event.target).parent();
+
+        $("#"+non_expandable.attr('id')+" img").attr("src", "images/header-icon-selected.png"); 
+    });
+    
+    $(".non_expandable > img").mousedown(function(event){
+        
+        var non_expandable = $(event.target).parent();
+
+        $("#"+non_expandable.attr('id')+" img").attr("src", "images/header-icon-unselected.png"); 
+    });
+    
+    $(".non_expandable > img").mouseup(function(event){
+        
+        var non_expandable = $(event.target).parent();
+
+        $("#"+non_expandable.attr('id')+" img").attr("src", "images/header-icon-selected.png"); 
     });
 });
    

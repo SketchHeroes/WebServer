@@ -25,7 +25,7 @@ and open the template in the editor.
                 </div>
                 
                 <ul class="main_menu inline_block_list">
-                    <li class="expandable" id="guides" >
+                    <li class="expandable" id="guides_link" >
                             <img src="images/header-icon-unselected.png" alt="guides" />
                             <ul class="sub-menu">
                                 <li>
@@ -51,14 +51,28 @@ and open the template in the editor.
                                 </li>
                             </ul>
                     </li>
-                    <li>                  
+                    <li class="non_expandable" id="top_heroes_link">                  
                             <img src="images/header-icon-unselected.png" alt="top_heroes" />
                     </li>
 
-                    <li>                       
+                    <li class="expandable" id="create_link">                       
                             <img src="images/header-icon-unselected.png" alt="create" />
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="#">All Members</a>
+                                </li>
+                                <li>
+                                    <a href="#">Following</a>
+                                </li>
+                                <li>
+                                    <a href="#">Fans</a>
+                                </li>
+                                <li>
+                                    <a href="#">Leaderboard</a>
+                                </li>
+                            </ul>
                     </li>
-                    <li>                          
+                    <li class="non_expandable" id="competitions_link">                          
                             <img src="images/header-icon-unselected.png" alt="competitions" />
                     </li>
                 </ul>
@@ -155,19 +169,15 @@ and open the template in the editor.
             
             <section class="clearfix" id="first_section">
                 <article id="featured_tutorials">
-                    <div id="arrow_left">
-                        <a href="/">
+                    <div class="arrow_left">
                             <img src="images/arrow_left.png" alt="arrow_left" />
-                        </a>
                     </div>
                     
                     <div id="featured_tutorials_gallery">
                     </div>
                     
-                    <div id="arrow_right">
-                        <a href="/">
+                    <div class="arrow_right">
                             <img src="images/arrow_right.png" alt="arrow_right" />
-                        </a>
                     </div>                    
                 </article>
                 

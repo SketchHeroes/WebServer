@@ -437,19 +437,7 @@ TemplateGenerator.prototype.addUserList = function(target, length)
     
     for(var i=0; i<length; i++)
     {
-        var single_record = $('<li></li>');
-        
-            var user_place = $('<div class="user_place">'+i+'</div>');
-            single_record.append(user_place); 
-            
-            var user_name = $('<div class="user_name"></div>');
-            single_record.append(user_name); 
-            
-                var link = $('<a href="/"></a>');
-                user_name.append(link); 
-            
-            var image = $('<img class="follow_button" src="images/follow-button.png">');
-            single_record.append(image);
+        var single_record = $('<li></li>'); 
         
         list.append(single_record);
     };
@@ -468,7 +456,7 @@ TemplateGenerator.prototype.addNotificationList = function(target)
     
     for(var i=0; i<40; i++)
     {
-        var single_record = $('<li>New message '+i+'</li>');
+        var single_record = $('<li></li>');
         
         list.append(single_record);
     };
@@ -621,7 +609,7 @@ TemplateGenerator.prototype.displayTutorialGallerySimple = function(target,tutor
                     $(this).find("div.author_name").append(link);
                     
                     // adding number of votes
-                    $(this).find("div.votes").html(tutorials[i].votes); 
+                    $(this).find("div.votes").html(tutorials[i].votes+" votes"); 
                 }
                 
                 i++;
@@ -641,13 +629,25 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
                 //alert(JSON.stringify($(this)));
                 // adding tutorial_title
                 
-                $(this).find(".user_name a").remove();
+                $(this).find(".user_place").remove();
+                $(this).find(".user_name").remove();
+                $(this).find(".follow_button").remove();
                 
                 if(users[i] !== undefined) 
-                {                                     
+                {
+                    
                     //alert(JSON.stringify(top_users[i]));
+                    
+                    var user_place = $('<div class="user_place">'+i+'</div>');
+                    $(this).append(user_place); 
+
+                    var user_name = $('<div class="user_name"></div>');
                     var link = $('<a href="">'+users[i].username+'</a>');  
-                    $(this).find(".user_name").append(link);
+                    user_name.append(link);
+                    $(this).append(user_name);
+
+                    var image = $('<img class="follow_button" src="images/follow-button.png">');
+                    $(this).append(image);
                 }
         
                 i++;
