@@ -261,6 +261,8 @@ $(function(){
     // expendable menu buttons
     
     $( ".expandable > img" ).click(function(event) {
+        
+        event.stopPropagation(); 
    
         var expandable = $(event.target).parent();
         if( $("#"+expandable.attr('id')+" .sub-menu").css("display") === 'none' )
@@ -274,13 +276,19 @@ $(function(){
             $("#"+expandable.attr('id')+" img").attr("src", "images/header-icon-unselected.png"); 
         
         }
+             
+        $( ".sub-menu" ).not("#"+expandable.attr('id')+" .sub-menu").css("display", "none"); 
     });
+    
+    $( "html" ).click(function(event) {
+        $( ".sub-menu" ).css("display", "none"); 
+    });  
     
     $(".expandable > img").mouseleave(function(event){
         
         var expandable = $(event.target).parent();
         
-        $("#"+expandable.attr('id')+" .sub-menu").css("display", "none"); 
+        //$("#"+expandable.attr('id')+" .sub-menu").css("display", "none"); 
         $("#"+expandable.attr('id')+" img").attr("src", "images/header-icon-unselected.png"); 
     });
     
@@ -288,7 +296,7 @@ $(function(){
         
         var expandable = $(event.target).parent();
         
-        $("#"+expandable.attr('id')+" .sub-menu").css("display", "block"); 
+        //$("#"+expandable.attr('id')+" .sub-menu").css("display", "block"); 
         $("#"+expandable.attr('id')+" img").attr("src", "images/header-icon-selected.png"); 
     });
     

@@ -116,6 +116,7 @@ header
     
     height:50px;
     width:120px;
+    cursor: pointer;
 }
 
 /* SUB-MENU */
@@ -516,6 +517,7 @@ header
 #create_button img
 {
     margin: 10px 0px 0px 145px;
+    cursor: pointer;
 }
 
 #notifications
@@ -973,6 +975,7 @@ header
     margin: 20px 0px 0px 0px;
     height:30px;
     width:70px;
+    cursor: pointer;
 }
 
 /* THIRD SECTION */
@@ -1184,6 +1187,7 @@ header
     height:30px;
     width:70px;
     float: right;
+    cursor: pointer;
 }
 
 .gallery_less .info_panel { 
