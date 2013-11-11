@@ -116,6 +116,8 @@ $(function(){
         
         if( template_generator.featured_tutorials.length === featured_length)
         {
+            $("#featured_tutorials_gallery").fadeOut();
+            
             featured_page++;
             
             var featured_start = featured_length*featured_page;
@@ -128,7 +130,7 @@ $(function(){
                     template_generator.featured_tutorials = data.tutorials;
                     if(template_generator.featured_tutorials.length > 0)
                         template_generator.displayTutorialGallery("#featured_tutorials_gallery", template_generator.featured_tutorials);
-
+                    $("#featured_tutorials_gallery").fadeIn();
                 });
         }
 
@@ -140,6 +142,8 @@ $(function(){
         
         if( featured_page > 0)
         {
+            $("#featured_tutorials_gallery").fadeOut();
+            
             featured_page--;
             
             var featured_start = featured_length*featured_page;
@@ -152,7 +156,7 @@ $(function(){
                     template_generator.featured_tutorials = data.tutorials;
                     if(template_generator.featured_tutorials.length > 0)
                         template_generator.displayTutorialGallery("#featured_tutorials_gallery", template_generator.featured_tutorials);
-
+                    $("#featured_tutorials_gallery").fadeIn();
                 });
         }
 
@@ -180,6 +184,7 @@ $(function(){
     
     $( "#top_heroes .period" ).click(function(event) {
         
+        $("#top_heroes .users_list").fadeOut();
         //alert("clicked");
         //alert(event.target.id);
         $( "#top_heroes .period" ).attr("src","images/flower-unselected-button.png").removeClass("active");
@@ -193,7 +198,7 @@ $(function(){
             {
                 template_generator.top_users = data.users;
                 template_generator.displayUserList("#top_heroes",template_generator.top_users);
-                
+                $("#top_heroes .users_list").fadeIn();
             });
     });
     
@@ -201,6 +206,7 @@ $(function(){
     
     $( "#top_tutorials_gallery .period" ).click(function(event) {
         
+        $("#top_tutorials_gallery .gallery").fadeOut();
         //alert("clicked");
         //alert(event.target.id);
         $( "#top_tutorials_gallery .period" ).attr("src","images/top-tutorials-unselected-button.png").removeClass("active");
@@ -214,7 +220,7 @@ $(function(){
             {
                 template_generator.top_tutorials = data.tutorials;
                 template_generator.displayTutorialGallery("#top_tutorials_gallery",template_generator.top_tutorials);
-                
+                $("#top_tutorials_gallery .gallery").fadeIn();
             });
     });
     

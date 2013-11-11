@@ -18,10 +18,10 @@ body {
 
 }
 
-a:link {text-decoration:none;}
-a:visited {text-decoration:none;}
-a:hover {text-decoration:underline;}
-a:active {text-decoration:underline;}
+a:link {text-decoration:none; color:#000000}
+a:visited {text-decoration:none; color:#000000}
+a:hover {text-decoration:none; color:#000000}
+a:active {text-decoration:none; color:#000000}
 
 
 .wrapper {
@@ -565,19 +565,21 @@ header
 
 .arrow_right{
     
- float: left;
+ float: right;
  /*width: 40px;*/
  margin: 290px 0px 0px 0px;
  
 }
 
 .arrow_left img{
+ cursor: pointer;
  margin: 0px 0px 0px 0px;
  height: 50px;
  width: 30px;
 }
 
 .arrow_right img{ 
+ cursor: pointer;
  margin: 0px 0px 0px 0px;
  height: 50px;
  width: 30px;
