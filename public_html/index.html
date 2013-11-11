@@ -141,11 +141,11 @@ and open the template in the editor.
                                     <form>
                                         <a href="#" class="close">X</a>
                                         <h1>Login</h1>
-                                        <p><input name="username_email" type="text" placeholder="Username / Email" /></p> 
-                                        <p><input name="" type="password"  placeholder="Password" /></p>
-                                        <p><input name="pass_options" type="radio" checked="checked" />Remember my password</p>
-                                        <p><input name="pass_options" type="radio" />Keep me logged in</p>
-                                        <p><input name="" class="button_login" type="button" value="Log In" /></p>
+                                        <p><input name="username_email" type="text" placeholder="Username / Email" required autofocus pattern="[A-Za-z]{3}"/></p> 
+                                        <p><input name="password" type="password"  placeholder="Password" required /></p>
+                                        <p><input name="pass_options" type="radio"/>Remember my password</p>
+                                        <p><input name="pass_options" type="radio" checked="checked"  />Keep me logged in</p>
+                                        <p><input name="" class="button_login" type="submit" value="Log In" /></p>
                                         <p class="forgot_pass"><a href='#'>Forgotten your password?</a></p>
                                         <p class="facebook_caption">Or log in using Facebook:</p>
                                         <p><input name="" class="button_facebook" type="button" value="Facebook" /></p>

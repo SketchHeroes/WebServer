@@ -43,7 +43,7 @@ $(function(){
    
     template_generator.addNotificationList("#notifications");
 
-    var promise_featured    = rest_caller.getFeaturedTutorials(0,featured_length);
+    var promise_featured    = rest_caller.getFeaturedTutorials(0,featured_length+1);
     var promise_top_users   = rest_caller.getTopUsers(0,top_users_length,$( "#top_heroes .active" ).attr('id'));
     var promise_top         = rest_caller.getTopTutorials(0,top_tutorials_length,$( "#top_tutorials_gallery .active" ).attr('id'));
     var promise_recent      = rest_caller.getRecentTutorials(0,recent_tutorials_length);
@@ -54,7 +54,13 @@ $(function(){
             {
                 template_generator.featured_tutorials = data.tutorials;
                 template_generator.displayTutorialGallery("#featured_tutorials_gallery", template_generator.featured_tutorials);
+                //alert(template_generator.featured_tutorials.length);
                 
+                if(template_generator.featured_tutorials.length > featured_length)
+                {
+                    $( "#featured_tutorials .arrow_right img" ).css("opacity", "1"); 
+                    $( "#featured_tutorials .arrow_right img" ).css("filter", "alpha(opacity=100)"); 
+                }
             });
             
     
@@ -114,15 +120,20 @@ $(function(){
         
         //alert(featured_length);
         
-        if( template_generator.featured_tutorials.length === featured_length)
+        if( template_generator.featured_tutorials.length > featured_length)
         {
+            $( "#featured_tutorials .arrow_left img" ).css("opacity", "1"); 
+            $( "#featured_tutorials .arrow_left img" ).css("filter", "alpha(opacity=100)"); 
+            
+            //alert($( "#featured_tutorials .arrow_left img" ).css("opacity"));
+            
             $("#featured_tutorials_gallery").fadeOut();
             
             featured_page++;
             
             var featured_start = featured_length*featured_page;
 
-            var promise_featured    = rest_caller.getFeaturedTutorials(featured_start,featured_length);
+            var promise_featured    = rest_caller.getFeaturedTutorials(featured_start,featured_length+1);
 
             promise_featured.done(
                 function(data)
@@ -131,9 +142,20 @@ $(function(){
                     if(template_generator.featured_tutorials.length > 0)
                         template_generator.displayTutorialGallery("#featured_tutorials_gallery", template_generator.featured_tutorials);
                     $("#featured_tutorials_gallery").fadeIn();
+                    
+                    if(template_generator.featured_tutorials.length > featured_length)
+                    {
+                        $( "#featured_tutorials .arrow_right img" ).css("opacity", "1"); 
+                        $( "#featured_tutorials .arrow_right img" ).css("filter", "alpha(opacity=100)"); 
+                    }
+                    else
+                    {
+                        $( "#featured_tutorials .arrow_right img" ).css("opacity", "0.3"); 
+                        $( "#featured_tutorials .arrow_right img" ).css("filter", "alpha(opacity=30)"); 
+                    }
+                        
                 });
         }
-
     });
     
     $( "#featured_tutorials .arrow_left img" ).click(function(event) {
@@ -142,21 +164,32 @@ $(function(){
         
         if( featured_page > 0)
         {
+            $( "#featured_tutorials .arrow_right img" ).css("opacity", "1"); 
+            $( "#featured_tutorials .arrow_right img" ).css("filter", "alpha(opacity=100)"); 
+            
             $("#featured_tutorials_gallery").fadeOut();
             
             featured_page--;
             
             var featured_start = featured_length*featured_page;
 
-            var promise_featured    = rest_caller.getFeaturedTutorials(featured_start,featured_length);
+            var promise_featured    = rest_caller.getFeaturedTutorials(featured_start,featured_length+1);
 
             promise_featured.done(
                 function(data)
                 {
                     template_generator.featured_tutorials = data.tutorials;
                     if(template_generator.featured_tutorials.length > 0)
+                    {
                         template_generator.displayTutorialGallery("#featured_tutorials_gallery", template_generator.featured_tutorials);
+                    }
                     $("#featured_tutorials_gallery").fadeIn();
+                    
+                    if( featured_page === 0 )
+                    {
+                        $( "#featured_tutorials .arrow_left img" ).css("opacity", "0.3"); 
+                        $( "#featured_tutorials .arrow_left img" ).css("filter", "alpha(opacity=30)"); 
+                    }
                 });
         }
 
@@ -225,6 +258,7 @@ $(function(){
     });
     
     
+    // expendable menu buttons
     
     $( ".expandable > img" ).click(function(event) {
    
@@ -259,7 +293,7 @@ $(function(){
     });
     
     
-    
+    // non_expandable menu buttons
     
     $(".non_expandable > img").mouseleave(function(event){
         
@@ -289,55 +323,8 @@ $(function(){
         $("#"+non_expandable.attr('id')+" img").attr("src", "images/header-icon-selected.png"); 
     });
     
-    /*
     
-    $(".account #login").click(function(e) 
-    { 
-        e.stopPropagation();
-        if( !$("#popup_login").is(":visible") )
-        {
-            //$("body").append('');  
-            $(".popup").hide();
-            $("#popup_login").show();; 
-            $("#popup_login .close").click(function(e) { 
-                $("#popup_login").hide(); 
-            }); 
-        }
-        else
-        {
-            $("#popup_login").hide(); 
-        }
-    });
-    
-    $(".account #register").click(function(e) 
-    {
-        e.stopPropagation();
-        if( !$("#popup_register").is(":visible") )
-        {
-            //$("body").append(''); 
-            $(".popup").hide();
-            $("#popup_register").show();   
-            $("#popup_register .close").click(function(e) { 
-                $("#popup_register").hide(); 
-            }); 
-        }
-        else
-        {
-            $("#popup_register").hide(); 
-        }
-    });
-    
-    $('.popup').click(function(e) {  
-            e.stopPropagation();
-    });
-    
-    $('html').click(function(e) {  
-        
-            //alert($(e.target).prop("tagName"));
-            $(".popup").hide();
-    });
-    
-    */
+    // account popup menus
    
    $(".account #login").click(function(e) 
     { 
@@ -345,6 +332,7 @@ $(function(){
         $("body").append(overlay);
 
         $("#popup_login").fadeIn(); 
+        //$("#popup_login input[name=username_email]").focus();
             
     });
     
@@ -367,6 +355,18 @@ $(function(){
             $("body .overlay").remove();
    }); 
     
+   
+   // loging in
+   
+   
+   $(".login_button").click(function(e) 
+    { 
+        var overlay = $('<div class="overlay"></div>');
+        $("body").append(overlay);
+
+        $("#popup_register").fadeIn(); 
+            
+    });
     
 });
    

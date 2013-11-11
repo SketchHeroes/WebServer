@@ -576,6 +576,8 @@ header
  margin: 0px 0px 0px 0px;
  height: 50px;
  width: 30px;
+ opacity:0.3;
+ filter:alpha(opacity=30);
 }
 
 .arrow_right img{ 
@@ -583,6 +585,8 @@ header
  margin: 0px 0px 0px 0px;
  height: 50px;
  width: 30px;
+ opacity:0.3;
+ filter:alpha(opacity=30);
 }
 
 
@@ -697,6 +701,7 @@ header
     height:30px;
     width:70px;
     float: right;
+    cursor: pointer;
 }
 
 .gallery .info_panel { 
@@ -757,7 +762,7 @@ header
     margin: 0px 0px 0px 116px;  
     height:260px;
     width:432px;
-    border:1px solid #0ff;
+    /*border:1px solid #0ff;*/
     background: #FFFFFF;
 }
 
@@ -766,7 +771,7 @@ header
     margin: 10px 10px 10px 10px;  
     height:240px;
     width:412px;
-    border:1px solid #0ff;
+    /*border:1px solid #0ff;*/
 }
 
 .competition_caption{  
@@ -774,7 +779,7 @@ header
     margin: 0px 0px 0px 116px;  
     height:30px;
     width:432px;
-    border:1px solid #0ff;
+    /*border:1px solid #0ff;*/
     
     white-space:nowrap; 
     overflow:hidden; 

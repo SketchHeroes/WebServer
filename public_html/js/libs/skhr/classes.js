@@ -676,3 +676,17 @@ TemplateGenerator.prototype.setRecords = function(records)
 {
     this.records = records;
 };
+
+//---------------- Account Caller class -------------------------------------------
+
+function Account()
+{
+
+}   
+
+// setters
+
+Account.prototype.setDomain = function(domain)
+{
+    this.domain = domain;
+};
