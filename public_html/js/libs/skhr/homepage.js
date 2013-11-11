@@ -220,8 +220,10 @@ $(function(){
         $("#top_heroes .users_list").fadeOut();
         //alert("clicked");
         //alert(event.target.id);
-        $( "#top_heroes .period" ).attr("src","images/flower-unselected-button.png").removeClass("active");
-        $( "#top_heroes #"+event.target.id ).attr("src","images/flower-selected-button.png").addClass("active");
+        $( "#top_heroes #week" ).attr("src","images/week_flower_unselected.png").removeClass("active");
+        $( "#top_heroes #month" ).attr("src","images/month_flower_unselected.png").removeClass("active");
+        $( "#top_heroes #year" ).attr("src","images/year_flower_unselected.png").removeClass("active");
+        $( "#top_heroes #"+event.target.id ).attr("src","images/"+event.target.id+"_flower_selected.png").addClass("active");
         //alert( "id = "+$(this).id );
         
         var promise_top_users   = rest_caller.getTopUsers(0,top_users_length,$( "#"+event.target.id ).attr('id'));
@@ -242,8 +244,10 @@ $(function(){
         $("#top_tutorials_gallery .gallery").fadeOut();
         //alert("clicked");
         //alert(event.target.id);
-        $( "#top_tutorials_gallery .period" ).attr("src","images/top-tutorials-unselected-button.png").removeClass("active");
-        $( "#top_tutorials_gallery #"+event.target.id ).attr("src","images/top-tutorials-selected-button.png").addClass("active");
+        $( "#top_tutorials_gallery #week" ).attr("src","images/week_unselected.png").removeClass("active");
+        $( "#top_tutorials_gallery #month" ).attr("src","images/month_unselected.png").removeClass("active");
+        $( "#top_tutorials_gallery #year" ).attr("src","images/year_unselected.png").removeClass("active");
+        $( "#top_tutorials_gallery #"+event.target.id ).attr("src","images/"+event.target.id+"_selected.png").addClass("active");
         //alert( "id = "+$(this).id );
         
         var promise_top   = rest_caller.getTopTutorials(0,top_tutorials_length,$( "#"+event.target.id ).attr('id'));
@@ -268,12 +272,12 @@ $(function(){
         if( $("#"+expandable.attr('id')+" .sub-menu").css("display") === 'none' )
         {
             $("#"+expandable.attr('id')+" .sub-menu").css("display", "block"); 
-            $("#"+expandable.attr('id')+" img").attr("src", "images/header-icon-selected.png"); 
+            $("#"+expandable.attr('id')+" img").attr("src", "images/"+expandable.attr('id')+"_selected.png"); 
         }
         else
         {
             $("#"+expandable.attr('id')+" .sub-menu").css("display", "none"); 
-            $("#"+expandable.attr('id')+" img").attr("src", "images/header-icon-unselected.png"); 
+            $("#"+expandable.attr('id')+" img").attr("src", "images/"+expandable.attr('id')+"_unselected.png"); 
         
         }
              
@@ -289,15 +293,14 @@ $(function(){
         var expandable = $(event.target).parent();
         
         //$("#"+expandable.attr('id')+" .sub-menu").css("display", "none"); 
-        $("#"+expandable.attr('id')+" img").attr("src", "images/header-icon-unselected.png"); 
+        $("#"+expandable.attr('id')+" img").attr("src", "images/"+expandable.attr('id')+"_unselected.png"); 
     });
     
     $(".expandable > img").mouseover(function(event){
         
         var expandable = $(event.target).parent();
-        
         //$("#"+expandable.attr('id')+" .sub-menu").css("display", "block"); 
-        $("#"+expandable.attr('id')+" img").attr("src", "images/header-icon-selected.png"); 
+        $("#"+expandable.attr('id')+" img").attr("src", "images/"+expandable.attr('id')+"_selected.png"); 
     });
     
     
@@ -307,28 +310,28 @@ $(function(){
         
         var non_expandable = $(event.target).parent();
 
-        $("#"+non_expandable.attr('id')+" img").attr("src", "images/header-icon-unselected.png"); 
+        $("#"+non_expandable.attr('id')+" img").attr("src", "images/"+non_expandable.attr('id')+"_unselected.png"); 
     });
     
     $(".non_expandable > img").mouseover(function(event){
         
         var non_expandable = $(event.target).parent();
 
-        $("#"+non_expandable.attr('id')+" img").attr("src", "images/header-icon-selected.png"); 
+        $("#"+non_expandable.attr('id')+" img").attr("src", "images/"+non_expandable.attr('id')+"_selected.png"); 
     });
     
     $(".non_expandable > img").mousedown(function(event){
         
         var non_expandable = $(event.target).parent();
 
-        $("#"+non_expandable.attr('id')+" img").attr("src", "images/header-icon-unselected.png"); 
+        $("#"+non_expandable.attr('id')+" img").attr("src", "images/"+non_expandable.attr('id')+"_unselected.png"); 
     });
     
     $(".non_expandable > img").mouseup(function(event){
         
         var non_expandable = $(event.target).parent();
 
-        $("#"+non_expandable.attr('id')+" img").attr("src", "images/header-icon-selected.png"); 
+        $("#"+non_expandable.attr('id')+" img").attr("src", "images/"+non_expandable.attr('id')+"_selected.png"); 
     });
     
     
