@@ -370,12 +370,9 @@ $(function(){
    // loging in
    
    
-   $(".login_button").click(function(e) 
+   $(".button_login").click(function(e) 
     { 
-        var overlay = $('<div class="overlay"></div>');
-        $("body").append(overlay);
-
-        $("#popup_register").fadeIn(); 
+        alert($("#popup_login input[name=username_email]").val());
             
     });
     

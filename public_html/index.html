@@ -16,52 +16,6 @@ and open the template in the editor.
         
     </head>
     <body>
-        <!--
-        <div id="fb-root"></div>
-        <script>
-          window.fbAsyncInit = function() {
-            // init the FB JS SDK
-            FB.init({
-              appId      : '390754447617631',                        // App ID from the app dashboard
-              channelUrl : '//www.sketchheroes.com', // Channel file for x-domain comms
-              status     : true,                                 // Check Facebook Login status
-              xfbml      : true                                  // Look for social plugins on the page
-            });
-
-            // Additional initialization code such as adding Event Listeners goes here
-          };
-
-          // Load the SDK asynchronously
-          (function(){
-             // If we've already installed the SDK, we're done
-             if (document.getElementById('facebook-jssdk')) {return;}
-
-             // Get the first script element, which we'll use to find the parent node
-             var firstScriptElement = document.getElementsByTagName('script')[0];
-
-             // Create a new script element and set its id
-             var facebookJS = document.createElement('script'); 
-             facebookJS.id = 'facebook-jssdk';
-
-             // Set the new script's source to the source of the Facebook JS SDK
-             facebookJS.src = '//connect.facebook.net/en_US/all.js';
-
-             // Insert the Facebook JS SDK into the DOM
-             firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
-           }());
-        </script>
-        
-        <div id="fb-root"></div>
-        <script>
-            (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=390754447617631";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
-        -->
         
         <div class="wrapper">
             <header>
@@ -99,7 +53,7 @@ and open the template in the editor.
                             </ul>
                     </li>
                     <li class="non_expandable" id="top_heroes_link">                  
-                            <img src="images/top_heroes_link_unselected.png" alt="top_heroes" />
+                            <img src="images/top_heroes_link_unselected.png" alt="top heroes" />
                     </li>
 
                     <li class="expandable" id="members_link">                       
@@ -141,11 +95,15 @@ and open the template in the editor.
                                     <form>
                                         <a href="#" class="close">X</a>
                                         <h1>Login</h1>
-                                        <p><input name="username_email" type="text" placeholder="Username / Email" required autofocus pattern="[A-Za-z]{3}"/></p> 
-                                        <p><input name="password" type="password"  placeholder="Password" required /></p>
+                                        <p><input name="username_email" type="text" placeholder="Username / Email" /></p> 
+                                        <p><input name="password" type="password"  placeholder="Password" /></p>
+                                        <!--
+                                        <p><input name="username_email" type="text" placeholder="Username / Email" required autofocus pattern="[A-Za-z0-9_.]{3,256}" /></p> 
+                                        <p><input name="password" type="password"  placeholder="Password" required pattern="[A-Za-z0-9]{6,12}" /></p>
+                                        -->
                                         <p><input name="pass_options" type="radio"/>Remember my password</p>
                                         <p><input name="pass_options" type="radio" checked="checked"  />Keep me logged in</p>
-                                        <p><input name="" class="button_login" type="submit" value="Log In" /></p>
+                                        <p><input name="" class="button_login" type="button" value="Log In" /></p>
                                         <p class="forgot_pass"><a href='#'>Forgotten your password?</a></p>
                                         <p class="facebook_caption">Or log in using Facebook:</p>
                                         <p><input name="" class="button_facebook" type="button" value="Facebook" /></p>
@@ -163,8 +121,14 @@ and open the template in the editor.
                                         <h1>Sign up</h1>
                                         <p><input name="" type="text" placeholder="Username" /></p>
                                         <p><input name="" type="text" placeholder="Email" /></p>
-                                        <p><input name="" type="password" placeholder="Password"/></p>
-                                        <p><input name="" type="password" placeholder="Confirm password"/></p>
+                                        <p><input name="" type="password" placeholder="Password" /></p>
+                                        <p><input name="" type="password" placeholder="Confirm password" /></p>
+                                        <!--
+                                        <p><input name="" type="text" placeholder="Username"  required autofocus pattern="[A-Za-z0-9_.]{3,45}" title="From 3 to 45 characters long. Letters, digits, dot and undercore"/></p>
+                                        <p><input name="" type="text" placeholder="Email" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" title="A valid email"/></p>
+                                        <p><input name="" type="password" placeholder="Password" required pattern="[A-Za-z0-9]{6,12}" /></p>
+                                        <p><input name="" type="password" placeholder="Confirm password" required pattern="[A-Za-z0-9]{6,12}" /></p>
+                                        -->
                                         <p class="agree_caption">
                                             <input name="" type="checkbox" />
                                                 By clicking Sign, up you agree to our <a>Terms</a> 
@@ -257,20 +221,20 @@ and open the template in the editor.
             <section class="clearfix" id="first_section">
                 <article id="featured_tutorials">
                     <div class="arrow_left">
-                            <img src="images/arrow_left.png" alt="arrow_left" />
+                            <img src="images/arrow_left.png" alt="arrow left" />
                     </div>
                     
                     <div id="featured_tutorials_gallery">
                     </div>
                     
                     <div class="arrow_right">
-                            <img src="images/arrow_right.png" alt="arrow_right" />
+                            <img src="images/arrow_right.png" alt="arrow right" />
                     </div>                    
                 </article>
                 
                 <aside id="first_side_panel">
                     <div id="create_button">                      
-                        <img src="images/create_button.png" alt="create_button" />
+                        <img src="images/create_button.png" alt="create button" />
                     </div> 
                     <div id="notifications">
                         
@@ -281,7 +245,7 @@ and open the template in the editor.
             
             <section class="clearfix" id="second_section">
                 <article id="latest_competition">
-                    <img class="header_img" src="images/latest-competition-header.png" alt="latest-competition-header" />
+                    <img class="header_img" src="images/latest-competition-header.png" alt="latest competition header" />
                     
                     <div class="competition_thumbnail">
                     </div>
@@ -296,13 +260,13 @@ and open the template in the editor.
                 </article>
                 <div id="slanted_border">
                     <a href="">
-                        <img class="view_more" src="images/view-more-button.png" alt="view-more-button" />
+                        <img class="view_more" src="images/view-more-button.png" alt="view more button" />
                     </a>
                 </div>
                 <aside id="top_heroes">
-                    <img class="header_img" src="images/top-heroes-header.png" alt="top-heroes-header" />
+                    <img class="header_img" src="images/top-heroes-header.png" alt="top heroes header" />
                     <a href="">
-                        <img class="view_more" src="images/view-more-button.png" alt="view-more-button" />
+                        <img class="view_more" src="images/view-more-button.png" alt="view more button" />
                     </a>
                     
                     <div class="period_panel">
@@ -318,12 +282,12 @@ and open the template in the editor.
             <section class="clearfix" id="third_section">
                 <article id="top_tutorials">
                     <a href="">
-                        <img class="view_more" src="images/view-more-button.png" alt="view-more-button" />
+                        <img class="view_more" src="images/view-more-button.png" alt="view more button" />
                     </a>
                     <div id="top_tutorials_gallery">    
                         <div class="period_panel">
-                            <img id="week"  src="images/month_unselected.png" alt="week" class="period"/>
-                            <img id="month" src="images/week_selected.png" alt="month" class="period active" />
+                            <img id="week"  src="images/week_unselected.png" alt="week" class="period"/>
+                            <img id="month" src="images/month_selected.png" alt="month" class="period active" />
                             <img id="year"  src="images/year_unselected.png" alt="year" class="period"/>
                         </div>
                     </div>
@@ -333,7 +297,7 @@ and open the template in the editor.
                 <aside id="recent_tutorials_side_panel">
                     <div id="recent_tutorials_gallery"> 
                         <a href="">
-                            <img class="view_more" src="images/view-more-button.png" alt="view-more-button" />
+                            <img class="view_more" src="images/view-more-button.png" alt="view more button" />
                         </a>
                     </div> 
                 </aside>
@@ -348,25 +312,25 @@ and open the template in the editor.
                 
                 <div id="menu">
                     <a href="">
-                     <img class="footer_button" src="images/footer-button.png" alt="footer-button" />
+                     <img class="footer_button" src="images/sub-home.png" alt="home" />
                     </a>
                     <a href="">
-                     <img class="footer_button" src="images/footer-button.png" alt="footer-button" />
+                     <img class="footer_button" src="images/sub-guides.png" alt="guides" />
                     </a>
                     <a href="">
-                     <img class="footer_button" src="images/footer-button.png" alt="footer-button" />
+                     <img class="footer_button" src="images/sub-create.png" alt="create" />
                     </a>
                     <a href="">
-                     <img class="footer_button" src="images/footer-button.png" alt="footer-button" />
+                     <img class="footer_button" src="images/sub-members.png" alt="members" />
                     </a>
                     <a href="">
-                     <img class="footer_button" src="images/footer-button.png" alt="footer-button" />
+                     <img class="footer_button" src="images/sub-top-heroes.png" alt="top heroes" />
                     </a>
                     <a href="">
-                     <img class="footer_button" src="images/footer-button.png" alt="footer-button" />
+                     <img class="footer_button" src="images/sub-privacy-policy.png" alt="privacy policy" />
                     </a>
                     <a href="">
-                     <img class="footer_button" src="images/footer-button.png" alt="footer-button" />
+                     <img class="footer_button" src="images/sub-contact-us.png" alt="contact us" />
                     </a>
                 </div>
                 
