@@ -177,9 +177,15 @@ header
   list-style: none;
 }
 
-.login .status {
-  account: both;
+.account .status {
+  clear: both;
   margin: 4px 0 2px;
+}
+
+.options .facebook_iframe{
+    border: 1px #FF0000 solid;
+    position: absolute;
+    z-index: 999;
 }
 
 /* POP LOGIN */
@@ -249,11 +255,20 @@ header
         border: 3px solid #000000;
         border-radius: 10px 10px 10px 10px;
         
-        width: 490px;
-        height: 630px;
+        margin: -400px 0px 0px -255px; 
         
-        margin: -350px 0px 0px -255px; 
-        
+}
+
+#popup_login
+{
+    width: 490px;
+    height: 580px;
+}
+
+#popup_register
+{
+    width: 490px;
+    height: 720px;
 }
 
 .popup form{  
@@ -265,10 +280,12 @@ header
 }
 
 .popup .close{
-    top: 5px;
     color: #FF0000;
     font-weight: bold;
+    font-size: 25px;
+    
     position: absolute;
+    top: 5px;
     right: 10px;
 }
 
@@ -305,7 +322,7 @@ header
 }
 
 
-.popup .button_login{
+.popup .button_login, .popup .button_register{
     background: #484848;
     border-radius: 15px 15px 15px 15px;
     color: #FFB400;
@@ -325,7 +342,13 @@ header
 }
 
 .popup .facebook_caption{
-    margin: 40px 0px 0px 30px;
+    margin: 20px 0px 0px 30px;
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+.popup .agree_caption{
+    margin: 20px 0px 20px 30px;
     color: #FFFFFF;
     font-size: 20px;
 }
@@ -341,7 +364,7 @@ header
     
     margin: 0px 0px 0px 30px;
 }
-
+/*
 .popup form .faceb {
     background: linear-gradient(to bottom, #5A87AA 0%, #265376 100%) repeat scroll 0 0 transparent;
     border: 1px solid rgba(20, 59, 89, 0.61);
@@ -349,6 +372,7 @@ header
     padding: 5px 5px 5px 5px; 
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
+*/
 
 .overlay {
     width:100%; 

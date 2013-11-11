@@ -16,6 +16,53 @@ and open the template in the editor.
         
     </head>
     <body>
+        <!--
+        <div id="fb-root"></div>
+        <script>
+          window.fbAsyncInit = function() {
+            // init the FB JS SDK
+            FB.init({
+              appId      : '390754447617631',                        // App ID from the app dashboard
+              channelUrl : '//www.sketchheroes.com', // Channel file for x-domain comms
+              status     : true,                                 // Check Facebook Login status
+              xfbml      : true                                  // Look for social plugins on the page
+            });
+
+            // Additional initialization code such as adding Event Listeners goes here
+          };
+
+          // Load the SDK asynchronously
+          (function(){
+             // If we've already installed the SDK, we're done
+             if (document.getElementById('facebook-jssdk')) {return;}
+
+             // Get the first script element, which we'll use to find the parent node
+             var firstScriptElement = document.getElementsByTagName('script')[0];
+
+             // Create a new script element and set its id
+             var facebookJS = document.createElement('script'); 
+             facebookJS.id = 'facebook-jssdk';
+
+             // Set the new script's source to the source of the Facebook JS SDK
+             facebookJS.src = '//connect.facebook.net/en_US/all.js';
+
+             // Insert the Facebook JS SDK into the DOM
+             firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
+           }());
+        </script>
+        
+        <div id="fb-root"></div>
+        <script>
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=390754447617631";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+        -->
+        
         <div class="wrapper">
             <header>
                 <div class="logo">
@@ -92,22 +139,6 @@ and open the template in the editor.
                                  </a>
                                  <div class="popup" id="popup_login">
                                     <form>
-                                        <!--
-                                        <p>
-                                            <span class="title">Username</span> 
-                                            <input name="username_email" type="text" placeholder="username/email" />
-                                        </p>
-                                        <p>
-                                            <span class="title">Password</span> 
-                                            <input name="" type="password"  placeholder="password" />
-                                        </p>
-                                        <p>
-                                            <input name="" class="button" type="button" value="Login" />
-                                        </p>
-                                        <p>
-                                            <a class="faceb but gradient" href="https://www.facebook.com/dialog/oauth?client_id=149039245261205&amp;redirect_uri=http%3A%2F%2Fwww.sketchheroes.com%2FAccount%2Fregister&amp;state=f51c46f078a7f7ea07107463f179d1f1"><span></span>Connect using Facebook</a>
-                                        </p>
-                                        -->
                                         <a href="#" class="close">X</a>
                                         <h1>Login</h1>
                                         <p><input name="username_email" type="text" placeholder="Username / Email" /></p> 
@@ -116,7 +147,7 @@ and open the template in the editor.
                                         <p><input name="pass_options" type="radio" />Keep me logged in</p>
                                         <p><input name="" class="button_login" type="button" value="Log In" /></p>
                                         <p class="forgot_pass"><a href='#'>Forgotten your password?</a></p>
-                                        <p class="facebook_caption">Or log in using Facebook</p>
+                                        <p class="facebook_caption">Or log in using Facebook:</p>
                                         <p><input name="" class="button_facebook" type="button" value="Facebook" /></p>
                                     </form>
                                  </div>
@@ -128,19 +159,32 @@ and open the template in the editor.
                                  
                                  <div class="popup" id="popup_register">
                                     <form>
-                                        <p><span class="title">Username</span> <input name="" type="text" placeholder="username" /></p>
-                                        <p><span class="title">Email</span> <input name="" type="text" placeholder="email" /></p>
-                                        <p><span class="title">Password</span> <input name="" type="password" placeholder="password"/></p>
-                                        <p><span class="title">Repeat password</span> <input name="" type="password" placeholder="password"/></p>
-                                        <p><input name="" class="button" type="button" value="Register" /></p>
+                                        <a href="#" class="close">X</a>
+                                        <h1>Sign up</h1>
+                                        <p><input name="" type="text" placeholder="Username" /></p>
+                                        <p><input name="" type="text" placeholder="Email" /></p>
+                                        <p><input name="" type="password" placeholder="Password"/></p>
+                                        <p><input name="" type="password" placeholder="Confirm password"/></p>
+                                        <p class="agree_caption">
+                                            <input name="" type="checkbox" />
+                                                By clicking Sign, up you agree to our <a>Terms</a> 
+                                                and that you have read and understand our Data Use Policy,
+                                                including our cookie use.
+                                        </p>
+                                        <p><input name="" class="button_register" type="button" value="Sign up" /></p>
+                                        <p class="facebook_caption">Or log in using Facebook:</p>
+                                        <p><input name="" class="button_facebook" type="button" value="Facebook" /></p>
                                     </form>
-                                    <a href="#" class="close">CLOSE</a>
                                  </div>
                                  
                              </li> 
                              <li>
                                  <a href="http://www.sketchheroes.com/Account/register" id='like'>
-                                     &#9658; Like</a>
+                                     &#9658;
+                                     
+                                    <iframe class="facebook_iframe" src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;width&amp;layout=button&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80&amp;appId=390754447617631" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:80px;" allowTransparency="true"></iframe>
+                                 
+                                 </a>
                              </li> 
                          </ul>
                      </div>
