@@ -27,6 +27,7 @@ function RestCaller()
     //this.complete_handler   = function(data){$('body').html("complete: <br />"+JSON.stringify(data));};
     //this.success_handler    = function(data){$('body').html("success: <br />"+JSON.stringify(data));};
     //this.error_handler      = function(data){$('body').html("error: <br />"+JSON.stringify(data));};
+    this.app_token          = 'db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65';
 }   
 
 // setters
@@ -164,7 +165,7 @@ RestCaller.prototype.getFeaturedTutorials = function(start,how_many)
     this.clearCustomHeaders();
     this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
     this.setCustomHeader("Accept","application/json");
-    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65");
+    this.setCustomHeader("X-App-Token",this.app_token);
     //this.setCustomHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
     //this.setCustomHeader("X-Caller-SKHR-ID","3");  
     
@@ -187,7 +188,7 @@ RestCaller.prototype.getTopUsers = function(start, how_many, time_constraint)
     this.clearCustomHeaders();
     this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
     this.setCustomHeader("Accept","application/json"); 
-    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65"); 
+    this.setCustomHeader("X-App-Token",this.app_token); 
     
     this.clearRequestParams();
     this.setRequestParam("start",start);
@@ -213,7 +214,7 @@ RestCaller.prototype.getTopTutorials = function(start, how_many, time_constraint
     
     this.clearCustomHeaders();
     this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
-    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65");
+    this.setCustomHeader("X-App-Token",this.app_token);
     this.setCustomHeader("Accept","application/json");
     
     this.clearRequestParams();
@@ -238,7 +239,7 @@ RestCaller.prototype.getRecentTutorials = function(start, how_many)
     
     this.clearCustomHeaders();
     this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
-    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65");
+    this.setCustomHeader("X-App-Token",this.app_token);
     this.setCustomHeader("Accept","application/json"); 
     
     this.clearRequestParams();
@@ -259,7 +260,7 @@ RestCaller.prototype.getLatestCompetitions = function(start, how_many)
     
     this.clearCustomHeaders();
     this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
-    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65");
+    this.setCustomHeader("X-App-Token",this.app_token);
     this.setCustomHeader("Accept","application/json"); 
     
     this.clearRequestParams();
@@ -279,7 +280,7 @@ RestCaller.prototype.getLatestCompetitionTutorials = function(start, how_many, c
     
     this.clearCustomHeaders();
     this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
-    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65");
+    this.setCustomHeader("X-App-Token",this.app_token);
     this.setCustomHeader("Accept","application/json"); 
     
     this.clearRequestParams();
@@ -299,7 +300,7 @@ RestCaller.prototype.loginNativeUserEmail = function(email, password)
     
     this.clearCustomHeaders();
     this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
-    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65");
+    this.setCustomHeader("X-App-Token",this.app_token);
     this.setCustomHeader("Accept","application/json"); 
     
     this.clearRequestParams();
@@ -309,6 +310,23 @@ RestCaller.prototype.loginNativeUserEmail = function(email, password)
     return this.ajax();
 };
 
+
+RestCaller.prototype.getUser = function(skhr_id)
+{
+    this.setResource("/user");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("Accept","application/json"); 
+    this.setCustomHeader("X-App-Token",this.app_token); 
+    
+    this.clearRequestParams();
+    this.setRequestParam("skhr_id",skhr_id);
+
+    return this.ajax();
+};
 //-------------------- Template class ------------------------------------------
 
 function TemplateGenerator()
@@ -686,7 +704,25 @@ TemplateGenerator.prototype.displayLatestCompetition= function(target, competiti
     $(target+' .competition_thumbnail').append(link);
 
     $(target+' .competition_caption').html('('+competition.submission_start+') '+competition.title+'');
-};
+}; 
+
+
+TemplateGenerator.prototype.displayUser= function(target, user)
+{
+    //alert(top_users[0].username);
+    var avatar = $('<img alt="avatar" class="pic" src="'+user.avatar_path+'" >');
+    
+    $(target).find(".avatar").append(avatar);
+    
+    
+    
+    $(target).find(".statistics .user_name").text(user.username);
+    $(target).find(".statistics .xp").text(user.xp);
+    $(target).find(".statistics .level_title").text(user.level);
+    $(target).find(".statistics .progress").text('dunno yet');
+
+    
+};   
 
 // setters
 

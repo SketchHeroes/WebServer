@@ -413,18 +413,6 @@ nav#secondary_menu{
     margin: 0px 0px 0px 0px;
     /*border: 1px #000000 solid;s*/
     
-}/* PANEL DOWN NARROW */
-
-section#user_info{
-    width:100%;
-    height:300px;
-    
-    background: #ECECEC url(../../images/cover_down_frame.png) center 0 no-repeat;
-    background-size:100% 100%;
-    
-    padding: 0px 0px 0px 0px;
-    margin: 0px auto 40px auto;
-    /*border: 1px #000000 solid;s*/
 }
 
 /* SECONDARY MENU */
@@ -1059,7 +1047,6 @@ section#user_info{
 {  
     float:left;
     margin: 0px 0px 0px 0px; 
-    float: left;
     width: 730px;
     height: 960px;     
     background: #DBD9D9 url(../../images/top-turorials-bg.png) left top 0 no-repeat;
@@ -1301,4 +1288,78 @@ footer #menu .footer_button{
     
     margin: 0px 0px 0px 20px;
     float: left;
+}
+
+
+/* PANEL DOWN NARROW */
+
+section#user_info{
+    width:100%;
+    height:300px;
+    
+    background: #ECECEC url(../../images/cover_down_frame.png) center 0 no-repeat;
+    background-size:100% 100%;
+    
+    padding: 0px 0px 0px 0px;
+    margin: 0px auto 40px auto;
+    /*border: 1px #000000 solid;s*/
+}
+
+#user_info .avatar
+{   
+    float:left;
+    display: inline-block;
+    width:150px;
+    height:150px;
+    margin: 30px 0px 0px 30px;
+    background: #ECECEC;
+    position: relative;
+}
+
+#user_info .avatar img.pic
+{
+    width:150px;
+    height:150px;
+    padding: 20px 20px 20px 20px;
+}
+
+#user_info .avatar img.frame
+{
+    width:150px;
+    height:150px;
+    padding: 0px 0px 0px 0px;
+    position:absolute;
+    z-index: 2;
+}
+
+#user_info .statistics
+{
+    float:left;
+    display: inline-block;
+    width:300px;
+    height:150px;
+    margin: 30px 0px 0px 30px;
+    background: #ECECEC;
+    position: relative;
+    border: 1px #FF0000 dotted;
+}
+
+#user_info .statistics .user_name
+{
+
+}
+
+#user_info .statistics .xp
+{
+
+}
+
+#user_info .statistics .level_title
+{
+
+}
+
+#user_info .statistics .progress
+{
+
 }

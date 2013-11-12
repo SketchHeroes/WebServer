@@ -8,8 +8,6 @@ $(function(){
     //alert('You are in ' + (document.compatMode==='CSS1Compat'?'Standards':'Quirks') + ' mode.')
     // difining global variables
     
-    var featured_page = 0;
-    
     var rest_caller          = new RestCaller();
     var template_generator   = new TemplateGenerator();
 
@@ -17,6 +15,18 @@ $(function(){
     
     
     // getting INITIAL data from the server
+    
+    var promise_user = rest_caller.getUser('85');
+
+    promise_user.done(
+            function(data)
+            {
+                template_generator.user = data.user;
+                //template_generator.addGallery("#user_tutorials_gallery", length);
+                template_generator.displayUser("#user_info", template_generator.user);
+                
+            });
+            
     
     
     var promise_top = rest_caller.getTopTutorials(0,user_tutorials_length);
