@@ -403,7 +403,7 @@ header
     width:50px;
 }
 
-/* COVER */
+/* PANEL DOWN */
 
 .panel_down{
     width:100%;
@@ -411,6 +411,19 @@ header
     background: #ECECEC url(../../images/cover_down_frame.png) center 0 no-repeat;
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
+    /*border: 1px #000000 solid;s*/
+    
+}/* PANEL DOWN NARROW */
+
+.panel_down_narrow{
+    width:924;
+    height:300px;
+    
+    background: #ECECEC url(../../images/cover_down_frame.png) center 0 no-repeat;
+    background-size:924px 100%;
+    
+    padding: 0px 0px 0px 0px;
+    margin: 0px auto 40px auto;
     /*border: 1px #000000 solid;s*/
 }
 
@@ -1038,6 +1051,62 @@ header
     margin: 0px 0px 0px 20px;
 }
 
+
+
+/* USER_TUTORIALS */
+
+#user_tutorials
+{  
+    float:left;
+    margin: 0px 0px 0px 0px; 
+    float: left;
+    width: 730px;
+    height: 960px;     
+    background: #DBD9D9 url(../../images/top-turorials-bg.png) left top 0 no-repeat;
+}
+
+#user_tutorials_gallery
+{  
+    float: left;
+    height: 880px;
+    width: 730px;
+    
+    padding: 0px 0px 0px 0px;
+    margin: 50px 0px 0px 0px;
+}
+
+#user_tutorials_gallery .gallery
+{
+    clear:both;
+    margin: 30px 0px 0px 30px; 
+    width: 670px;
+    /*height: 594px;*/
+}
+
+
+#user_tutorials_gallery .period_panel
+{
+    float:left; 
+    margin: 10px 0px 10px 170px;
+}
+
+#user_tutorials_gallery .period_panel .period
+{
+    float:left;
+    /*background: red;
+    border:1px solid black; */
+    margin: 0px 0px 0px 20px;
+}
+
+
+/* BANNER SIDE PANNEL */
+
+#banner_side_panel{
+    margin: 0px 0px 0px 730px; 
+    height: 900px;  
+    width:270px;
+    background: #FFFFFF;
+}
 
 /* SIDE PANEL */
 
