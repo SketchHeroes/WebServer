@@ -7,10 +7,11 @@
 $(function(){
     //alert('You are in ' + (document.compatMode==='CSS1Compat'?'Standards':'Quirks') + ' mode.')
     // difining global variables
+    
+    $("footer").load("footer.html", function() {
+        //alert( "Load was performed." );
 
-    var rest_caller          = new RestCaller();
-    var template_generator   = new TemplateGenerator();
-    var account              = new Account();
+    });
     
 });
    

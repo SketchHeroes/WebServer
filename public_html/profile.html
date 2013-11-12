@@ -19,160 +19,6 @@ and open the template in the editor.
         
         <div class="wrapper">
             <header>
-                <div class="logo">
-                    <a href="/">
-                        <img src="images/logo.png" alt="logo" />
-                    </a>
-                </div>
-                
-                <ul class="main_menu inline_block_list">
-                    <li class="expandable" id="guides_link">
-                            <img  src="images/guides_link_unselected.png" alt="guides" />
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="#">Cartoons</a>
-                                </li>
-                                <li>
-                                    <a href="#">Anime Mange</a>
-                                </li>
-                                <li>
-                                    <a href="#">Animals</a>
-                                </li>
-                                <li>
-                                    <a href="#">Movies</a>
-                                </li>
-                                <li>
-                                    <a href="#">People</a>
-                                </li>
-                                <li>
-                                    <a href="#">User Characters</a>
-                                </li>
-                                <li>
-                                    <a href="#">All Categories</a>
-                                </li>
-                            </ul>
-                    </li>
-                    <li class="non_expandable" id="top_heroes_link">                  
-                            <img src="images/top_heroes_link_unselected.png" alt="top heroes" />
-                    </li>
-
-                    <li class="expandable" id="members_link">                       
-                            <img src="images/members_link_unselected.png" alt="members" />
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="#">All Members</a>
-                                </li>
-                                <li>
-                                    <a href="#">Following</a>
-                                </li>
-                                <li>
-                                    <a href="#">Fans</a>
-                                </li>
-                                <li>
-                                    <a href="#">Leaderboard</a>
-                                </li>
-                            </ul>
-                    </li>
-                    <li class="non_expandable" id="competitions_link">                          
-                            <img src="images/competitions_link_unselected.png" alt="competitions" />
-                    </li>
-                </ul>
-                
-                
-                <div class="account">
-                     <div class="avatar">
-                         <a href="http://www.sketchheroes.com/Account/login">
-                             <img src="images/avatar_def.png" alt="Login" title="Login"/>
-                         </a>
-                     </div>
-                     <div class="options">
-                         <ul>
-                             <li>
-                                 <a href="#" id="login">
-                                     &#9658; Login
-                                 </a>
-                                 <div class="popup" id="popup_login">
-                                    <form>
-                                        <a href="#" class="close">X</a>
-                                        <h1>Login</h1>
-                                        <p><input name="username_email" type="text" placeholder="Username / Email" /></p> 
-                                        <p><input name="password" type="password"  placeholder="Password" /></p>
-                                        <!--
-                                        <p><input name="username_email" type="text" placeholder="Username / Email" required autofocus pattern="[A-Za-z0-9_.]{3,256}" /></p> 
-                                        <p><input name="password" type="password"  placeholder="Password" required pattern="[A-Za-z0-9]{6,12}" /></p>
-                                        -->
-                                        <p><input name="pass_options" type="radio"/>Remember my password</p>
-                                        <p><input name="pass_options" type="radio" checked="checked"  />Keep me logged in</p>
-                                        <p><input name="" class="button_login" type="button" value="Log In" /></p>
-                                        <p class="forgot_pass"><a href='#'>Forgotten your password?</a></p>
-                                        <p class="facebook_caption">Or log in using Facebook:</p>
-                                        <p><input name="" class="button_facebook" type="button" value="Facebook" /></p>
-                                    </form>
-                                 </div>
-                             </li>
-                             <li>
-                                 <a href="#" id='register'>
-                                     &#9658; Join
-                                 </a>
-                                 
-                                 <div class="popup" id="popup_register">
-                                    <form>
-                                        <a href="#" class="close">X</a>
-                                        <h1>Sign up</h1>
-                                        <p><input name="" type="text" placeholder="Username" /></p>
-                                        <p><input name="" type="text" placeholder="Email" /></p>
-                                        <p><input name="" type="password" placeholder="Password" /></p>
-                                        <p><input name="" type="password" placeholder="Confirm password" /></p>
-                                        <!--
-                                        <p><input name="" type="text" placeholder="Username"  required autofocus pattern="[A-Za-z0-9_.]{3,45}" title="From 3 to 45 characters long. Letters, digits, dot and undercore"/></p>
-                                        <p><input name="" type="text" placeholder="Email" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" title="A valid email"/></p>
-                                        <p><input name="" type="password" placeholder="Password" required pattern="[A-Za-z0-9]{6,12}" /></p>
-                                        <p><input name="" type="password" placeholder="Confirm password" required pattern="[A-Za-z0-9]{6,12}" /></p>
-                                        -->
-                                        <p class="agree_caption">
-                                            <input name="" type="checkbox" />
-                                                By clicking Sign, up you agree to our <a>Terms</a> 
-                                                and that you have read and understand our Data Use Policy,
-                                                including our cookie use.
-                                        </p>
-                                        <p><input name="" class="button_register" type="button" value="Sign up" /></p>
-                                        <p class="facebook_caption">Or log in using Facebook:</p>
-                                        <p><input name="" class="button_facebook" type="button" value="Facebook" /></p>
-                                    </form>
-                                 </div>
-                                 
-                             </li> 
-                             <li>
-                                 <a href="http://www.sketchheroes.com/Account/register" id='like'>
-                                     &#9658;
-                                     
-                                    <iframe class="facebook_iframe" src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;width&amp;layout=button&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80&amp;appId=390754447617631" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:80px;" allowTransparency="true"></iframe>
-                                 
-                                 </a>
-                             </li> 
-                         </ul>
-                     </div>
-                    
-                    <div class="fb_logo">
-                        <a href="/">
-                            <img src="images/fb_logo.png" alt="logo" />
-                        </a>
-                    </div>
-                    
-                     <div class="status"> 
-                         <form method="post" action="/how_to_draw/search">
-                             <input type="text" name="search" value="" placeholder="SEARCH" required> 
-                             <!--<input type="submit" value="search">-->
-                         </form> 
-                     </div>
-                    <!--
-
-                     <iframe src='//www.facebook.com/plugins/like.php?channel=http%3A%2F%2Fstatic.ak.fbcdn.net%2Fconnect%2Fxd_proxy.php%3Fversion%3D3%23cb%3Df688534d4%26origin%3Dhttp%253A%252F%252Fwww.sketchheroes.com%252Ff2a9c3ec8%26relation%3Dparent.parent%26transport%3Dpostmessage&amp;colorscheme=light&amp;header=true&amp;height=40&amp;href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FSketchHeroescom%2F143277279025189&amp;locale=en_US&amp;sdk=joey&amp;show_faces=false&amp;stream=false&amp;width=206' allowTransparency='true' scrolling='no' frameborder='0' style='border:none; overflow:hidden; width:476px; height:40px;position:absolute;'>
-
-                     </iframe> 
-                    -->
-                 </div>
-                
                 
             </header>
              
@@ -201,34 +47,6 @@ and open the template in the editor.
             
             <footer>
                 
-                <div id="info">
-                    Welcome to 'Sketch Heroes' a new website for all of you who love sketching, drawing and just adoring art. On the website you can learn to draw anything you ever wanted, for instant How to draw manga, how to draw animals, how to draw cartoons or how to draw eyes. We invite you to enjoy the features we offer on the website and become a sketch hero yourself.
-                </div>
-                
-                <div id="menu">
-                    <a href="">
-                     <img class="footer_button" src="images/sub-home.png" alt="home" />
-                    </a>
-                    <a href="">
-                     <img class="footer_button" src="images/sub-guides.png" alt="guides" />
-                    </a>
-                    <a href="">
-                     <img class="footer_button" src="images/sub-create.png" alt="create" />
-                    </a>
-                    <a href="">
-                     <img class="footer_button" src="images/sub-members.png" alt="members" />
-                    </a>
-                    <a href="">
-                     <img class="footer_button" src="images/sub-top-heroes.png" alt="top heroes" />
-                    </a>
-                    <a href="">
-                     <img class="footer_button" src="images/sub-privacy-policy.png" alt="privacy policy" />
-                    </a>
-                    <a href="">
-                     <img class="footer_button" src="images/sub-contact-us.png" alt="contact us" />
-                    </a>
-                </div>
-                
             </footer>
             
             <!--<script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>-->
@@ -239,6 +57,8 @@ and open the template in the editor.
             
             <script type="text/javascript" src="js/libs/skhr/classes.js"></script>
             <script type="text/javascript" src="js/libs/skhr/all_pages.js"></script>
+            <script type="text/javascript" src="js/libs/skhr/header.js"></script>
+            <script type="text/javascript" src="js/libs/skhr/footer.js"></script>
             <script type="text/javascript" src="js/libs/skhr/profile.js"></script>
             
         </div>
