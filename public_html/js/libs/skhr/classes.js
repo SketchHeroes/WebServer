@@ -291,6 +291,24 @@ RestCaller.prototype.getLatestCompetitionTutorials = function(start, how_many, c
     return this.ajax();
 };
 
+RestCaller.prototype.loginNativeUserEmail = function(email, password)
+{
+    this.setResource("/user/login");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token","db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65");
+    this.setCustomHeader("Accept","application/json"); 
+    
+    this.clearRequestParams();
+    this.setRequestParam("email",email);
+    this.setRequestParam("password",password);
+    
+    return this.ajax();
+};
+
 //-------------------- Template class ------------------------------------------
 
 function TemplateGenerator()
@@ -681,7 +699,12 @@ TemplateGenerator.prototype.setRecords = function(records)
 
 function Account()
 {
-
+       
+    
+    this.reg_email       = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/;
+    this.reg_username    = /^[A-Za-z0-9_.-]{2,6}$/;
+    this.reg_password    = /^[A-Za-z0-9]{2,6}$/;
+    
 }   
 
 // setters

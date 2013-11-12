@@ -16,15 +16,14 @@ function printObject(nyc)
 }
 
 $(function(){
-    //alert('You are in ' + (document.compatMode==='CSS1Compat'?'Standards':'Quirks') + ' mode.')   
-    
-    
+    //alert('You are in ' + (document.compatMode==='CSS1Compat'?'Standards':'Quirks') + ' mode.')
     // difining global variables
     
     var featured_page = 0;
     
     var rest_caller          = new RestCaller();
     var template_generator   = new TemplateGenerator();
+    var account              = new Account();
     
     var featured_length = 6;
     var top_users_length = 5;
@@ -372,7 +371,38 @@ $(function(){
    
    $(".button_login").click(function(e) 
     { 
-        alert($("#popup_login input[name=username_email]").val());
+        //alert($("#popup_login input[name=username_email]").val());
+        
+        var username_email = $("#popup_login input[name=username_email]").val();
+        var password = $("#popup_login input[name=password]").val();
+
+        // if username
+        if (account.reg_username.test(username_email) )
+        {
+            alert(username_email+' = username');
+        }
+        else
+        {   
+            // if email
+            if( account.reg_email.test(username_email) )
+            {
+                alert(username_email+' = email');
+                
+                var promise_login = rest_caller.loginNativeUserEmail(username_email, password);
+
+                promise_login.done(
+                    function(data)
+                    {
+                        alert(JSON.stringify(data));
+                    });
+            }
+            else
+            {
+                alert(username_email+' = neither email nor username');
+            }
+        }
+
+           
             
     });
     
