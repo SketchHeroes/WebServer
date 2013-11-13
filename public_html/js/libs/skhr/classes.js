@@ -719,6 +719,7 @@ TemplateGenerator.prototype.displayUser= function(target, user)
     $(target).find(".statistics .user_name").text(user.username);
     $(target).find(".statistics .xp").text(user.xp);
     $(target).find(".statistics .level_title").text(user.level_title);
+    $(target).find(".statistics .progress .level_percent").text(user.level_progress+'%');
     $(target).find(".statistics .progress progress").val(user.level_progress);
     $(target).find(".statistics .progress progress .progress-bar span").attr('width',user.level_progress+'%');
     $(target).find(".statistics .progress progress .progress-bar span").text('Progress: '+user.level_progress+'%');

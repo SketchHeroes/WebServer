@@ -1346,15 +1346,17 @@ section#user_info{
 
 #user_info .statistics > div
 {    
-    margin: 10px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     border: 1px #FFFF00 dotted;
-    height: 30px;
+    height: 40px;
+    
+    vertical-align: bottom;
 }
 
 #user_info .statistics .user_name
 {    
     display: inline-block;
-    margin: 0px 0px 0px 0px;
+    margin: 18px 0px 0px 0px;
     border: 1px #FF0000 dotted;
     
     white-space:nowrap; 
@@ -1365,7 +1367,7 @@ section#user_info{
 #user_info .statistics .xp_caption
 {
     display: inline-block;
-    margin: 0px 0px 0px 0px;
+    margin: 18px 0px 0px 0px;
     border: 1px #FF0000 dotted;
     
     white-space:nowrap; 
@@ -1376,7 +1378,7 @@ section#user_info{
 #user_info .statistics .xp
 {
     display: inline-block;
-    margin: 0px 0px 0px 0px;
+    margin: 18px 0px 0px 0px;
     border: 1px #FF0000 dotted;
     
     white-space:nowrap; 
@@ -1387,7 +1389,7 @@ section#user_info{
 #user_info .statistics .level_title
 {
     display: inline-block;
-    margin: 0px 20px 0px 0px;
+    margin: 18px 0px 0px 0px;
     border: 1px #FF0000 dotted;
     width: 100px;
     
@@ -1398,13 +1400,36 @@ section#user_info{
 
 #user_info .statistics .progress
 {
+    float:right;
     display: inline-block;
     margin: 0px 0px 0px 0px;
-    border: 1px #FF0000 dotted;
+    border: 1px #0000FF solid;
+    
+    width: 180px;
     
     white-space:nowrap; 
     overflow:hidden; 
     text-overflow:ellipsis;
+}
+
+#user_info .statistics .progress progress
+{
+    width:170px;
+}
+
+#user_info .statistics .progress .level_percent
+{
+    height:20px;
+    width:50px;
+    margin: 0px 0px 0px 120px;
+    border: 1px #FF0000 solid;
+    
+    white-space:nowrap; 
+    overflow:visible; 
+        
+    font-size:12px;
+    text-align: right;
+    line-height: 20px;
 }
 
 /* PROGRESS BAR WITH FALL BACK */
