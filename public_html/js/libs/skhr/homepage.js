@@ -41,11 +41,11 @@ $(function(){
    
     template_generator.addNotificationList("#notifications");
 
-    var promise_featured    = rest_caller.getFeaturedTutorials(0,featured_length+1);
-    var promise_top_users   = rest_caller.getTopUsers(0,top_users_length,$( "#top_heroes .active" ).attr('id'));
-    var promise_top         = rest_caller.getTopTutorials(0,top_tutorials_length,$( "#top_tutorials_gallery .active" ).attr('id'));
-    var promise_recent      = rest_caller.getRecentTutorials(0,recent_tutorials_length);
-    var promise_latest_competition = rest_caller.getLatestCompetitions(0,1);
+    var promise_featured    = rest_caller.getTutorials({"start":0,"how_many":featured_length+1,"featured":1});
+    var promise_top_users   = rest_caller.getTopUsers({"start":0,"how_many":top_users_length,"time_constraint":$( "#top_heroes .active" ).attr('id')});
+    var promise_top         = rest_caller.getTutorials({"start":0,"how_many":top_tutorials_length,"time_constraint":$( "#top_tutorials_gallery .active" ).attr('id')});
+    var promise_recent      = rest_caller.getRecentTutorials({"start":0,"how_many":recent_tutorials_length});
+    var promise_latest_competition = rest_caller.getLatestCompetitions({"start":0,"how_many":1});
     
     promise_featured.done(
             function(data)
@@ -98,9 +98,9 @@ $(function(){
                     template_generator.displayLatestCompetition("#latest_competition",template_generator.latest_competition);
                     
                     var promise_latest_submissions = rest_caller.getLatestCompetitionTutorials(
-                                                        0, 
-                                                        latest_submissions_length, 
-                                                        template_generator.latest_competition.competition_id);
+                                                        {"start":0, 
+                                                        "how_many":latest_submissions_length, 
+                                                        "competition_id":template_generator.latest_competition.competition_id});
                                                         
                     promise_latest_submissions.done(
                         function(data)
@@ -131,7 +131,7 @@ $(function(){
             
             var featured_start = featured_length*featured_page;
 
-            var promise_featured    = rest_caller.getFeaturedTutorials(featured_start,featured_length+1);
+            var promise_featured    = rest_caller.getTutorials({"start":featured_start,"how_many":featured_length+1,"featured":1});
 
             promise_featured.done(
                 function(data)
@@ -171,7 +171,7 @@ $(function(){
             
             var featured_start = featured_length*featured_page;
 
-            var promise_featured    = rest_caller.getFeaturedTutorials(featured_start,featured_length+1);
+            var promise_featured    = rest_caller.getTutorials({"start":featured_start,"how_many":featured_length+1,"featured":1});
 
             promise_featured.done(
                 function(data)
@@ -224,7 +224,7 @@ $(function(){
         $( "#top_heroes #"+event.target.id ).attr("src","images/"+event.target.id+"_flower_selected.png").addClass("active");
         //alert( "id = "+$(this).id );
         
-        var promise_top_users   = rest_caller.getTopUsers(0,top_users_length,$( "#"+event.target.id ).attr('id'));
+        var promise_top_users   = rest_caller.getTopUsers({"start":0,"how_many":top_users_length,"time_constraint":$( "#"+event.target.id ).attr('id')});
         
         promise_top_users.done(
             function(data)
@@ -248,7 +248,7 @@ $(function(){
         $( "#top_tutorials_gallery #"+event.target.id ).attr("src","images/"+event.target.id+"_selected.png").addClass("active");
         //alert( "id = "+$(this).id );
         
-        var promise_top   = rest_caller.getTopTutorials(0,top_tutorials_length,$( "#"+event.target.id ).attr('id'));
+        var promise_top   = rest_caller.getTutorials({"start":0,"how_many":top_tutorials_length,"time_constraint":$( "#"+event.target.id ).attr('id')});
         
         promise_top.done(
             function(data)

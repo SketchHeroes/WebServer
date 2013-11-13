@@ -156,7 +156,7 @@ RestCaller.prototype.getTutorialLinkedData = function(content_id)
 
 // request abstraction methods
 
-RestCaller.prototype.getFeaturedTutorials = function(start,how_many)
+RestCaller.prototype.getTutorials = function(params)
 {
     this.setResource("/tutorials");
     this.setVerb("GET");
@@ -170,16 +170,21 @@ RestCaller.prototype.getFeaturedTutorials = function(start,how_many)
     //this.setCustomHeader("X-Caller-SKHR-ID","3");  
     
     this.clearRequestParams();
-    this.setRequestParam("start",start);
-    this.setRequestParam("how_many",how_many);
-    this.setRequestParam("featured","1");
+    this.setRequestParam("start",params['start']);
+    this.setRequestParam("how_many",params['how_many']);
+    if(typeof params['featured'] !== 'undefined')
+        this.setRequestParam("featured",params['featured']);
+    this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
     this.setRequestParam("tutorial_count",{"count_views_skhr":"DESC"});
     this.setRequestParam("tutorial_related_data",{"tutorial_author":"tutorial_author","tutorial_views":"tutorial_views","tutorial_likes":"tutorial_likes","tutorial_comments":"tutorial_comments"});
+    
+    if(typeof params['time_constraint'] !== 'undefined')
+        this.setRequestParam("time_constraint",{"timestamp_field":"created_at","operator":"younger_then","time_amount":"1","time_interval":""+params['time_constraint']+""});
     
     return this.ajax();
 };
 
-RestCaller.prototype.getTopUsers = function(start, how_many, time_constraint)
+RestCaller.prototype.getTopUsers = function(params)
 {
     this.setResource("/users/top");
     this.setVerb("GET");
@@ -191,47 +196,20 @@ RestCaller.prototype.getTopUsers = function(start, how_many, time_constraint)
     this.setCustomHeader("X-App-Token",this.app_token); 
     
     this.clearRequestParams();
-    this.setRequestParam("start",start);
-    this.setRequestParam("how_many",how_many);
+    this.setRequestParam("start",params['start']);
+    this.setRequestParam("how_many",params['how_many']);
     this.setRequestParam("top_user_content","tutorials");
     this.setRequestParam("top_user_count",{"count_views_skhr":"DESC"});
     
     //alert(time_constraint);
     
-    if(typeof time_constraint !== 'undefined')
-        this.setRequestParam("time_constraint",{"timestamp_field":"created_at","operator":"younger_then","time_amount":"1","time_interval":""+time_constraint+""});
+    if(typeof params['time_constraint'] !== 'undefined')
+        this.setRequestParam("time_constraint",{"timestamp_field":"created_at","operator":"younger_then","time_amount":"1","time_interval":""+params['time_constraint']+""});
     
     return this.ajax();
 };
 
-
-
-RestCaller.prototype.getTopTutorials = function(start, how_many, time_constraint)
-{
-    this.setResource("/tutorials");
-    this.setVerb("GET");
-    //this.clearCustomHeaders();
-    
-    this.clearCustomHeaders();
-    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
-    this.setCustomHeader("X-App-Token",this.app_token);
-    this.setCustomHeader("Accept","application/json");
-    
-    this.clearRequestParams();
-    this.setRequestParam("start",start);
-    this.setRequestParam("how_many",how_many);
-    this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
-    this.setRequestParam("tutorial_count",{"count_views_skhr":"DESC"});
-    this.setRequestParam("tutorial_related_data",{"tutorial_author":"tutorial_author","tutorial_views":"tutorial_views","tutorial_likes":"tutorial_likes","tutorial_comments":"tutorial_comments"});
-    
-    
-    if(typeof time_constraint !== 'undefined')
-        this.setRequestParam("time_constraint",{"timestamp_field":"created_at","operator":"younger_then","time_amount":"1","time_interval":""+time_constraint+""});
-    
-    return this.ajax();
-};
-
-RestCaller.prototype.getRecentTutorials = function(start, how_many)
+RestCaller.prototype.getRecentTutorials = function(params)
 {
     this.setResource("/tutorials");
     this.setVerb("GET");
@@ -243,8 +221,8 @@ RestCaller.prototype.getRecentTutorials = function(start, how_many)
     this.setCustomHeader("Accept","application/json"); 
     
     this.clearRequestParams();
-    this.setRequestParam("start", start);
-    this.setRequestParam("how_many", how_many);
+    this.setRequestParam("start", params['start']);
+    this.setRequestParam("how_many", params['how_many']);
     this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
     this.setRequestParam("tutorial_related_data",{"tutorial_author":"tutorial_author"});
     
@@ -252,7 +230,7 @@ RestCaller.prototype.getRecentTutorials = function(start, how_many)
     return this.ajax();
 };
 
-RestCaller.prototype.getLatestCompetitions = function(start, how_many)
+RestCaller.prototype.getLatestCompetitions = function(params)
 {
     this.setResource("/competitions");
     this.setVerb("GET");
@@ -264,15 +242,15 @@ RestCaller.prototype.getLatestCompetitions = function(start, how_many)
     this.setCustomHeader("Accept","application/json"); 
     
     this.clearRequestParams();
-    this.setRequestParam("start", start);
-    this.setRequestParam("how_many", how_many);
+    this.setRequestParam("start", params['start']);
+    this.setRequestParam("how_many", params['how_many']);
     this.setRequestParam("competition_order_by",{"order_by_submission_start":"DESC"});
     this.setRequestParam("status_constraint",{"operator":"different_then","status":"0"});
     
     return this.ajax();
 };
 
-RestCaller.prototype.getLatestCompetitionTutorials = function(start, how_many, competition_id)
+RestCaller.prototype.getLatestCompetitionTutorials = function(params)
 {
     this.setResource("/competition/tutorials");
     this.setVerb("GET");
@@ -284,15 +262,15 @@ RestCaller.prototype.getLatestCompetitionTutorials = function(start, how_many, c
     this.setCustomHeader("Accept","application/json"); 
     
     this.clearRequestParams();
-    this.setRequestParam("start", start);
-    this.setRequestParam("how_many", how_many);
-    this.setRequestParam("competition_id",competition_id);
+    this.setRequestParam("start", params['start']);
+    this.setRequestParam("how_many", params['how_many']);
+    this.setRequestParam("competition_id",params['competition_id']);
     this.setRequestParam("competition_tutorials_order_by",{"order_by_votes":"DESC"});
     
     return this.ajax();
 };
 
-RestCaller.prototype.loginNativeUserEmail = function(email, password)
+RestCaller.prototype.loginNativeUserEmail = function(params)
 {
     this.setResource("/user/login");
     this.setVerb("POST");
@@ -304,14 +282,14 @@ RestCaller.prototype.loginNativeUserEmail = function(email, password)
     this.setCustomHeader("Accept","application/json"); 
     
     this.clearRequestParams();
-    this.setRequestParam("email",email);
-    this.setRequestParam("password",password);
+    this.setRequestParam("email",params['email']);
+    this.setRequestParam("password",params['password']);
     
     return this.ajax();
 };
 
 
-RestCaller.prototype.getUser = function(skhr_id)
+RestCaller.prototype.getUser = function(params)
 {
     this.setResource("/user");
     this.setVerb("GET");
@@ -323,12 +301,12 @@ RestCaller.prototype.getUser = function(skhr_id)
     this.setCustomHeader("X-App-Token",this.app_token); 
     
     this.clearRequestParams();
-    this.setRequestParam("skhr_id",skhr_id);
+    this.setRequestParam("skhr_id",params['skhr_id']);
 
     return this.ajax();
 };
 
-RestCaller.prototype.getUserBadges = function(start, how_many, skhr_id)
+RestCaller.prototype.getUserBadges = function(params)
 {
     this.setResource("/competition/tutorials");
     this.setVerb("GET");
@@ -340,9 +318,9 @@ RestCaller.prototype.getUserBadges = function(start, how_many, skhr_id)
     this.setCustomHeader("Accept","application/json"); 
     
     this.clearRequestParams();
-    this.setRequestParam("start", start);
-    this.setRequestParam("how_many", how_many);
-    this.setRequestParam("skhr_id",skhr_id);
+    this.setRequestParam("start", params['start']);
+    this.setRequestParam("how_many", params['how_many']);
+    this.setRequestParam("skhr_id",params['skhr_id']);
     
     return this.ajax();
 };

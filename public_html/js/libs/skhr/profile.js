@@ -16,7 +16,7 @@ $(function(){
     
     // getting INITIAL data from the server
     
-    var promise_user = rest_caller.getUser('85');
+    var promise_user = rest_caller.getUser({"skhr_id":85});
 
     promise_user.done(
             function(data)
@@ -25,7 +25,8 @@ $(function(){
                 //template_generator.addGallery("#user_tutorials_gallery", length);
                 template_generator.displayUser("#user_info", template_generator.user);
                 
-                var promise_top = rest_caller.getTopTutorials(0,user_tutorials_length);
+                var params = { "start":0,"how_many":user_tutorials_length};
+                var promise_top = rest_caller.getTutorials(params);
 
                 promise_top.done(
                         function(data)
