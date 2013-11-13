@@ -327,6 +327,25 @@ RestCaller.prototype.getUser = function(skhr_id)
 
     return this.ajax();
 };
+
+RestCaller.prototype.getUserBadges = function(start, how_many, skhr_id)
+{
+    this.setResource("/competition/tutorials");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json"); 
+    
+    this.clearRequestParams();
+    this.setRequestParam("start", start);
+    this.setRequestParam("how_many", how_many);
+    this.setRequestParam("skhr_id",skhr_id);
+    
+    return this.ajax();
+};
 //-------------------- Template class ------------------------------------------
 
 function TemplateGenerator()

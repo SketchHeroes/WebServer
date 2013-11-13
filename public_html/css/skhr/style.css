@@ -1478,7 +1478,6 @@ section#user_info{
     width:450px;
     height:100px;
     margin: 80px 0px 0px 30px;
-    position: relative;
     border: 1px #FF0000 dotted;
 }
 
@@ -1534,9 +1533,8 @@ section#user_info{
     float:left;
     display: inline-block;
     width:994px;
-    height:90px;
+    height:80px;
     margin: 5px 5px 5px 5px;
-    position: relative;
     border: 1px #0000FF solid;
 }
 
@@ -1557,4 +1555,20 @@ section#user_info{
     width: 120px;
     
     margin: 25px 20px 0px 20px;
+}
+
+#user_info .statistics3 .achivements_window
+{
+    float: right;
+    display: inline-block;
+    width:380px;
+    height:70px;
+    margin: 5px 50px 5px 5px;
+    border: 1px #0000FF solid;
+    overflow:hidden;
+}
+
+.achivement_list{
+    
+    height:60px;
 }

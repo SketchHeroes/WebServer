@@ -25,11 +25,27 @@ $(function(){
                 //template_generator.addGallery("#user_tutorials_gallery", length);
                 template_generator.displayUser("#user_info", template_generator.user);
                 
+                var promise_top = rest_caller.getTopTutorials(0,user_tutorials_length);
+
+                promise_top.done(
+                        function(data)
+                        {
+                            template_generator.user_tutorials = data.tutorials;
+                            var length = template_generator.user_tutorials.length;
+                            template_generator.addGallery("#user_tutorials_gallery", length);
+                            template_generator.displayTutorialGallery("#user_tutorials_gallery", template_generator.user_tutorials);
+
+                        });
+                
             });
             
     
     
-    var promise_top = rest_caller.getTopTutorials(0,user_tutorials_length);
+    
+            
+    
+    /*
+    var promise_badges = rest_caller.getUserBadges(0,user_tutorials_length);
 
     promise_top.done(
             function(data)
@@ -40,6 +56,7 @@ $(function(){
                 template_generator.displayTutorialGallery("#user_tutorials_gallery", template_generator.user_tutorials);
                 
             });
+            */
             
     
     
