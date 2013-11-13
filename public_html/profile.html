@@ -23,27 +23,48 @@ and open the template in the editor.
             </header>
              
             <section class="clearfix panel_down_narrow" id="user_info">
-                
-                <div class="avatar">
-                    <img src="images/avatar_frame.png" alt="avatar frame" class="frame"/>
-                </div>
-                <div class="statistics">
-                    <div><div class="user_name"></div></div>
-                    <div><div class="xp_caption">XP:</div> <div class="xp"></div></div>
-                    <div>
-                        <div class="level_title"></div> 
-                        <div class="progress">                           
-                            <div class="level_percent">0%</div>
-                            <progress max="100" value="0">
-                                <div class="progress-bar">
-                                    <span style="width: 0%;">Progress: 0%</span>
-                                </div>
-                            </progress>
+                <div id="user_info_bg">
+                    <div class="avatar">
+                        <img src="images/avatar_frame.png" alt="avatar frame" class="frame"/>
+                    </div>
+                    <div class="statistics">
+                        <div><div class="user_name"></div></div>
+                        <div><div class="xp_caption">XP:</div> <div class="xp"></div></div>
+                        <div>
+                            <div class="level_title"></div> 
+                            <div class="progress">                           
+                                <div class="level_percent">0%</div>
+                                <progress max="100" value="0">
+                                    <div class="progress-bar">
+                                        <span style="width: 0%;">Progress: 0%</span>
+                                    </div>
+                                </progress>
+                            </div>
                         </div>
+                    </div>
+                    <div class="statistics2">
+                        <div class="stat">
+                            <img src="images/like_big.png" />
+                            <div class="user_likes">0</div>
+                        </div>
+                        <div class="stat">
+                            <img src="images/view_big.png" />
+                            <div class="user_views">0</div>
+                        </div>
+                        <div class="stat">
+                            <img src="images/tutorial_big.png" />
+                            <div class="user_tutorials">0</div>
+                        </div>
+                        <input class="invite_friends" type="button" value="Invite frieds"/>
+                    </div>
+                    
+                    <div class="statistics3">
+                        <input class="follow" type="button" value="Follow"/>
+                        <input class="fans" type="button" value="Fans"/>
+                        <input class="following" type="button" value="Following"/>
                     </div>
                 </div>
   
-                
             </section>
             
             

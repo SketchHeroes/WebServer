@@ -131,6 +131,7 @@ header
     width: 150px;
     border: 2px #FBBD49 solid;
     background: #E4F8FD;
+    z-index: 3;
 }
 
 .sub-menu li{
@@ -1048,8 +1049,8 @@ nav#secondary_menu{
     float:left;
     margin: 0px 0px 0px 0px; 
     width: 730px;
-    height: 960px;     
-    background: #DBD9D9 url(../../images/top-turorials-bg.png) left top 0 no-repeat;
+    height: 1050px;     
+    background: #DBD9D9 url(../../images/user_tutorials_bg.png) left top 0 no-repeat;
 }
 
 #user_tutorials_gallery
@@ -1059,7 +1060,7 @@ nav#secondary_menu{
     width: 730px;
     
     padding: 0px 0px 0px 0px;
-    margin: 50px 0px 0px 0px;
+    margin: 100px 0px 0px 0px;
 }
 
 #user_tutorials_gallery .gallery
@@ -1090,7 +1091,7 @@ nav#secondary_menu{
 
 #banner_side_panel{
     margin: 0px 0px 0px 730px; 
-    height: 900px;  
+    height: 1050px;  
     width:270px;
     background: #FFFFFF;
 }
@@ -1294,7 +1295,7 @@ footer #menu .footer_button{
 /* PANEL DOWN NARROW */
 
 section#user_info{
-    width:100%;
+    width:1024px;
     height:300px;
     
     background: #ECECEC url(../../images/cover_down_frame.png) center 0 no-repeat;
@@ -1303,6 +1304,19 @@ section#user_info{
     padding: 0px 0px 0px 0px;
     margin: 0px auto 40px auto;
     /*border: 1px #000000 solid;s*/
+    color:#506A70;
+}
+
+#user_info_bg{
+    width:1004px;
+    height:280px;
+    
+    background: #ECECEC url(../../images/user_info_bg.png) bottom center no-repeat;
+    background-size:100% 85%;
+    
+    padding: 0px 0px 0px 0px;
+    margin: 0px 10px 10px 10px;
+    border: 1px #000000 solid;
 }
 
 #user_info .avatar
@@ -1312,7 +1326,6 @@ section#user_info{
     width:150px;
     height:150px;
     margin: 30px 0px 0px 30px;
-    background: #ECECEC;
     position: relative;
 }
 
@@ -1339,7 +1352,6 @@ section#user_info{
     width:300px;
     height:150px;
     margin: 30px 0px 0px 30px;
-    background: #ECECEC;
     position: relative;
     border: 1px #FF0000 dotted;
 }
@@ -1362,6 +1374,8 @@ section#user_info{
     white-space:nowrap; 
     overflow:hidden; 
     text-overflow:ellipsis;
+    
+    color: #E4F8FD;
 }
 
 #user_info .statistics .xp_caption
@@ -1415,6 +1429,7 @@ section#user_info{
 #user_info .statistics .progress progress
 {
     width:170px;
+    /*color: #FBBD49;*/
 }
 
 #user_info .statistics .progress .level_percent
@@ -1447,9 +1462,99 @@ section#user_info{
 }
   
 .progress-bar > span {
-  background-color: blue;
+  background-color: #FBBD49;
   border-radius: 2px;
 
   display: block;
   text-indent: -9999px;
+}
+
+/* STATISTICS 2 */
+
+#user_info .statistics2
+{
+    float:left;
+    display: inline-block;
+    width:450px;
+    height:100px;
+    margin: 80px 0px 0px 30px;
+    position: relative;
+    border: 1px #FF0000 dotted;
+}
+
+
+#user_info .statistics2 .stat
+{
+    float:left;
+    display: inline-block;
+    border: 1px #00FF00 dotted;  
+    margin: 15px 0px 0px 20px;
+    text-align: center;
+}
+
+#user_info .statistics2 input[type=button].invite_friends
+{
+    background: #FBBD49;
+    
+    border: 4px #779DA6 solid;
+    border-radius: 15px 15px 15px 15px;
+    
+    color: #FFFFFF;
+    
+    display: inline-block;
+    
+    font-size: 18px;
+    
+    height: 40px;
+    width: 180px;
+    
+    margin: 20px 0px 0px 60px;
+}
+
+
+#user_info .statistics2 .stat img
+{
+    height:40px;
+    width:40px;  
+}
+
+
+#user_info .statistics2 .stat div
+{
+    height:20px;
+    width:40px;  
+    margin: 0px 0px 0px 0px;
+    border: 1px #FF0000 dotted;
+}
+
+/* STATISTICS 3 */
+
+#user_info .statistics3
+{
+    float:left;
+    display: inline-block;
+    width:994px;
+    height:90px;
+    margin: 5px 5px 5px 5px;
+    position: relative;
+    border: 1px #0000FF solid;
+}
+
+#user_info .statistics3 input[type=button]
+{
+    background: #A4D4E0;
+    
+    border: 4px #779DA6 solid;
+    border-radius: 12px 12px 12px 12px;
+    
+    color: #FFFFFF;
+    
+    display: inline-block;
+    
+    font-size: 15px;
+    
+    height: 40px;
+    width: 120px;
+    
+    margin: 25px 20px 0px 20px;
 }
