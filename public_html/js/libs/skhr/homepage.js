@@ -113,8 +113,46 @@ $(function(){
                 }
                 
             });
+   
+    
+    $( "#featured_tutorials .arrow_left img" ).click(function(event) {
+        
+        //alert(featured_length);
+        
+        if( featured_page > 0)
+        {
+            $( "#featured_tutorials .arrow_right img" ).css("opacity", "1"); 
+            $( "#featured_tutorials .arrow_right img" ).css("filter", "alpha(opacity=100)"); 
             
-   $( "#featured_tutorials .arrow_right img" ).click(function(event) {
+            $("#featured_tutorials_gallery").fadeOut();
+            
+            featured_page--;
+            
+            var featured_start = featured_length*featured_page;
+
+            var promise_featured    = rest_caller.getTutorials({"start":featured_start,"how_many":featured_length+1,"featured":1});
+
+            promise_featured.done(
+                function(data)
+                {
+                    template_generator.featured_tutorials = data.tutorials;
+                    if(template_generator.featured_tutorials.length > 0)
+                    {
+                        template_generator.displayTutorialGallery("#featured_tutorials_gallery", template_generator.featured_tutorials);
+                    }
+                    $("#featured_tutorials_gallery").fadeIn();
+                    
+                    if( featured_page === 0 )
+                    {
+                        $( "#featured_tutorials .arrow_left img" ).css("opacity", "0.3"); 
+                        $( "#featured_tutorials .arrow_left img" ).css("filter", "alpha(opacity=30)"); 
+                    }
+                });
+        }
+
+    });
+    
+    $( "#featured_tutorials .arrow_right img" ).click(function(event) {
         
         //alert(featured_length);
         
@@ -154,43 +192,6 @@ $(function(){
                         
                 });
         }
-    });
-    
-    $( "#featured_tutorials .arrow_left img" ).click(function(event) {
-        
-        //alert(featured_length);
-        
-        if( featured_page > 0)
-        {
-            $( "#featured_tutorials .arrow_right img" ).css("opacity", "1"); 
-            $( "#featured_tutorials .arrow_right img" ).css("filter", "alpha(opacity=100)"); 
-            
-            $("#featured_tutorials_gallery").fadeOut();
-            
-            featured_page--;
-            
-            var featured_start = featured_length*featured_page;
-
-            var promise_featured    = rest_caller.getTutorials({"start":featured_start,"how_many":featured_length+1,"featured":1});
-
-            promise_featured.done(
-                function(data)
-                {
-                    template_generator.featured_tutorials = data.tutorials;
-                    if(template_generator.featured_tutorials.length > 0)
-                    {
-                        template_generator.displayTutorialGallery("#featured_tutorials_gallery", template_generator.featured_tutorials);
-                    }
-                    $("#featured_tutorials_gallery").fadeIn();
-                    
-                    if( featured_page === 0 )
-                    {
-                        $( "#featured_tutorials .arrow_left img" ).css("opacity", "0.3"); 
-                        $( "#featured_tutorials .arrow_left img" ).css("filter", "alpha(opacity=30)"); 
-                    }
-                });
-        }
-
     });
     
    

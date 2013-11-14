@@ -560,14 +560,14 @@ nav#secondary_menu{
 }
 /* ARROWS */
 
-.arrow_left{
+#featured_tutorials .arrow_left{
  float: left;
  /*width: 40px;*/
  margin: 290px 0px 0px 0px;
  
 }
 
-.arrow_right{
+#featured_tutorials .arrow_right{
     
  float: right;
  /*width: 40px;*/
@@ -575,7 +575,7 @@ nav#secondary_menu{
  
 }
 
-.arrow_left img{
+#featured_tutorial .arrow_left img{
  cursor: pointer;
  margin: 0px 0px 0px 0px;
  height: 50px;
@@ -584,7 +584,7 @@ nav#secondary_menu{
  filter:alpha(opacity=30);
 }
 
-.arrow_right img{ 
+#featured_tutorial .arrow_right img{ 
  cursor: pointer;
  margin: 0px 0px 0px 0px;
  height: 50px;
@@ -1540,6 +1540,8 @@ section#user_info{
 
 #user_info .statistics3 input[type=button]
 {
+    float:left;
+    
     background: #A4D4E0;
     
     border: 4px #779DA6 solid;
@@ -1557,18 +1559,100 @@ section#user_info{
     margin: 25px 20px 0px 20px;
 }
 
-#user_info .statistics3 .achivements_window
+
+
+/* ACHIEVEMENTS */
+
+#user_info .statistics3 .achievements_window
 {
-    float: right;
+    float: left;
     display: inline-block;
-    width:380px;
+    width:400px;
     height:70px;
-    margin: 5px 50px 5px 5px;
-    border: 1px #0000FF solid;
+    margin: 5px 0px 5px 0px;
+    /*border: 1px #0000FF solid;*/
+    
     overflow:hidden;
 }
 
-.achivement_list{
+ul.achievements_gallery{
     
     height:60px;
+    width: 1200px;
+    /*white-space:nowrap;*/
+    position: relative;  
+    list-style: none;
+    margin: 5px 0px 5px 0px;
+    /*border: 1px #00FF00 solid;*/
+    
+    background: url(../../images/achievements_line.png) 0 center no-repeat;
+    background-size:100% 11px;
+
 }
+
+ul.achievements_gallery li{
+    display:inline-block;
+    float:left;
+    height:50px;
+    width: 50px;
+    margin: 0px 15px 0px 15px;
+    border: 1px #FF0000 solid;
+    
+}
+
+ul.achievements_gallery li img{
+    height:50px;
+    width: 50px;
+}
+
+/* ACHIEVEMENTS ARROWS */
+
+.statistics3 .arrow_left{
+    
+    float: left;
+    display: inline-block;
+    
+    margin: 5px 0px 0px 0px;
+    
+    border: 1px #FF0000 solid;
+}
+
+.statistics3 .arrow_right{
+    
+    float: left;
+    display: inline-block;
+    
+    margin: 5px 0px 0px 0px;
+    
+    border: 1px #FF0000 solid;
+}
+
+.statistics3 .arrow_left img{
+    
+    
+    
+    cursor: pointer;
+    
+    height: 70px;
+    width: 50px;
+    
+    /*
+    opacity:0.3;
+    filter:alpha(opacity=30);
+    */
+}
+
+.statistics3 .arrow_right img{ 
+    
+    
+    cursor: pointer;
+    
+    height: 70px;
+    width: 50px;
+    
+    /*
+    opacity:0.3;
+    filter:alpha(opacity=30);
+    */
+}
+

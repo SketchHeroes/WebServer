@@ -357,9 +357,9 @@ RestCaller.prototype.getUserFollowed = function(params)
     return this.ajax();
 };
 
-RestCaller.prototype.getUserBadges = function(params)
+RestCaller.prototype.getUserAchievements = function(params)
 {
-    this.setResource("/user/badges");
+    this.setResource("/user/achievements");
     this.setVerb("GET");
     //this.clearCustomHeaders();
     
@@ -375,6 +375,23 @@ RestCaller.prototype.getUserBadges = function(params)
         this.setRequestParam("how_many", params['how_many']);
     }
     this.setRequestParam("skhr_id",params['skhr_id']);
+    
+    return this.ajax();
+};
+
+RestCaller.prototype.getBadge = function(params)
+{
+    this.setResource("/badge");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json"); 
+    
+    this.clearRequestParams();
+    this.setRequestParam("badge_id",params['badge_id']);
     
     return this.ajax();
 };
@@ -740,7 +757,30 @@ TemplateGenerator.prototype.displayTutorialGallerySimple = function(target,tutor
                 i++;
             });
     //alert(i);
-};   
+};      
+
+
+TemplateGenerator.prototype.displayAchievementsGallery = function(target, achievements)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+   
+    var list = $('<ul class="achievements_gallery"></ul>');
+    
+    $.each(achievements, function( index, achievement )
+    {
+        var single_record = $('<li></li>');
+        
+            var badge = $('<img class="badge" src="'+achievement.badge_path+'" alt="'+achievement.title+'" />');
+            single_record.append(badge);
+            //alert('appending');
+        
+        list.append(single_record);
+    });
+
+    
+    $('.achievements_window').append(list);
+    
+};    
 
 
 TemplateGenerator.prototype.displayUserList= function(target, users)
