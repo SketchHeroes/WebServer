@@ -10,37 +10,32 @@ $(function(){
     
     var rest_caller          = new RestCaller();
     var template_generator   = new TemplateGenerator();
-
-    var user_tutorials_length = 50;
     
+    var skhr_id = 85;
     
     // getting INITIAL data from the server
     
-    var promise_user = rest_caller.getUser({"skhr_id":85});
+    var promise_user = rest_caller.getUser({"skhr_id":skhr_id});
 
     promise_user.done(
             function(data)
             {
                 template_generator.user = data.user;
                 //template_generator.addGallery("#user_tutorials_gallery", length);
-                template_generator.displayUser("#user_info", template_generator.user);
-                
-                var params = { "start":0,"how_many":user_tutorials_length};
-                var promise_top = rest_caller.getTutorials(params);
-
-                promise_top.done(
-                        function(data)
-                        {
-                            template_generator.user_tutorials = data.tutorials;
-                            var length = template_generator.user_tutorials.length;
-                            template_generator.addGallery("#user_tutorials_gallery", length);
-                            template_generator.displayTutorialGallery("#user_tutorials_gallery", template_generator.user_tutorials);
-
-                        });
-                
+                template_generator.displayUser("#user_info", template_generator.user);                
             });
             
-    
+    var promise_top = rest_caller.getUserTutorials({"author_skhr_id":skhr_id,"start":"0","how_many":"50"});
+
+    promise_top.done(
+            function(data)
+            {
+                template_generator.user_tutorials = data.tutorials;
+                var length = template_generator.user_tutorials.length;
+                template_generator.addGallery("#user_tutorials_gallery", length);
+                template_generator.displayTutorialGallery("#user_tutorials_gallery", template_generator.user_tutorials);
+
+            });
     
     
             

@@ -170,10 +170,14 @@ RestCaller.prototype.getTutorials = function(params)
     //this.setCustomHeader("X-Caller-SKHR-ID","3");  
     
     this.clearRequestParams();
+    
     this.setRequestParam("start",params['start']);
+    
     this.setRequestParam("how_many",params['how_many']);
+    
     if(typeof params['featured'] !== 'undefined')
         this.setRequestParam("featured",params['featured']);
+    
     this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
     this.setRequestParam("tutorial_count",{"count_views_skhr":"DESC"});
     this.setRequestParam("tutorial_related_data",{"tutorial_author":"tutorial_author","tutorial_views":"tutorial_views","tutorial_likes":"tutorial_likes","tutorial_comments":"tutorial_comments"});
@@ -262,8 +266,11 @@ RestCaller.prototype.getLatestCompetitionTutorials = function(params)
     this.setCustomHeader("Accept","application/json"); 
     
     this.clearRequestParams();
-    this.setRequestParam("start", params['start']);
-    this.setRequestParam("how_many", params['how_many']);
+    if(typeof params['start'] !== 'undefined' && typeof params['how_many'] !== 'undefined')
+    {
+        this.setRequestParam("start", params['start']);
+        this.setRequestParam("how_many", params['how_many']);
+    }
     this.setRequestParam("competition_id",params['competition_id']);
     this.setRequestParam("competition_tutorials_order_by",{"order_by_votes":"DESC"});
     
@@ -306,9 +313,9 @@ RestCaller.prototype.getUser = function(params)
     return this.ajax();
 };
 
-RestCaller.prototype.getUserBadges = function(params)
+RestCaller.prototype.getUserFollows = function(params)
 {
-    this.setResource("/competition/tutorials");
+    this.setResource("/user/follows");
     this.setVerb("GET");
     //this.clearCustomHeaders();
     
@@ -318,9 +325,94 @@ RestCaller.prototype.getUserBadges = function(params)
     this.setCustomHeader("Accept","application/json"); 
     
     this.clearRequestParams();
-    this.setRequestParam("start", params['start']);
-    this.setRequestParam("how_many", params['how_many']);
+    if(typeof params['start'] !== 'undefined' && typeof params['how_many'] !== 'undefined')
+    {
+        this.setRequestParam("start", params['start']);
+        this.setRequestParam("how_many", params['how_many']);
+    }
     this.setRequestParam("skhr_id",params['skhr_id']);
+    
+    return this.ajax();
+};
+
+RestCaller.prototype.getUserFollowed = function(params)
+{
+    this.setResource("/user/followed");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json"); 
+    
+    this.clearRequestParams();
+    if(typeof params['start'] !== 'undefined' && typeof params['how_many'] !== 'undefined')
+    {
+        this.setRequestParam("start", params['start']);
+        this.setRequestParam("how_many", params['how_many']);
+    }
+    this.setRequestParam("skhr_id",params['skhr_id']);
+    
+    return this.ajax();
+};
+
+RestCaller.prototype.getUserBadges = function(params)
+{
+    this.setResource("/user/badges");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json"); 
+    
+    this.clearRequestParams();
+    if(typeof params['start'] !== 'undefined' && typeof params['how_many'] !== 'undefined')
+    {
+        this.setRequestParam("start", params['start']);
+        this.setRequestParam("how_many", params['how_many']);
+    }
+    this.setRequestParam("skhr_id",params['skhr_id']);
+    
+    return this.ajax();
+};
+
+// request abstraction methods
+
+RestCaller.prototype.getUserTutorials = function(params)
+{
+    this.setResource("/user/tutorials");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("Accept","application/json");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    //this.setCustomHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
+    //this.setCustomHeader("X-Caller-SKHR-ID","3");  
+    
+    this.clearRequestParams();
+    
+    this.setRequestParam("author_skhr_id",params['author_skhr_id']);
+    
+    if(typeof params['start'] !== 'undefined' && typeof params['how_many'] !== 'undefined')
+    {
+        this.setRequestParam("start",params['start']);
+        this.setRequestParam("how_many",params['how_many']);
+    }
+    
+    if(typeof params['featured'] !== 'undefined')
+        this.setRequestParam("featured",params['featured']);
+    
+    this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
+    this.setRequestParam("tutorial_count",{"count_views_skhr":"DESC"});
+    this.setRequestParam("tutorial_related_data",{"tutorial_author":"tutorial_author","tutorial_views":"tutorial_views","tutorial_likes":"tutorial_likes","tutorial_comments":"tutorial_comments"});
+    
+    if(typeof params['time_constraint'] !== 'undefined')
+        this.setRequestParam("time_constraint",{"timestamp_field":"created_at","operator":"younger_then","time_amount":"1","time_interval":""+params['time_constraint']+""});
     
     return this.ajax();
 };
