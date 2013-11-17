@@ -93,13 +93,17 @@ $(function(){
     promise_user_achievements.done(
             function(data)
             {
-                template_generator.user_achievements = data.user_achievements;
-                //template_generator.addGallery("#user_tutorials_gallery", length);
-                //$(".statistics3 .following").val( 'Following('+template_generator.user_badges.length+')');   
+                template_generator.user_achievements = data.user_achievements;  
                 template_generator.displayAchievementsGallery(  '.achievements_window',
                                                                 template_generator.user_achievements);
                                                                 
                 //alert("Achievements received");
+                var window_width =  $(".achievements_gallery").parent().width();
+                //alert(window_width);
+                //alert(template_generator.user_achievements.length);
+                var number_of_windows = Math.ceil(template_generator.user_achievements.length/5);
+                //alert(number_of_windows);
+                $('.achievements_gallery').css('width', window_width*number_of_windows);
                                                                 
                 // Autoslide
                 slider_timer = setInterval(function()
@@ -146,7 +150,7 @@ $(function(){
    
    
    
-/* FUNCTIONS */
+/* ------------------------------FUNCTIONS----------------------------------- */
    
 function scrollLeft( target, scrollsPerWindow, speedForward)
 {
