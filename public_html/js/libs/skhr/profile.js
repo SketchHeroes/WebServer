@@ -26,27 +26,40 @@ $(function(){
                 template_generator.displayUser("#user_info", template_generator.user);                
             });
            
-    // get user fans
+    // get user following
     var promise_user_follows = rest_caller.getUserFollows({"skhr_id":skhr_id});
 
     promise_user_follows.done(
             function(data)
             {
                 template_generator.user_follows = data.user_follows;
-                //template_generator.addGallery("#user_tutorials_gallery", length);
-                $(".statistics3 .fans").val( 'Fans('+template_generator.user_follows.length+')');                
+                $(".statistics3 .following").val( 'Following('+template_generator.user_follows.length+')'); 
             });
                 
             
-    // get user following
+    // get user fans
     var promise_user_followed = rest_caller.getUserFollowed({"skhr_id":skhr_id});
 
     promise_user_followed.done(
             function(data)
-            {
+            {         
                 template_generator.user_followed = data.user_followed;
-                //template_generator.addGallery("#user_tutorials_gallery", length);
-                $(".statistics3 .following").val( 'Following('+template_generator.user_followed.length+')');                
+                $(".statistics3 .fans").val( 'Fans('+template_generator.user_followed.length+')');    
+                
+                template_generator.addUserList("#fans_list", template_generator.user_followed.length); 
+                
+                $.each(template_generator.user_followed, function( index, fan ) {
+                    //alert( index + ": " + value );
+                    var promise_user = rest_caller.getUser({"skhr_id":fan.follower_skhr_id});
+
+                    promise_user.done(
+                            function(data)
+                            {
+                                template_generator.user = data.user;
+                                //template_generator.addGallery("#user_tutorials_gallery", length);
+                                //template_generator.displayUser("#user_info", template_generator.user);                
+                            });
+                });
             });
          
     // get user tutorials
@@ -211,7 +224,25 @@ $(function(){
     });
 
   
-    
+//------------------------------pop ups-----------------------------------------
+
+// fans popup
+
+       $(".fans").click(function(e) 
+        { 
+            var overlay = $('<div class="overlay"></div>');
+            $("body").append(overlay);
+
+            $("#popup_fans").fadeIn(); 
+            $("#popup_fans .inner_popup").focus();
+            //$("#popup_login input[name=username_email]").focus();
+
+        });
+
+        $("#popup_fans .close").click(function(e) { 
+                $("#popup_fans").fadeOut(); 
+                $("body .overlay").remove();
+       }); 
     
 });  
    

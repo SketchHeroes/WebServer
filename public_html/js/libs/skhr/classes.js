@@ -591,6 +591,24 @@ TemplateGenerator.prototype.addUserList = function(target, length)
     
     $(target).append(list);
     
+};  
+
+TemplateGenerator.prototype.addUserList = function(target, length)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+   
+    var list = $('<ul class="users_list_complex"></ul>');
+    
+    for(var i=0; i<length; i++)
+    {
+        var single_record = $('<li></li>'); 
+        
+        list.append(single_record);
+    };
+
+    
+    $(target).append(list);
+    
 };
 
 
@@ -809,6 +827,42 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
                     
                     var user_place = $('<div class="user_place">'+i+'</div>');
                     $(this).append(user_place); 
+
+                    var user_name = $('<div class="user_name"></div>');
+                    var link = $('<a href="">'+users[i].username+'</a>');  
+                    user_name.append(link);
+                    $(this).append(user_name);
+
+                    var image = $('<img class="follow_button" src="images/follow-button.png">');
+                    $(this).append(image);
+                }
+        
+                i++;
+            });
+    //alert(i);
+    
+};  
+
+
+TemplateGenerator.prototype.displayUserListComlex= function(target, users)
+{
+    //alert(top_users[0].username);
+    
+    var i = 0;
+    $(target+' > ul.users_list > li').each(
+            function()
+            {
+                //alert(JSON.stringify($(this)));
+                // adding tutorial_title
+                
+                $(this).find(".user_place").remove();
+                $(this).find(".user_name").remove();
+                $(this).find(".follow_button").remove();
+                
+                if(users[i] !== undefined) 
+                {
+                    
+                    //alert(JSON.stringify(top_users[i]));
 
                     var user_name = $('<div class="user_name"></div>');
                     var link = $('<a href="">'+users[i].username+'</a>');  

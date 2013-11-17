@@ -244,20 +244,10 @@ header
 }*/
 
 .popup {
-	
-        padding: 0px 0px 0px 0px;
-	background: #C3C3C3;
+        
 	z-index: 999;
 	display: none;
 	position: fixed;
-        
-	top: 50%;
-        left:50%;
-        
-        border: 3px solid #000000;
-        border-radius: 10px 10px 10px 10px;
-        
-        margin: -400px 0px 0px -255px; 
         
 }
 
@@ -265,13 +255,36 @@ header
 {
     width: 490px;
     height: 580px;
+	
+    padding: 0px 0px 0px 0px;
+    background: #C3C3C3;
+
+    top: 50%;
+    left:50%;
+
+    border: 3px solid #000000;
+    border-radius: 10px 10px 10px 10px;
+
+    margin: -400px 0px 0px -255px; 
 }
 
 #popup_register
 {
     width: 490px;
     height: 720px;
+	
+    padding: 0px 0px 0px 0px;
+    background: #C3C3C3;
+        
+    top: 50%;
+    left:50%;
+
+    border: 3px solid #000000;
+    border-radius: 10px 10px 10px 10px;
+
+    margin: -400px 0px 0px -255px; 
 }
+
 
 .popup form{  
     background: #C3C3C3;
@@ -366,6 +379,53 @@ header
     
     margin: 0px 0px 0px 30px;
 }
+
+
+/* POPUP FANS */
+
+#popup_fans
+{
+    width: 700px;
+    height: 720px;
+    
+    top: 50%;
+    left:50%;
+
+    border: 1px solid #FF0000;
+
+    margin: -400px 0px 0px -350px; 
+    
+    
+    background: url(../../images/top-turorials-bg2.png) top no-repeat;
+}
+
+#popup_fans .inner_popup
+{
+    width: 700px;
+    height: 620px;
+    
+    background: #F2F2F2;
+
+    border: 40px solid #92C0CF;
+
+    margin: 30px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px;
+    
+    overflow-y: scroll;
+}
+
+#popup_fans .close
+{
+    margin: 20px 0px 0px 0px; 
+}
+
+
+#popup_fans #fans_list
+{
+    border: 1px solid FF0000; 
+}
+
+/*------------*/
 /*
 .popup form .faceb {
     background: linear-gradient(to bottom, #5A87AA 0%, #265376 100%) repeat scroll 0 0 transparent;
@@ -973,6 +1033,45 @@ nav#secondary_menu{
 }
 
 .users_list img.follow_button{ 
+    float: right;
+    margin: 20px 0px 0px 0px;
+    height:30px;
+    width:70px;
+    cursor: pointer;
+}
+/* TOP USER LIST */
+
+.users_list_complex
+{
+    float:left;
+    margin: 0px 0px 0px 0px; 
+    height: 700px;
+    width: 100%;
+    background: #DBD9D9;
+    list-style-type: none;
+}
+
+.users_list_complex li{
+    height: 150px;
+    width: 100%;
+    border:3px solid #0000FF;
+}
+
+.users_list_complex .user_place{
+    float: left;
+    margin: 20px 0px 0px 0px; 
+    height: 30px;
+    width: 30px;
+}
+
+.users_list_complex .user_name{
+    float: left;
+    margin: 20px 0px 0px 0px; 
+    height: 30px;
+    width: 170px;
+}
+
+.users_list_complex img.follow_button{ 
     float: right;
     margin: 20px 0px 0px 0px;
     height:30px;

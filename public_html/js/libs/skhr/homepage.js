@@ -194,23 +194,6 @@ $(function(){
         }
     });
     
-   
-    //promise_featured.done(function(data){template_generator.displayFeaturedTutorials(data,"#featured_tutorials")});
-    //promise_top.done(function(data){template_generator.displayTopTutorials(data,"#top_tutorials")});
-    //promise_recent.done(function(data){template_generator.displayRecentTutorials(data,"#recent_tutorials")});
-    //promise_top_users.done(function(data){template_generator.displayTopUsers(data,"#top_users")});
-
-    //var error_image = '<img src="images/error.jpg" alt="logo" width="113" height="123" />';
-
-    //promise_featured.fail(function(data){$("#featured_tutorials").html(error_image)});
-    //promise_top.fail(function(data){$("#top_tutorials").html(error_image)});
-    //promise_recent.fail(function(data){$("#recent_tutorials").html(error_image)});
-    //promise_top_users.fail(function(data){$("#top_users").html(error_image)});
-    
-    
-    // jump to the bottom of the page (for building only)
-    //$('html, body').scrollTop( $(document).height() );
-    
     
     // top user period buttons
     
