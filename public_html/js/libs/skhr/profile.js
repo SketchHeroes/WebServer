@@ -59,6 +59,18 @@ $(function(){
                 
                 $('.user_tutorials').text(template_generator.user_tutorials.length);
                 
+                var total_likes = 0;
+                var total_views = 0;
+                
+                $.each(template_generator.user_tutorials, function( index, tutorial ) {
+                    //alert( index + ": likes" + tutorial.likes.likes_skhr );
+                    total_likes += parseInt(tutorial.likes.likes_skhr);
+                    total_views += parseInt(tutorial.views.views_skhr); 
+                });
+                
+                $('.user_likes').text(total_likes);
+                $('.user_views').text(total_views);
+                
             });
     
     // get user achievements gallery and scroll it 
