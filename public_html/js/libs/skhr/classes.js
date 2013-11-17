@@ -224,29 +224,6 @@ RestCaller.prototype.getTopUsers = function(params)
     return this.ajax();
 };
 
-RestCaller.prototype.getRecentTutorials = function(params)
-{
-    this.setResource("/tutorials");
-    this.setVerb("GET");
-    //this.clearCustomHeaders();
-    
-    this.clearCustomHeaders();
-    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
-    this.setCustomHeader("X-App-Token",this.app_token);
-    this.setCustomHeader("Accept","application/json"); 
-    
-    this.clearRequestParams();
-    
-    this.setRequestParam("locked",false);
-    this.setRequestParam("start", params['start']);
-    this.setRequestParam("how_many", params['how_many']);
-    this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
-    this.setRequestParam("tutorial_related_data",{"tutorial_author":"tutorial_author"});
-    
-    
-    return this.ajax();
-};
-
 RestCaller.prototype.getLatestCompetitions = function(params)
 {
     this.setResource("/competitions");

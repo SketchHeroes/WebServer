@@ -128,7 +128,7 @@ $(function(){
     var promise_user_tutorials;
     var tutorial_filter = $( "#user_tutorials_gallery .active" ).attr('id');
     
-    alert(tutorial_filter);
+    //alert(tutorial_filter);
 
     switch (tutorial_filter)
     {
@@ -170,7 +170,7 @@ $(function(){
         
         var tutorial_filter = $( "#user_tutorials_gallery .active" ).attr('id');
     
-        alert(tutorial_filter);
+        //alert(tutorial_filter);
 
         switch (tutorial_filter)
         {
