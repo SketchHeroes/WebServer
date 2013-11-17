@@ -41,10 +41,10 @@ $(function(){
    
     template_generator.addNotificationList("#notifications");
 
-    var promise_featured    = rest_caller.getTutorials({"start":0,"how_many":featured_length+1,"featured":1});
+    var promise_featured    = rest_caller.getTutorials({"start":0,"how_many":featured_length+1,"featured":1,"tutorial_count":{"count_views_skhr":"DESC"}});
     var promise_top_users   = rest_caller.getTopUsers({"start":0,"how_many":top_users_length,"time_constraint":$( "#top_heroes .active" ).attr('id')});
-    var promise_top         = rest_caller.getTutorials({"start":0,"how_many":top_tutorials_length,"time_constraint":$( "#top_tutorials_gallery .active" ).attr('id')});
-    var promise_recent      = rest_caller.getRecentTutorials({"start":0,"how_many":recent_tutorials_length});
+    var promise_top         = rest_caller.getTutorials({"start":0,"how_many":top_tutorials_length,"time_constraint":$( "#top_tutorials_gallery .active" ).attr('id'),"tutorial_count":{"count_views_skhr":"DESC"}});
+    var promise_recent      = rest_caller.getTutorials({"start":0,"how_many":recent_tutorials_length});
     var promise_latest_competition = rest_caller.getLatestCompetitions({"start":0,"how_many":1});
     
     promise_featured.done(
@@ -130,7 +130,7 @@ $(function(){
             
             var featured_start = featured_length*featured_page;
 
-            var promise_featured    = rest_caller.getTutorials({"start":featured_start,"how_many":featured_length+1,"featured":1});
+            var promise_featured    = rest_caller.getTutorials({"start":featured_start,"how_many":featured_length+1,"featured":1,"tutorial_count":{"count_views_skhr":"DESC"}});
 
             promise_featured.done(
                 function(data)
@@ -169,7 +169,7 @@ $(function(){
             
             var featured_start = featured_length*featured_page;
 
-            var promise_featured    = rest_caller.getTutorials({"start":featured_start,"how_many":featured_length+1,"featured":1});
+            var promise_featured    = rest_caller.getTutorials({"start":featured_start,"how_many":featured_length+1,"featured":1,"tutorial_count":{"count_views_skhr":"DESC"}});
 
             promise_featured.done(
                 function(data)
@@ -249,7 +249,7 @@ $(function(){
         $( "#top_tutorials_gallery #"+event.target.id ).attr("src","images/"+event.target.id+"_selected.png").addClass("active");
         //alert( "id = "+$(this).id );
         
-        var promise_top   = rest_caller.getTutorials({"start":0,"how_many":top_tutorials_length,"time_constraint":$( "#"+event.target.id ).attr('id')});
+        var promise_top   = rest_caller.getTutorials({"start":0,"how_many":top_tutorials_length,"time_constraint":$( "#"+event.target.id ).attr('id'),"tutorial_count":{"count_views_skhr":"DESC"}});
         
         promise_top.done(
             function(data)

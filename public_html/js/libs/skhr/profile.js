@@ -50,46 +50,16 @@ $(function(){
             });
          
     // get user tutorials
-    var promise_top = rest_caller.getUserTutorials({"author_skhr_id":skhr_id,"start":"0","how_many":"50"});
+    var promise_tutorials = rest_caller.getUserTutorials({"author_skhr_id":skhr_id});
 
-    promise_top.done(
+    promise_tutorials.done(
             function(data)
             {
                 template_generator.user_tutorials = data.tutorials;
-                var length = template_generator.user_tutorials.length;
-                template_generator.addGallery("#user_tutorials_gallery", length);
-                template_generator.displayTutorialGallery("#user_tutorials_gallery", template_generator.user_tutorials);
                 
                 $('.user_tutorials').text(template_generator.user_tutorials.length);
                 
             });
-  
-    
-    
-    // top tutorials period buttons
-    
-    $( "#top_tutorials_gallery .period" ).click(function(event) {
-        
-        $("#top_tutorials_gallery .gallery").fadeOut();
-        //alert("clicked");
-        //alert(event.target.id);
-        $( "#top_tutorials_gallery #week" ).attr("src","images/week_unselected.png").removeClass("active");
-        $( "#top_tutorials_gallery #month" ).attr("src","images/month_unselected.png").removeClass("active");
-        $( "#top_tutorials_gallery #year" ).attr("src","images/year_unselected.png").removeClass("active");
-        $( "#top_tutorials_gallery #"+event.target.id ).attr("src","images/"+event.target.id+"_selected.png").addClass("active");
-        //alert( "id = "+$(this).id );
-        
-        var promise_top   = rest_caller.getTopTutorials(0,top_tutorials_length,$( "#"+event.target.id ).attr('id'));
-        
-        promise_top.done(
-            function(data)
-            {
-                template_generator.top_tutorials = data.tutorials;
-                template_generator.displayTutorialGallery("#top_tutorials_gallery",template_generator.top_tutorials);
-                $("#top_tutorials_gallery .gallery").fadeIn();
-            });
-    });
-    
     
     // get user achievements gallery and scroll it 
     
@@ -151,11 +121,87 @@ $(function(){
     /*
     */
    
-    
-    
-});
    
    
+//------------------------USER TUTORIAL-----------------------------------------
+
+    var promise_user_tutorials;
+    var tutorial_filter = $( "#user_tutorials_gallery .active" ).attr('id');
+    
+    alert(tutorial_filter);
+
+    switch (tutorial_filter)
+    {
+        case "most_recent":
+                promise_user_tutorials = rest_caller.getUserTutorials({"author_skhr_id":skhr_id,"tutorial_order_by":{"order_by_content_id":"DESC"}});
+            break;
+        case "top_rated":
+                promise_user_tutorials = rest_caller.getUserTutorials({"author_skhr_id":skhr_id,"tutorial_count":{"count_likes_skhr":"DESC"}});
+            break;
+        case "most_viewed":
+                promise_user_tutorials = rest_caller.getUserTutorials({"author_skhr_id":skhr_id,"tutorial_count":{"count_views_skhr":"DESC"}});
+            break;
+    } 
+    
+    promise_user_tutorials.done(
+            function(data)
+            {
+                template_generator.user_tutorials = data.tutorials; 
+                
+                var length = template_generator.user_tutorials.length;
+                template_generator.removeGallery("#user_tutorials_gallery");
+                template_generator.addGallery("#user_tutorials_gallery", length);
+                template_generator.displayTutorialGallery("#user_tutorials_gallery", template_generator.user_tutorials);
+                
+            }); 
+    
+    // user tutorials period buttons
+
+    $( "#user_tutorials_gallery .period" ).click(function(event) {
+        
+        $("#user_tutorials_gallery .gallery").fadeOut();
+        //alert("clicked");
+        //alert(event.target.id);
+        $( "#user_tutorials_gallery #most_recent" ).attr("src","images/most_recent_unselected.png").removeClass("active");
+        $( "#user_tutorials_gallery #top_rated" ).attr("src","images/top_rated_unselected.png").removeClass("active");
+        $( "#user_tutorials_gallery #most_viewed" ).attr("src","images/most_viewed_unselected.png").removeClass("active");
+        $( "#user_tutorials_gallery #"+event.target.id ).attr("src","images/"+event.target.id+"_selected.png").addClass("active");
+        //alert( "id = "+$(this).id );
+        
+        var tutorial_filter = $( "#user_tutorials_gallery .active" ).attr('id');
+    
+        alert(tutorial_filter);
+
+        switch (tutorial_filter)
+        {
+            case "most_recent":
+                    promise_user_tutorials = rest_caller.getUserTutorials({"author_skhr_id":skhr_id,"tutorial_order_by":{"order_by_content_id":"DESC"}});
+                break;
+            case "top_rated":
+                    promise_user_tutorials = rest_caller.getUserTutorials({"author_skhr_id":skhr_id,"tutorial_count":{"count_likes_skhr":"DESC"}});
+                break;
+            case "most_viewed":
+                    promise_user_tutorials = rest_caller.getUserTutorials({"author_skhr_id":skhr_id,"tutorial_count":{"count_views_skhr":"DESC"}});
+                break;
+        } 
+
+        promise_user_tutorials.done(
+                function(data)
+                {
+                    template_generator.user_tutorials = data.tutorials; 
+
+                    var length = template_generator.user_tutorials.length;
+                    template_generator.removeGallery("#user_tutorials_gallery");
+                    template_generator.addGallery("#user_tutorials_gallery", length);
+                    template_generator.displayTutorialGallery("#user_tutorials_gallery", template_generator.user_tutorials);
+
+                }); 
+    });
+
+  
+    
+    
+});  
    
 /* ------------------------------FUNCTIONS----------------------------------- */
    

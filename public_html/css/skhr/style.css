@@ -1040,62 +1040,6 @@ nav#secondary_menu{
     margin: 0px 0px 0px 20px;
 }
 
-
-
-/* USER_TUTORIALS */
-
-#user_tutorials
-{  
-    float:left;
-    margin: 0px 0px 0px 0px; 
-    width: 730px;
-    height: 1050px;     
-    background: #DBD9D9 url(../../images/user_tutorials_bg.png) left top 0 no-repeat;
-}
-
-#user_tutorials_gallery
-{  
-    float: left;
-    height: 880px;
-    width: 730px;
-    
-    padding: 0px 0px 0px 0px;
-    margin: 100px 0px 0px 0px;
-}
-
-#user_tutorials_gallery .gallery
-{
-    clear:both;
-    margin: 30px 0px 0px 30px; 
-    width: 670px;
-    /*height: 594px;*/
-}
-
-
-#user_tutorials_gallery .period_panel
-{
-    float:left; 
-    margin: 10px 0px 10px 170px;
-}
-
-#user_tutorials_gallery .period_panel .period
-{
-    float:left;
-    /*background: red;
-    border:1px solid black; */
-    margin: 0px 0px 0px 20px;
-}
-
-
-/* BANNER SIDE PANNEL */
-
-#banner_side_panel{
-    margin: 0px 0px 0px 730px; 
-    height: 1050px;  
-    width:270px;
-    background: #FFFFFF;
-}
-
 /* SIDE PANEL */
 
 #recent_tutorials_side_panel
@@ -1660,4 +1604,60 @@ ul.achievements_gallery li img{
 {
     /*border: 2px #FFFF00 solid;*/
 }
+
+/* USER_TUTORIALS */
+
+#user_tutorials
+{  
+    float:left;
+    margin: 0px 0px 0px 0px; 
+    width: 730px;
+    height: 1050px;     
+    background: #DBD9D9 url(../../images/user_tutorials_bg.png) left top 0 no-repeat;
+}
+
+#user_tutorials_gallery
+{  
+    float: left;
+    height: 880px;
+    width: 730px;
+    
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+
+#user_tutorials_gallery .period_panel
+{
+    float:left; 
+    margin: 40px 0px 10px 170px;
+    border:1px solid red;
+}
+
+#user_tutorials_gallery .period_panel .period
+{
+    float:left;
+    /*background: red;
+    border:1px solid black; */
+    margin: 0px 0px 0px 20px;
+}
+
+
+#user_tutorials_gallery .gallery
+{
+    clear:both;
+    margin: 30px 0px 0px 30px; 
+    width: 670px;
+    /*height: 594px;*/
+}
+
+/* BANNER SIDE PANNEL */
+
+#banner_side_panel{
+    margin: 0px 0px 0px 730px; 
+    height: 1050px;  
+    width:270px;
+    background: #FFFFFF;
+}
+
 
