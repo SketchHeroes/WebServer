@@ -45,23 +45,6 @@ $(function(){
                 //template_generator.addGallery("#user_tutorials_gallery", length);
                 $(".statistics3 .following").val( 'Following('+template_generator.user_followed.length+')');                
             });
-                
-
-    var promise_user_achievements = rest_caller.getUserAchievements({"skhr_id":skhr_id});
-
-    promise_user_achievements.done(
-            function(data)
-            {
-                template_generator.user_achievements = data.user_achievements;
-                //template_generator.addGallery("#user_tutorials_gallery", length);
-                //$(".statistics3 .following").val( 'Following('+template_generator.user_badges.length+')');   
-                template_generator.displayAchievementsGallery(  '.achievements_window',
-                                                                template_generator.user_achievements);
-                
-            });
-
-
-                   
          
     var promise_top = rest_caller.getUserTutorials({"author_skhr_id":skhr_id,"start":"0","how_many":"50"});
 
@@ -101,82 +84,117 @@ $(function(){
             });
     });
     
-    var nextScroll=0;
+    
+         
+    var slider_timer;
+
+    var promise_user_achievements = rest_caller.getUserAchievements({"skhr_id":skhr_id});
+
+    promise_user_achievements.done(
+            function(data)
+            {
+                template_generator.user_achievements = data.user_achievements;
+                //template_generator.addGallery("#user_tutorials_gallery", length);
+                //$(".statistics3 .following").val( 'Following('+template_generator.user_badges.length+')');   
+                template_generator.displayAchievementsGallery(  '.achievements_window',
+                                                                template_generator.user_achievements);
+                                                                
+                //alert("Achievements received");
+                                                                
+                // Autoslide
+                slider_timer = setInterval(function()
+                {
+                    scrollRight( ".achievements_gallery", '5', 'slow', 'slow');
+                } , 1000);  
+               
+   
+                $(".achievements_scroller").mouseover(function() {
+                    clearInterval(slider_timer);
+                    //alert('over');
+                    //$(this).unbind('mouseover');
+                });
+
+                $(".achievements_scroller").mouseleave(function() {
+                    slider_timer = setInterval(function()
+                    {
+                        scrollRight( ".achievements_gallery", '5', 'slow', 'slow');
+                    } , 1000);      
+                    //alert('out');
+                    //$(this).unbind('mouseover');
+                });                                            
+                
+                
+            });
+           
     
     $( ".statistics3 .arrow_left img" ).click(
         function() {
-            var scrollAmount = $(".achievements_gallery").width() - $(".achievements_gallery").parent().width();
-            //alert('scrollAmount: '+scrollAmount);
-            
-            var currentPos = Math.abs(parseInt($(".achievements_gallery").css('left')));
-            //alert('currentPos: '+currentPos);
-            
-            var remainingScroll = scrollAmount - currentPos;
-            //alert('remainingScroll: '+remainingScroll);
-            
-            // Scroll half-a-screen by default
-            //var nextScroll = Math.floor($(".achievements_gallery").parent().width() / 2);
-            nextScroll = $(".achievements_gallery").parent().width();
-            //alert('nextScroll: '+nextScroll);
-            
-            // But if there isn’t a FULL scroll left,
-            // only scroll the remaining amount.
-            if (remainingScroll < nextScroll) 
-            {
-                nextScroll = remainingScroll;
-            }
-            
-            if (currentPos < scrollAmount) 
-            {
-                // Scroll left
-                $(".achievements_gallery").animate({'left':'-=' + nextScroll}, 'slow');
-            }
-            else
-            {
-                // Scroll right
-                $(".achievements_gallery").animate({'left':'0'}, 'fast');
-            }
+            scrollLeft( ".achievements_gallery", "1", "slow");
         });
     
     $( ".statistics3 .arrow_right img" ).click(
-    //$('#photos_inner').click(
         function() {
-            var scrollAmount = $(".achievements_gallery").width() - $(".achievements_gallery").parent().width();
-            //alert('scrollAmount: '+scrollAmount);
-            
-            var currentPos = Math.abs(parseInt($(".achievements_gallery").css('left')));
-            //alert('currentPos: '+currentPos);
-            
-            var remainingScroll = scrollAmount - currentPos;
-            //alert('remainingScroll: '+remainingScroll);
-            
-            // Scroll half-a-screen by default
-            //var nextScroll = Math.floor($(".achievements_gallery").parent().width() / 2);
-            nextScroll = $(".achievements_gallery").parent().width();
-            //alert('nextScroll: '+nextScroll);
-            
-            // But if there isn’t a FULL scroll left,
-            // only scroll the remaining amount.
-            if (remainingScroll < nextScroll) 
-            {
-                nextScroll = remainingScroll;
-            }
-            
-            if (currentPos < scrollAmount) 
-            {
-                // Scroll left
-                $(".achievements_gallery").animate({'left':'-=' + nextScroll}, 'slow');
-            }
-            else
-            {
-                // Scroll right
-                $(".achievements_gallery").animate({'left':'0'}, 'fast');
-            }
+            scrollRight( ".achievements_gallery", "1", "slow", "fast");
         });
 
     /*
     */
+   
     
     
 });
    
+   
+   
+/* FUNCTIONS */
+   
+function scrollLeft( target, scrollsPerWindow, speedForward)
+{
+    var scrollAmount = $(target).width() - $(target).parent().width();     
+
+    var currentPos = Math.abs(parseInt($(target).css('left')));
+
+    // Scroll half-a-screen by default
+    var nextScroll = $(target).parent().width()/scrollsPerWindow;
+
+    // But if there isn’t a FULL scroll left,
+    // only scroll the remaining amount.
+    if (currentPos < nextScroll) 
+    {
+        nextScroll = currentPos;
+    }
+
+    if (currentPos > 0) 
+    {
+        // Scroll left
+        $(target).animate({'left':'+=' + nextScroll}, speedForward);
+    }
+}
+   
+function scrollRight( target, scrollsPerWindow, speedForward, speedBack)
+{
+    var scrollAmount = $(target).width() - $(target).parent().width();
+
+    var currentPos = Math.abs(parseInt($(target).css('left')));
+
+    var remainingScroll = scrollAmount - currentPos;
+
+    // Scroll half-a-screen by default
+    var nextScroll = $(target).parent().width()/scrollsPerWindow;
+
+    if (remainingScroll < nextScroll) 
+    {
+        nextScroll = remainingScroll;
+    }
+
+    if (currentPos < scrollAmount) 
+    {
+        // Scroll left
+        $(target).animate({'left':'-=' + nextScroll}, speedForward);
+    }
+    else
+    {
+        // Scroll right
+        $(target).animate({'left':'0'}, speedBack);
+    }
+}
