@@ -15,6 +15,7 @@ $(function(){
     
     // getting INITIAL data from the server
     
+    // get user info
     var promise_user = rest_caller.getUser({"skhr_id":skhr_id});
 
     promise_user.done(
@@ -24,7 +25,8 @@ $(function(){
                 //template_generator.addGallery("#user_tutorials_gallery", length);
                 template_generator.displayUser("#user_info", template_generator.user);                
             });
-            
+           
+    // get user fans
     var promise_user_follows = rest_caller.getUserFollows({"skhr_id":skhr_id});
 
     promise_user_follows.done(
@@ -36,6 +38,7 @@ $(function(){
             });
                 
             
+    // get user following
     var promise_user_followed = rest_caller.getUserFollowed({"skhr_id":skhr_id});
 
     promise_user_followed.done(
@@ -46,6 +49,7 @@ $(function(){
                 $(".statistics3 .following").val( 'Following('+template_generator.user_followed.length+')');                
             });
          
+    // get user tutorials
     var promise_top = rest_caller.getUserTutorials({"author_skhr_id":skhr_id,"start":"0","how_many":"50"});
 
     promise_top.done(
@@ -55,6 +59,8 @@ $(function(){
                 var length = template_generator.user_tutorials.length;
                 template_generator.addGallery("#user_tutorials_gallery", length);
                 template_generator.displayTutorialGallery("#user_tutorials_gallery", template_generator.user_tutorials);
+                
+                $('.user_tutorials').text(template_generator.user_tutorials.length);
                 
             });
   
@@ -85,7 +91,8 @@ $(function(){
     });
     
     
-         
+    // get user achievements gallery and scroll it 
+    
     var slider_timer;
 
     var promise_user_achievements = rest_caller.getUserAchievements({"skhr_id":skhr_id});
