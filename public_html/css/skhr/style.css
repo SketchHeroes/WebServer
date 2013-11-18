@@ -1520,7 +1520,7 @@ section#user_info{
     
     padding: 0px 0px 0px 0px;
     margin: 0px 10px 10px 10px;
-    border: 1px #000000 solid;
+    /*border: 1px #000000 solid;*/
 }
 
 #user_info .avatar
@@ -1557,13 +1557,13 @@ section#user_info{
     height:150px;
     margin: 30px 0px 0px 30px;
     position: relative;
-    border: 1px #FF0000 dotted;
+    /*border: 1px #FF0000 dotted;*/
 }
 
 #user_info .statistics > div
 {    
     margin: 0px 0px 0px 0px;
-    border: 1px #FFFF00 dotted;
+    /*border: 1px #FFFF00 dotted;*/
     height: 40px;
     
     vertical-align: bottom;
@@ -1573,7 +1573,7 @@ section#user_info{
 {    
     display: inline-block;
     margin: 18px 0px 0px 0px;
-    border: 1px #FF0000 dotted;
+    /*border: 1px #FF0000 dotted;*/
     
     white-space:nowrap; 
     overflow:hidden; 
@@ -1586,7 +1586,7 @@ section#user_info{
 {
     display: inline-block;
     margin: 18px 0px 0px 0px;
-    border: 1px #FF0000 dotted;
+    /*border: 1px #FF0000 dotted;*/
     
     white-space:nowrap; 
     overflow:hidden; 
@@ -1597,7 +1597,7 @@ section#user_info{
 {
     display: inline-block;
     margin: 18px 0px 0px 0px;
-    border: 1px #FF0000 dotted;
+    /*border: 1px #FF0000 dotted;*/
     
     white-space:nowrap; 
     overflow:hidden; 
@@ -1608,7 +1608,7 @@ section#user_info{
 {
     display: inline-block;
     margin: 18px 0px 0px 0px;
-    border: 1px #FF0000 dotted;
+    /*border: 1px #FF0000 dotted;*/
     width: 100px;
     
     white-space:nowrap; 
@@ -1621,7 +1621,7 @@ section#user_info{
     float:right;
     display: inline-block;
     margin: 0px 0px 0px 0px;
-    border: 1px #0000FF solid;
+    /*border: 1px #0000FF solid;*/
     
     width: 180px;
     
@@ -1641,7 +1641,7 @@ section#user_info{
     height:20px;
     width:50px;
     margin: 0px 0px 0px 120px;
-    border: 1px #FF0000 solid;
+    /*border: 1px #FF0000 solid;*/
     
     white-space:nowrap; 
     overflow:visible; 
@@ -1682,7 +1682,7 @@ section#user_info{
     width:450px;
     height:100px;
     margin: 80px 0px 0px 30px;
-    border: 1px #FF0000 dotted;
+    /*border: 1px #FF0000 dotted;*/
 }
 
 
@@ -1690,7 +1690,7 @@ section#user_info{
 {
     float:left;
     display: inline-block;
-    border: 1px #00FF00 dotted;  
+    /*border: 1px #00FF00 dotted;  */
     margin: 15px 0px 0px 20px;
     text-align: center;
 }
@@ -1727,7 +1727,7 @@ section#user_info{
     height:20px;
     width:40px;  
     margin: 0px 0px 0px 0px;
-    border: 1px #FF0000 dotted;
+    /*border: 1px #FF0000 dotted;*/
 }
 
 /* STATISTICS 3 */
@@ -1739,7 +1739,7 @@ section#user_info{
     width:994px;
     height:80px;
     margin: 5px 5px 5px 5px;
-    border: 1px #0000FF solid;
+    /*border: 1px #0000FF solid;*/
 }
 
 #user_info .statistics3 input[type=button]
@@ -1800,7 +1800,7 @@ ul.achievements_gallery li{
     height:50px;
     width: 50px;
     margin: 0px 15px 0px 15px;
-    border: 1px #FF0000 solid;
+    /*border: 1px #FF0000 solid;*/
     
 }
 
@@ -1818,7 +1818,7 @@ ul.achievements_gallery li img{
     
     margin: 5px 0px 0px 0px;
     
-    border: 1px #FF0000 solid;
+    /*border: 1px #FF0000 solid;*/
 }
 
 .statistics3 .arrow_right{
@@ -1828,7 +1828,7 @@ ul.achievements_gallery li img{
     
     margin: 5px 0px 0px 0px;
     
-    border: 1px #FF0000 solid;
+    /*border: 1px #FF0000 solid;*/
 }
 
 .statistics3 .arrow_left img{
@@ -1891,7 +1891,7 @@ ul.achievements_gallery li img{
 {
     float:left; 
     margin: 40px 0px 10px 170px;
-    border:1px solid red;
+    /*border:1px solid red;*/
 }
 
 #user_tutorials_gallery .period_panel .period
