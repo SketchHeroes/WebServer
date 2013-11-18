@@ -190,59 +190,6 @@ header
     z-index: 999;
 }
 
-/* POP LOGIN */
-/*
-.popup {
-	
-        padding: 10px 10px 30px 10px;
-	background: #fff;
-	z-index: 999;
-	display: none;
-	position: fixed;
-	top: 300px;
-        left:400px;
-}
-
-.popup .title{
-    display: inline-block;
-    width:150px;
-    margin: 0px 0px 0px 0px; 
-    
-    white-space:nowrap; 
-    overflow:hidden; 
-    text-overflow:ellipsis;
-}
-
-.popup form{  
-    background: #C3C3C3;
-    padding: 10px 10px 10px 10px;
-    display:block;
-}
-.popup p{
-    padding: 10px 10px 0px 10px;
-}
-
-.popup .button{
-    width: 150px;
-}
-
-.popup .close{
-    bottom: 5px;
-    color: #FF0000;
-    float: right;
-    font-weight: bold;
-    position: absolute;
-    right: 10px;
-}
-
-.popup form .faceb {
-    background: linear-gradient(to bottom, #5A87AA 0%, #265376 100%) repeat scroll 0 0 transparent;
-    border: 1px solid rgba(20, 59, 89, 0.61);
-    color: #FFFFFF;
-    padding: 5px 5px 5px 5px; 
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
-}*/
-
 .popup {
         
 	z-index: 999;
@@ -259,13 +206,13 @@ header
     padding: 0px 0px 0px 0px;
     background: #C3C3C3;
 
-    top: 50%;
+    top: 50px;
     left:50%;
 
     border: 3px solid #000000;
     border-radius: 10px 10px 10px 10px;
 
-    margin: -400px 0px 0px -255px; 
+    margin: 0px 0px 0px -255px; 
 }
 
 #popup_register
@@ -276,13 +223,13 @@ header
     padding: 0px 0px 0px 0px;
     background: #C3C3C3;
         
-    top: 50%;
+    top: 50px;
     left:50%;
 
     border: 3px solid #000000;
     border-radius: 10px 10px 10px 10px;
 
-    margin: -400px 0px 0px -255px; 
+    margin: 0px 0px 0px -255px; 
 }
 
 
@@ -388,12 +335,12 @@ header
     width: 700px;
     height: 720px;
     
-    top: 50%;
+    top: 50px;
     left:50%;
 
     /*border: 1px solid #FF0000;*/
 
-    margin: -400px 0px 0px -350px; 
+    margin: 0px 0px 0px -350px; 
     
     
     background: url(../../images/top-turorials-bg2.png) top no-repeat;
@@ -432,12 +379,12 @@ header
     width: 700px;
     height: 720px;
     
-    top: 50%;
+    top: 50px;
     left:50%;
 
     /*border: 1px solid #FF0000;*/
 
-    margin: -400px 0px 0px -350px; 
+    margin: 0px 0px 0px -350px; 
     
     
     background: url(../../images/top-turorials-bg2.png) top no-repeat;
