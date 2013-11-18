@@ -299,6 +299,11 @@ RestCaller.prototype.getUser = function(params)
     
     this.clearRequestParams();
     this.setRequestParam("skhr_id",params['skhr_id']);
+    
+    if(typeof params['user_related_data'] !== 'undefined')
+    {
+        this.setRequestParam("user_related_data",params['user_related_data']);
+    }
 
     return this.ajax();
 };
@@ -322,6 +327,11 @@ RestCaller.prototype.getUserFollows = function(params)
     }
     this.setRequestParam("skhr_id",params['skhr_id']);
     
+    if(typeof params['user_related_data'] !== 'undefined')
+    {
+        this.setRequestParam("user_related_data",params['user_related_data']);
+    }
+    
     return this.ajax();
 };
 
@@ -343,6 +353,11 @@ RestCaller.prototype.getUserFollowed = function(params)
         this.setRequestParam("how_many", params['how_many']);
     }
     this.setRequestParam("skhr_id",params['skhr_id']);
+    
+    if(typeof params['user_related_data'] !== 'undefined')
+    {
+        this.setRequestParam("user_related_data",params['user_related_data']);
+    }
     
     return this.ajax();
 };
@@ -593,7 +608,7 @@ TemplateGenerator.prototype.addUserList = function(target, length)
     
 };  
 
-TemplateGenerator.prototype.addUserList = function(target, length)
+TemplateGenerator.prototype.addUserListComplex = function(target, length)
 {
     //$('#data').html("Tutorials:<br /><br />");  
    
@@ -601,7 +616,55 @@ TemplateGenerator.prototype.addUserList = function(target, length)
     
     for(var i=0; i<length; i++)
     {
-        var single_record = $('<li></li>'); 
+        var single_record = $('<li></li>');  
+        
+            var div = $('<div class="avatar"></div>');
+            single_record.append(div);
+            
+                var avatar_frame = $('<img src="images/avatar_frame.png" alt="avatar frame" class="frame"/>');
+                div.append(avatar_frame);
+                
+            var user_info = $('<div class="user_info"></div>');
+            single_record.append(user_info); 
+        
+                var user_name = $('<div class="user_name">...</div>');
+                user_info.append(user_name);  
+
+                var user_fans = $('<div class="user_fans">(Fans)</div>');
+                user_info.append(user_fans);  
+
+                var stats = $('<div class="stats"></div>');
+                user_info.append(stats);
+
+                    var div2 = $('<div class="stat"></div>');
+                    stats.append(div2);
+
+                        var img = $('<img src="images/like.png" />');
+                        div2.append(img);
+
+                        var div3 = $('<div class="user_likes">0</div>');
+                        div2.append(div3);
+
+                    div2 = $('<div class="stat"></div>');
+                    stats.append(div2);
+
+                        var img = $('<img src="images/view.png" />');
+                        div2.append(img);
+
+                        var div3 = $('<div class="user_views">0</div>');
+                        div2.append(div3);
+
+                    div2 = $('<div class="stat"></div>');
+                    stats.append(div2);
+
+                        var img = $('<img src="images/tutorial.png" />');
+                        div2.append(img);
+
+                        var div3 = $('<div class="user_tutorials">0</div>');
+                        div2.append(div3);
+                        
+            var follow_button = $('<input type="button" value="Follow" class="follow">');
+            single_record.append(follow_button);
         
         list.append(single_record);
     };
@@ -611,6 +674,60 @@ TemplateGenerator.prototype.addUserList = function(target, length)
     
 };
 
+
+TemplateGenerator.prototype.displayUserListComlex= function(target, users)
+{
+    //alert(top_users[0].username);
+    
+    var i = 0;
+    $(target+' > ul.users_list_complex > li').each(
+            function()
+            {
+                //alert(JSON.stringify($(this).find(".user_fans")));
+                // adding tutorial_title
+                
+                $(this).find(".avatar .pic").remove();
+                
+                //alert($(this).attr('class'));
+
+                if(users[i] !== undefined) 
+                {
+                    
+                    //alert(users[i].avatar_path);
+                    //alert(JSON.stringify($(this).find(".user_name").text()))
+                    
+                    //-----------------------------------------------------------------------
+                    var avatar;
+                    
+                    if(users[i].avatar_path !== null)
+                    {
+                        //alert('defined');
+                        avatar = $('<img alt="avatar" class="pic" src="'+users[i].avatar_path+'" >');
+                    }
+                    else
+                    {
+                        //alert('undefined');
+                        avatar = $('<img alt="avatar" class="pic" src="images/avatar_def.png" >');
+                    }
+                    
+                    
+                    
+                    $(this).find(".avatar").append(avatar);
+
+                    $(this).find(".user_name").text(users[i].username);
+                    
+                    $(this).find(".user_fans").text( 'Fans('+users[i].followed.followed_skhr+')'); 
+
+                    $(this).find(".stat .user_tutorials").text(users[i].tutorials.tutorials_skhr);
+                    $(this).find(".stat .user_likes").text(users[i].likes.likes_skhr);
+                    $(this).find(".stat .user_views").text(users[i].views.views_skhr);
+                }
+        
+                i++;
+            });
+    //alert(i);
+    
+};  
 
 TemplateGenerator.prototype.addNotificationList = function(target)
 {
@@ -841,42 +958,6 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
             });
     //alert(i);
     
-};  
-
-
-TemplateGenerator.prototype.displayUserListComlex= function(target, users)
-{
-    //alert(top_users[0].username);
-    
-    var i = 0;
-    $(target+' > ul.users_list > li').each(
-            function()
-            {
-                //alert(JSON.stringify($(this)));
-                // adding tutorial_title
-                
-                $(this).find(".user_place").remove();
-                $(this).find(".user_name").remove();
-                $(this).find(".follow_button").remove();
-                
-                if(users[i] !== undefined) 
-                {
-                    
-                    //alert(JSON.stringify(top_users[i]));
-
-                    var user_name = $('<div class="user_name"></div>');
-                    var link = $('<a href="">'+users[i].username+'</a>');  
-                    user_name.append(link);
-                    $(this).append(user_name);
-
-                    var image = $('<img class="follow_button" src="images/follow-button.png">');
-                    $(this).append(image);
-                }
-        
-                i++;
-            });
-    //alert(i);
-    
 };   
 
 
@@ -910,6 +991,14 @@ TemplateGenerator.prototype.displayUser= function(target, user)
     $(target).find(".statistics .progress progress").val(user.level_progress);
     $(target).find(".statistics .progress progress .progress-bar span").attr('width',user.level_progress+'%');
     $(target).find(".statistics .progress progress .progress-bar span").text('Progress: '+user.level_progress+'%');
+    
+    
+    $(target).find(".statistics3 .following").val( 'Following('+user.follows.follows_skhr+')'); 
+    $(target).find(".statistics3 .fans").val( 'Fans('+user.followed.followed_skhr+')'); 
+    
+    $(target).find(".statistics2 .stat .user_tutorials").text(user.tutorials.tutorials_skhr);
+    $(target).find(".statistics2 .stat .user_likes").text(user.likes.likes_skhr);
+    $(target).find(".statistics2 .stat .user_views").text(user.views.views_skhr);
 
     
 };   

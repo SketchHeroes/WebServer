@@ -391,7 +391,7 @@ header
     top: 50%;
     left:50%;
 
-    border: 1px solid #FF0000;
+    /*border: 1px solid #FF0000;*/
 
     margin: -400px 0px 0px -350px; 
     
@@ -422,7 +422,50 @@ header
 
 #popup_fans #fans_list
 {
-    border: 1px solid FF0000; 
+    
+}
+
+/* POPUP FOLLOWING */
+
+#popup_following
+{
+    width: 700px;
+    height: 720px;
+    
+    top: 50%;
+    left:50%;
+
+    /*border: 1px solid #FF0000;*/
+
+    margin: -400px 0px 0px -350px; 
+    
+    
+    background: url(../../images/top-turorials-bg2.png) top no-repeat;
+}
+
+#popup_following .inner_popup
+{
+    width: 700px;
+    height: 620px;
+    
+    background: #F2F2F2;
+
+    border: 40px solid #92C0CF;
+
+    margin: 30px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px;
+    
+    overflow-y: scroll;
+}
+
+#popup_following .close
+{
+    margin: 20px 0px 0px 0px; 
+}
+
+
+#popup_following #fans_list
+{
 }
 
 /*------------*/
@@ -1039,44 +1082,162 @@ nav#secondary_menu{
     width:70px;
     cursor: pointer;
 }
-/* TOP USER LIST */
+/*  USER LIST COMPLEX*/
 
 .users_list_complex
 {
     float:left;
     margin: 0px 0px 0px 0px; 
-    height: 700px;
+    /*height: 700px;*/
     width: 100%;
     background: #DBD9D9;
     list-style-type: none;
 }
 
 .users_list_complex li{
-    height: 150px;
+    height: 100px;
     width: 100%;
-    border:3px solid #0000FF;
+    border-bottom:1px solid #CA5573;
 }
 
-.users_list_complex .user_place{
-    float: left;
-    margin: 20px 0px 0px 0px; 
-    height: 30px;
-    width: 30px;
+.users_list_complex .avatar{
+    float:left;
+    display: inline-block;
+    margin: 10px 0px 0px 0px;
+    
+    height: 80px;
+    width: 80px;
+}
+.users_list_complex .avatar img.pic{
+
+    height: 70px;
+    width: 70px; 
+    padding: 15px 0px 0px 10px;
+}
+
+.users_list_complex .avatar img.frame
+{
+    width:80px;
+    height:80px;
+    padding: 0px 0px 0px 0px;
+    position:absolute;
+    z-index: 2;
+}
+
+.users_list_complex .user_info{
+    float:left;
+    display: inline-block;
+    
+    margin: 10px 0px 0px 0px;
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    
+    color: #E4F8FD;
 }
 
 .users_list_complex .user_name{
-    float: left;
-    margin: 20px 0px 0px 0px; 
-    height: 30px;
-    width: 170px;
+    float:left;
+    display: inline-block;
+    
+    margin: 5px 0px 0px 0px;
+    
+    width:150px;
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    
+    color: #FFFFFF;
 }
 
+.users_list_complex .user_fans{
+    float:left;
+    /*clear:right;*/
+    display: inline-block;
+    
+    width:100px;
+    
+    margin: 5px 0px 0px 0px;
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    
+    color: #FFFFFF;
+}
+
+.users_list_complex .stats
+{
+    float:left;
+    display: inline-block;
+    clear:both;
+      
+    margin: 10px 0px 0px 0px;
+    text-align: center;
+}
+
+.users_list_complex .stat
+{
+    float:left;
+    display: inline-block;
+     
+    margin: 0px 0px 0px 10px;
+    text-align: center;
+    color:#71959E;
+}
+
+.users_list_complex .stat div
+{
+    
+    float:left;
+    display: inline-block;
+    width:50px;
+    height:20px;
+    text-align: center;
+
+}
+
+.users_list_complex .stat img
+{
+    
+    float:left;
+    display: inline-block;
+    width:20px;
+    height:20px;
+
+}
+/*
 .users_list_complex img.follow_button{ 
     float: right;
+    
     margin: 20px 0px 0px 0px;
     height:30px;
     width:70px;
     cursor: pointer;
+}
+*/
+
+.users_list_complex input[type=button]
+{
+    float:right;
+    
+    background: #A4D4E0;
+    
+    border: 4px #779DA6 solid;
+    border-radius: 12px 12px 12px 12px;
+    
+    color: #FFFFFF;
+    
+    display: inline-block;
+    
+    font-size: 15px;
+    
+    height: 40px;
+    width: 120px;
+    
+    margin: 25px 20px 0px 20px;
 }
 
 /* THIRD SECTION */

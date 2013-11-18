@@ -16,76 +16,143 @@ $(function(){
     // getting INITIAL data from the server
     
     // get user info
-    var promise_user = rest_caller.getUser({"skhr_id":skhr_id});
+    var promise_user = rest_caller.getUser({"skhr_id":skhr_id,
+                                            "user_related_data":{
+                                                                    "user_followed":"user_followed",
+                                                                    "user_follows":"user_follows",
+                                                                    "user_tutorials":"user_tutorials",
+                                                                    "user_views":"user_views",
+                                                                    "user_likes":"user_likes",
+                                                                    "user_comments":"user_comments"
+                                                                }});
 
     promise_user.done(
             function(data)
             {
                 template_generator.user = data.user;
                 //template_generator.addGallery("#user_tutorials_gallery", length);
-                template_generator.displayUser("#user_info", template_generator.user);                
-            });
-           
-    // get user following
-    var promise_user_follows = rest_caller.getUserFollows({"skhr_id":skhr_id});
-
-    promise_user_follows.done(
-            function(data)
-            {
-                template_generator.user_follows = data.user_follows;
-                $(".statistics3 .following").val( 'Following('+template_generator.user_follows.length+')'); 
-            });
+                template_generator.displayUser("#user_info", template_generator.user);         
                 
+                
+                //------------------------------pop ups-----------------------------------------
+
+                // fans popup
+
+                $(".fans").click(function(e) 
+                 { 
+                     var overlay = $('<div class="overlay"></div>');
+                     $("body").append(overlay);
+
+                     $("#popup_fans").fadeIn(); 
+                     $("#popup_fans .inner_popup").focus();
+                     //$("#popup_login input[name=username_email]").focus();
+
+                     //alert(template_generator.user_followed);
+
+                     // get user fans - only the first time user presses fans button
+                     if(typeof template_generator.user_followed === 'undefined')
+                     {
+                         //alert('first_time');
+                         var promise_user_followed = rest_caller.getUserFollowed({   "skhr_id":skhr_id,
+                                                                                     "user_related_data":{
+                                                                                                             "user_followed":"user_followed",
+                                                                                                             "user_follows":"user_follows",
+                                                                                                             "user_tutorials":"user_tutorials",
+                                                                                                             "user_views":"user_views",
+                                                                                                             "user_likes":"user_likes",
+                                                                                                             "user_comments":"user_comments"
+                                                                                                         }});
+
+                         promise_user_followed.done(
+                                 function(data)
+                                 {         
+                                    template_generator.user_followed = data.user_followed;   
+                                     //alert(template_generator.user_followed.length);
+                                     
+                                    $('#popup_fans h1.caption').text('Fans('+template_generator.user_followed.length+')');
+                                    template_generator.addUserListComplex("#fans_list", template_generator.user_followed.length); 
+                                    template_generator.displayUserListComlex("#fans_list", template_generator.user_followed);
+                                 });
+                     }
+
+                 });
+
+                $("#popup_fans .close").click(function(e) { 
+                         $("#popup_fans").fadeOut(); 
+                         $("body .overlay").remove();
+                }); 
+                
+                
+                $(".following").click(function(e) 
+                 { 
+                     var overlay = $('<div class="overlay"></div>');
+                     $("body").append(overlay);
+
+                     $("#popup_following").fadeIn(); 
+                     $("#popup_following .inner_popup").focus();
+                     //$("#popup_login input[name=username_email]").focus();
+
+                     //alert(template_generator.user_followed);
+
+                     // get user fans - only the first time user presses fans button
+                     if(typeof template_generator.user_follows === 'undefined')
+                     {
+                         //alert('first_time');
+                         var promise_user_follows = rest_caller.getUserFollows({   "skhr_id":skhr_id,
+                                                                                     "user_related_data":{
+                                                                                                             "user_followed":"user_followed",
+                                                                                                             "user_follows":"user_follows",
+                                                                                                             "user_tutorials":"user_tutorials",
+                                                                                                             "user_views":"user_views",
+                                                                                                             "user_likes":"user_likes",
+                                                                                                             "user_comments":"user_comments"
+                                                                                                         }});
+
+                         promise_user_follows.done(
+                                 function(data)
+                                 {         
+                                    template_generator.user_follows = data.user_follows;   
+                                     //alert(template_generator.user_followed.length);
+                                     
+                                    $('#popup_following h1.caption').text('Following('+template_generator.user_follows.length+')');
+                                    template_generator.addUserListComplex("#following_list", template_generator.user_follows.length); 
+                                    template_generator.displayUserListComlex("#following_list", template_generator.user_follows);
+                                 });
+                     }
+
+                 });
+
+                $("#popup_following .close").click(function(e) { 
+                         $("#popup_following").fadeOut(); 
+                         $("body .overlay").remove();
+                }); 
+                   
+                   
+                   /*
+                // get user following
+                var promise_user_follows = rest_caller.getUserFollows({ "skhr_id":skhr_id,
+                                                                        "user_related_data":{
+                                                                                                "user_followed":"user_followed",
+                                                                                                "user_follows":"user_follows",
+                                                                                                "user_tutorials":"user_tutorials",
+                                                                                                "user_views":"user_views",
+                                                                                                "user_likes":"user_likes",
+                                                                                                "user_comments":"user_comments"
+                                                                                            }});
+
+                promise_user_follows.done(
+                        function(data)
+                        {
+                            template_generator.user_follows = data.user_follows;
+                        });
+                */
+                
+       
+            });
             
-    // get user fans
-    var promise_user_followed = rest_caller.getUserFollowed({"skhr_id":skhr_id});
-
-    promise_user_followed.done(
-            function(data)
-            {         
-                template_generator.user_followed = data.user_followed;
-                $(".statistics3 .fans").val( 'Fans('+template_generator.user_followed.length+')');    
-                
-                template_generator.addUserList("#fans_list", template_generator.user_followed.length); 
-                
-                $.each(template_generator.user_followed, function( index, fan ) {
-                    //alert( index + ": " + value );
-                    var promise_user = rest_caller.getUser({"skhr_id":fan.follower_skhr_id});
-
-                    promise_user.done(
-                            function(data)
-                            {
-                                template_generator.user = data.user;
-                                //template_generator.addGallery("#user_tutorials_gallery", length);
-                                //template_generator.displayUser("#user_info", template_generator.user);                
-                            });
-                });
-            });
-         
-    // get user tutorials
-    var promise_tutorials = rest_caller.getUserTutorials({"author_skhr_id":skhr_id});
-
-    promise_tutorials.done(
-            function(data)
-            {
-                template_generator.user_tutorials = data.tutorials;
-                
-                $('.user_tutorials').text(template_generator.user_tutorials.length);
-                
-                var total_likes = 0;
-                var total_views = 0;
-                
-                $.each(template_generator.user_tutorials, function( index, tutorial ) {
-                    //alert( index + ": likes" + tutorial.likes.likes_skhr );
-                    total_likes += parseInt(tutorial.likes.likes_skhr);
-                    total_views += parseInt(tutorial.views.views_skhr); 
-                });
-                
-                $('.user_likes').text(total_likes);
-                $('.user_views').text(total_views);
-                
-            });
     
+         
+    // ---------------------USER ACHIEVEMENTS-----------------------------------
     // get user achievements gallery and scroll it 
     
     var slider_timer;
@@ -224,25 +291,8 @@ $(function(){
     });
 
   
-//------------------------------pop ups-----------------------------------------
 
-// fans popup
-
-       $(".fans").click(function(e) 
-        { 
-            var overlay = $('<div class="overlay"></div>');
-            $("body").append(overlay);
-
-            $("#popup_fans").fadeIn(); 
-            $("#popup_fans .inner_popup").focus();
-            //$("#popup_login input[name=username_email]").focus();
-
-        });
-
-        $("#popup_fans .close").click(function(e) { 
-                $("#popup_fans").fadeOut(); 
-                $("body .overlay").remove();
-       }); 
+//==============================================================================
     
 });  
    
