@@ -121,7 +121,7 @@ $(function(){
        }); 
 
 
-       // loging in
+       // logging in
 
 
        $(".button_login").click(function(e) 
@@ -134,21 +134,40 @@ $(function(){
             // if username
             if (account.reg_username.test(username_email) )
             {
-                alert(username_email+' = username');
+                //alert(username_email+' = username');
+                var promise_login = rest_caller.loginNativeUserEmail({"email":username_email, "password":password});
+
+                    promise_login.done(
+                        function(data)
+                        {
+                            //alert(JSON.stringify(data));
+                        });
+                        
+                    promise_login.fail(
+                        function(data)
+                        {
+                            //alert(JSON.stringify(data));
+                        });
             }
             else
             {   
                 // if email
                 if( account.reg_email.test(username_email) )
                 {
-                    alert(username_email+' = email');
+                    //alert(username_email+' = email');
 
-                    var promise_login = rest_caller.loginNativeUserEmail(username_email, password);
+                    var promise_login = rest_caller.loginNativeUserEmail({"email":username_email, "password":password});
 
                     promise_login.done(
                         function(data)
                         {
-                            alert(JSON.stringify(data));
+                            //alert(JSON.stringify(data));
+                        });
+                        
+                    promise_login.fail(
+                        function(data)
+                        {
+                            //alert(JSON.stringify(data));
                         });
                 }
                 else

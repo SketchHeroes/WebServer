@@ -115,6 +115,14 @@ RestCaller.prototype.ajax = function()
         alert("window.XHR");
     */
     //e.preventDefault();
+    
+    //alert(this.verb);
+    var request_data;
+    if(this.verb === 'GET')
+        request_data = this.request_params;
+    else
+        request_data = JSON.stringify(this.request_params);
+    
     return $.ajax({
         //async:false,
         cache: this.cache,
@@ -124,8 +132,8 @@ RestCaller.prototype.ajax = function()
         contentType: this.content_data_type,
         headers: this.custom_headers,
         crossDomain:this.cross_domain, 
-        data: this.request_params,
-        
+        data: request_data,
+        //xhrFields: {withCredentials: true},
         complete: this.complete_handler,
         success: this.success_handler,
         error: this.error_handler,
@@ -277,6 +285,8 @@ RestCaller.prototype.loginNativeUserEmail = function(params)
     this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
     this.setCustomHeader("X-App-Token",this.app_token);
     this.setCustomHeader("Accept","application/json"); 
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
     
     this.clearRequestParams();
     this.setRequestParam("email",params['email']);
@@ -1017,8 +1027,8 @@ function Account()
        
     
     this.reg_email       = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/;
-    this.reg_username    = /^[A-Za-z0-9_.-]{2,6}$/;
-    this.reg_password    = /^[A-Za-z0-9]{2,6}$/;
+    this.reg_username    = /^[A-Za-z0-9_.-]{2,12}$/;
+    this.reg_password    = /^[A-Za-z0-9]{2,12}$/;
     
 }   
 
