@@ -8,7 +8,7 @@ $(function(){
     //alert('You are in ' + (document.compatMode==='CSS1Compat'?'Standards':'Quirks') + ' mode.')
     // difining global variables
     
-    $("footer").load("footer.html", function() {
+    $("footer.main").load("footer.html", function() {
         //alert( "Load was performed." );
 
     });

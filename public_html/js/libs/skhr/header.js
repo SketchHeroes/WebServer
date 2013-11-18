@@ -8,7 +8,7 @@ $(function(){
     //alert('You are in ' + (document.compatMode==='CSS1Compat'?'Standards':'Quirks') + ' mode.')
     // difining global variables
     
-    $("header").load("header.html", function() {
+    $("header.main").load("header.html", function() {
         //alert( "Load was performed." );
 
         var rest_caller          = new RestCaller();
