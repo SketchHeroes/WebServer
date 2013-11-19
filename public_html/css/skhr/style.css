@@ -6,6 +6,11 @@
         Purpose of the stylesheet follows.
 */
 
+header, section, footer, aside, nav, article, figure
+{ 
+    display: block; 
+}
+
 root { 
     display: block;
 }
