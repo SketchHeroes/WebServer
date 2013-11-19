@@ -30,7 +30,7 @@ a:active {text-decoration:none; color:#000000}
     background: #F2F2F2;
 }
 
-header 
+header.main
 {
     position:relative;
     background: #96C2CC; 
@@ -1858,9 +1858,9 @@ ul.achievements_gallery li img{
     /*height: 594px;*/
 }
 
-/* BANNER SIDE PANNEL */
+/* USER TUTORIALS BANNER SIDE PANNEL */
 
-#banner_side_panel{
+.user_tutorials_section #banner_side_panel{
     margin: 0px 0px 0px 730px; 
     height: 1050px;  
     width:270px;
@@ -1868,3 +1868,58 @@ ul.achievements_gallery li img{
 }
 
 
+/* PLAYER SECTION */
+
+.player_section 
+{
+    
+}
+
+.player_section header
+{
+    height:200px;
+    width:100%;
+    border: 1px crimson dotted;
+}
+
+.player_section .main_content
+{
+    width:100%;
+    margin: 0px 0px 0px 0px; 
+    border: 1px white solid;
+}
+
+.player_section .main_content .player
+{
+    display:inline-block;
+    float:left;
+    width:625px;
+    margin: 0px 0px 0px 0px; 
+    border: 1px black solid;
+    overflow-x: hidden;
+}
+
+.player_section .main_content .player object
+{
+    height:452px; 
+    width:675px;
+    border: 1px crimson solid;
+    margin: 0px 0px 0px 15px; 
+}
+
+.player_section .main_content #banner_side_panel
+{
+    margin: 0px 0px 0px 675px; 
+    height: 452px;  
+    width:300px;
+    background: #FFFFFF;
+    border: 1px crimson dotted;
+}
+
+.player_section footer
+{
+    clear:both;
+    height:100px;
+    width:100%;
+    border: 1px crimson dotted;
+}
