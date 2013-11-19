@@ -779,7 +779,34 @@ TemplateGenerator.prototype.addNotificationList = function(target)
     
     $(target).append(list);
     
-}; 
+};
+
+TemplateGenerator.prototype.displayTutorial = function(target,tutorial)
+{
+    var video_id = tutorial.content_id;	
+    var load_url = tutorial.tutorial_path;	
+    var flash ="SHPlayer139.swf"; 
+
+    var flashvars = {
+        artwork_id:video_id,
+        load_url:load_url
+
+            };
+    var params = {
+            menu: "false",
+            allowFullscreen: "true",
+            allowScriptAccess: "always",
+            autoplay: "true",
+            wmode:"transparent",
+            bgcolor: "#FFFFFF"
+    };
+    var attributes = {
+                  id:"flash_video_player",
+                  name:"flash_video_player"
+          };
+
+    swfobject.embedSWF(flash, 'altContent', "675", "452", "10.0.0", "expressInstall.swf", flashvars, params, attributes);
+};
 
 TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
 {
