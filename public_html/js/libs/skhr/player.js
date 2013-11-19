@@ -11,8 +11,6 @@ $(function(){
     var rest_caller          = new RestCaller();
     var template_generator   = new TemplateGenerator();
     
-    var content_id = 22;
-    
     // getting INITIAL data from the server
     
     //var video_id = "24";	
@@ -23,6 +21,8 @@ $(function(){
     
     
 // -----------------------TUTORIAL DATA-----------------------------------------
+    
+    var content_id = 22;
 
     var promise_tutorial = rest_caller.getTutorial({"content_id":content_id});
     
@@ -30,7 +30,7 @@ $(function(){
             function(data)
             {
                 template_generator.user_tutorial = data.tutorial; 
-                template_generator.displayTutorial('altContent',template_generator.user_tutorial);
+                template_generator.displayTutorial('.player_section',template_generator.user_tutorial);
             }); 
    
 //------------------------USER TUTORIAL-----------------------------------------

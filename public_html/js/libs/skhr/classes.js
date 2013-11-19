@@ -781,8 +781,14 @@ TemplateGenerator.prototype.addNotificationList = function(target)
     
 };
 
+
 TemplateGenerator.prototype.displayTutorial = function(target,tutorial)
 {
+    //alert($(target).attr('id'));
+    
+    $(target).find(".tutorial_title").text(tutorial.title);
+    $(target).find(".tutorial_description").text(tutorial.description);
+    
     var video_id = tutorial.content_id;	
     var load_url = tutorial.tutorial_path;	
     var flash ="SHPlayer139.swf"; 
@@ -806,6 +812,8 @@ TemplateGenerator.prototype.displayTutorial = function(target,tutorial)
           };
 
     swfobject.embedSWF(flash, 'altContent', "675", "452", "10.0.0", "expressInstall.swf", flashvars, params, attributes);
+    
+    //$('')
 };
 
 TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)

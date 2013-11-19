@@ -1882,6 +1882,33 @@ ul.achievements_gallery li img{
     border: 1px crimson dotted;
 }
 
+
+.player_section header .tutorial_title
+{
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    
+    height:50px;
+    width:100%;
+
+    font-size: 30px;
+    
+    margin: 25px 0px 0px 0px;
+    padding: 5px 20px 5px 20px;
+    border: 1px crimson dotted;
+}
+
+.player_section header .tutorial_description
+{
+    height:100px;
+    width:100%;
+    
+    margin: 0px 0px 0px 0px;
+    padding: 20px 20px 20px 20px;
+    border: 1px crimson dotted;
+}
+
 .player_section .main_content
 {
     width:100%;
