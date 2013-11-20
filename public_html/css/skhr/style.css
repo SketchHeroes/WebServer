@@ -652,6 +652,10 @@ nav#secondary_menu{
 
 /* GALLERY */
 
+.gallery{
+    
+}
+
 .gallery li {      
     width: 222px;
     min-height: 248px;
@@ -700,7 +704,6 @@ div.author_name{
     text-decoration: none;
 }
 
-.gallery img, 
 .gallery div{
     float: left;
     /*
@@ -735,7 +738,7 @@ div.comments{
     overflow:hidden; 
     text-overflow:ellipsis;
     
-    margin: 0px 0px 0px 0px;
+    margin: 5px 0px 0px 0px;
     height:20px;
     width:40px;
     
@@ -757,28 +760,69 @@ img.likes_image,
 img.views_image{ 
     float:left;
     margin: 5px 0px 0px 3px;
-    height:25px;
-    width:25px;
+    height:20px;
+    width:20px;
 }
 
 img.comments_image{ 
     float:left;
     margin: 5px 0px 0px 3px;
-    height:25px;
+    height:20px;
     width:30px;
 }
 
-div.author_avatar{
+.avatar{
+    background-size: 70%, 70%;  
+    background-repeat: no-repeat;
+    background-position: center center; 
+}
+
+.gallery_less .avatar{
     clear:left;
     height:30px;
     width:30px;
+    
+    margin: 3px 0px 3px 0px; 
 }
-img.author_avatar{
-    float:left;
-    margin: 0px 0px 0px 0px; 
-    padding: 3px 3px 3px 3px;
+
+.gallery_less .avatar img.pic
+{
+    width:20px;
+    height:20px;
+    padding: 0px 0px 0px 0px;
+}
+
+.gallery_less .avatar img.frame
+{
+    width:30px;
+    height:30px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+.gallery .avatar{
+    clear:left;
     height:30px;
     width:30px;
+    
+    margin: 3px 0px 3px 0px; 
+    
+    /*border: 1px red solid;*/
+}
+
+.gallery .avatar img.pic
+{
+    width:20px;
+    height:20px;
+    padding: 0px 0px 0px 0px;
+}
+
+.gallery .avatar img.frame
+{
+    width:30px;
+    height:30px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
 }
 
 .gallery img.follow_button{ 
@@ -1075,7 +1119,7 @@ img.author_avatar{
     margin: 10px 0px 0px 0px;
     
     height: 80px;
-    width: 80px;
+    width: 80px; 
 }
 .users_list_complex .avatar img.pic{
 
@@ -1089,8 +1133,6 @@ img.author_avatar{
     width:80px;
     height:80px;
     padding: 0px 0px 0px 0px;
-    position:absolute;
-    z-index: 2;
 }
 
 .users_list_complex .user_info{
@@ -1464,8 +1506,14 @@ section#user_info{
     width:150px;
     height:150px;
     padding: 0px 0px 0px 0px;
+}
+
+img.frame
+{
+    /*
     position:absolute;
-    z-index: 2;
+    z-index: 0;
+    */
 }
 
 #user_info .statistics
