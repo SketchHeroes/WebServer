@@ -788,7 +788,24 @@ TemplateGenerator.prototype.displayTutorial = function(target,tutorial)
     //alert($(target).attr('id'));
     
     $(target).find(".tutorial_title").text(tutorial.title);
-    $(target).find(".tutorial_description").text(tutorial.description);
+    $(target).find(".tutorial_description").text(tutorial.description); 
+    $(target).find('.tutorial_info .avatar').css("background-image", "url("+tutorial.author.avatar_path+")"); 
+    $(target).find('.tutorial_info .author_name').text(tutorial.author.username);  
+    
+    $(target).find(".tutorial_info .stat .tutorial_comments").text(tutorial.tutorials_skhr);
+    $(target).find(".tutorial_info .stat .tutorial_likes").text(tutorial.likes.likes_skhr);
+    $(target).find(".tutorial_info .stat .tutorial_views").text(tutorial.views.views_skhr);
+    //$(target).find('.tutorial_info div.likes').text(tutorial.likes.likes_skhr);
+    //$(target).find('.tutorial_info div.views').text(tutorial.views.views_skhr);
+    //$(target).find('.tutorial_info div.comments').text(tutorial.comments.comments_skhr);
+    
+    //alert($(target).find('.tutorial_info .created_since abbr').attr('title'));
+    //alert(tutorial.created_at);
+    $(target).find('.tutorial_info .created_since abbr').attr('title',tutorial.created_at);
+
+    $("abbr.timeago").timeago();
+    
+    
     
     var video_id = tutorial.content_id;	
     var load_url = tutorial.tutorial_path;	

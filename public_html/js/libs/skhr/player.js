@@ -16,8 +16,6 @@ $(function(){
     //var video_id = "24";	
     //var load_url = 'http://www.sketchheroes.com/video/get?artwork_id=24';
     
-
-    
     
     
 // -----------------------TUTORIAL DATA-----------------------------------------

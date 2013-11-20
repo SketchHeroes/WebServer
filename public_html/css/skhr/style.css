@@ -686,9 +686,6 @@ div.author_name{
     text-overflow:ellipsis;
     
     margin: 5px 0px 0px 0px;
-    
-    height:20px;
-    width:100px;
 }
 
 
@@ -772,9 +769,15 @@ img.comments_image{
 }
 
 .avatar{
-    background-size: 70%, 70%;  
+    background-size: 68%, 68%;  
     background-repeat: no-repeat;
     background-position: center center; 
+}
+
+.avatar img.frame
+{
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
 }
 
 .gallery_less .avatar{
@@ -1427,6 +1430,10 @@ img.comments_image{
 
 /* FOOTER */
 
+footer.main{
+    clear:both;
+}
+
 footer #info{
     
     width: 1024px;
@@ -1892,7 +1899,8 @@ ul.achievements_gallery li img{
 
 .player_section 
 {
-    
+    float:left;
+    width:690px;
 }
 
 .player_section header
@@ -1954,10 +1962,10 @@ ul.achievements_gallery li img{
     margin: 0px 0px 0px 15px; 
 }
 
-.player_section .main_content #banner_side_panel
+#other_user_tutorials
 {
-    margin: 0px 0px 0px 675px; 
-    height: 452px;  
+    margin: 0px 0px 0px 700px; 
+    height: 1000px;  
     width:300px;
     background: #FFFFFF;
     border: 1px crimson dotted;
@@ -1966,16 +1974,95 @@ ul.achievements_gallery li img{
 .player_section footer
 {
     clear:both;
-    height:100px;
+    /*height:100px;*/
     width:100%;
     border: 1px black solid;
 }
 
-.player_section footer .info
+.player_section footer .tutorial_info
 {
     /*width:824px;*/
     margin: 10px 10px 10px 10px;
     padding: 0px 0px 0px 0px;
     border: 1px blue solid;
-    /*background: red;*/
+}
+/*
+.tutorial_info div
+{
+    float:left;
+}
+*/
+
+.tutorial_info .avatar
+{
+    float:left;
+    height:50px;
+    width:50px;
+    margin: 3px 0px 3px 0px; 
+}
+
+.tutorial_info .avatar img.frame
+{
+    width:50px;
+    height:50px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+.tutorial_info .author_name
+{
+    float:left;
+    width:150px;
+    height:20px;
+    margin: 20px 0px 0px 5px; 
+    border: 1px black solid;
+}
+
+.tutorial_info .stat
+{
+    float:left;
+    display: inline-block;
+    border: 1px #00FF00 dotted;  
+    margin: 15px 0px 0px 20px;
+    text-align: center;
+}
+
+.tutorial_info  .stat img
+{
+    height:40px;
+    width:40px;  
+    border: 1px #0000FF dotted;
+}
+
+
+.tutorial_info  .stat div
+{
+    height:20px;
+    width:40px;  
+    margin: 0px 0px 0px 0px;
+    border: 1px #FF0000 dotted;
+}
+
+.tutorial_info .created_since{
+ 
+    float:left;   
+    margin: 20px 10px 0px 10px; 
+    border: 1px black solid;
+    width: 100px;
+}
+
+.tutorial_info .like_it{
+    
+    float:left;
+    margin: 20px 0px 0px 10px; 
+    border: 1px black solid;
+}
+
+
+.player_section footer .social
+{
+    /*width:824px;*/
+    margin: 10px 10px 10px 10px;
+    padding: 0px 0px 0px 0px;
+    border: 1px blue solid;
 }
