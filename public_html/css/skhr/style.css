@@ -674,12 +674,21 @@ nav#secondary_menu{
     margin: 20px 5px 0px 5px;
 }
 
-.gallery div.author_name{ 
+div.author_name{ 
     float: left;
     
     white-space:nowrap; 
     overflow:hidden;
     text-overflow:ellipsis;
+    
+    margin: 5px 0px 0px 0px;
+    
+    height:20px;
+    width:100px;
+}
+
+
+.gallery div.author_name{ 
     
     margin: 5px 0px 0px 0px;
     
@@ -716,9 +725,11 @@ nav#secondary_menu{
     width:212px;
 }
 
-.gallery div.likes,
-.gallery div.views,
-.gallery div.comments{ 
+div.likes,
+div.views,
+div.comments{ 
+    
+    float:left;
     
     white-space:nowrap; 
     overflow:hidden; 
@@ -727,27 +738,42 @@ nav#secondary_menu{
     margin: 0px 0px 0px 0px;
     height:20px;
     width:40px;
+    
+    text-align: center;
+    vertical-align: bottom;
+    
+    border: 1px red dotted;
 }
 
-.gallery img.likes_image,
-.gallery img.views_image{ 
+img.follow_button{ 
+    margin: 5px 0px 0px 0px;
+    height:30px;
+    width:70px;
+    float: right;
+    cursor: pointer;
+}
+
+img.likes_image,
+img.views_image{ 
+    float:left;
     margin: 5px 0px 0px 3px;
     height:25px;
     width:25px;
 }
 
-.gallery img.comments_image{ 
+img.comments_image{ 
+    float:left;
     margin: 5px 0px 0px 3px;
     height:25px;
     width:30px;
 }
 
-.gallery div.author_avatar{
+div.author_avatar{
     clear:left;
     height:30px;
     width:30px;
 }
-.gallery img.author_avatar{
+img.author_avatar{
     float:left;
     margin: 0px 0px 0px 0px; 
     padding: 3px 3px 3px 3px;
@@ -896,11 +922,6 @@ nav#secondary_menu{
 }
 
 .simple_gallery div.author_name {
-    float: left;
-    
-    white-space:nowrap; 
-    overflow:hidden; 
-    text-overflow:ellipsis;
     
     height:15px;
     width:128px;
@@ -1028,11 +1049,7 @@ nav#secondary_menu{
 }
 
 .users_list img.follow_button{ 
-    float: right;
     margin: 20px 0px 0px 0px;
-    height:30px;
-    width:70px;
-    cursor: pointer;
 }
 /*  USER LIST COMPLEX*/
 
@@ -1160,16 +1177,6 @@ nav#secondary_menu{
     height:20px;
 
 }
-/*
-.users_list_complex img.follow_button{ 
-    float: right;
-    
-    margin: 20px 0px 0px 0px;
-    height:30px;
-    width:70px;
-    cursor: pointer;
-}
-*/
 
 .users_list_complex input[type=button]
 {
@@ -1316,11 +1323,7 @@ nav#secondary_menu{
 }
 
 .gallery_less div.author_name{ 
-    float: left;
-    
-    white-space:nowrap; 
-    overflow:hidden;
-    text-overflow:ellipsis;
+
     
     margin: 5px 0px 0px 0px;
     
@@ -1362,45 +1365,9 @@ nav#secondary_menu{
     display: block;
 }
 
-.gallery_less div.likes,
-.gallery_less div.views,
-.gallery_less div.comments{ 
-    
-    white-space:nowrap; 
-    overflow:hidden; 
-    text-overflow:ellipsis;
-    
-    margin: 0px 0px 0px 0px;
-    height:20px;
-    width:40px;
-}
-
-.gallery_less img.likes_image,
-.gallery_less img.views_image{ 
-    margin: 0px 0px 0px 0px;
-    height:25px;
-    width:25px;
-}
-
-.gallery_less img.comments_image{ 
-    margin: 0px 0px 0px 0px;
-    height:25px;
-    width:30px;
-}
-.gallery_less img.author_avatar{
-    float:left;
-    margin: 5px 0px 0px 0px; 
-    padding: 3px 3px 3px 3px;
-    height:30px;
-    width:30px;
-}
 
 .gallery_less img.follow_button{ 
     margin: 5px 0px 0px 0px;
-    height:30px;
-    width:70px;
-    float: right;
-    cursor: pointer;
 }
 
 .gallery_less .info_panel { 
@@ -1839,14 +1806,14 @@ ul.achievements_gallery li img{
 }
 
 
-#user_tutorials_gallery .period_panel
+#user_tutorials .period_panel
 {
     float:left; 
     margin: 40px 0px 10px 170px;
     /*border:1px solid red;*/
 }
 
-#user_tutorials_gallery .period_panel .period
+#user_tutorials .period_panel .period
 {
     float:left;
     /*background: red;
@@ -1953,5 +1920,14 @@ ul.achievements_gallery li img{
     clear:both;
     height:100px;
     width:100%;
-    border: 1px crimson dotted;
+    border: 1px black solid;
+}
+
+.player_section footer .info
+{
+    /*width:824px;*/
+    margin: 10px 10px 10px 10px;
+    padding: 0px 0px 0px 0px;
+    border: 1px blue solid;
+    /*background: red;*/
 }

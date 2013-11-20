@@ -218,7 +218,7 @@ $(function(){
 //------------------------USER TUTORIAL-----------------------------------------
 
     var promise_user_tutorials;
-    var tutorial_filter = $( "#user_tutorials_gallery .active" ).attr('id');
+    var tutorial_filter = $( "#user_tutorials .active" ).attr('id');
     
     //alert(tutorial_filter);
 
@@ -249,18 +249,18 @@ $(function(){
     
     // user tutorials period buttons
 
-    $( "#user_tutorials_gallery .period" ).click(function(event) {
+    $( "#user_tutorials .period" ).click(function(event) {
         
-        $("#user_tutorials_gallery .gallery").fadeOut();
+        $("#user_tutorials .gallery").fadeOut();
         //alert("clicked");
         //alert(event.target.id);
-        $( "#user_tutorials_gallery #most_recent" ).attr("src","images/most_recent_unselected.png").removeClass("active");
-        $( "#user_tutorials_gallery #top_rated" ).attr("src","images/top_rated_unselected.png").removeClass("active");
-        $( "#user_tutorials_gallery #most_viewed" ).attr("src","images/most_viewed_unselected.png").removeClass("active");
-        $( "#user_tutorials_gallery #"+event.target.id ).attr("src","images/"+event.target.id+"_selected.png").addClass("active");
+        $( "#user_tutorials #most_recent" ).attr("src","images/most_recent_unselected.png").removeClass("active");
+        $( "#user_tutorials #top_rated" ).attr("src","images/top_rated_unselected.png").removeClass("active");
+        $( "#user_tutorials #most_viewed" ).attr("src","images/most_viewed_unselected.png").removeClass("active");
+        $( "#user_tutorials #"+event.target.id ).attr("src","images/"+event.target.id+"_selected.png").addClass("active");
         //alert( "id = "+$(this).id );
         
-        var tutorial_filter = $( "#user_tutorials_gallery .active" ).attr('id');
+        var tutorial_filter = $( "#user_tutorials .active" ).attr('id');
     
         //alert(tutorial_filter);
 
