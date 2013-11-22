@@ -1,4 +1,14 @@
 
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=390754447617631";
+                    fjs.parentNode.insertBefore(js, fjs);
+                  }(document, 'script', 'facebook-jssdk'));
+                </script>
+                
                 <div class="logo">
                     <a href="/">
                         <img src="images/logo.png" alt="logo" />
@@ -103,12 +113,7 @@
                                         <p><input name="" type="text" placeholder="Email" /></p>
                                         <p><input name="" type="password" placeholder="Password" /></p>
                                         <p><input name="" type="password" placeholder="Confirm password" /></p>
-                                        <!--
-                                        <p><input name="" type="text" placeholder="Username"  required autofocus pattern="[A-Za-z0-9_.]{3,45}" title="From 3 to 45 characters long. Letters, digits, dot and undercore"/></p>
-                                        <p><input name="" type="text" placeholder="Email" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" title="A valid email"/></p>
-                                        <p><input name="" type="password" placeholder="Password" required pattern="[A-Za-z0-9]{6,12}" /></p>
-                                        <p><input name="" type="password" placeholder="Confirm password" required pattern="[A-Za-z0-9]{6,12}" /></p>
-                                        -->
+                                        
                                         <p class="agree_caption">
                                             <input name="" type="checkbox" />
                                                 By clicking Sign, up you agree to our <a>Terms</a> 
@@ -123,22 +128,21 @@
                                  
                              </li> 
                              <li>
-                                 <a href="http://www.sketchheroes.com/Account/register" id='like'>
                                      &#9658;
                                      
-                                    <iframe class="facebook_iframe" src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;width&amp;layout=button&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80&amp;appId=390754447617631" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:80px;" allowTransparency="true"></iframe>
+                                    <!--<iframe class="facebook_iframe" src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.sketchheroes.com%2F&amp;width&amp;layout=button&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80&amp;appId=390754447617631" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:80px;" allowTransparency="true"></iframe>-->
+                                    <div class="fb-like" data-href="https://www.facebook.com/SketchHeroes" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
                                  
-                                 </a>
                              </li> 
                          </ul>
                      </div>
-                    
+                    <!--
                     <div class="fb_logo">
                         <a href="/">
                             <img src="images/fb_logo.png" alt="logo" />
                         </a>
                     </div>
-                    
+                    -->
                      <div class="status"> 
                          <form method="post" action="/how_to_draw/search">
                              <input type="text" name="search" value="" placeholder="SEARCH" required> 
