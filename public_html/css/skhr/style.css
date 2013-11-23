@@ -11,6 +11,20 @@ header, section, footer, aside, nav, article, figure
     display: block; 
 }
 
+.error_msg
+{
+    font-size:15px;
+    color: #FF0000;
+    height: 20px;
+    margin: 5px 30px 5px 30px; 
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    
+    border: 1px red dotted;
+}
+
 root { 
     display: block;
 }
@@ -206,12 +220,12 @@ header.main
 #popup_login
 {
     width: 490px;
-    height: 580px;
+    height: 530px;
 	
     padding: 0px 0px 0px 0px;
     background: #C3C3C3;
 
-    top: 50px;
+    top: 30px;
     left:50%;
 
     border: 3px solid #000000;
@@ -223,12 +237,12 @@ header.main
 #popup_register
 {
     width: 490px;
-    height: 720px;
+    height: 670px;
 	
     padding: 0px 0px 0px 0px;
     background: #C3C3C3;
         
-    top: 50px;
+    top: 30px;
     left:50%;
 
     border: 3px solid #000000;
@@ -264,7 +278,7 @@ header.main
 .popup h1 {
     color: #FFFFFF;
     font: 50px/1 'Bowlby One SC',Arial,cursive;
-    margin: 0px 0px 30px 0px; 
+    margin: 0px 0px 0px 0px; 
     text-align: center;
     text-shadow: 3px 3px 5px #000000;
     text-transform: uppercase;
@@ -281,11 +295,11 @@ header.main
     height: 55px;
     width: 400px;
     
-    margin: 0px 0px 15px 30px; 
+    margin: 10px 0px 0px 30px; 
 }
 
 .popup form input[type="radio"]{
-    margin: 0px 0px 15px 30px; 
+    margin: 10px 0px 0px 30px; 
 }
 
 
@@ -294,8 +308,8 @@ header.main
     border-radius: 15px 15px 15px 15px;
     color: #FFB400;
     display: block;
-    font-size: 45px;
-    height: 75px;
+    font-size: 40px;
+    height: 60px;
     width: 400px;
     
     margin: 0px 0px 0px 30px;
@@ -317,7 +331,7 @@ header.main
 .popup .agree_caption{
     margin: 20px 0px 20px 30px;
     color: #FFFFFF;
-    font-size: 20px;
+    font-size: 10px;
 }
 
 .popup .button_facebook{
@@ -325,8 +339,8 @@ header.main
     border-radius: 15px 15px 15px 15px;
     color: #FFFFFF;
     display: block;
-    font-size: 45px;
-    height: 75px;
+    font-size: 40px;
+    height: 60px;
     width: 400px;
     
     margin: 0px 0px 0px 30px;

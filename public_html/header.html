@@ -85,17 +85,19 @@
                                     <form>
                                         <a href="#" class="close">X</a>
                                         <h1>Login</h1>
-                                        <p><input name="username_email" type="text" placeholder="Username / Email" /></p> 
-                                        <p><input name="password" type="password"  placeholder="Password" /></p>
+                                        <p><input name="username_email" type="text" placeholder="Username / Email" required /></p> 
+                                        <p><input name="password" type="password"  placeholder="Password" required /></p>
                                         <!--
                                         <p><input name="username_email" type="text" placeholder="Username / Email" required autofocus pattern="[A-Za-z0-9_.]{3,256}" /></p> 
                                         <p><input name="password" type="password"  placeholder="Password" required pattern="[A-Za-z0-9]{6,12}" /></p>
                                         -->
                                         <p><input name="pass_options" type="radio"/>Remember my password</p>
                                         <p><input name="pass_options" type="radio" checked="checked"  />Keep me logged in</p>
+                                        <p class="error_msg" id="native_error"></p>
                                         <p><input name="" class="button_login" type="button" value="Log In" /></p>
                                         <p class="forgot_pass"><a href='#'>Forgotten your password?</a></p>
                                         <p class="facebook_caption">Or log in using Facebook:</p>
+                                        <p class="error_msg" id="facebook_error"></p>
                                         <p><input name="" class="button_facebook" type="button" value="Facebook" /></p>
                                     </form>
                                  </div>
@@ -109,19 +111,21 @@
                                     <form>
                                         <a href="#" class="close">X</a>
                                         <h1>Sign up</h1>
-                                        <p><input name="" type="text" placeholder="Username" /></p>
-                                        <p><input name="" type="text" placeholder="Email" /></p>
-                                        <p><input name="" type="password" placeholder="Password" /></p>
-                                        <p><input name="" type="password" placeholder="Confirm password" /></p>
+                                        <p><input name="username" type="text" placeholder="Username" required /></p>
+                                        <p><input name="email" type="text" placeholder="Email" required /></p>
+                                        <p><input name="password1" type="password" placeholder="Password" required /></p>
+                                        <p><input name="password2" type="password" placeholder="Confirm password" required /></p>
                                         
                                         <p class="agree_caption">
-                                            <input name="" type="checkbox" />
-                                                By clicking Sign, up you agree to our <a>Terms</a> 
+                                            <input name="terms_agree" id="terms_agree" type="checkbox" required />
+                                                By clicking Sign up you agree to our <a>Terms</a> 
                                                 and that you have read and understand our Data Use Policy,
                                                 including our cookie use.
                                         </p>
+                                        <p class="error_msg" id="native_error"></p>
                                         <p><input name="" class="button_register" type="button" value="Sign up" /></p>
                                         <p class="facebook_caption">Or log in using Facebook:</p>
+                                        <p class="error_msg" id="facebook_error"></p>
                                         <p><input name="" class="button_facebook" type="button" value="Facebook" /></p>
                                     </form>
                                  </div>

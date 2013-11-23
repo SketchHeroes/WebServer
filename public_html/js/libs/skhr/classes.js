@@ -123,6 +123,9 @@ RestCaller.prototype.ajax = function()
     else
         request_data = JSON.stringify(this.request_params);
     
+    //alert(JSON.stringify(this.request_params));
+    //alert(request_data);
+    
     return $.ajax({
         //async:false,
         cache: this.cache,
@@ -314,6 +317,47 @@ RestCaller.prototype.loginNativeUserEmail = function(params)
     
     this.clearRequestParams();
     this.setRequestParam("email",params['email']);
+    this.setRequestParam("password",params['password']);
+    
+    return this.ajax();
+};
+
+RestCaller.prototype.loginNativeRegister = function(params)
+{
+    this.setResource("/user/register");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json"); 
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("username",params['username']);
+    this.setRequestParam("email",params['email']);
+    this.setRequestParam("password",params['password']);
+    
+    return this.ajax();
+};
+
+RestCaller.prototype.loginNativeUserUsername = function(params)
+{
+    this.setResource("/user/login_username");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json"); 
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("username",params['username']);
     this.setRequestParam("password",params['password']);
     
     return this.ajax();
@@ -1115,8 +1159,8 @@ function Account()
        
     
     this.reg_email       = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/;
-    this.reg_username    = /^[A-Za-z0-9_.-]{2,12}$/;
-    this.reg_password    = /^[A-Za-z0-9]{2,12}$/;
+    this.reg_username    = /^[A-Za-z0-9_.-]{3,50}$/;
+    this.reg_password    = /^[A-Za-z0-9]+$/;
     
 }   
 

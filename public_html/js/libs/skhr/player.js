@@ -32,7 +32,7 @@ $(function(){
             }); 
    
 //------------------------USER TUTORIAL-----------------------------------------
-
+/*
     var promise_user_tutorials;
     var tutorial_filter = $( "#user_tutorials_gallery .active" ).attr('id');
     
@@ -107,7 +107,7 @@ $(function(){
     });
 
   
-
+*/
 //==============================================================================
     
 });  
