@@ -2185,3 +2185,55 @@ ul.achievements_gallery li img{
 #other_user_tutorials #gallery_wrapper #user_tutorials_gallery_aside ul{
     margin: 0px 0px 0px 15px;
 }
+
+/* PAINTER SECTION */
+
+.painter_section 
+{
+    float:left;
+    /*width:690px;*/
+}
+
+.painter_section .main_content
+{
+    width:1024px;
+    height:600px;
+    margin: 0px 0px 0px 0px; 
+    /*border: 1px white solid;*/
+}
+
+.painter_section .main_content .painter
+{
+    display:inline-block;
+    float:left;
+    width:770px;
+    height:600px;
+    margin: 0px 0px 0px 0px; 
+    border: 1px black solid;
+    overflow: hidden;
+}
+
+.painter_section .main_content #side_banner
+{
+    height:600px;
+    margin: 0px 0px 0px 770px; 
+    border: 1px black solid;
+}
+
+.painter_section #bottom_banner
+{
+    clear:both;
+    height:200px;
+    margin: 0px 0px 0px 0px; 
+    border: 1px black solid;
+}
+
+.painter_section .main_content .painter object
+{
+    /*
+    height:452px; 
+    width:675px;
+    */
+    border: 1px crimson solid;
+    margin: 0px 0px 0px 0px; 
+}
