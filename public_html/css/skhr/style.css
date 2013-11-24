@@ -6,6 +6,8 @@
         Purpose of the stylesheet follows.
 */
 
+.fb-comments, .fb-comments span, .fb-comments iframe { width: 100% !important; }
+
 header, section, footer, aside, nav, article, figure
 { 
     display: block; 
@@ -1919,7 +1921,7 @@ ul.achievements_gallery li img{
 
 .player_section header
 {
-    height:200px;
+    height:70px;
     width:100%;
     border: 1px crimson dotted;
 }
@@ -1936,18 +1938,8 @@ ul.achievements_gallery li img{
 
     font-size: 30px;
     
-    margin: 25px 0px 0px 0px;
+    margin: 20px 0px 0px 0px;
     padding: 5px 20px 5px 20px;
-    border: 1px crimson dotted;
-}
-
-.player_section header .tutorial_description
-{
-    height:100px;
-    width:100%;
-    
-    margin: 0px 0px 0px 0px;
-    padding: 20px 20px 20px 20px;
     border: 1px crimson dotted;
 }
 
@@ -1977,15 +1969,6 @@ ul.achievements_gallery li img{
     margin: 0px 0px 0px 15px; 
 }
 
-#other_user_tutorials
-{
-    margin: 0px 0px 0px 700px; 
-    height: 1000px;  
-    width:300px;
-    background: #FFFFFF;
-    border: 1px crimson dotted;
-}
-
 .player_section footer
 {
     clear:both;
@@ -1994,12 +1977,22 @@ ul.achievements_gallery li img{
     border: 1px black solid;
 }
 
+
+.player_section footer #blue_panel
+{
+    /*width:824px;*/
+    margin: 5px 5px 5px 5px;
+    padding: 0px 0px 0px 0px;
+    background: #DEF6FB;
+    border: 1px #71959E solid;
+}
+
 .player_section footer .tutorial_info
 {
     /*width:824px;*/
     margin: 10px 10px 10px 10px;
     padding: 0px 0px 0px 0px;
-    border: 1px blue solid;
+    border-bottom: 1px #71959E solid;
 }
 /*
 .tutorial_info div
@@ -2038,7 +2031,7 @@ ul.achievements_gallery li img{
     float:left;
     display: inline-block;
     border: 1px #00FF00 dotted;  
-    margin: 5px 0px 0px 20px;
+    margin: 0px 0px 0px 20px;
     text-align: center;
 }
 
@@ -2080,6 +2073,16 @@ ul.achievements_gallery li img{
     border: 1px black solid;
 }
 
+.player_section .tutorial_description
+{
+    height:100px;
+    /*width:100%;*/
+    
+    margin: 10px 10px 10px 10px;
+    padding: 20px 20px 20px 20px;
+    border-bottom: 1px #71959E solid;
+}
+
 
 .player_section footer .social
 {
@@ -2087,7 +2090,6 @@ ul.achievements_gallery li img{
     height: 40px;
     margin: 10px 10px 10px 10px;
     padding: 0px 0px 0px 0px;
-    border: 1px blue solid;
 }
 
 .player_section footer .social > div
@@ -2096,4 +2098,72 @@ ul.achievements_gallery li img{
     margin: 5px 30px 0px 30px;
     padding: 0px 0px 0px 0px;
     float: left;
+}
+
+
+.player_section footer .facebook_comments
+{
+    /*width:824px;*/
+    margin: 10px 10px 10px 10px;
+    padding: 0px 0px 0px 0px;
+    border: 1px blue solid;
+}
+
+#other_user_tutorials
+{
+    margin: 0px 0px 0px 720px; 
+    /*height: 1060px;  */
+    width:300px;
+    border: 1px crimson dotted;
+}
+
+#other_user_tutorials #create_pic
+{
+    margin: 20px 25px 40px 25px; 
+    
+    height: 160px;  
+    width: 250px;
+    border: 1px crimson dotted;
+}
+
+#other_user_tutorials #create_pic img
+{
+    height: 160px;  
+    width: 250px;
+}
+
+#other_user_tutorials #gallery_wrapper
+{
+    background: url(../../images/other_user_tutorials_header.png) left top 0 no-repeat;
+    background-size: 100% auto;
+    
+    border: 1px red solid;
+    margin: 0px 0px 0px 0px; 
+}
+
+#other_user_tutorials #gallery_wrapper #border_wrapper
+{
+    margin: 78px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px; 
+    
+    height: 800px;
+    
+    border: 3px #F8BB48 solid;
+    
+    background: #FFFFFF;
+    
+}
+
+#other_user_tutorials #gallery_wrapper #user_tutorials_gallery_aside
+{
+    margin: 20px 0px 20px 0px; 
+    padding: 0px 0px 0px 0px; 
+    
+    height: 750px; 
+    overflow-y: scroll;
+    
+}
+
+#other_user_tutorials #gallery_wrapper #user_tutorials_gallery_aside ul{
+    margin: 0px 0px 0px 30px;
 }
