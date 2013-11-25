@@ -2426,3 +2426,23 @@ ul.achievements_gallery li img{
     /*border: 1px red solid;*/
     color:#506A70;
 }
+
+
+/* COMPETITIONS */
+
+.competitions{
+    
+    width: 1024px;
+    
+    background: #ECECEC url(../../images/competitions-header.png) center 0 no-repeat;
+    background-size:100% auto;
+}
+
+ul.competitions_list{
+    
+    margin: 50px 0px 30px 0px;
+}
+
+ul.competitions_list li{
+    
+}

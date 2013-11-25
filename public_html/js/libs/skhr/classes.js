@@ -279,6 +279,8 @@ RestCaller.prototype.getLatestCompetitions = function(params)
     this.setRequestParam("competition_order_by",{"order_by_submission_start":"DESC"});
     this.setRequestParam("status_constraint",{"operator":"different_then","status":"0"});
     
+    //alert('what');
+    
     return this.ajax();
 };
 
@@ -675,7 +677,7 @@ TemplateGenerator.prototype.addSimpleGallery = function(target, length)
             var place = $('<div class="place"></img>');
             single_record.append(place);
                 /*
-                var place_image = $('<img src="images/place1.png" alt="first place" class="place" id="place1" />');
+                var place_image = $('<img src="images/place1.png" alt="1 place" class="place" id="place1" />');
                 place.append(place_image);
                 */
         
@@ -1156,6 +1158,76 @@ TemplateGenerator.prototype.addCompetition = function(target)
     $(target).append(article);
 
 };           
+  
+TemplateGenerator.prototype.addCompetitions = function(target, size)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+   
+    var list = $('<ul class = "competitions_list"></ul>');
+    
+    for(var i=0; i<size; i++)
+    {
+        var item = $("<li></li");
+        list.append(item);
+        
+            var article = $('<article class="competition_info"></article>');
+            item.append(article);
+
+                var header_caption = $('<div class="header_caption"></div>');  
+                article.append(header_caption);
+
+                var competition_header = $('<img src="images/competition_header.png" alt="competition header" class="header" />'); 
+                article.append(competition_header);
+
+                var thumbnail = $('<div class="thumbnail"></div>');  
+                article.append(thumbnail);
+
+                    var thumbnail_img = $('<img src="" alt="competition thumbnail" />');
+                    thumbnail.append(thumbnail_img);
+
+                var details = $('<div class="details"></div>');  
+                article.append(details);
+
+                    var description = $('<div class="description"></div>');  
+                    details.append(description);
+
+                    var prizes = $('<div class="prizes"></div>');  
+                    details.append(prizes);
+
+                        var place = $('<div class="place"></div>');  
+                        prizes.append(place);
+
+                            var img = $('<img src="images/1st-place.png" alt="1st place" />');  
+                            place.append(img);
+
+                            var caption = $('<div class="caption" id="place1">1st place</div>');  
+                            place.append(caption);
+
+                        place = $('<div class="place"></div>');  
+                        prizes.append(place);
+
+                            var img = $('<img src="images/2nd-place.png" alt="2nd place" />');  
+                            place.append(img);
+
+                            var caption = $('<div class="caption" id="place2">2nd place</div>');  
+                            place.append(caption);
+
+                        place = $('<div class="place"></div>');  
+                        prizes.append(place);
+
+                            var img = $('<img src="images/3rd-place.png" alt="3rd place" />');  
+                            place.append(img);
+
+                            var caption = $('<div class="caption" id="place3">3rd place</div>');  
+                            place.append(caption);
+
+                    var complete_button = $('<input class="compete" type="button" value="COMPETE"/>');  
+                    details.append(complete_button);
+    }
+    
+    $(target).append(list);
+
+};           
 
 
 TemplateGenerator.prototype.displayCompetition = function(target,competition)
@@ -1168,6 +1240,26 @@ TemplateGenerator.prototype.displayCompetition = function(target,competition)
     $(target+" .competition_info .details .description").text(competition.description);     
     
 
+};           
+
+
+TemplateGenerator.prototype.displayCompetitions = function(target,competitions)
+{
+    var i = 0;
+    $(target+' > ul > li').each(
+            function()
+            { 
+                $(this).find(".competition_info .thumbnail img").remove(); 
+                var thumbnail_img = $('<img src="'+competitions[i].logo_path+'" alt="competition thumbnail" class="header" />');
+                $(this).find(".competition_info .thumbnail").append(thumbnail_img);
+
+                $(this).find(".competition_info .header_caption").text(competitions[i].title); 
+                $(this).find(".competition_info .details .description").text(competitions[i].description);     
+                
+                //alert(i);
+                i++;
+            });
+    
 };      
 
 

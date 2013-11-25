@@ -18,21 +18,20 @@ $(function(){
     
     
     
-// -----------------------TUTORIAL DATA-----------------------------------------
+// -----------------------COMPETITIONS------------------------------------------
 
-    var content_id = 22;
-
+    var promise_competitions = rest_caller.getLatestCompetitions({});
+    //alert('You are in ' + (document.compatMode==='CSS1Compat'?'Standards':'Quirks') + ' mode.');
     
-    var promise_latest_competitions = rest_caller.getLatestCompetitions({"start":0,"how_many":1});
-    
-    promise_latest_competitions.done(
+    promise_competitions.done(
             function(data)
             {
-                template_generator.latest_competitions = data.competitions;
-                // template_generator.displayCompetitions('.player_section',template_generator.user_tutorial);   
+                template_generator.competitions = data.competitions;
+                template_generator.addCompetitions(".competitions",template_generator.competitions.length)
+                template_generator.displayCompetitions(".competitions",template_generator.competitions);
                 
-                //------------------------OTHER USER TUTORIALS-----------------------------------------
-            }); 
+
+            });
 
 
 //==============================================================================
