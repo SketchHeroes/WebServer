@@ -876,7 +876,7 @@ img.comments_image{
 #second_section{  
     margin: 40px 0px 0px 0px;      
     background: #ECECEC;
-    height: 570px;
+    height: 600px;
     
 }
 
@@ -894,7 +894,7 @@ img.comments_image{
 {
     float:left;
     margin: 0px 0px 0px 0px; 
-    height: 568px;
+    height: 600px;
     width:600px;
     /*background: #ECECEC;*/
     
@@ -948,7 +948,7 @@ img.comments_image{
 #latest_submissions .simple_gallery{
     
     margin: 40px 0px 0px 20px;  
-    height:140px;
+    /*height:140px;*/
     width:563px;
 }
 
@@ -956,15 +956,31 @@ img.comments_image{
     
     float:left;
     /*border:1px solid purple;*/
-    background: #ffffff;
+    background: #ECECEC;
 }
 
 .simple_gallery li{ 
     
     margin: 0px 0px 0px 0px;  
-    height:140px;
+    height:170px;
     width:140px;
     /*border:1px solid red;*/
+}
+
+.simple_gallery li .place{ 
+    
+    margin: 0px 0px 0px 0px;  
+    height:30px;
+    width:140px;
+    background-color: #ECECEC;
+    /*border:1px solid red;*/
+}
+
+.simple_gallery li .place img{ 
+    
+ 
+    height:30px;
+    width:140px;
 }
 
 .simple_gallery div.thumbnail{ 
@@ -1020,7 +1036,7 @@ img.comments_image{
 {
     float:left;
     /*margin: 0px 0px 0px 650px; */
-    height: 568px;
+    height: 600px;
     width:111px;
     background: #ECECEC url(../../images/slanted_border.png) left top 0 no-repeat;
     background-size: auto 100%;
@@ -1032,7 +1048,7 @@ img.comments_image{
 #top_heroes
 {
     margin: 0px 0px 0px 711px; 
-    height: 568px;    
+    height: 600px;    
     /*background: white;*/
     background: #D8D9D4;
     
@@ -2243,7 +2259,7 @@ ul.achievements_gallery li img{
     width:964px;
     height:272px;
     
-    background: #ECECEC url(../../images/cover_down_frame_big.png) center bottom no-repeat;
+    background: url(../../images/cover_down_frame_big.png) center bottom no-repeat;
     background-size:100% auto;
     
     padding: 0px 0px 0px 0px;
@@ -2315,6 +2331,8 @@ ul.achievements_gallery li img{
     
     white-space:nowrap; 
     overflow:hidden; 
+                
+                
     text-overflow:ellipsis;
 }
 

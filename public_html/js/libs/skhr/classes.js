@@ -672,6 +672,13 @@ TemplateGenerator.prototype.addSimpleGallery = function(target, length)
     {
         var single_record = $('<li></li>');
         
+            var place = $('<div class="place"></img>');
+            single_record.append(place);
+                /*
+                var place_image = $('<img src="images/place1.png" alt="first place" class="place" id="place1" />');
+                place.append(place_image);
+                */
+        
             var tutorial = $('<div class="thumbnail"></img>');
             single_record.append(tutorial);
         
