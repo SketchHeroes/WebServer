@@ -28,8 +28,7 @@ $(function(){
             function(data)
             {
                 template_generator.user_tutorial = data.tutorial; 
-                template_generator.displayPainter('.player_section',template_generator.user_tutorial); 
-                //emplate_generator.displayPainter2('.player_section',template_generator.user_tutorial);   
+                template_generator.displayPainter('.player_section',template_generator.user_tutorial);   
                 
                 //------------------------OTHER USER TUTORIALS-----------------------------------------
 

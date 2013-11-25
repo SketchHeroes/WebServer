@@ -881,32 +881,29 @@ TemplateGenerator.prototype.displayTutorial = function(target,tutorial)
 
 TemplateGenerator.prototype.displayPainter = function(target,tutorial)
 {
-    
-    
-    var video_id = tutorial.content_id;	
-    var load_url = tutorial.tutorial_path;	
+    var video_id = 0;
+    var save_url = "http://www.sketchheroes.com/video/create/user/80742"; 	
     var flash ="painter_img_upload.swf"; 
 
     var flashvars = {
         artwork_id:video_id,
-        load_url:load_url
-
-            };
+        save_url:save_url
+    };
+    
     var params = {
-            menu: "false",
-            allowFullscreen: "true",
-            allowScriptAccess: "always",
-            autoplay: "true",
-            wmode:"transparent",
-            bgcolor: "#FFFFFF"
+        menu: "false",
+        scale: "noScale",
+        allowFullscreen: "true",
+        allowScriptAccess: "always",
+        wmode:"transparent",
+        bgcolor: "#FFFFFF"
     };
     var attributes = {
-                  id:"flash_video_player",
-                  name:"flash_video_player"
-          };
-
-    swfobject.embedSWF(flash, 'altContent', "1024", "900", "10.0.0", "expressInstall.swf", flashvars, params, attributes);
+        id:"flash_video_player",
+        name:"flash_video_player"
+    };
     
+    swfobject.embedSWF(flash, "altContent", "770", "600", "10.0.0", "expressInstall.swf", flashvars, params, attributes);
     //$('')
 };
 
