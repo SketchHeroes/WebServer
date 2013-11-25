@@ -908,7 +908,7 @@ img.comments_image{
     width:480px;
 }
 
-.competition_thumbnail{  
+#latest_competition .competition_thumbnail{  
     float:left;
     margin: 0px 0px 0px 116px;  
     height:260px;
@@ -917,7 +917,7 @@ img.comments_image{
     background: #FFFFFF;
 }
 
-.competition_thumbnail img{  
+#latest_competition .competition_thumbnail img{  
     float:left;
     margin: 10px 10px 10px 10px;  
     height:240px;
@@ -925,7 +925,7 @@ img.comments_image{
     /*border:1px solid #0ff;*/
 }
 
-.competition_caption{  
+#latest_competition .competition_caption{  
     float:left;
     margin: 0px 0px 0px 116px;  
     height:30px;
@@ -2236,4 +2236,135 @@ ul.achievements_gallery li img{
     */
     border: 1px crimson solid;
     margin: 0px 0px 0px 0px; 
+}
+
+/* COMPETITION */
+.competition_info{
+    width:964px;
+    height:272px;
+    
+    background: #ECECEC url(../../images/cover_down_frame_big.png) center bottom no-repeat;
+    background-size:100% auto;
+    
+    padding: 0px 0px 0px 0px;
+    margin: 40px 30px 40px 30px;
+    /*border: 1px red solid;*/
+    color:#506A70;
+}
+
+.competition_info img.header{
+    width: 964px;
+    height: 60px;
+}
+
+.competition_info .thumbnail{
+    
+    float: left;
+    
+    width: 150px;
+    height: 115px;
+    
+    margin: 20px 0px 0px 30px;
+    
+    border: 1px #BC2049 solid;
+    background: #FFFFFF;
+}
+
+.competition_info .thumbnail img{
+    width: 150px;
+    height: 115px;
+}
+
+.competition_info .details{
+    
+    width: 730px;
+    height: 170px;
+    
+    margin: 20px 0px 0px 200px;
+    padding: 0px 0px 0px 0px;
+    
+    /*border: 1px black solid;*/
+    /*background: #FFFFFF;*/
+}
+
+.competition_info .details .description{
+    
+    width: 730px;
+    height: 80px;
+    
+    padding: 0px 0px 0px 0px;
+    
+    /*border: 1px red dashed;*/
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+}
+
+.competition_info .details .prizes{
+    
+    float:left;
+    
+    width: 320px;
+    height: 60px;
+    
+    margin: 30px 0px 0px 0px;
+    
+    /*border: 1px blue dashed;*/
+}
+
+.competition_info .details .prizes .place{
+    
+    float:left;
+    
+    width: 70px;
+    height: 60px;
+    
+    margin: 0px 30px 0px 0px;
+    
+    /*border: 1px red solid ;*/
+}
+
+.competition_info .details .prizes .place img{
+    
+    width: 30px;
+    height: 30px;
+    
+    margin: 0px 0px 0px 20px;
+    
+    /*border: 1px black dashed;*/
+}
+
+.competition_info .details .prizes .place .caption{
+
+    
+    width: 70px;
+    height: 20px;
+    
+    font-size: 15px;
+    
+    margin: 0px 0px 0px 0px;
+    
+    /*border: 1px black dashed;*/
+}
+
+.competition_info .details .compete{
+    
+    float:right;
+    
+    background: #9CCEDB;
+    
+    border: 4px #71959E solid;
+    border-radius: 5px 5px 5px 5px;
+    
+    color: #FFFFFF;
+    
+    display: inline-block;
+    
+    font-size: 18px;
+    
+    height: 80px;
+    width: 120px;
+    
+    margin: 10px 0px 0px 0px;
 }

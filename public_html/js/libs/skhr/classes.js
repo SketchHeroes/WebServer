@@ -271,8 +271,11 @@ RestCaller.prototype.getLatestCompetitions = function(params)
     this.setCustomHeader("Accept","application/json"); 
     
     this.clearRequestParams();
-    this.setRequestParam("start", params['start']);
-    this.setRequestParam("how_many", params['how_many']);
+    if(typeof params['start'] !== 'undefined' && typeof params['how_many'] !== 'undefined')
+    {
+        this.setRequestParam("start", params['start']);
+        this.setRequestParam("how_many", params['how_many']);
+    }
     this.setRequestParam("competition_order_by",{"order_by_submission_start":"DESC"});
     this.setRequestParam("status_constraint",{"operator":"different_then","status":"0"});
     
