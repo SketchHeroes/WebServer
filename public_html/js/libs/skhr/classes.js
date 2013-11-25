@@ -282,6 +282,24 @@ RestCaller.prototype.getLatestCompetitions = function(params)
     return this.ajax();
 };
 
+RestCaller.prototype.getCompetition = function(params)
+{
+    this.setResource("/competition");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json"); 
+    
+    this.clearRequestParams();
+    
+    this.setRequestParam("competition_id",params['competition_id']);
+    
+    return this.ajax();
+};
+
 RestCaller.prototype.getLatestCompetitionTutorials = function(params)
 {
     this.setResource("/competition/tutorials");
@@ -1070,6 +1088,79 @@ TemplateGenerator.prototype.displayTutorialGallerySimple = function(target,tutor
                 i++;
             });
     //alert(i);
+};      
+
+
+TemplateGenerator.prototype.addCompetition = function(target)
+{
+    var article = $('<article class="competition_info"></article>');
+    
+        var header_caption = $('<div class="header_caption"></div>');  
+        article.append(header_caption);
+    
+        var competition_header = $('<img src="images/competition_header.png" alt="competition header" class="header" />'); 
+        article.append(competition_header);
+        
+        var thumbnail = $('<div class="thumbnail"></div>');  
+        article.append(thumbnail);
+            
+            var thumbnail_img = $('<img src="" alt="competition thumbnail" />');
+            thumbnail.append(thumbnail_img);
+        
+        var details = $('<div class="details"></div>');  
+        article.append(details);
+        
+            var description = $('<div class="description"></div>');  
+            details.append(description);
+        
+            var prizes = $('<div class="prizes"></div>');  
+            details.append(prizes);
+        
+                var place = $('<div class="place"></div>');  
+                prizes.append(place);
+        
+                    var img = $('<img src="images/1st-place.png" alt="1st place" />');  
+                    place.append(img);
+        
+                    var caption = $('<div class="caption" id="place1">1st place</div>');  
+                    place.append(caption);
+        
+                place = $('<div class="place"></div>');  
+                prizes.append(place);
+        
+                    var img = $('<img src="images/2nd-place.png" alt="2nd place" />');  
+                    place.append(img);
+        
+                    var caption = $('<div class="caption" id="place2">2nd place</div>');  
+                    place.append(caption);
+        
+                place = $('<div class="place"></div>');  
+                prizes.append(place);
+        
+                    var img = $('<img src="images/3rd-place.png" alt="3rd place" />');  
+                    place.append(img);
+        
+                    var caption = $('<div class="caption" id="place3">3rd place</div>');  
+                    place.append(caption);
+                    
+            var complete_button = $('<input class="compete" type="button" value="COMPETE"/>');  
+            details.append(complete_button);
+                
+    $(target).append(article);
+
+};           
+
+
+TemplateGenerator.prototype.displayCompetition = function(target,competition)
+{
+    $(target+" .competition_info .thumbnail img").remove(); 
+    var thumbnail_img = $('<img src="'+competition.logo_path+'" alt="competition thumbnail" class="header" />');
+    $(target+" .competition_info .thumbnail").append(thumbnail_img);
+    
+    $(target+" .competition_info .header_caption").text(competition.title); 
+    $(target+" .competition_info .details .description").text(competition.description);     
+    
+
 };      
 
 

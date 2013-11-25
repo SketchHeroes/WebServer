@@ -20,19 +20,30 @@ $(function(){
     
 // -----------------------TUTORIAL DATA-----------------------------------------
 
-    var content_id = 22;
-
+    var competition_id = 1;
     
-    var promise_latest_competitions = rest_caller.getLatestCompetitions({"start":0,"how_many":1});
+    var promise_competition = rest_caller.getCompetition({"competition_id":competition_id});
     
-    promise_latest_competitions.done(
+    promise_competition.done(
             function(data)
             {
-                template_generator.latest_competitions = data.competitions;
-                // template_generator.displayCompetitions('.player_section',template_generator.user_tutorial);   
+                template_generator.competition = data.competition;
+                //template_generator.addCompetition(".competition");
+                template_generator.displayCompetition(".competition",template_generator.competition);
+                    
+                var promise_submissions = rest_caller.getLatestCompetitionTutorials(
+                                                    {"competition_id":template_generator.competition.competition_id});
+
+                promise_submissions.done(
+                    function(data)
+                    {
+                        template_generator.submissions = data.competition_tutorials;
+                        template_generator.addSimpleGallery(".submissions .submissions_gallery",template_generator.submissions.length);
+                        template_generator.displayTutorialGallerySimple(".submissions .submissions_gallery",template_generator.submissions);
+                    });
+
                 
-                //------------------------OTHER USER TUTORIALS-----------------------------------------
-            }); 
+            });
 
 
 //==============================================================================

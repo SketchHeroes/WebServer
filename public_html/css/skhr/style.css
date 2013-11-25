@@ -2247,7 +2247,7 @@ ul.achievements_gallery li img{
     background-size:100% auto;
     
     padding: 0px 0px 0px 0px;
-    margin: 40px 30px 40px 30px;
+    margin: 40px 30px 0px 30px;
     /*border: 1px red solid;*/
     color:#506A70;
 }
@@ -2255,6 +2255,23 @@ ul.achievements_gallery li img{
 .competition_info img.header{
     width: 964px;
     height: 60px;
+}
+
+.competition_info .header_caption{
+    width: 300px;
+    height: 60px;
+    
+    font-size: 18px;
+    color: #FFFFFF;
+    
+    position: absolute;
+    
+    /*border:1px red dashed;*/
+    padding: 20px 20px 0px 20px;
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
 }
 
 .competition_info .thumbnail{
@@ -2367,4 +2384,27 @@ ul.achievements_gallery li img{
     width: 120px;
     
     margin: 10px 0px 0px 0px;
+}
+
+.submission_time{
+    height: 30px;
+    width: 500px;
+    
+    margin: 0px auto;
+    
+    /*border: 1px black dashed;*/
+    
+    font-size: 18px;
+}
+
+.submissions_gallery{
+    width:964px;
+    
+    background: #ECECEC url(../../images/cover_down_frame_big.png) center bottom no-repeat;
+    background-size:100% auto;
+    
+    padding: 0px 0px 0px 0px;
+    margin: 0px 30px 0px 30px;
+    /*border: 1px red solid;*/
+    color:#506A70;
 }
