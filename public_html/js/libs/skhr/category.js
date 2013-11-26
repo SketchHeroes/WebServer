@@ -51,27 +51,36 @@ $(function(){
             }); 
             */
     
-        // expendable menu buttons
+// expendable menu buttons
 
-        $( ".expandable_period > img" ).click(function(event) {
+        $( ".category_menu_list > li > img" ).click(function(event) {
 
             event.stopPropagation(); 
 
-            var expandable = $(event.target).parent();
-            if( $("#"+expandable.attr('id')+" .sub-menu").css("display") === 'none' )
+            var li = $(event.target).parent();
+            
+            
+            if( li.hasClass("expandable_period") )
             {
-                $("#"+expandable.attr('id')+" .sub-menu").css("display", "block"); 
-                $("#"+expandable.attr('id')+" img").attr("src", "images/"+expandable.attr('id')+"_selected.png"); 
+                $("#"+li.attr('id')+" .sub-menu").css("display", "block"); 
             }
             else
             {
-                $("#"+expandable.attr('id')+" .sub-menu").css("display", "none"); 
-                $("#"+expandable.attr('id')+" img").attr("src", "images/"+expandable.attr('id')+"_unselected.png"); 
 
             }
+            
+            if( !$("#"+li.attr('id')+" > img").hasClass('active') )
+            {
+                
+                $("#"+li.attr('id')+" img").attr("src", "images/"+li.attr('id')+"_selected.png");
+                $("#"+li.attr('id')+" img").addClass('active');
 
-            $( ".sub-menu" ).not("#"+expandable.attr('id')+" .sub-menu").css("display", "none"); 
-            $( ".expandable_period > img" ).not("#"+expandable.attr('id')+" img").attr("src", "images/"+expandable.attr('id')+"_unselected.png"); 
+                $( ".sub-menu" ).not("#"+li.attr('id')+" .sub-menu").css("display", "none"); 
+                $( ".category_menu_list > li > img" ).not("#"+li.attr('id')+" img").attr("src", "images/"+li.attr('id')+"_unselected.png");
+                $( ".category_menu_list > li > img" ).not("#"+li.attr('id')+" img").removeClass('active'); 
+            }
+            
+            //alert($( ".category .menu .active" ).attr('id'));
         });
 
         $( "html" ).click(function(event) {
@@ -81,43 +90,36 @@ $(function(){
 
     // user tutorials period buttons
 
-    $( "#user_tutorials .period" ).click(function(event) {
+    $( ".expandable_period .sub-menu a" ).click(function(event) {
         
-        $("#user_tutorials .gallery").fadeOut();
-        //alert("clicked");
-        //alert(event.target.id);
-        $( "#user_tutorials #most_recent" ).attr("src","images/most_recent_unselected.png").removeClass("active");
-        $( "#user_tutorials #top_rated" ).attr("src","images/top_rated_unselected.png").removeClass("active");
-        $( "#user_tutorials #most_viewed" ).attr("src","images/most_viewed_unselected.png").removeClass("active");
-        $( "#user_tutorials #"+event.target.id ).attr("src","images/"+event.target.id+"_selected.png").addClass("active");
-        //alert( "id = "+$(this).id );
+        $(".category .gallery").fadeOut();
         
-        var tutorial_filter = $( "#user_tutorials .active" ).attr('id');
+        var tutorial_filter = $( ".category .menu .active" ).attr('id');
     
         //alert(tutorial_filter);
-
+        
+        var period  =  event.target.id;
+    
+        alert(tutorial_filter+":"+period);
+        
+        var promise_category_tutorials;
+        
         switch (tutorial_filter)
         {
-            case "most_recent":
-                    promise_user_tutorials = rest_caller.getUserTutorials({"author_skhr_id":skhr_id,"tutorial_order_by":{"order_by_content_id":"DESC"}});
-                break;
-            case "top_rated":
-                    promise_user_tutorials = rest_caller.getUserTutorials({"author_skhr_id":skhr_id,"tutorial_count":{"count_likes_skhr":"DESC"}});
-                break;
-            case "most_viewed":
-                    promise_user_tutorials = rest_caller.getUserTutorials({"author_skhr_id":skhr_id,"tutorial_count":{"count_views_skhr":"DESC"}});
+            case "popular":
+                    promise_category_tutorials = rest_caller.getCategoryTutorials({"author_skhr_id":skhr_id,"tutorial_order_by":{"order_by_content_id":"DESC"}});
                 break;
         } 
 
-        promise_user_tutorials.done(
+        promise_category_tutorials.done(
                 function(data)
                 {
-                    template_generator.user_tutorials = data.tutorials; 
+                    template_generator.category_tutorials = data.tutorials; 
 
-                    var length = template_generator.user_tutorials.length;
-                    template_generator.removeGallery("#user_tutorials_gallery");
-                    template_generator.addGallery("#user_tutorials_gallery", length);
-                    template_generator.displayTutorialGallery("#user_tutorials_gallery", template_generator.user_tutorials);
+                    var length = template_generator.category_tutorials.length;
+                    template_generator.removeGallery(".category_tutorials");
+                    template_generator.addGallery(".category_tutorials", length);
+                    template_generator.displayTutorialGallery(".category_tutorials", template_generator.category_tutorials);
 
                 }); 
     });

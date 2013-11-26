@@ -2467,7 +2467,7 @@ ul.competitions_list li{
 .category{
     
     width:1024px;
-    height: 900px;
+    height: 1300px;
     
     background: #ECECEC url(../../images/category_header.png) center 0 no-repeat;
     background-size:100% 95px;
@@ -2562,12 +2562,13 @@ ul.competitions_list li{
     position: relative;
 }
 
-/*
-.category .menu .period_panel .active
-{
-
-    background: url(../../images/flower_blue_selected_button.png) center 0 no-repeat;
-    background-size:100% 100%;
+.category .category_tutorials{
+    
+    width:980px;
+    height: 1000px;
+    
+    border: 1px red dashed;
+    
+    margin: 20px auto 0px auto;
 }
-*/
 
