@@ -147,9 +147,6 @@ header.main
     margin: 0;
     position: absolute;
     display: none;
-    top: 60px;
-    left: -15px;
-    width: 150px;
     border: 2px #FBBD49 solid;
     background: #E4F8FD;
     z-index: 3;
@@ -158,7 +155,6 @@ header.main
 .sub-menu li{
     list-style-type: none;
     display: block;
-    border: 1px #000000 solid;
 }
 
 
@@ -166,7 +162,6 @@ header.main
 /*Link Appearance*/
 .sub-menu li a {
     text-decoration: none;
-    padding: 5px;
     display:inline-block;
 }
 
@@ -178,6 +173,26 @@ header.main
   text-decoration: underline;
 }
 
+
+
+/* MAIN MENU SUB-MENU */
+
+.main_menu .sub-menu{
+    top: 46px;
+    left: -15px;
+    width: 150px;
+}
+
+.main_menu .sub-menu li{
+    border: 1px #000000 solid;
+}
+
+
+
+/*Link Appearance*/
+.main_menu .sub-menu li a {
+    padding: 5px;
+}
 
 /* LOGIN */
 
@@ -2446,3 +2461,113 @@ ul.competitions_list{
 ul.competitions_list li{
     
 }
+
+/*CATEGORY*/
+
+.category{
+    
+    width:1024px;
+    height: 900px;
+    
+    background: #ECECEC url(../../images/category_header.png) center 0 no-repeat;
+    background-size:100% 95px;
+}
+
+.category .header_caption{
+    position: absolute;
+    width: 700px;
+    height: 40px;
+    
+    margin: 50px 162px 0px 162px;
+    
+    text-align: center;
+    font-size: 30px;
+    color: #B47703;
+    
+    border: 1px red dashed;
+}
+
+.category .menu{
+    
+    width: 1024px;
+    height: 60px;
+    
+    background: #ECECEC url(../../images/category_menu_header.png) center 0 no-repeat;
+    background-size:100% 100%;
+    
+    margin: 95px 0px 0px 0px;
+}
+
+.category .menu > ul
+{
+    width: 390px;
+    height: 60px;
+    
+    margin: 0px auto 0px auto;
+    
+    border: 1px red dashed;
+}
+
+.category .menu > ul .period
+{
+    float:left;
+    
+    width:102px;
+    height: 51px;
+    /*background: red;*/
+    /*border:1px solid black;*/
+    margin: 3px 0px 0px 20px;
+    
+    /*
+    border: 1px #779DA6 solid;
+    border-radius: 30px 30px 30px 30px;
+    color: #96C2CC;
+    
+    background: url(../../images/flower_blue_unselected_button.png) center 0 no-repeat;
+    background-size:100% 100%;
+    */
+}
+
+/* SUB-MENU */
+
+.category .menu .sub-menu{
+    top: 53px;
+    left: -35px;
+    width: 214px;
+    height: 50px;
+}
+
+.category .menu .sub-menu li{
+    float:left;
+    height: 30px;
+    width:70px;
+    display: inline-block;
+    border-right: 1px #000000 solid;
+    margin: 10px 0px 0px 0px;
+}
+
+
+
+/*Link Appearance*/
+.category .menu .sub-menu li a {
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+
+/* EXPANDABLE */
+
+.expandable_period{
+    position: relative;
+}
+
+/*
+.category .menu .period_panel .active
+{
+
+    background: url(../../images/flower_blue_selected_button.png) center 0 no-repeat;
+    background-size:100% 100%;
+}
+*/
+
