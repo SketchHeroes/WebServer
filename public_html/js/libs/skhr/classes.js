@@ -182,7 +182,7 @@ RestCaller.prototype.getTutorials = function(params)
     
     this.clearRequestParams();
     
-    this.setRequestParam("locked",false);
+    this.setRequestParam("locked",0);
     
     this.setRequestParam("start",params['start']);
     
@@ -245,7 +245,7 @@ RestCaller.prototype.getTopUsers = function(params)
     
     this.clearRequestParams();
     
-    this.setRequestParam("locked",false);
+    this.setRequestParam("locked",0);
     this.setRequestParam("start",params['start']);
     this.setRequestParam("how_many",params['how_many']);
     this.setRequestParam("top_user_content","tutorials");
@@ -409,6 +409,24 @@ RestCaller.prototype.getUser = function(params)
     return this.ajax();
 };
 
+
+RestCaller.prototype.getCategory = function(params)
+{
+    this.setResource("/category");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("Accept","application/json"); 
+    this.setCustomHeader("X-App-Token",this.app_token); 
+    
+    this.clearRequestParams();
+    this.setRequestParam("category_id",params['category_id']);
+
+    return this.ajax();
+};
+
 RestCaller.prototype.getUserFollows = function(params)
 {
     this.setResource("/user/follows");
@@ -519,9 +537,53 @@ RestCaller.prototype.getUserTutorials = function(params)
     
     this.clearRequestParams();
     
-    this.setRequestParam("locked",false);
+    this.setRequestParam("locked",0);
     
     this.setRequestParam("author_skhr_id",params['author_skhr_id']);
+    
+    if(typeof params['start'] !== 'undefined' && typeof params['how_many'] !== 'undefined')
+    {
+        this.setRequestParam("start",params['start']);
+        this.setRequestParam("how_many",params['how_many']);
+    }
+    
+    if(typeof params['featured'] !== 'undefined')
+        this.setRequestParam("featured",params['featured']);
+    
+    if(typeof params['tutorial_order_by'] !== 'undefined')
+        this.setRequestParam("tutorial_order_by",params['tutorial_order_by']);
+    else
+        this.setRequestParam("tutorial_order_by",{"order_by_content_id":"DESC"});
+        
+    if(typeof params['tutorial_count'] !== 'undefined')    
+        this.setRequestParam("tutorial_count",params['tutorial_count']);
+    
+    this.setRequestParam("tutorial_related_data",{"tutorial_author":"tutorial_author","tutorial_views":"tutorial_views","tutorial_likes":"tutorial_likes","tutorial_comments":"tutorial_comments"});
+    
+    if(typeof params['time_constraint'] !== 'undefined')
+        this.setRequestParam("time_constraint",{"timestamp_field":"created_at","operator":"younger_then","time_amount":"1","time_interval":""+params['time_constraint']+""});
+    
+    return this.ajax();
+};
+
+RestCaller.prototype.getCategoryTutorials = function(params)
+{
+    this.setResource("/category/tutorials");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("Accept","application/json");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    //this.setCustomHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
+    //this.setCustomHeader("X-Caller-SKHR-ID","3");  
+    
+    this.clearRequestParams();
+    
+    this.setRequestParam("locked",0);
+    
+    this.setRequestParam("tutorial_category_id",params['tutorial_category_id']);
     
     if(typeof params['start'] !== 'undefined' && typeof params['how_many'] !== 'undefined')
     {

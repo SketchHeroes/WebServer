@@ -2508,7 +2508,7 @@ ul.competitions_list li{
     border: 1px red dashed;
 }
 
-.category .menu > ul .period
+.category .menu > ul img.filter
 {
     float:left;
     
