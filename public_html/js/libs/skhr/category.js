@@ -186,6 +186,7 @@ function getCategoryTutorialsByFilter(category_id, filter, period)
                                                                 {
                                                                     "tutorial_category_id":category_id,
                                                                 });
+            //alert("default: recent");
             break;
     } 
     

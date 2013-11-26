@@ -2467,7 +2467,7 @@ ul.competitions_list li{
 .category{
     
     width:1024px;
-    height: 1300px;
+    /*height: 1300px;*/
     
     background: #ECECEC url(../../images/category_header.png) center 0 no-repeat;
     background-size:100% 95px;
@@ -2565,7 +2565,7 @@ ul.competitions_list li{
 .category .category_tutorials{
     
     width:980px;
-    height: 1000px;
+    /*height: 1000px;*/
     
     border: 1px red dashed;
     
