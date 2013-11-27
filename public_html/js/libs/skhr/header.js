@@ -305,7 +305,8 @@ $(function(){
         });
         
         
-        //------------------------------pop ups-----------------------------------------
+        //------------------------------LEADER BOARD pop ups-----------------------------------------
+        //===========================================================================================
 
         // leaderboard popup
 
@@ -357,7 +358,7 @@ $(function(){
         }); 
         
         
-        // expendable menu buttons
+        // LEADERBOARD POPUP expendable menu buttons============================
 
         $( ".category_menu_list > li > img" ).click(function(event) {
 
