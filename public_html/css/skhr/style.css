@@ -491,6 +491,77 @@ header.main
 }
 
 
+#popup_leaderboard .menu{
+    
+    width: 700px;
+    height: 60px;
+    
+    background: #ECECEC url(../../images/category_menu_header.png) center 0 no-repeat;
+    background-size:100% 100%;
+    
+    margin: 20px 0px 0px 0px;
+}
+
+#popup_leaderboard .menu > ul
+{
+    width: 390px;
+    height: 60px;
+    
+    margin: 0px auto 0px auto;
+    
+    border: 1px red dashed;
+}
+
+#popup_leaderboard .menu > ul img.filter
+{
+    float:left;
+    
+    width:102px;
+    height: 51px;
+    /*background: red;*/
+    /*border:1px solid black;*/
+    margin: 3px 0px 0px 20px;
+    
+    /*
+    border: 1px #779DA6 solid;
+    border-radius: 30px 30px 30px 30px;
+    color: #96C2CC;
+    
+    background: url(../../images/flower_blue_unselected_button.png) center 0 no-repeat;
+    background-size:100% 100%;
+    */
+}
+
+
+/* SUB-MENU */
+
+#popup_leaderboard .menu .sub-menu{
+    top: 53px;
+    left: -35px;
+    width: 214px;
+    height: 50px;
+}
+
+#popup_leaderboard .menu .sub-menu li{
+    float:left;
+    height: 30px;
+    width:70px;
+    display: inline-block;
+    border-right: 1px #000000 solid;
+    margin: 10px 0px 0px 0px;
+}
+
+
+
+/*Link Appearance*/
+#popup_leaderboard .menu .sub-menu li a {
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+
+
 #popup_leaderboard #leader_list
 {
 }
