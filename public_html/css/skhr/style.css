@@ -2609,3 +2609,22 @@ ul.competitions_list li{
     margin: 20px auto 0px auto;
 }
 
+.category .category_tutorials .navigator{
+    
+    width: 670px;
+    height: 50px;
+    
+    border: 1px red dashed;
+    
+    margin: 40px auto 40px auto;
+}
+
+
+.category .category_tutorials .navigator input[type=button]{
+    
+    width:50px;
+    height: 50px;
+    
+    margin: 0px 10px 0px 10px;
+}
+
