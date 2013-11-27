@@ -2556,16 +2556,53 @@ ul.competitions_list li{
 }
 
 
-/* EXPANDABLE */
+/* EXPANDABLE PERIOD*/
 
 .expandable_period{
     position: relative;
 }
 
+/* CATEGORY TUTORIALS */
+
 .category .category_tutorials{
     
-    width:980px;
+    width:950px;
     /*height: 1000px;*/
+    
+    border: 1px red dashed;
+    
+    margin: 20px auto 0px auto;
+}
+
+.category .category_tutorials .first_part{
+    
+    width:940px;
+    height: 600px;
+    
+    border: 1px red dashed;
+    
+    margin: 20px auto 0px auto;
+}
+
+.category .category_tutorials .first_part > ul, .category .category_tutorials .second_part > ul{
+    
+    margin: 20px 0px 0px 25px;
+}
+
+.category .category_tutorials .banner{
+    
+    width:940px;
+    height: 250px;
+    
+    border: 1px red dashed;
+    
+    margin: 20px auto 0px auto;
+}
+
+.category .category_tutorials .second_part{
+    
+    width:940px;
+    height: 600px;
     
     border: 1px red dashed;
     

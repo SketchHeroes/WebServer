@@ -11,7 +11,10 @@ $(function(){
     var rest_caller          = new RestCaller();
     var template_generator   = new TemplateGenerator();
     
+    var gallery_page = 0;
+    
     var category_id = 8;
+    var tutorials_per_part = 8;
     
     // getting INITIAL data from the server
     
@@ -30,10 +33,12 @@ $(function(){
                 template_generator.category_tutorials = data.tutorials; 
 
                 var length = template_generator.category_tutorials.length;
-                template_generator.removeGallery(".category_tutorials");
-                template_generator.addGallery(".category_tutorials", length);
-                template_generator.displayTutorialGallery(".category_tutorials", template_generator.category_tutorials);
-    
+                
+                template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
+                                                            ".category_tutorials .second_part", 
+                                                            tutorials_per_part, 
+                                                            gallery_page);
+                
                 //alert(tutorial_filter);
 
             }); 
@@ -53,12 +58,15 @@ $(function(){
             
             if( !$("#"+li.attr('id')+" > img").hasClass('active') )
             {
+                //alert($( ".category_menu_list > li#recent_link > img" ).attr("src"));
+                $( ".category_menu_list > li#recent_link > img" ).attr("src", "images/recent_link_unselected.png");
+                $( ".category_menu_list > li#featured_link > img" ).attr("src", "images/featured_link_unselected.png");
+                $( ".category_menu_list > li#popular_link > img" ).attr("src", "images/popular_link_unselected.png");
                 
                 $("#"+li.attr('id')+" img").attr("src", "images/"+li.attr('id')+"_selected.png");
                 $("#"+li.attr('id')+" img").addClass('active');
 
                 $( ".sub-menu" ).not("#"+li.attr('id')+" .sub-menu").css("display", "none"); 
-                $( ".category_menu_list > li > img" ).not("#"+li.attr('id')+" img").attr("src", "images/"+li.attr('id')+"_unselected.png");
                 $( ".category_menu_list > li > img" ).not("#"+li.attr('id')+" img").removeClass('active'); 
             }
             
@@ -79,9 +87,11 @@ $(function(){
                     template_generator.category_tutorials = data.tutorials; 
 
                     var length = template_generator.category_tutorials.length;
-                    template_generator.removeGallery(".category_tutorials");
-                    template_generator.addGallery(".category_tutorials", length);
-                    template_generator.displayTutorialGallery(".category_tutorials", template_generator.category_tutorials);
+                
+                    template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
+                                                                ".category_tutorials .second_part", 
+                                                                tutorials_per_part, 
+                                                                gallery_page);
                     $(".category_tutorials").fadeIn();   
 
                 }); 
@@ -119,9 +129,13 @@ $(function(){
                     template_generator.category_tutorials = data.tutorials; 
 
                     var length = template_generator.category_tutorials.length;
-                    template_generator.removeGallery(".category_tutorials");
-                    template_generator.addGallery(".category_tutorials", length);
-                    template_generator.displayTutorialGallery(".category_tutorials", template_generator.category_tutorials);
+                    
+                    
+                
+                    template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
+                                                                ".category_tutorials .second_part", 
+                                                                tutorials_per_part, 
+                                                                gallery_page);
                     $(".category_tutorials").fadeIn();              
                 }); 
     });

@@ -1427,6 +1427,20 @@ TemplateGenerator.prototype.displayUser= function(target, user)
     $(target).find(".statistics2 .stat .user_views").text(user.views.views_skhr);
 
     
+};    
+
+
+TemplateGenerator.prototype.displayTwoPartGallery= function(part_one_target, part_two_target, tutorials_per_part, page)
+{
+    
+    this.removeGallery(part_one_target);
+    this.addGallery(part_one_target, tutorials_per_part);
+    this.displayTutorialGallery(part_one_target, this.category_tutorials.slice(page*tutorials_per_part,page*tutorials_per_part+tutorials_per_part));
+
+    this.removeGallery(part_two_target);
+    this.addGallery(part_two_target, tutorials_per_part);
+    this.displayTutorialGallery(part_two_target, this.category_tutorials.slice(page*tutorials_per_part+tutorials_per_part,page*tutorials_per_part+tutorials_per_part*2));
+
 };   
 
 // setters
