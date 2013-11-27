@@ -451,6 +451,50 @@ header.main
 {
 }
 
+
+/* POPUP LEADERBOARD */
+
+#popup_leaderboard
+{
+    width: 700px;
+    height: 720px;
+    
+    top: 50px;
+    left:50%;
+
+    /*border: 1px solid #FF0000;*/
+
+    margin: 0px 0px 0px -350px; 
+    
+    
+    background: url(../../images/top-turorials-bg2.png) top no-repeat;
+}
+
+#popup_leaderboard .inner_popup
+{
+    width: 700px;
+    height: 620px;
+    
+    background: #F2F2F2;
+
+    border: 40px solid #92C0CF;
+
+    margin: 30px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px;
+    
+    overflow-y: scroll;
+}
+
+#popup_leaderboard .close
+{
+    margin: 20px 0px 0px 0px; 
+}
+
+
+#popup_leaderboard #leader_list
+{
+}
+
 /*------------*/
 /*
 .popup form .faceb {

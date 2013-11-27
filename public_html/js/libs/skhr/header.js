@@ -14,6 +14,8 @@ $(function(){
         var rest_caller          = new RestCaller();
         var template_generator   = new TemplateGenerator();
         var account              = new Account();
+        
+        var leader_board_length  = 50;
 
 
         // expendable menu buttons
@@ -301,6 +303,58 @@ $(function(){
 
 
         });
+        
+        
+        //------------------------------pop ups-----------------------------------------
+
+        // leaderboard popup
+
+        $(".leaderboard").click(function(e) 
+         { 
+             //alert('leaderboard bitches');
+             
+             var overlay = $('<div class="overlay"></div>');
+             $("body").append(overlay);
+
+             $("#popup_leaderboard").fadeIn(); 
+             $("#popup_leaderboard .inner_popup").focus();
+             //$("#popup_login input[name=username_email]").focus();
+
+             //alert(typeof template_generator.leaderboard_users);
+
+             // get user leaderboard - only the first time user presses leaderboard button
+             if(typeof template_generator.leaderboard_users === 'undefined')
+             {
+                 alert('first_time');
+                 var promise_top_users = rest_caller.getTopUsers({  "start":0,
+                                                                    "how_many":leader_board_length,
+                                                                    "user_related_data":{
+                                                                                            "user_followed":"user_followed",
+                                                                                            "user_follows":"user_follows",
+                                                                                            "user_tutorials":"user_tutorials",
+                                                                                            "user_views":"user_views",
+                                                                                            "user_likes":"user_likes",
+                                                                                            "user_comments":"user_comments"
+                                                                                        }});
+
+                 promise_top_users.done(
+                         function(data)
+                         {         
+                            template_generator.leaderboard_users= data.users;   
+                             //alert(template_generator.user_followed.length);
+
+                            //$('#popup_leaderboard h1.caption').text('Fans('+template_generator.user_followed.length+')');
+                            template_generator.addUserListComplex("#leader_list", template_generator.leaderboard_users.length); 
+                            template_generator.displayUserListComlex("#leader_list", template_generator.leaderboard_users);
+                         });
+             }
+
+         });
+
+        $("#popup_leaderboard .close").click(function(e) { 
+                 $("#popup_leaderboard").fadeOut(); 
+                 $("body .overlay").remove();
+        }); 
     });
     
 });

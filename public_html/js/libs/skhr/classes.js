@@ -252,6 +252,10 @@ RestCaller.prototype.getTopUsers = function(params)
     this.setRequestParam("top_user_count",{"count_views_skhr":"DESC"});
     
     //alert(time_constraint);
+    if(typeof params['user_related_data'] !== 'undefined')
+    {
+        this.setRequestParam("user_related_data",params['user_related_data']);
+    }
     
     if(typeof params['time_constraint'] !== 'undefined')
         this.setRequestParam("time_constraint",{"timestamp_field":"created_at","operator":"younger_then","time_amount":"1","time_interval":""+params['time_constraint']+""});
