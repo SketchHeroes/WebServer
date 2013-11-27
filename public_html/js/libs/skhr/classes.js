@@ -410,9 +410,9 @@ RestCaller.prototype.getUser = function(params)
 };
 
 
-RestCaller.prototype.getCategory = function(params)
+RestCaller.prototype.getTutorialCategory = function(params)
 {
-    this.setResource("/category");
+    this.setResource("/tutorial_category");
     this.setVerb("GET");
     //this.clearCustomHeaders();
     
@@ -422,7 +422,7 @@ RestCaller.prototype.getCategory = function(params)
     this.setCustomHeader("X-App-Token",this.app_token); 
     
     this.clearRequestParams();
-    this.setRequestParam("category_id",params['category_id']);
+    this.setRequestParam("tutorial_category_id",params['tutorial_category_id']);
 
     return this.ajax();
 };

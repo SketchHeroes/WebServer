@@ -25,6 +25,21 @@ $(function(){
     //var video_id = "24";	
     //var load_url = 'http://www.sketchheroes.com/video/get?artwork_id=24';
     
+    //---------------------------GET CATEGORY-----------------------------------
+    
+    var promise_category = rest_caller.getTutorialCategory({"tutorial_category_id":category_id}); 
+
+    promise_category.done(
+            function(data)
+            {
+                template_generator.category = data.category; 
+                $('.category .header_caption').text(template_generator.category.title);
+                
+                //alert(tutorial_filter);
+
+            }); 
+            
+    //---------------------------CATEGORY TUTORIALS-----------------------------
     
     var tutorial_filter = $( ".category_menu_list > li > img.active" ).attr('id');
     var promise_category_tutorials;
