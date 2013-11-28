@@ -537,22 +537,46 @@ function getTopUsersByFilter(leader_board_length, filter, period)
             break;
 
         case "fans":
-            if (typeof period === "undefined" || period === null) 
-                
+            if (typeof period === "undefined" || period === null)  
             { 
+                promise_top_users   = rest_caller.getTopUsers({
+                                                "start":0,
+                                                "how_many":leader_board_length,
+                                                "top_user_content":"followers",
+                                                "user_related_data":{
+                                                                        "user_followed":"user_followed",
+                                                                        "user_follows":"user_follows",
+                                                                        "user_tutorials":"user_tutorials",
+                                                                        "user_views":"user_views",
+                                                                        "user_likes":"user_likes",
+                                                                        "user_comments":"user_comments"
+                                                                    }
+                                            }); 
                 
-                
-                //alert(filter+" All Time");                                              
+                alert(filter+" All Time");                                              
             }
             else
             {
-                
-                //alert(filter+" "+period);
+                promise_top_users   = rest_caller.getTopUsers({
+                                                "start":0,
+                                                "how_many":leader_board_length,
+                                                "time_constraint":period,
+                                                "top_user_content":"followers",
+                                                "user_related_data":{
+                                                                        "user_followed":"user_followed",
+                                                                        "user_follows":"user_follows",
+                                                                        "user_tutorials":"user_tutorials",
+                                                                        "user_views":"user_views",
+                                                                        "user_likes":"user_likes",
+                                                                        "user_comments":"user_comments"
+                                                                    }
+                                            }); 
+                alert(filter+" "+period);
             }
             break;
         default:
 
-            //alert("default: recent");
+            alert("default: recent");
             break;
     } 
     
