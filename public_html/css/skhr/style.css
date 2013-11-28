@@ -1616,15 +1616,35 @@ footer #menu{
 
 /* FOOTER BUTTON */
 
-.footer_button{
+img.footer_button{
 
+    width: 112px;
+    height: 80px;
+}
+/*
+input[type=button].footer_button{
+
+    float:right;
+    
+    background: #FFFFFF;
+    
+    border: 4px #FBBD49 solid;
+    border-radius: 117px;
+    
+    color: #FFFFFF;
+    
+    display: inline-block;
+    
+    font-size: 20px;
+    
     width: 117px;
     height: 85px;
 }
+*/
 
 footer #menu .footer_button{
     
-    margin: 0px 0px 0px 20px;
+    margin: 0px 0px 0px 10px;
     float: left;
 }
 

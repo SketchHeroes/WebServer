@@ -10,6 +10,9 @@ $(function(){
     
     $("footer.main").load("footer.html", function() {
         //alert( "Load was performed." );
+        
+        
+        
 
     });
     
