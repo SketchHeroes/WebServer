@@ -360,7 +360,7 @@ $(function(){
         
         // LEADERBOARD POPUP expendable menu buttons============================
 
-        $( ".category_menu_list > li > img" ).click(function(event) {
+        $( ".leaderboard_menu_list > li > img" ).click(function(event) {
 
             event.stopPropagation(); 
 
@@ -368,16 +368,16 @@ $(function(){
             
             if( !$("#"+li.attr('id')+" > img").hasClass('active') )
             {
-                //alert($( ".category_menu_list > li#recent_link > img" ).attr("src"));
-                $( ".category_menu_list > li#recent_link > img" ).attr("src", "images/recent_link_unselected.png");
-                $( ".category_menu_list > li#featured_link > img" ).attr("src", "images/featured_link_unselected.png");
-                $( ".category_menu_list > li#popular_link > img" ).attr("src", "images/popular_link_unselected.png");
+                //alert($( ".leaderboard_menu_list > li#recent_link > img" ).attr("src"));
+                $( ".leaderboard_menu_list > li#recent_link > img" ).attr("src", "images/recent_link_unselected.png");
+                $( ".leaderboard_menu_list > li#featured_link > img" ).attr("src", "images/featured_link_unselected.png");
+                $( ".leaderboard_menu_list > li#popular_link > img" ).attr("src", "images/popular_link_unselected.png");
                 
                 $("#"+li.attr('id')+" img").attr("src", "images/"+li.attr('id')+"_selected.png");
                 $("#"+li.attr('id')+" img").addClass('active');
 
                 $( ".sub-menu" ).not("#"+li.attr('id')+" .sub-menu").css("display", "none"); 
-                $( ".category_menu_list > li > img" ).not("#"+li.attr('id')+" img").removeClass('active'); 
+                $( ".leaderboard_menu_list > li > img" ).not("#"+li.attr('id')+" img").removeClass('active'); 
             }
             
             
@@ -388,7 +388,7 @@ $(function(){
             else
             {
                 $(".category .gallery").fadeOut();
-                var tutorial_filter = $( ".category_menu_list > li > img.active" ).attr('id');
+                var tutorial_filter = $( ".leaderboard_menu_list > li > img.active" ).attr('id');
                 var promise_category_tutorials = getCategoryTutorialsByFilter(category_id, tutorial_filter); 
                 
                 promise_category_tutorials.done(
@@ -427,7 +427,7 @@ $(function(){
             var period  =  event.target.id;
 
             //alert(tutorial_filter+":"+period);
-            var tutorial_filter = $( ".category_menu_list > li > img.active" ).attr('id');
+            var tutorial_filter = $( ".leaderboard_menu_list > li > img.active" ).attr('id');
             var promise_category_tutorials;
 
             if(period === "all_time")
@@ -457,3 +457,84 @@ $(function(){
     
 });
    
+   
+//=====================================FUNCTIONS================================
+
+function getTopUserByFilter(filter, period)
+{
+    
+    var rest_caller = new RestCaller();
+    var promise_top_users;
+    
+    switch (filter)
+    {
+        case "likes":
+            if (typeof period === "undefined" || period === null) 
+                
+            { 
+                
+                promise_top_users = rest_caller.getCategoryTutorials({
+                                                                "tutorial_category_id":category_id,
+                                                                "tutorial_count":{"count_views_skhr":"DESC"}}); 
+                //alert(filter+" All Time");                                              
+            }
+            else
+            {
+                promise_top_users = rest_caller.getCategoryTutorials({
+                                                                "tutorial_category_id":category_id,
+                                                                "time_constraint":period,
+                                                                "tutorial_count":{"count_views_skhr":"DESC"}});   
+                //alert(filter+" "+period);
+            }
+            break;
+            
+        case "views":
+            if (typeof period === "undefined" || period === null) 
+                
+            { 
+                
+                promise_top_users = rest_caller.getCategoryTutorials({
+                                                                "tutorial_category_id":category_id,
+                                                                "tutorial_count":{"count_views_skhr":"DESC"}}); 
+                //alert(filter+" All Time");                                              
+            }
+            else
+            {
+                promise_top_users = rest_caller.getCategoryTutorials({
+                                                                "tutorial_category_id":category_id,
+                                                                "time_constraint":period,
+                                                                "tutorial_count":{"count_views_skhr":"DESC"}});   
+                //alert(filter+" "+period);
+            }
+            break;
+
+        case "fans":
+            if (typeof period === "undefined" || period === null) 
+                
+            { 
+                
+                promise_top_users = rest_caller.getCategoryTutorials({
+                                                                "tutorial_category_id":category_id,
+                                                                "tutorial_count":{"count_views_skhr":"DESC"}}); 
+                //alert(filter+" All Time");                                              
+            }
+            else
+            {
+                promise_top_users = rest_caller.getCategoryTutorials({
+                                                                "tutorial_category_id":category_id,
+                                                                "time_constraint":period,
+                                                                "tutorial_count":{"count_views_skhr":"DESC"}});   
+                //alert(filter+" "+period);
+            }
+            break;
+        default:
+            promise_top_users = rest_caller.getCategoryTutorials(
+                                                                {
+                                                                    "tutorial_category_id":category_id,
+                                                                });
+            //alert("default: recent");
+            break;
+    } 
+    
+    return promise_top_users;
+}

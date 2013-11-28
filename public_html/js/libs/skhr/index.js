@@ -208,7 +208,10 @@ $(function(){
         $( "#top_heroes #"+event.target.id ).attr("src","images/"+event.target.id+"_flower_selected.png").addClass("active");
         //alert( "id = "+$(this).id );
         
-        var promise_top_users   = rest_caller.getTopUsers({"start":0,"how_many":top_users_length,"time_constraint":$( "#"+event.target.id ).attr('id')});
+        var promise_top_users   = rest_caller.getTopUsers({
+                                                "start":0,
+                                                "how_many":top_users_length,
+                                                "time_constraint":$( "#"+event.target.id ).attr('id')});
         
         promise_top_users.done(
             function(data)

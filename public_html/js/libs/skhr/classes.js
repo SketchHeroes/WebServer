@@ -248,8 +248,16 @@ RestCaller.prototype.getTopUsers = function(params)
     this.setRequestParam("locked",0);
     this.setRequestParam("start",params['start']);
     this.setRequestParam("how_many",params['how_many']);
-    this.setRequestParam("top_user_content","tutorials");
-    this.setRequestParam("top_user_count",{"count_views_skhr":"DESC"});
+    
+    if(typeof params['top_user_content'] !== 'undefined') 
+        this.setRequestParam("top_user_content",params['top_user_content']);
+    else
+        this.setRequestParam("top_user_content","tutorials");
+        
+    if(typeof params['top_user_count'] !== 'undefined') 
+        this.setRequestParam("top_user_count",params['top_user_count']);
+    else
+        this.setRequestParam("top_user_count",{"count_views_skhr":"DESC"});
     
     //alert(time_constraint);
     if(typeof params['user_related_data'] !== 'undefined')

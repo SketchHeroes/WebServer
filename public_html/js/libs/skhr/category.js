@@ -111,6 +111,7 @@ $(function(){
 
                     var length = template_generator.category_tutorials.length;
                     last_page = Math.floor((length-1)/(tutorials_per_part*2));
+                    gallery_page = 0;
                     displayPagination(".navigator", nav_pages_length, gallery_page, last_page, first_in_range);
                     outlinePage(gallery_page);
                     //alert(last_page);
@@ -119,7 +120,7 @@ $(function(){
                                                                 ".category_tutorials .second_part", 
                                                                 tutorials_per_part, 
                                                                 gallery_page);
-                    $(".category_tutorials").fadeIn();   
+                    $(".category .gallery").fadeIn();  
 
                 }); 
             }
@@ -136,7 +137,7 @@ $(function(){
 
     $( ".expandable_period .sub-menu a" ).click(function(event) {
         
-        
+        $(".category .gallery").fadeOut();
         var period  =  event.target.id;
     
         //alert(tutorial_filter+":"+period);
@@ -155,6 +156,7 @@ $(function(){
 
                     var length = template_generator.category_tutorials.length;
                     last_page = Math.floor((length-1)/(tutorials_per_part*2));
+                    gallery_page = 0;
                     displayPagination(".navigator", nav_pages_length, gallery_page, last_page, first_in_range);
                     outlinePage(gallery_page);
                     //alert(last_page);
@@ -163,7 +165,7 @@ $(function(){
                                                                 ".category_tutorials .second_part", 
                                                                 tutorials_per_part, 
                                                                 gallery_page);
-                    $(".category_tutorials").fadeIn();              
+                    $(".category .gallery").fadeIn();              
                 }); 
     });
     
