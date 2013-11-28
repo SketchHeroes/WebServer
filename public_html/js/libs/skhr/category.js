@@ -316,7 +316,7 @@ function outlinePage(page)
 
 function displayPagination(navigator_target, nav_pages_length, page, last_page, first_in_range)
 {                                                    
-    $(".navigator [id^=page]").attr('value','');
+    $(".navigator [id^=page]").attr('value','...');
     
     for(var i=0; i<nav_pages_length, i+first_in_range<=last_page; i++)
     {
