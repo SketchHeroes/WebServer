@@ -319,35 +319,31 @@ $(function(){
 
              $("#popup_leaderboard").fadeIn(); 
              $("#popup_leaderboard .inner_popup").focus();
-             //$("#popup_login input[name=username_email]").focus();
-
-             //alert(typeof template_generator.leaderboard_users);
+             
 
              // get user leaderboard - only the first time user presses leaderboard button
              if(typeof template_generator.leaderboard_users === 'undefined')
              {
-                 alert('first_time');
-                 var promise_top_users = rest_caller.getTopUsers({  "start":0,
-                                                                    "how_many":leader_board_length,
-                                                                    "user_related_data":{
-                                                                                            "user_followed":"user_followed",
-                                                                                            "user_follows":"user_follows",
-                                                                                            "user_tutorials":"user_tutorials",
-                                                                                            "user_views":"user_views",
-                                                                                            "user_likes":"user_likes",
-                                                                                            "user_comments":"user_comments"
-                                                                                        }});
+                 //alert('first_time');
+                 
+                 var top_users_filter = $( ".leaderboard_menu_list > li > img.active" ).attr('id');
+                 
+                 //alert(top_users_filter);
+                 
+
+                 var promise_top_users = getTopUsersByFilter(leader_board_length, top_users_filter); 
+                 
 
                  promise_top_users.done(
                          function(data)
                          {         
                             template_generator.leaderboard_users= data.users;   
-                             //alert(template_generator.user_followed.length);
-
-                            //$('#popup_leaderboard h1.caption').text('Fans('+template_generator.user_followed.length+')');
+                            
+                            template_generator.removeUserListComplex("#leader_list");
                             template_generator.addUserListComplex("#leader_list", template_generator.leaderboard_users.length); 
                             template_generator.displayUserListComlex("#leader_list", template_generator.leaderboard_users);
                          });
+                         
              }
 
          });
@@ -369,9 +365,9 @@ $(function(){
             if( !$("#"+li.attr('id')+" > img").hasClass('active') )
             {
                 //alert($( ".leaderboard_menu_list > li#recent_link > img" ).attr("src"));
-                $( ".leaderboard_menu_list > li#recent_link > img" ).attr("src", "images/recent_link_unselected.png");
-                $( ".leaderboard_menu_list > li#featured_link > img" ).attr("src", "images/featured_link_unselected.png");
-                $( ".leaderboard_menu_list > li#popular_link > img" ).attr("src", "images/popular_link_unselected.png");
+                $( ".leaderboard_menu_list > li#likes_link > img" ).attr("src", "images/likes_link_unselected.png");
+                $( ".leaderboard_menu_list > li#views_link > img" ).attr("src", "images/views_link_unselected.png");
+                $( ".leaderboard_menu_list > li#fans_link > img" ).attr("src", "images/fans_link_unselected.png");
                 
                 $("#"+li.attr('id')+" img").attr("src", "images/"+li.attr('id')+"_selected.png");
                 $("#"+li.attr('id')+" img").addClass('active');
@@ -387,26 +383,20 @@ $(function(){
             }
             else
             {
-                $(".category .gallery").fadeOut();
+                $("#popup_leaderboard #leader_list").fadeOut();
                 var tutorial_filter = $( ".leaderboard_menu_list > li > img.active" ).attr('id');
-                var promise_category_tutorials = getCategoryTutorialsByFilter(category_id, tutorial_filter); 
+                var promise_top_users = getTopUsersByFilter(leader_board_length, tutorial_filter); 
                 
-                promise_category_tutorials.done(
+                promise_top_users.done(
                 function(data)
                 {
-                    template_generator.category_tutorials = data.tutorials; 
-
-                    var length = template_generator.category_tutorials.length;
-                    last_page = Math.floor((length-1)/(tutorials_per_part*2));
-                    displayPagination(".navigator", nav_pages_length, gallery_page, last_page, first_in_range);
-                    outlinePage(gallery_page);
-                    //alert(last_page);
-                
-                    template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
-                                                                ".category_tutorials .second_part", 
-                                                                tutorials_per_part, 
-                                                                gallery_page);
-                    $(".category_tutorials").fadeIn();   
+                    template_generator.leaderboard_users= data.users;
+                    
+                    template_generator.removeUserListComplex("#leader_list");
+                    template_generator.addUserListComplex("#leader_list", template_generator.leaderboard_users.length); 
+                    template_generator.displayUserListComlex("#leader_list", template_generator.leaderboard_users);
+                    
+                    $("#popup_leaderboard #leader_list").fadeIn();   
 
                 }); 
             }
@@ -423,34 +413,32 @@ $(function(){
 
         $( ".expandable_period .sub-menu a" ).click(function(event) {
 
-
+            $("#popup_leaderboard #leader_list").fadeOut();
+            //alert($("#leader_list").attr('id'));
+            //alert('fadeOut');
             var period  =  event.target.id;
 
             //alert(tutorial_filter+":"+period);
             var tutorial_filter = $( ".leaderboard_menu_list > li > img.active" ).attr('id');
-            var promise_category_tutorials;
+            
+            var promise_top_users;
 
             if(period === "all_time")
-                promise_category_tutorials = getCategoryTutorialsByFilter(category_id, tutorial_filter); 
+                promise_top_users = getTopUsersByFilter(leader_board_length, tutorial_filter); 
             else
-                promise_category_tutorials = getCategoryTutorialsByFilter(category_id,tutorial_filter, period); 
+                promise_top_users = getTopUsersByFilter(leader_board_length, tutorial_filter, period); 
 
-            promise_category_tutorials.done(
+            promise_top_users.done(
                     function(data)
                     {
-                        template_generator.category_tutorials = data.tutorials; 
-
-                        var length = template_generator.category_tutorials.length;
-                        last_page = Math.floor((length-1)/(tutorials_per_part*2));
-                        displayPagination(".navigator", nav_pages_length, gallery_page, last_page, first_in_range);
-                        outlinePage(gallery_page);
-                        //alert(last_page);
-
-                        template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
-                                                                    ".category_tutorials .second_part", 
-                                                                    tutorials_per_part, 
-                                                                    gallery_page);
-                        $(".category_tutorials").fadeIn();              
+                        template_generator.leaderboard_users= data.users;   
+                        
+                        template_generator.removeUserListComplex("#leader_list");
+                        template_generator.addUserListComplex("#leader_list", template_generator.leaderboard_users.length); 
+                        template_generator.displayUserListComlex("#leader_list", template_generator.leaderboard_users);
+                        
+                        $("#popup_leaderboard #leader_list").fadeIn(); 
+                        //alert('fadeIn');             
                     }); 
         });
     });
@@ -460,7 +448,7 @@ $(function(){
    
 //=====================================FUNCTIONS================================
 
-function getTopUserByFilter(filter, period)
+function getTopUsersByFilter(leader_board_length, filter, period)
 {
     
     var rest_caller = new RestCaller();
@@ -469,43 +457,83 @@ function getTopUserByFilter(filter, period)
     switch (filter)
     {
         case "likes":
-            if (typeof period === "undefined" || period === null) 
-                
+            if (typeof period === "undefined" || period === null)  
             { 
                 
-                promise_top_users = rest_caller.getCategoryTutorials({
-                                                                "tutorial_category_id":category_id,
-                                                                "tutorial_count":{"count_views_skhr":"DESC"}}); 
+                promise_top_users   = rest_caller.getTopUsers({
+                                                "start":0,
+                                                "how_many":leader_board_length,
+                                                "top_user_count":{"count_likes_skhr":"DESC"},
+                                                "user_related_data":{
+                                                                        "user_followed":"user_followed",
+                                                                        "user_follows":"user_follows",
+                                                                        "user_tutorials":"user_tutorials",
+                                                                        "user_views":"user_views",
+                                                                        "user_likes":"user_likes",
+                                                                        "user_comments":"user_comments"
+                                                                    }
+                                            });
+        
                 //alert(filter+" All Time");                                              
             }
             else
             {
-                promise_top_users = rest_caller.getCategoryTutorials({
-                                                                "tutorial_category_id":category_id,
-                                                                "time_constraint":period,
-                                                                "tutorial_count":{"count_views_skhr":"DESC"}});   
+                promise_top_users   = rest_caller.getTopUsers({
+                                                "start":0,
+                                                "how_many":leader_board_length,
+                                                "time_constraint":period,
+                                                "top_user_count":{"count_likes_skhr":"DESC"},
+                                                "user_related_data":{
+                                                                        "user_followed":"user_followed",
+                                                                        "user_follows":"user_follows",
+                                                                        "user_tutorials":"user_tutorials",
+                                                                        "user_views":"user_views",
+                                                                        "user_likes":"user_likes",
+                                                                        "user_comments":"user_comments"
+                                                                    }
+                                            }); 
                 //alert(filter+" "+period);
             }
             break;
             
         case "views":
             if (typeof period === "undefined" || period === null) 
-                
             { 
                 
-                promise_top_users = rest_caller.getCategoryTutorials({
-                                                                "tutorial_category_id":category_id,
-                                                                "tutorial_count":{"count_views_skhr":"DESC"}}); 
+                promise_top_users   = rest_caller.getTopUsers({
+                                                "start":0,
+                                                "how_many":leader_board_length,
+                                                "top_user_count":{"count_views_skhr":"DESC"},
+                                                "user_related_data":{
+                                                                        "user_followed":"user_followed",
+                                                                        "user_follows":"user_follows",
+                                                                        "user_tutorials":"user_tutorials",
+                                                                        "user_views":"user_views",
+                                                                        "user_likes":"user_likes",
+                                                                        "user_comments":"user_comments"
+                                                                    }
+                                            });
+        
                 //alert(filter+" All Time");                                              
             }
             else
             {
-                promise_top_users = rest_caller.getCategoryTutorials({
-                                                                "tutorial_category_id":category_id,
-                                                                "time_constraint":period,
-                                                                "tutorial_count":{"count_views_skhr":"DESC"}});   
+                promise_top_users   = rest_caller.getTopUsers({
+                                                "start":0,
+                                                "how_many":leader_board_length,
+                                                "time_constraint":period,
+                                                "top_user_count":{"count_views_skhr":"DESC"},
+                                                "user_related_data":{
+                                                                        "user_followed":"user_followed",
+                                                                        "user_follows":"user_follows",
+                                                                        "user_tutorials":"user_tutorials",
+                                                                        "user_views":"user_views",
+                                                                        "user_likes":"user_likes",
+                                                                        "user_comments":"user_comments"
+                                                                    }
+                                            }); 
                 //alert(filter+" "+period);
-            }
+            }            
             break;
 
         case "fans":
@@ -513,25 +541,17 @@ function getTopUserByFilter(filter, period)
                 
             { 
                 
-                promise_top_users = rest_caller.getCategoryTutorials({
-                                                                "tutorial_category_id":category_id,
-                                                                "tutorial_count":{"count_views_skhr":"DESC"}}); 
+                
                 //alert(filter+" All Time");                                              
             }
             else
             {
-                promise_top_users = rest_caller.getCategoryTutorials({
-                                                                "tutorial_category_id":category_id,
-                                                                "time_constraint":period,
-                                                                "tutorial_count":{"count_views_skhr":"DESC"}});   
+                
                 //alert(filter+" "+period);
             }
             break;
         default:
-            promise_top_users = rest_caller.getCategoryTutorials(
-                                                                {
-                                                                    "tutorial_category_id":category_id,
-                                                                });
+
             //alert("default: recent");
             break;
     } 

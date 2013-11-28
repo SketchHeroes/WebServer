@@ -635,6 +635,11 @@ TemplateGenerator.prototype.removeGallery = function(target)
     $(target).find('.gallery').remove();
 }
 
+TemplateGenerator.prototype.removeUserListComplex = function(target)
+{
+    $(target).find('.users_list_complex').remove();
+}
+
 TemplateGenerator.prototype.addGallery = function(target, size)
 {
     //$('#data').html("Tutorials:<br /><br />");  
