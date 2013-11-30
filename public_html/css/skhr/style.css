@@ -326,10 +326,20 @@ header.main
     color: #FFB400;
     display: block;
     font-size: 40px;
-    height: 60px;
-    width: 400px;
+    height: 60px !important;
+    width: 400px !important;
     
     margin: 0px 0px 0px 30px;
+}
+
+.fb-login-button{  
+    margin: 0px 0px 0px 30px;
+    /*padding: 0px 50px 0px 50px;*/
+}
+
+span.pluginFaviconButtonBorder{
+    height: 60px !important;
+    width: 400px !important;
 }
 
 .popup .forgot_pass{

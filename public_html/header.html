@@ -8,7 +8,40 @@
                     fjs.parentNode.insertBefore(js, fjs);
                   }(document, 'script', 'facebook-jssdk'));
                 </script>
-                
+                <script>
+                    window.fbAsyncInit = function() {
+                        FB.init({
+                          appId      : '390754447617631',
+                          status     : true, // check login status
+                          cookie     : true, // enable cookies to allow the server to access the session
+                          xfbml      : true  // parse XFBML
+                        });
+                    };
+
+                    function fb_login(){
+                        FB.login(function(response) {
+
+                            if (response.authResponse) {
+                                console.log('Welcome!  Fetching your information.... ');
+                                //console.log(response); // dump complete info
+                                access_token = response.authResponse.accessToken; //get access token
+                                user_id = response.authResponse.userID; //get FB UID
+
+                                FB.api('/me', function(response) {
+                                    user_email = response.email; //get user email
+                              // you can store this data into your database             
+                                });
+
+                            } else {
+                                //user hit cancel button
+                                console.log('User cancelled login or did not fully authorize.');
+
+                            }
+                        }, {
+                            scope: 'publish_stream,email'
+                        });
+                    }
+                </script>
                 <div class="logo">
                     <a href="/">
                         <img src="images/logo.png" alt="logo" />
@@ -98,7 +131,12 @@
                                         <p class="forgot_pass"><a href='#'>Forgotten your password?</a></p>
                                         <p class="facebook_caption">Or log in using Facebook:</p>
                                         <p class="error_msg" id="facebook_error"></p>
-                                        <p><input name="" class="button_facebook" type="button" value="Facebook" /></p>
+                                        <p><input name="" class="button_facebook" type="button" value="Facebook" onclick="fb_login();"/></p>
+                                        <!--
+                                        <div class="fb-login-button" data-width="400" data-height="60" data-max-rows="1" data-show-faces="false" data-size="xlarge">
+                                            . . . . . . . Facebook. . . . . . . . 
+                                        </div>
+                                        -->
                                     </form>
                                  </div>
                              </li>
