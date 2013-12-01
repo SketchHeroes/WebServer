@@ -934,7 +934,7 @@ img.comments_image{
 }
 
 .avatar{
-    background-size: 68%, 68%;  
+    background-size: 68% 70%, 68% 70%;  
     background-repeat: no-repeat;
     background-position: center center; 
 }
