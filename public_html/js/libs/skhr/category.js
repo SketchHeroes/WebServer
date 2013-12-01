@@ -21,6 +21,20 @@ $(function(){
     var service = new Service();
     var parameter = service.getParameterByName('category');
     var category_id = (parameter)?parameter:0;
+    
+    var filter = service.getParameterByName('filter');
+    switch(filter)
+    {   
+        case 'recent':
+            switchActive($('#recent_link'));
+            break;
+        case 'featured':
+            switchActive($('#featured_link'));
+            break;
+        case 'popular':
+            switchActive($('#popular_link'));
+            break;
+    }
     //alert(category_id);
     var tutorials_per_part = 8;
     
@@ -92,16 +106,8 @@ $(function(){
             
             if( !$("#"+li.attr('id')+" > img").hasClass('active') )
             {
-                //alert($( ".category_menu_list > li#recent_link > img" ).attr("src"));
-                $( ".category_menu_list > li#recent_link > img" ).attr("src", "images/recent_link_unselected.png");
-                $( ".category_menu_list > li#featured_link > img" ).attr("src", "images/featured_link_unselected.png");
-                $( ".category_menu_list > li#popular_link > img" ).attr("src", "images/popular_link_unselected.png");
-                
-                $("#"+li.attr('id')+" img").attr("src", "images/"+li.attr('id')+"_selected.png");
-                $("#"+li.attr('id')+" img").addClass('active');
-
+                switchActive(li);
                 $( ".sub-menu" ).not("#"+li.attr('id')+" .sub-menu").css("display", "none"); 
-                $( ".category_menu_list > li > img" ).not("#"+li.attr('id')+" img").removeClass('active'); 
             }
             
             
@@ -318,6 +324,20 @@ $(function(){
 
 
 //=====================================FUNCTIONS================================
+
+function switchActive(li)
+{
+    
+    //alert($( ".category_menu_list > li#recent_link > img" ).attr("src"));
+    $( ".category_menu_list > li#recent_link > img" ).attr("src", "images/recent_link_unselected.png");
+    $( ".category_menu_list > li#featured_link > img" ).attr("src", "images/featured_link_unselected.png");
+    $( ".category_menu_list > li#popular_link > img" ).attr("src", "images/popular_link_unselected.png");
+
+    $("#"+li.attr('id')+" img").attr("src", "images/"+li.attr('id')+"_selected.png");
+    $("#"+li.attr('id')+" img").addClass('active');
+    $( ".category_menu_list > li > img" ).not("#"+li.attr('id')+" img").removeClass('active'); 
+
+}
 
 function outlinePage(page)
 {

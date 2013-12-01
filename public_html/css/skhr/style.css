@@ -1031,6 +1031,8 @@ img.comments_image{
 {
     width:97px;
     height:31px;
+    
+    cursor: pointer;
 }
 
 
@@ -1189,6 +1191,12 @@ img.comments_image{
     
 }
 
+
+#slanted_border a
+{
+   width:31px;
+   height:97px;
+}
 /* TOP HEROES */
 
 #top_heroes
@@ -1212,6 +1220,7 @@ img.comments_image{
 {
     float:right;
     margin: 0px 0px 0px 0px;
+    
 }
 
 #top_heroes .period_panel

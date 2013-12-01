@@ -1417,13 +1417,13 @@ TemplateGenerator.prototype.displayLatestCompetition= function(target, competiti
 {
 
     //alert(competitions[0].logo_path);
-    var link = $('<a href="#"></a>');
+    var link = $('<a href="competition.html?competition_id='+competition.competition_id+'"></a>');
     var thumbnail = $('<img alt="competition_thumbnail" src="'+competition.logo_path+'" >');
     link.append(thumbnail);
 
     $(target+' .competition_thumbnail').append(link);
 
-    $(target+' .competition_caption').html('('+competition.submission_start+') '+competition.title+'');
+    $(target+' .competition_caption').html('('+competition.submission_start+') <a href="competition.html?competition_id='+competition.competition_id+'">'+competition.title+'</a>');
 }; 
 
 

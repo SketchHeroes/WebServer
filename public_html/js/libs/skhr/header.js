@@ -265,7 +265,7 @@ $(".options #logout").click(function(e)
 
         // leaderboard popup
 
-        $(".leaderboard, .main_menu #top_heroes_link").click(function(e) 
+        $(".leaderboard, .main_menu #top_heroes_link, #top_heroes .view_more").click(function(e) 
          { 
              //alert('leaderboard bitches');
              
