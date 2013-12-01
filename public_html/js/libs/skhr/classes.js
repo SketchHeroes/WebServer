@@ -1485,9 +1485,28 @@ function Account()
     
 }   
 
-// setters
 
 Account.prototype.loginNativeUser = function(data, rest_caller, template_generator)
 {
     
+};
+
+//---------------- Service class -------------------------------------------
+
+function Service()
+{
+       
+    
+    this.reg_email       = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/;
+    this.reg_username    = /^[A-Za-z0-9_.-]{3,50}$/;
+    this.reg_password    = /^[A-Za-z0-9]+$/;
+    
+}   
+
+Service.prototype.getParameterByName = function(name)
+{
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 };

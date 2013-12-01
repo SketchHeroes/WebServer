@@ -8,6 +8,10 @@ $(function(){
     //alert('You are in ' + (document.compatMode==='CSS1Compat'?'Standards':'Quirks') + ' mode.')
     // difining global variables
     
+    var service = new Service();
+    
+    //alert(service.getParameterByName('category'));
+    
     var rest_caller          = new RestCaller();
     var template_generator   = new TemplateGenerator();
     
@@ -16,7 +20,9 @@ $(function(){
     var nav_pages_length = 5;
     var first_in_range = 0;
     
-    var category_id = 8;
+    var parameter = service.getParameterByName('category');
+    var category_id = (parameter)?parameter:0;
+    //alert(category_id);
     var tutorials_per_part = 8;
     
     
@@ -26,18 +32,24 @@ $(function(){
     //var load_url = 'http://www.sketchheroes.com/video/get?artwork_id=24';
     
     //---------------------------GET CATEGORY-----------------------------------
-    
-    var promise_category = rest_caller.getTutorialCategory({"tutorial_category_id":category_id}); 
+    if(category_id)
+    {
+        var promise_category = rest_caller.getTutorialCategory({"tutorial_category_id":category_id}); 
 
-    promise_category.done(
-            function(data)
-            {
-                template_generator.category = data.category; 
-                $('.category .header_caption').text(template_generator.category.title);
-                
-                //alert(tutorial_filter);
+        promise_category.done(
+                function(data)
+                {
+                    template_generator.category = data.category; 
+                    $('.category .header_caption').text(template_generator.category.title);
 
-            }); 
+                    //alert(tutorial_filter);
+
+                }); 
+    }
+    else
+    {
+        $('.category .header_caption').text("All Categories");
+    }
             
     //---------------------------CATEGORY TUTORIALS-----------------------------
     
