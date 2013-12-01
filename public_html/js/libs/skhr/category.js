@@ -8,8 +8,6 @@ $(function(){
     //alert('You are in ' + (document.compatMode==='CSS1Compat'?'Standards':'Quirks') + ' mode.')
     // difining global variables
     
-    var service = new Service();
-    
     //alert(service.getParameterByName('category'));
     
     var rest_caller          = new RestCaller();
@@ -20,6 +18,7 @@ $(function(){
     var nav_pages_length = 5;
     var first_in_range = 0;
     
+    var service = new Service();
     var parameter = service.getParameterByName('category');
     var category_id = (parameter)?parameter:0;
     //alert(category_id);

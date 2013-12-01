@@ -17,10 +17,12 @@ $(function(){
     //var load_url = 'http://www.sketchheroes.com/video/get?artwork_id=24';
     
     
+    var service = new Service();
+    var competition_id = service.getParameterByName('competition_id');
     
 // -----------------------TUTORIAL DATA-----------------------------------------
 
-    var competition_id = 1;
+    //var competition_id = 1;
     
     var promise_competition = rest_caller.getCompetition({"competition_id":competition_id});
     

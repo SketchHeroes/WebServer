@@ -11,7 +11,10 @@ $(function(){
     var rest_caller          = new RestCaller();
     var template_generator   = new TemplateGenerator();
     
-    var skhr_id = 85;
+    var service = new Service();
+    var skhr_id = service.getParameterByName('user_id');
+    //alert(skhr_id);
+    //var skhr_id = 85;
     
     // getting INITIAL data from the server
     

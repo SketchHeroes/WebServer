@@ -16,11 +16,12 @@ $(function(){
     //var video_id = "24";	
     //var load_url = 'http://www.sketchheroes.com/video/get?artwork_id=24';
     
-    
+    var service = new Service();
+    var content_id = service.getParameterByName('tutorial_id');
     
 // -----------------------TUTORIAL DATA-----------------------------------------
     
-    var content_id = 22;
+    //var content_id = 22;
 
     var promise_tutorial = rest_caller.getTutorial({"content_id":content_id});
     

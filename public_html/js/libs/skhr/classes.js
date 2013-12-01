@@ -331,6 +331,9 @@ RestCaller.prototype.getLatestCompetitionTutorials = function(params)
         this.setRequestParam("start", params['start']);
         this.setRequestParam("how_many", params['how_many']);
     }
+     
+    this.setRequestParam("tutorial_related_data",{"tutorial_author":"tutorial_author","tutorial_views":"tutorial_views","tutorial_likes":"tutorial_likes","tutorial_comments":"tutorial_comments"}); 
+    
     this.setRequestParam("competition_id",params['competition_id']);
     this.setRequestParam("competition_tutorials_order_by",{"order_by_votes":"DESC"});
     
@@ -908,7 +911,7 @@ TemplateGenerator.prototype.displayUserListComlex= function(target, users)
 
                     //$(this).find(".avatar").append(avatar);
 
-                    $(this).find(".user_name").text(users[i].username);
+                    $(this).find(".user_name").html('<a href="profile.html?user_id='+users[i].skhr_id+'">'+users[i].username+'</a>');
                     
                     $(this).find(".user_fans").text( 'Fans('+users[i].followed.followed_skhr+')'); 
 
@@ -949,8 +952,8 @@ TemplateGenerator.prototype.displayTutorial = function(target,tutorial)
     $(target).find(".tutorial_title").text(tutorial.title);
     $(target).find(".tutorial_description").text(tutorial.description); 
     $(target).find('.tutorial_info .avatar').css("background-image", "url("+tutorial.author.avatar_path+")"); 
-    $(target).find('.tutorial_info .author_name').text(tutorial.author.username);  
-    
+    $(target).find('.tutorial_info .author_name').html('<a href="profile.html?user_id='+tutorial.author_skhr_id+'">'+tutorial.author.username+'</a>');  
+                    
     $(target).find(".tutorial_info .stat .tutorial_comments").text(tutorial.tutorials_skhr);
     $(target).find(".tutorial_info .stat .tutorial_likes").text(tutorial.likes.likes_skhr);
     $(target).find(".tutorial_info .stat .tutorial_views").text(tutorial.views.views_skhr);
@@ -1051,12 +1054,12 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                 { 
                     // adding tutorial_title
                     
-                    var link = $('<a href="">'+tutorials[i].title+'</a>');
+                    var link = $('<a href="player.html?tutorial_id='+tutorials[i].content_id+'">'+tutorials[i].title+'</a>');
                     $(this).find("div.tutorial_title").append(link); 
 
                     // adding tutorial thumbnail
                     //alert($(this).find("div.thumbnail img").attr('src'));
-                    var link = $('<a href="#"></a>');
+                    var link = $('<a href="player.html?tutorial_id='+tutorials[i].content_id+'"></a>');
                     var thumbnail = $('<img class="thumbnail" alt="tutorial_thumbnail" src="'+tutorials[i].thumbnail_path+'" >');
                     link.append(thumbnail);
                     
@@ -1075,7 +1078,7 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                     }
 
                     // adding author_name 
-                    var link = $('<a href="">'+tutorials[i].author.username+'</a>');      
+                    var link = $('<a href="profile.html?user_id='+tutorials[i].author_skhr_id+'">'+tutorials[i].author.username+'</a>');      
                     $(this).find("div.author_name").append(link);
                 }
         
@@ -1112,12 +1115,12 @@ TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutoria
                 if(tutorials[i] !== undefined) 
                 { 
                     // adding tutorial_title
-                    var link = $('<a href="">'+tutorials[i].title+'</a>');
+                    var link = $('<a href="player.html?tutorial_id='+tutorials[i].content_id+'">'+tutorials[i].title+'</a>');
                     $(this).find("div.tutorial_title").append(link); 
 
                     // adding tutorial thumbnail
                     
-                    var link = $('<a href="#"></a>');
+                    var link = $('<a href="player.html?tutorial_id='+tutorials[i].content_id+'"></a>');
                     var thumbnail = $('<img class="thumbnail" alt="tutorial_thumbnail" src="'+tutorials[i].thumbnail_path+'" >');
                     link.append(thumbnail);
                     
@@ -1132,7 +1135,7 @@ TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutoria
 
 
                     // adding author_name 
-                    var link = $('<a href="">'+tutorials[i].author.username+'</a>');      
+                    var link = $('<a href="profile.html?user_id='+tutorials[i].author_skhr_id+'">'+tutorials[i].author.username+'</a>');      
                     $(this).find("div.author_name").append(link);
                 }
                 
@@ -1165,14 +1168,14 @@ TemplateGenerator.prototype.displayTutorialGallerySimple = function(target,tutor
                 if(tutorials[i] !== undefined) 
                 { 
                     // adding tutorial thumbnail
-                    var link = $('<a href="#"></a>');
+                    var link = $('<a href="player.html?tutorial_id='+tutorials[i].content_id+'"></a>');
                     var thumbnail = $('<img class="thumbnail" alt="tutorial_thumbnail" src="'+tutorials[i].thumbnail_path+'" >');
                     link.append(thumbnail);
                     
                     $(this).find("div.thumbnail").append(link);
 
                     // adding author_name 
-                    var link = $('<a href="">'+tutorials[i].username+'</a>');      
+                    var link = $('<a href="profile.html?user_id='+tutorials[i].author_skhr_id+'">'+tutorials[i].author.username+'</a>');      
                     $(this).find("div.author_name").append(link);
                     
                     // adding number of votes
@@ -1338,7 +1341,7 @@ TemplateGenerator.prototype.displayCompetitions = function(target,competitions)
                 var thumbnail_img = $('<img src="'+competitions[i].logo_path+'" alt="competition thumbnail" class="header" />');
                 $(this).find(".competition_info .thumbnail").append(thumbnail_img);
 
-                $(this).find(".competition_info .header_caption").text(competitions[i].title); 
+                $(this).find(".competition_info .header_caption").html('<a href="competition.html?competition_id='+competitions[i].competition_id+'">'+competitions[i].title+'</a>'); 
                 $(this).find(".competition_info .details .description").text(competitions[i].description);     
                 
                 //alert(i);
@@ -1395,7 +1398,7 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
                     $(this).append(user_place); 
 
                     var user_name = $('<div class="user_name"></div>');
-                    var link = $('<a href="">'+users[i].username+'</a>');  
+                    var link = $('<a href="profile.html?user_id='+users[i].skhr_id+'">'+users[i].username+'</a>');  
                     user_name.append(link);
                     $(this).append(user_name);
 

@@ -265,7 +265,7 @@ $(".options #logout").click(function(e)
 
         // leaderboard popup
 
-        $(".leaderboard").click(function(e) 
+        $(".leaderboard, .main_menu #top_heroes_link").click(function(e) 
          { 
              //alert('leaderboard bitches');
              
@@ -396,6 +396,14 @@ $(".options #logout").click(function(e)
                         //alert('fadeIn');             
                     }); 
         });
+        
+        
+
+//====================================MENU======================================
+        $(".main_menu #competitions_link").click(function(event){
+
+            window.location.assign("competitions.html")
+        });
     });
     
 });
@@ -508,7 +516,7 @@ function getTopUsersByFilter(leader_board_length, filter, period)
                                                                     }
                                             }); 
                 
-                alert(filter+" All Time");                                              
+                //alert(filter+" All Time");                                              
             }
             else
             {
@@ -526,7 +534,7 @@ function getTopUsersByFilter(leader_board_length, filter, period)
                                                                         "user_comments":"user_comments"
                                                                     }
                                             }); 
-                alert(filter+" "+period);
+                //alert(filter+" "+period);
             }
             break;
         default:
