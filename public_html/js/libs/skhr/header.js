@@ -404,9 +404,34 @@ $(".options #logout").click(function(e)
 
             window.location.assign("competitions.html")
         });
+
+//===================================FOLLOW_BUTTON==============================
+        $(".follow_button").click(function(e) 
+        { 
+            if(localStorage.caller_skhr_id && localStorage.user_token )
+            {
+                promise_user_follow = rest_caller.startFollowingUser({}); 
+
+                promise_top_users.done(
+                        function(data)
+                        {
+                            
+                        }
+            }
+            else
+            {
+                var overlay = $('<div class="overlay"></div>');
+                $("body").append(overlay);
+
+                $("#popup_login").fadeIn(); 
+                //$("#popup_login input[name=username_email]").focus();
+            }
+
+        });
     });
     
 });
+
    
    
 //=====================================FUNCTIONS================================
@@ -586,6 +611,7 @@ function handleLogin(data, rest_caller, template_generator)
 function handleLogout()
 {
     localStorage.clear();
+    sessionStorage.clear();
 
     $(".avatar #logged_in_avatar").attr('src','images/avatar_def.png');
 

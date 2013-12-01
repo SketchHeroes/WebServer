@@ -401,6 +401,28 @@ RestCaller.prototype.loginNativeUserUsername = function(params)
     return this.ajax();
 };
 
+RestCaller.prototype.startFollowingUser = function(params)
+{
+    this.setResource("/user/follow");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json");
+    
+    this.setCustomHeader("X-Caller-SKHR-ID",params['caller_skhr_id'] );
+    this.setCustomHeader("X-User-Token",params['user_token']);
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("skhr",params['skhr']);
+    
+    return this.ajax();
+};
+
 
 RestCaller.prototype.getUser = function(params)
 {
@@ -630,6 +652,8 @@ RestCaller.prototype.getCategoryTutorials = function(params)
     
     return this.ajax();
 };
+
+
 //-------------------- Template class ------------------------------------------
 
 function TemplateGenerator()
