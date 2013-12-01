@@ -410,6 +410,12 @@ RestCaller.prototype.getUser = function(params)
     this.setCustomHeader("Accept","application/json"); 
     this.setCustomHeader("X-App-Token",this.app_token); 
     
+    if(typeof params['caller_skhr_id'] !== 'undefined' && typeof params['user_token'] !== 'undefined')
+    {  
+        this.setCustomHeader("X-Caller-SKHR-ID",params['caller_skhr_id'] );
+        this.setCustomHeader("X-User-Token",params['user_token']);
+    }
+    
     this.clearRequestParams();
     this.setRequestParam("skhr_id",params['skhr_id']);
     
@@ -1481,7 +1487,7 @@ function Account()
 
 // setters
 
-Account.prototype.setDomain = function(domain)
+Account.prototype.loginNativeUser = function(data, rest_caller, template_generator)
 {
-    this.domain = domain;
+    
 };

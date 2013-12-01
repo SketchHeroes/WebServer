@@ -204,6 +204,12 @@ header.main
 .account .avatar, .account .options, .account .scores {
   float: left;
 }
+
+.account .avatar img{
+    height:60px;
+    width:60px;
+    border:1px red dashed;
+}
 /*
 .login .avatar {
   margin: 0 5px 2px 0;

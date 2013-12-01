@@ -123,7 +123,8 @@ $(function(){
        }); 
 
 
-//------------------------------------- logging in------------------------------
+//-------------------------------------LOGGING IN------------------------------
+//=============================================================================
 
 
        $(".button_login").click(function(e) 
@@ -139,16 +140,16 @@ $(function(){
             {
                 //alert(username_email+' = username');
                 var promise_login = rest_caller.loginNativeUserUsername({"username":username_email, "password":password});
-
+                    
+                    // LOGIN successful
                     promise_login.done(
                         function(data)
                         {
-                            
-                            alert('success: '+JSON.stringify(data));
-                            localStorage.skhr_id    = data.user.skhr_id;
-                            localStorage.user_token = data.user.user_token;
+                            template_generator.user_credentials = data.user;
+                            handleLogin(data, rest_caller, template_generator);
+
                             $("#popup_login").fadeOut(); 
-                            $("body .overlay").remove();
+                            $("body .overlay").remove();  
                         });
                         
                     promise_login.fail(
@@ -169,12 +170,11 @@ $(function(){
                     promise_login.done(
                         function(data)
                         {
-                            
-                            alert('success: '+JSON.stringify(data));
-                            localStorage.skhr_id    = data.user.skhr_id;
-                            localStorage.user_token = data.user.user_token;
+                            template_generator.user_credentials = data.user;
+                            handleLogin(data, rest_caller, template_generator);
+
                             $("#popup_login").fadeOut(); 
-                            $("body .overlay").remove();
+                            $("body .overlay").remove();  
                         });
                         
                     promise_login.fail(
@@ -185,7 +185,7 @@ $(function(){
                 }
                 else
                 {
-                    alert(username_email+' = neither email nor username');
+                    $("#popup_login #native_error").text(username_email+' neither email nor username');
                 }
             }
 
@@ -194,7 +194,13 @@ $(function(){
         });
 
 
-//------------------------------------- logging in------------------------------
+//------------------------------------- LOGGING OUT-----------------------------
+
+$(".options #logout").click(function(e) 
+{ 
+    handleLogout();
+});
+//------------------------------------- REGISTERING------------------------------
 
 
        $(".button_register").click(function(e) 
@@ -238,11 +244,11 @@ $(function(){
                 promise_register.done(
                     function(data)
                     {
-                        alert('success: '+JSON.stringify(data));
-                        localStorage.skhr_id    = data.user.skhr_id;
-                        localStorage.user_token = data.user.user_token;
+                        template_generator.user_credentials = data.user;
+                        handleLogin(data, rest_caller, template_generator);
+
                         $("#popup_register").fadeOut(); 
-                        $("body .overlay").remove();
+                        $("body .overlay").remove();  
                     });
 
                 promise_register.fail(
@@ -251,57 +257,6 @@ $(function(){
                         //alert('failure: '+JSON.parse(data.responseText).error.message);
                         $("#popup_register #native_error").text(JSON.parse(data.responseText).error.message);
                     });
-            /*
-            // if username
-            if (account.reg_username.test(username_email) )
-            {
-                //alert(username_email+' = username');
-                var promise_login = rest_caller.loginNativeUserUsername({"username":username_email, "password":password});
-
-                    promise_login.done(
-                        function(data)
-                        {
-                            alert('success: '+JSON.stringify(data));
-                            localStorage.skhr_id    = promise
-                            localStorage.user_token = promise_login.user_token;
-                        });
-                        
-                    promise_login.fail(
-                        function(data)
-                        {
-                            alert('failure: '+JSON.stringify(data));
-                        });
-            }
-            else
-            {   
-                // if email
-                if( account.reg_email.test(username_email) )
-                {
-                    //alert(username_email+' = email');
-
-                    var promise_login = rest_caller.loginNativeUserEmail({"email":username_email, "password":password});
-
-                    promise_login.done(
-                        function(data)
-                        {
-                            alert('success: '+JSON.stringify(data));
-                        });
-                        
-                    promise_login.fail(
-                        function(data)
-                        {
-                            alert('failure: '+JSON.stringify(data));
-                        });
-                }
-                else
-                {
-                    alert(username_email+' = neither email nor username');
-                }
-            }
-            */
-
-
-
         });
         
         
@@ -581,4 +536,55 @@ function getTopUsersByFilter(leader_board_length, filter, period)
     } 
     
     return promise_top_users;
+}
+
+
+function handleLogin(data, rest_caller, template_generator)
+{
+    localStorage.caller_skhr_id = data.user.skhr_id;
+    localStorage.user_token     = data.user.user_token;
+    
+
+    var promise_user = rest_caller.getUser({
+                                                "caller_skhr_id":data.user.skhr_id,
+                                                "user_token":data.user.user_token,
+                                                "skhr_id":data.user.skhr_id
+                                            });
+
+    
+    promise_user.done(
+            function(data)
+            {   
+                template_generator.user = data.user;
+                
+                //alert('after getUser: '+JSON.stringify(template_generator.user));
+
+                localStorage.username = data.user.username;
+                localStorage.avatar_path= data.user.avatar_path;
+
+                if(data.user.avatar_path !== null)
+                {
+                    $(".avatar #logged_in_avatar").attr('src',data.user.avatar_path);
+                    //alert(data.user.avatar_path);
+                }
+                $(".account .options #username").text(data.user.username).css('display','inline-block');
+                $(".account .options #logout").css('display','inline-block');
+                $(".account .options #login").css('display','none');
+                $(".account .options #register").css('display','none');              
+
+            });
+
+}
+function handleLogout()
+{
+    localStorage.clear();
+
+    $(".avatar #logged_in_avatar").attr('src','images/avatar_def.png');
+
+    $(".account .options #username").css('display','none');
+    $(".account .options #logout").css('display','none');
+    $(".account .options #login").css('display','inline-block');
+    $(".account .options #register").css('display','inline-block');           
+
+
 }
