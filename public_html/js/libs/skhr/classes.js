@@ -965,7 +965,12 @@ TemplateGenerator.prototype.displayUserListComlex= function(target, users)
                 i++;
             });
     //alert(i);
-    
+    var account = new Account();          
+    if( account.isLoggedIn() )
+    {
+        var service = new Service();
+        service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
+    }
 };  
 
 TemplateGenerator.prototype.addNotificationList = function(target)
@@ -1134,7 +1139,12 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                 i++;
             });
             
-    
+    var account = new Account();          
+    if( account.isLoggedIn() )
+    {
+        var service = new Service();
+        service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
+    }
 };    
 
 
@@ -1195,6 +1205,12 @@ TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutoria
                 i++;
             });
     //alert(i);
+    var account = new Account();          
+    if( account.isLoggedIn() )
+    {
+        var service = new Service();
+        service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
+    }
 };     
 
 
@@ -1464,7 +1480,12 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
                 i++;
             });
     //alert(i);
-    
+    var account = new Account();          
+    if( account.isLoggedIn() )
+    {
+        var service = new Service();
+        service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
+    }
 };   
 
 
@@ -1499,7 +1520,7 @@ TemplateGenerator.prototype.displayUser= function(target, user)
     $(target).find(".statistics .progress progress .progress-bar span").attr('width',user.level_progress+'%');
     $(target).find(".statistics .progress progress .progress-bar span").text('Progress: '+user.level_progress+'%');
     
-    alert(user.skhr_id);
+    //alert(user.skhr_id);
     $(target).find(".statistics3 .follow_button").attr('id',user.skhr_id); 
     $(target).find(".statistics3 .following").val( 'Following('+user.follows.follows_skhr+')'); 
     $(target).find(".statistics3 .fans").val( 'Fans('+user.followed.followed_skhr+')'); 
@@ -1523,6 +1544,14 @@ TemplateGenerator.prototype.displayTwoPartGallery= function(part_one_target, par
     this.addGallery(part_two_target, tutorials_per_part);
     this.displayTutorialGallery(part_two_target, this.category_tutorials.slice(page*tutorials_per_part*2+tutorials_per_part,page*tutorials_per_part*2+tutorials_per_part*2));
 
+    /*
+    var account = new Account();          
+    if( account.isLoggedIn() )
+    {
+        var service = new Service();
+        service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
+    }
+    */
 };   
 
 // setters

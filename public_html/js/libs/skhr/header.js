@@ -306,6 +306,13 @@ $(".options #logout").click(function(e)
                             template_generator.removeUserListComplex("#leader_list");
                             template_generator.addUserListComplex("#leader_list", template_generator.leaderboard_users.length); 
                             template_generator.displayUserListComlex("#leader_list", template_generator.leaderboard_users);
+                            /*
+                            if( account.isLoggedIn() )
+                            {
+                                var service = new Service();
+                                service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
+                            }
+                            */
                          });
                          
              }
@@ -359,9 +366,15 @@ $(".options #logout").click(function(e)
                     template_generator.removeUserListComplex("#leader_list");
                     template_generator.addUserListComplex("#leader_list", template_generator.leaderboard_users.length); 
                     template_generator.displayUserListComlex("#leader_list", template_generator.leaderboard_users);
+                    /*
+                    if( account.isLoggedIn() )
+                    {
+                        var service = new Service();
+                        service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
+                    }
+                    */
                     
                     $("#popup_leaderboard #leader_list").fadeIn();   
-
                 }); 
             }
             
@@ -399,10 +412,16 @@ $(".options #logout").click(function(e)
                         
                         template_generator.removeUserListComplex("#leader_list");
                         template_generator.addUserListComplex("#leader_list", template_generator.leaderboard_users.length); 
-                        template_generator.displayUserListComlex("#leader_list", template_generator.leaderboard_users);
-                        
+                        template_generator.displayUserListComlex("#leader_list", template_generator.leaderboard_users);   
+                        /*  
+                        if( account.isLoggedIn() )
+                        {
+                            var service = new Service();
+                            service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
+                        } 
+                        */
                         $("#popup_leaderboard #leader_list").fadeIn(); 
-                        //alert('fadeIn');             
+                        //alert('fadeIn');         
                     }); 
         });
         
@@ -618,7 +637,7 @@ function getTopUsersByFilter(leader_board_length, filter, period)
             break;
         default:
 
-            alert("default: recent");
+            //alert("default: recent");
             break;
     } 
     

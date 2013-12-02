@@ -54,8 +54,8 @@ $(function(){
                      //alert(template_generator.user_followed);
 
                      // get user fans - only the first time user presses fans button
-                     if(typeof template_generator.user_followed === 'undefined')
-                     {
+                     //if(typeof template_generator.user_followed === 'undefined')
+                     //{
                          //alert('first_time');
                          var promise_user_followed = rest_caller.getUserFollowed({   "skhr_id":skhr_id,
                                                                                      "user_related_data":{
@@ -76,8 +76,17 @@ $(function(){
                                     $('#popup_fans h1.caption').text('Fans('+template_generator.user_followed.length+')');
                                     template_generator.addUserListComplex("#fans_list", template_generator.user_followed.length); 
                                     template_generator.displayUserListComlex("#fans_list", template_generator.user_followed);
+                                    
+                                    var account = new Account();
+                                    /*
+                                    if( account.isLoggedIn() )
+                                    {
+                                        var service = new Service();
+                                        service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
+                                    }
+                                     */
                                  });
-                     }
+                     //}
 
                  });
 
