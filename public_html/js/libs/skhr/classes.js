@@ -1623,7 +1623,7 @@ Service.prototype.updateFollowButtons = function(params)
              //alert($('.follow_button#'+fan.skhr_id).attr('value'));
         });
         
-        alert(localStorage.caller_fans);
+        //alert('LOCAL:'+localStorage.caller_fans);
     }
     else
     {
@@ -1634,7 +1634,7 @@ Service.prototype.updateFollowButtons = function(params)
             function(data)
             {         
                var caller_fans = data.user_follows; 
-               alert(JSON.stringify(data.user_follows));
+               //alert('REMOTE'+JSON.stringify(data.user_follows));
                localStorage.caller_fans = JSON.stringify(data.user_follows);
                 //alert(template_generator.user_followed.length);
                //alert('caller_fans'+JSON.stringify(caller_fans))

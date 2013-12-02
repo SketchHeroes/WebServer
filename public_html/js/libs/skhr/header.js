@@ -454,7 +454,7 @@ $(".options #logout").click(function(e)
                             var target = $(".follow_button[id="+e.target.id+"]");
                             target.attr('value','Unfollow');
                             target.removeClass('follow').addClass('unfollow');
-                            localStorage.removeItem['caller_fans'];
+                            localStorage.removeItem('caller_fans');
                         });
                         
             }
