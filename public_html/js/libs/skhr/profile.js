@@ -33,6 +33,7 @@ $(function(){
             function(data)
             {
                 template_generator.user = data.user;
+                template_generator.user['skhr_id'] = skhr_id;
                 //template_generator.addGallery("#user_tutorials_gallery", length);
                 template_generator.displayUser("#user_info", template_generator.user);         
                 

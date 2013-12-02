@@ -423,6 +423,28 @@ RestCaller.prototype.startFollowingUser = function(params)
     return this.ajax();
 };
 
+RestCaller.prototype.stopFollowingUser = function(params)
+{
+    this.setResource("/user/follow");
+    this.setVerb("DELETE");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json");
+    
+    this.setCustomHeader("X-Caller-SKHR-ID",params['caller_skhr_id'] );
+    this.setCustomHeader("X-User-Token",params['user_token']);
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("skhr",params['skhr']);
+    
+    return this.ajax();
+};
+
 
 RestCaller.prototype.getUser = function(params)
 {
@@ -721,9 +743,6 @@ TemplateGenerator.prototype.addGallery = function(target, size)
                     
                     var author_name = $('<div class="author_name"></div>');
                     info_panel.append(author_name);
-                        
-                    image = $('<img class="follow_button" src="images/follow-button.png">');
-                    info_panel.append(image);
         
         list.append(single_record);
     };
@@ -764,9 +783,6 @@ TemplateGenerator.prototype.addGalleryLess = function(target, size)
                     
                     var author_name = $('<div class="author_name"></div>');
                     info_panel.append(author_name);
-                        
-                    image = $('<img class="follow_button" src="images/follow-button.png">');
-                    info_panel.append(image);
         
         list.append(single_record);
     };
@@ -882,9 +898,6 @@ TemplateGenerator.prototype.addUserListComplex = function(target, length)
 
                         var div3 = $('<div class="user_tutorials">0</div>');
                         div2.append(div3);
-                        
-            var follow_button = $('<input type="button" value="Follow" class="follow">');
-            single_record.append(follow_button);
         
         list.append(single_record);
     };
@@ -907,6 +920,8 @@ TemplateGenerator.prototype.displayUserListComlex= function(target, users)
                 // adding tutorial_title
                 
                 $(this).find(".avatar .pic").remove();
+                $(this).find(".follow_button").remove();
+                $(this).find(".unfollow_button").remove();
                 
                 //alert($(this).attr('class'));
 
@@ -938,6 +953,11 @@ TemplateGenerator.prototype.displayUserListComlex= function(target, users)
                     $(this).find(".user_name").html('<a href="profile.html?user_id='+users[i].skhr_id+'">'+users[i].username+'</a>');
                     
                     $(this).find(".user_fans").text( 'Fans('+users[i].followed.followed_skhr+')'); 
+
+                    var follow_button = $('<input type="button" value="Follow" class="follow_button" id="'+users[i].skhr_id+'">');
+                    $(this).append(follow_button);
+                    
+                    //$(this).find(".follow_button").attr('id',users[i].skhr_id);
 
                     $(this).find(".stat .user_tutorials").text(users[i].tutorials.tutorials_skhr);
                     $(this).find(".stat .user_likes").text(users[i].likes.likes_skhr);
@@ -1073,6 +1093,9 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                 
                 $(this).find("div.author_name a").remove(); 
                 
+                $(this).find(".follow_button").remove();
+                $(this).find(".unfollow_button").remove();
+                
                 // if there is data adding new data to gallery
                 if(tutorials[i] !== undefined) 
                 { 
@@ -1104,6 +1127,10 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                     // adding author_name 
                     var link = $('<a href="profile.html?user_id='+tutorials[i].author_skhr_id+'">'+tutorials[i].author.username+'</a>');      
                     $(this).find("div.author_name").append(link);
+  
+                    var follow_button = $('<input type="button" class="follow_button" value="Follow" id="'+tutorials[i].author_skhr_id+'"/>');
+                    $(this).find('.info_panel').append(follow_button);
+                    //$(this).find('.follow_button').attr('id',tutorials[i].author_skhr_id);
                 }
         
                 i++;
@@ -1131,6 +1158,8 @@ TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutoria
                 $(this).find("div.thumbnail a").remove();
                 
                 $(this).find('img.pic').remove();
+                $(this).find(".follow_button").remove();
+                $(this).find(".unfollow_button").remove();
                 
                 //$(this).find("div.author_name a").remove(); 
                 $(this).find('.avatar').css("background-image", "none");  
@@ -1161,6 +1190,9 @@ TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutoria
                     // adding author_name 
                     var link = $('<a href="profile.html?user_id='+tutorials[i].author_skhr_id+'">'+tutorials[i].author.username+'</a>');      
                     $(this).find("div.author_name").append(link);
+                    
+                    var follow_button = $('<input type="button" class="follow_button" value="Follow" id="'+tutorials[i].author_skhr_id+'"/>');
+                    $(this).find('.info_panel').append(follow_button);
                 }
                 
                 i++;
@@ -1412,6 +1444,7 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
                 $(this).find(".user_place").remove();
                 $(this).find(".user_name").remove();
                 $(this).find(".follow_button").remove();
+                $(this).find(".unfollow_button").remove();
                 
                 if(users[i] !== undefined) 
                 {
@@ -1426,8 +1459,10 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
                     user_name.append(link);
                     $(this).append(user_name);
 
-                    var image = $('<img class="follow_button" src="images/follow-button.png">');
-                    $(this).append(image);
+                    var follow_button = $('<input type="button" class="follow_button" value="Follow" id="'+users[i].skhr_id+'">');
+                    $(this).append(follow_button);
+                    
+                    //$(this).find('.follow_button').attr('id',users[i].skhr_id);
                 }
         
                 i++;
@@ -1468,7 +1503,8 @@ TemplateGenerator.prototype.displayUser= function(target, user)
     $(target).find(".statistics .progress progress .progress-bar span").attr('width',user.level_progress+'%');
     $(target).find(".statistics .progress progress .progress-bar span").text('Progress: '+user.level_progress+'%');
     
-    
+    alert(user.skhr_id);
+    $(target).find(".statistics3 .follow_button").attr('id',user.skhr_id); 
     $(target).find(".statistics3 .following").val( 'Following('+user.follows.follows_skhr+')'); 
     $(target).find(".statistics3 .fans").val( 'Fans('+user.followed.followed_skhr+')'); 
     

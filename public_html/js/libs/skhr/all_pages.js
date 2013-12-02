@@ -7,7 +7,7 @@
 $(function(){
     //alert('You are in ' + (document.compatMode==='CSS1Compat'?'Standards':'Quirks') + ' mode.')
     // difining global variables
-
+    
     
 });
    

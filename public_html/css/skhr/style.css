@@ -910,12 +910,19 @@ div.comments{
     /*border: 1px red dotted;*/
 }
 
-img.follow_button{ 
+.follow_button, .unfollow_button{ 
     margin: 5px 0px 0px 0px;
     height:30px;
     width:70px;
     float: right;
     cursor: pointer;
+    
+    background: #A4D4E0;
+    
+    border: 4px #779DA6 solid;
+    border-radius: 12px 12px 12px 12px;
+    
+    color: #FFFFFF;
 }
 
 img.likes_image,
@@ -993,7 +1000,7 @@ img.comments_image{
     margin: 0px 0px 0px 0px;
 }
 
-.gallery img.follow_button{ 
+.gallery .follow_button, .gallery .unfollow_button{ 
     margin: 0px 0px 0px 0px;
     height:30px;
     width:70px;
@@ -1285,7 +1292,7 @@ img.comments_image{
     width: 170px;
 }
 
-.users_list img.follow_button{ 
+.users_list .follow_button, .users_list .unfollow_button{ 
     margin: 20px 0px 0px 0px;
 }
 /*  USER LIST COMPLEX*/
@@ -1601,7 +1608,7 @@ img.comments_image{
 }
 
 
-.gallery_less img.follow_button{ 
+.gallery_less .follow_button, .gallery_less .unfollow_button{ 
     margin: 5px 0px 0px 0px;
 }
 

@@ -406,17 +406,60 @@ $(".options #logout").click(function(e)
         });
 
 //===================================FOLLOW_BUTTON==============================
-        $(".follow_button").click(function(e) 
+        $('body').on('click', '.follow_button', function(e)
+        //$(".follow_button").click(function(e) 
         { 
+            //alert(e.target.id);
+            
             if(localStorage.caller_skhr_id && localStorage.user_token )
             {
-                promise_user_follow = rest_caller.startFollowingUser({}); 
+                
+                var promise_user_follow = rest_caller.startFollowingUser({
+                                                                        'caller_skhr_id':localStorage.caller_skhr_id,
+                                                                        'user_token':localStorage.user_token,
+                                                                        'skhr_id':e.target.id
+                                                                    }); 
 
-                promise_top_users.done(
+                promise_user_follow.done(
                         function(data)
                         {
-                            
-                        }
+                            e.target.attr('value','Unfollow');
+                            e.target.removeClass('follow_button').addClass('unfollow_button');
+                        });
+                        
+            }
+            else
+            {
+                var overlay = $('<div class="overlay"></div>');
+                $("body").append(overlay);
+
+                $("#popup_login").fadeIn(); 
+                //$("#popup_login input[name=username_email]").focus();
+            }
+
+        });
+//===================================UNFOLLOW_BUTTON==============================
+        $('body').on('click', '.unfollow_button', function(e)
+        //$(".follow_button").click(function(e) 
+        { 
+            alert(e.target.id);
+            
+            if(localStorage.caller_skhr_id && localStorage.user_token )
+            {
+                
+                var promise_user_follow = rest_caller.stopFollowingUser({
+                                                                        'caller_skhr_id':localStorage.caller_skhr_id,
+                                                                        'user_token':localStorage.user_token,
+                                                                        'skhr_id':e.target.id
+                                                                    }); 
+
+                promise_user_follow.done(
+                        function(data)
+                        {
+                            e.target.attr('value','Follow');
+                            e.target.removeClass('unfollow_button').addClass('follow_button');
+                        });
+                        
             }
             else
             {
