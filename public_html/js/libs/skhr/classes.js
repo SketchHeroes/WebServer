@@ -1608,15 +1608,34 @@ Service.prototype.getParameterByName = function(name)
 
 Service.prototype.updateFollowButtons = function(params)
 {
-    var service = this;
+    //var service = this;
     
     var rest_caller = new RestCaller();
-    var promise_user_follows = rest_caller.getUserFollows({"skhr_id":params['caller_skhr_id']});
 
-    promise_user_follows.done(
+    if(localStorage.caller_fans)
+    {
+        var caller_fans = JSON.parse(localStorage.caller_fans);
+        
+        $.each(caller_fans, function( index, fan ) 
+        {
+             $('.follow_button[id='+fan.skhr_id+']').attr('value','Unfollow').removeClass('follow').addClass('unfollow');
+             //alert(JSON.stringify(fan));
+             //alert($('.follow_button#'+fan.skhr_id).attr('value'));
+        });
+        
+        alert(localStorage.caller_fans);
+    }
+    else
+    {
+        
+        var promise_user_follows = rest_caller.getUserFollows({"skhr_id":params['caller_skhr_id']});
+        
+        promise_user_follows.done(
             function(data)
             {         
                var caller_fans = data.user_follows; 
+               alert(JSON.stringify(data.user_follows));
+               localStorage.caller_fans = JSON.stringify(data.user_follows);
                 //alert(template_generator.user_followed.length);
                //alert('caller_fans'+JSON.stringify(caller_fans))
                // make all follow_buttons with "unfollow" to "follow"
@@ -1660,6 +1679,7 @@ Service.prototype.updateFollowButtons = function(params)
                     */
                     
             });
+    }
         
 };
 
