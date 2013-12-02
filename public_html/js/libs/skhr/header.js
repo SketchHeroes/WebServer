@@ -14,9 +14,18 @@ $(function(){
         var rest_caller          = new RestCaller();
         var template_generator   = new TemplateGenerator();
         var account              = new Account();
+        var service              = new Service();
         
         var leader_board_length  = 50;
-
+        
+        if( account.isLoggedIn() )
+        {
+            handleLogin(    
+                            {"caller_skhr_id":localStorage.caller_skhr_id, "user_token":localStorage.user_token}, 
+                            rest_caller, 
+                            template_generator
+                       );
+        }
 
         // expendable menu buttons
 
@@ -406,12 +415,12 @@ $(".options #logout").click(function(e)
         });
 
 //===================================FOLLOW_BUTTON==============================
-        $('body').on('click', '.follow_button', function(e)
+        $('body').on('click', '.follow', function(e)
         //$(".follow_button").click(function(e) 
         { 
             //alert(e.target.id);
             
-            if(localStorage.caller_skhr_id && localStorage.user_token )
+            if( account.isLoggedIn() )
             {
                 
                 var promise_user_follow = rest_caller.startFollowingUser({
@@ -423,8 +432,9 @@ $(".options #logout").click(function(e)
                 promise_user_follow.done(
                         function(data)
                         {
-                            e.target.attr('value','Unfollow');
-                            e.target.removeClass('follow_button').addClass('unfollow_button');
+                            var target = $(".follow_button[id="+e.target.id+"]");
+                            target.attr('value','Unfollow');
+                            target.removeClass('follow').addClass('unfollow');
                         });
                         
             }
@@ -439,12 +449,12 @@ $(".options #logout").click(function(e)
 
         });
 //===================================UNFOLLOW_BUTTON==============================
-        $('body').on('click', '.unfollow_button', function(e)
+        $('body').on('click', '.unfollow', function(e)
         //$(".follow_button").click(function(e) 
         { 
-            alert(e.target.id);
+            //alert(e.target.id);
             
-            if(localStorage.caller_skhr_id && localStorage.user_token )
+            if( account.isLoggedIn() )
             {
                 
                 var promise_user_follow = rest_caller.stopFollowingUser({
@@ -456,8 +466,9 @@ $(".options #logout").click(function(e)
                 promise_user_follow.done(
                         function(data)
                         {
-                            e.target.attr('value','Follow');
-                            e.target.removeClass('unfollow_button').addClass('follow_button');
+                            var target = $(".follow_button[id="+e.target.id+']');
+                            target.attr('value','Follow');
+                            target.removeClass('unfollow').addClass('follow');
                         });
                         
             }
@@ -617,14 +628,17 @@ function getTopUsersByFilter(leader_board_length, filter, period)
 
 function handleLogin(data, rest_caller, template_generator)
 {
-    localStorage.caller_skhr_id = data.user.skhr_id;
-    localStorage.user_token     = data.user.user_token;
+    if(typeof data.user !== 'undefined')
+    {
+        localStorage.caller_skhr_id = data.user.skhr_id;
+        localStorage.user_token     = data.user.user_token;
+    }
     
 
     var promise_user = rest_caller.getUser({
-                                                "caller_skhr_id":data.user.skhr_id,
-                                                "user_token":data.user.user_token,
-                                                "skhr_id":data.user.skhr_id
+                                                "caller_skhr_id":localStorage.caller_skhr_id,
+                                                "user_token":localStorage.user_token,
+                                                "skhr_id":localStorage.caller_skhr_id
                                             });
 
     
@@ -649,6 +663,9 @@ function handleLogin(data, rest_caller, template_generator)
                 $(".account .options #register").css('display','none');              
 
             });
+    
+    var service = new Service();
+    service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
 
 }
 function handleLogout()
@@ -661,7 +678,8 @@ function handleLogout()
     $(".account .options #username").css('display','none');
     $(".account .options #logout").css('display','none');
     $(".account .options #login").css('display','inline-block');
-    $(".account .options #register").css('display','inline-block');           
-
+    $(".account .options #register").css('display','inline-block');  
+    
+    $('.unfollow').attr('value','Follow').removeClass('unfollow').addClass('follow');    
 
 }

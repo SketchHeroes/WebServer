@@ -418,7 +418,7 @@ RestCaller.prototype.startFollowingUser = function(params)
     //alert('email: '+params['email']+", password: "+params['password']+".");
     
     this.clearRequestParams();
-    this.setRequestParam("skhr",params['skhr']);
+    this.setRequestParam("skhr_id",params['skhr_id']);
     
     return this.ajax();
 };
@@ -440,7 +440,7 @@ RestCaller.prototype.stopFollowingUser = function(params)
     //alert('email: '+params['email']+", password: "+params['password']+".");
     
     this.clearRequestParams();
-    this.setRequestParam("skhr",params['skhr']);
+    this.setRequestParam("skhr_id",params['skhr_id']);
     
     return this.ajax();
 };
@@ -674,7 +674,6 @@ RestCaller.prototype.getCategoryTutorials = function(params)
     
     return this.ajax();
 };
-
 
 //-------------------- Template class ------------------------------------------
 
@@ -921,7 +920,6 @@ TemplateGenerator.prototype.displayUserListComlex= function(target, users)
                 
                 $(this).find(".avatar .pic").remove();
                 $(this).find(".follow_button").remove();
-                $(this).find(".unfollow_button").remove();
                 
                 //alert($(this).attr('class'));
 
@@ -954,7 +952,7 @@ TemplateGenerator.prototype.displayUserListComlex= function(target, users)
                     
                     $(this).find(".user_fans").text( 'Fans('+users[i].followed.followed_skhr+')'); 
 
-                    var follow_button = $('<input type="button" value="Follow" class="follow_button" id="'+users[i].skhr_id+'">');
+                    var follow_button = $('<input type="button" value="Follow" class="follow_button follow" id="'+users[i].skhr_id+'">');
                     $(this).append(follow_button);
                     
                     //$(this).find(".follow_button").attr('id',users[i].skhr_id);
@@ -1094,7 +1092,6 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                 $(this).find("div.author_name a").remove(); 
                 
                 $(this).find(".follow_button").remove();
-                $(this).find(".unfollow_button").remove();
                 
                 // if there is data adding new data to gallery
                 if(tutorials[i] !== undefined) 
@@ -1127,9 +1124,10 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                     // adding author_name 
                     var link = $('<a href="profile.html?user_id='+tutorials[i].author_skhr_id+'">'+tutorials[i].author.username+'</a>');      
                     $(this).find("div.author_name").append(link);
-  
-                    var follow_button = $('<input type="button" class="follow_button" value="Follow" id="'+tutorials[i].author_skhr_id+'"/>');
-                    $(this).find('.info_panel').append(follow_button);
+
+                    var button = $('<input type="button" class="follow_button follow" value="Follow" id="'+tutorials[i].author_skhr_id+'"/>');
+                    
+                    $(this).find('.info_panel').append(button);
                     //$(this).find('.follow_button').attr('id',tutorials[i].author_skhr_id);
                 }
         
@@ -1159,7 +1157,6 @@ TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutoria
                 
                 $(this).find('img.pic').remove();
                 $(this).find(".follow_button").remove();
-                $(this).find(".unfollow_button").remove();
                 
                 //$(this).find("div.author_name a").remove(); 
                 $(this).find('.avatar').css("background-image", "none");  
@@ -1191,7 +1188,7 @@ TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutoria
                     var link = $('<a href="profile.html?user_id='+tutorials[i].author_skhr_id+'">'+tutorials[i].author.username+'</a>');      
                     $(this).find("div.author_name").append(link);
                     
-                    var follow_button = $('<input type="button" class="follow_button" value="Follow" id="'+tutorials[i].author_skhr_id+'"/>');
+                    var follow_button = $('<input type="button" class="follow_button follow" value="Follow" id="'+tutorials[i].author_skhr_id+'"/>');
                     $(this).find('.info_panel').append(follow_button);
                 }
                 
@@ -1444,7 +1441,6 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
                 $(this).find(".user_place").remove();
                 $(this).find(".user_name").remove();
                 $(this).find(".follow_button").remove();
-                $(this).find(".unfollow_button").remove();
                 
                 if(users[i] !== undefined) 
                 {
@@ -1459,7 +1455,7 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
                     user_name.append(link);
                     $(this).append(user_name);
 
-                    var follow_button = $('<input type="button" class="follow_button" value="Follow" id="'+users[i].skhr_id+'">');
+                    var follow_button = $('<input type="button" class="follow_button follow" value="Follow" id="'+users[i].skhr_id+'">');
                     $(this).append(follow_button);
                     
                     //$(this).find('.follow_button').attr('id',users[i].skhr_id);
@@ -1554,15 +1550,21 @@ Account.prototype.loginNativeUser = function(data, rest_caller, template_generat
     
 };
 
+Account.prototype.isLoggedIn = function()
+{
+    if(localStorage.caller_skhr_id && localStorage.user_token)
+    {
+        //alert('logged IN');
+        return true;
+    }
+    //alert('logged OUT')
+    return false;
+}
+
 //---------------- Service class -------------------------------------------
 
 function Service()
 {
-       
-    
-    this.reg_email       = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/;
-    this.reg_username    = /^[A-Za-z0-9_.-]{3,50}$/;
-    this.reg_password    = /^[A-Za-z0-9]+$/;
     
 }   
 
@@ -1573,3 +1575,73 @@ Service.prototype.getParameterByName = function(name)
         results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 };
+
+
+Service.prototype.updateFollowButtons = function(params)
+{
+    var service = this;
+    
+    var rest_caller = new RestCaller();
+    var promise_user_follows = rest_caller.getUserFollows({"skhr_id":params['caller_skhr_id']});
+
+    promise_user_follows.done(
+            function(data)
+            {         
+               var caller_fans = data.user_follows; 
+                //alert(template_generator.user_followed.length);
+               //alert('caller_fans'+JSON.stringify(caller_fans))
+               // make all follow_buttons with "unfollow" to "follow"
+               $('.unfollow').attr('value','Follow').removeClass('unfollow').addClass('follow');
+                
+               $.each(caller_fans, function( index, fan ) 
+               {
+                    $('.follow_button[id='+fan.skhr_id+']').attr('value','Unfollow').removeClass('follow').addClass('unfollow');
+                    //alert(JSON.stringify(fan));
+                    //alert($('.follow_button#'+fan.skhr_id).attr('value'));
+               });
+               /*
+               $('.follow_button').each(
+                    function()
+                    {
+                        var user_id = $(this).attr('id');
+                        // if button with "follow" 
+                        if($(this).hasClass('follow'))
+                        {
+                            // and is followed by the caller
+                            if(service.isUserInObjectArray(caller_fans,user_id))
+                            {
+                                $(this).attr('value','Unfollow');
+                                $(this).removeClass('follow').addClass('unfollow');
+                            }
+                        }
+                        // if button with "unfollow"
+                        else
+                        {
+                            // and isn't followed by the caller
+                            if(!service.isUserInObjectArray(caller_fans,user_id))
+                            {
+                                $(this).attr('value','Follow');
+                                $(this).removeClass('unfollow').addClass('follow');
+
+                            }
+
+                        }
+                        //if()
+                    });
+                    */
+                    
+            });
+        
+};
+
+Service.prototype.isUserInObjectArray = function(arr, value)
+{
+    for(var i=0; i < arr.length; i++ ) 
+    {
+        if (arr[i].skhr_id === value) {
+            return true;
+        }
+    }
+    return false;
+};
+
