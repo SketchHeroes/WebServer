@@ -456,6 +456,20 @@ $(".options #logout").click(function(e)
                             target.removeClass('follow').addClass('unfollow');
                             localStorage.removeItem('caller_fans');
                         });
+
+                promise_user_follow.fail(
+                        function(data)
+                        {
+                            //alert(JSON.stringify(data));
+                            if(data.status === 409)
+                            {
+                                //alert('to much follow');
+                                var target = $(".follow_button[id="+e.target.id+"]");
+                                target.attr('value','Unfollow');
+                                target.removeClass('follow').addClass('unfollow');
+                                localStorage.removeItem('caller_fans');
+                            }
+                        });
                         
             }
             else
@@ -490,6 +504,20 @@ $(".options #logout").click(function(e)
                             target.attr('value','Follow');
                             target.removeClass('unfollow').addClass('follow');
                             localStorage.removeItem('caller_fans');
+                        });
+
+                promise_user_follow.fail(
+                        function(data)
+                        {
+                            //alert(JSON.stringify(data));
+                            if(data.status === 404)
+                            {
+                                //alert('to much UNfollow');
+                                var target = $(".follow_button[id="+e.target.id+']');
+                                target.attr('value','Follow');
+                                target.removeClass('unfollow').addClass('follow');
+                                localStorage.removeItem('caller_fans');
+                            }
                         });
                         
             }
