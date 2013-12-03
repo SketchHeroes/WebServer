@@ -26,7 +26,7 @@ $(function(){
     }
     
     // loading 
-    template_generator.displayPainter('.painter_section',template_generator.user_tutorial); 
+    template_generator.displayPainter({"user_id":localStorage.caller_skhr_id, "user_token":localStorage.user_token}); 
 
     
     /*

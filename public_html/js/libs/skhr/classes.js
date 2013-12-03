@@ -1044,13 +1044,15 @@ TemplateGenerator.prototype.displayTutorial = function(target,tutorial)
 };
 
 
-TemplateGenerator.prototype.displayPainter = function(target,tutorial)
+TemplateGenerator.prototype.displayPainter = function(params)
 {
     var rest_caller = new RestCaller();
     
     var video_id = 0;
     //var save_url = "http://www.sketchheroes.com/video/create/user/80742"; 	
-    var save_url = rest_caller.domain + "/tutorial/upload";
+    //var save_url = rest_caller.domain + "/tutorial/upload";	
+    var save_url = "tutorial_upload.php?user_data="+params['user_id']+"_"+params['user_token'];
+    alert(save_url);
     var flash ="painter_img_upload.swf"; 
 
     var flashvars = {
