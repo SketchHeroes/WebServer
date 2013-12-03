@@ -107,8 +107,9 @@ $(function(){
             var overlay = $('<div class="overlay"></div>');
             $("body").append(overlay);
 
+            $('.popup').fadeOut();
             $("#popup_login").fadeIn(); 
-            //$("#popup_login input[name=username_email]").focus();
+            $("#popup_login input[name=username_email]").focus();
 
         });
 
@@ -122,7 +123,9 @@ $(function(){
             var overlay = $('<div class="overlay"></div>');
             $("body").append(overlay);
 
+            $('.popup').fadeOut();
             $("#popup_register").fadeIn(); 
+            $("#popup_register input[name=username]").focus();
 
         });
 
@@ -430,7 +433,7 @@ $(".options #logout").click(function(e)
 //====================================MENU======================================
         $(".main_menu #competitions_link").click(function(event){
 
-            window.location.assign("competitions.html")
+            window.location.assign("competitions.html");
         });
 
 //===================================FOLLOW_BUTTON==============================
@@ -461,6 +464,7 @@ $(".options #logout").click(function(e)
                         function(data)
                         {
                             //alert(JSON.stringify(data));
+                            //if follow pressed on already followed - switching button to the right state
                             if(data.status === 409)
                             {
                                 //alert('to much follow');
@@ -477,8 +481,9 @@ $(".options #logout").click(function(e)
                 var overlay = $('<div class="overlay"></div>');
                 $("body").append(overlay);
 
+                $('.popup').fadeOut();
                 $("#popup_login").fadeIn(); 
-                //$("#popup_login input[name=username_email]").focus();
+                $("#popup_login input[name=username_email]").focus();
             }
 
         });
@@ -510,6 +515,7 @@ $(".options #logout").click(function(e)
                         function(data)
                         {
                             //alert(JSON.stringify(data));
+                            //if unfollow pressed on not followed - switching button to the right state
                             if(data.status === 404)
                             {
                                 //alert('to much UNfollow');
@@ -526,10 +532,29 @@ $(".options #logout").click(function(e)
                 var overlay = $('<div class="overlay"></div>');
                 $("body").append(overlay);
 
+                $('.popup').fadeOut();
                 $("#popup_login").fadeIn(); 
-                //$("#popup_login input[name=username_email]").focus();
+                $("#popup_login input[name=username_email]").focus();
             }
 
+        });
+//=======================CREATE TUTORIAL BUTTON=================================
+        $('body').on('click', '#create_tutorial', function(e)
+        //$(".follow_button").click(function(e) 
+        { 
+            if( account.isLoggedIn() )
+            {
+                window.location.assign("painter.html");
+            }
+            else
+            {
+                var overlay = $('<div class="overlay"></div>');
+                $("body").append(overlay);
+
+                $('.popup').fadeOut();
+                $("#popup_login").fadeIn(); 
+                $("#popup_login input[name=username_email]").focus();
+            }
         });
     });
     
