@@ -1046,8 +1046,11 @@ TemplateGenerator.prototype.displayTutorial = function(target,tutorial)
 
 TemplateGenerator.prototype.displayPainter = function(target,tutorial)
 {
+    var rest_caller = new RestCaller();
+    
     var video_id = 0;
-    var save_url = "http://www.sketchheroes.com/video/create/user/80742"; 	
+    //var save_url = "http://www.sketchheroes.com/video/create/user/80742"; 	
+    var save_url = rest_caller.domain + "/tutorial/upload";
     var flash ="painter_img_upload.swf"; 
 
     var flashvars = {

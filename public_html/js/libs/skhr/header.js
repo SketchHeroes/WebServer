@@ -754,6 +754,8 @@ function handleLogout()
     $(".account .options #login").css('display','inline-block');
     $(".account .options #register").css('display','inline-block');  
     
-    $('.unfollow').attr('value','Follow').removeClass('unfollow').addClass('follow');    
+    $('.unfollow').attr('value','Follow').removeClass('unfollow').addClass('follow');  
+    
+    window.location.assign("index.html");
 
 }

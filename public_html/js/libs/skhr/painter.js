@@ -10,7 +10,7 @@ $(function(){
     
     var rest_caller          = new RestCaller();
     var template_generator   = new TemplateGenerator();
-    
+    var account              = new Account();
     // getting INITIAL data from the server
     
     //var video_id = "24";	
@@ -19,7 +19,17 @@ $(function(){
     
     
 // -----------------------TUTORIAL DATA-----------------------------------------
+
+    if( !account.isLoggedIn() )
+    {
+        window.location.assign("index.html");
+    }
     
+    // loading 
+    template_generator.displayPainter('.painter_section',template_generator.user_tutorial); 
+
+    
+    /*
     var content_id = 22;
 
     var promise_tutorial = rest_caller.getTutorial({"content_id":content_id});
@@ -51,8 +61,9 @@ $(function(){
                     }); 
 
             }); 
+            */
 
-
+            
 //==============================================================================
     
 });  
