@@ -1,27 +1,6 @@
-<categories>
-<?php
-    /*
-    $r = new HttpRequest('http://serverkizidev-env.elasticbeanstalk.com/tutorial_categories', HttpRequest::METH_GET);
-    //$r->setOptions(array('lastmodified' => filemtime('local.rss')));
-    //$r->addQueryData(array('category' => 3));
 
-    try {
-        $r->send();
-        if ($r->getResponseCode() == 200) {
-            var_dump( $r->getResponseBody());
-            //file_put_contents('local.rss', $r->getResponseBody());
-        }
-    } catch (HttpException $ex) {
-        echo $ex;
-    }
-     * 
-     */
-    //$response = http_get("http://serverkizidev-env.elasticbeanstalk.com/tutorial_categories", array("timeout"=>1), $info);
-    //print_r($info);
-    //var_dump( $response );
+<?php
     
-    //$body = file_get_contents("http://serverkizidev-env.elasticbeanstalk.com/tutorial_categories");
-    //echo $body;
 
     $qry_str = "?";
     $ch = curl_init();
@@ -38,11 +17,12 @@
     
     $content = json_decode($content_json);
     
+    echo "<categories>".PHP_EOL;
+    
     foreach($content->categories as $category)
     {
         echo "<category name='".$category->title."'/>".PHP_EOL;
     }
 
-    
-?>       
-</categories>
+    echo "</categories>".PHP_EOL;
+?>

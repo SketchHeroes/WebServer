@@ -13,94 +13,103 @@ and open the template in the editor.
         <?php
             $data= file_get_contents("php://input");
             parse_str($data, $body_params);
+            //var_dump($body_params);
+            //var_dump($_REQUEST);
             
             parse_str($_SERVER['QUERY_STRING'], $query_str_params);
             $url_params = explode("_", $query_str_params['user_data']);
-            $credentials = array('user_skhr_id'=>$url_params[0],'user_token'=>$user_params[1]);
-            
-            //var_dump($all_params);
+            $credentials = array('user_skhr_id'=>$url_params[0],'user_token'=>$url_params[1]);
             /*
-            //set POST variables
-            $url = 'http://serverkizidev-env.elasticbeanstalk.com/tutorial_categories';
-            $fields = array(
-                                                            'lname' => urlencode($last_name),
-                                                            'fname' => urlencode($first_name),
-                                                            'title' => urlencode($title),
-                                                            'company' => urlencode($institution),
-                                                            'age' => urlencode($age),
-                                                            'email' => urlencode($email),
-                                                            'phone' => urlencode($phone)
-                                            );
-
-            //url-ify the data for the POST
-            foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
-            rtrim($fields_string, '&');
-
-            //open connection
-            $ch = curl_init();
-
-            //set the url, number of POST vars, POST data
-            curl_setopt($ch,CURLOPT_URL, $url);
-            curl_setopt($ch,CURLOPT_POST, count($fields));
-            curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
-
-            //execute post
-            $result = curl_exec($ch);
-
-            //close connection
-            curl_close($ch);
+            $servg = "tmp/" ;
+            //chmod($servg,0777);
+            if (!is_dir($servg)){
+                    mkdir($servg);
+                    chmod($servg,0777);
+            } 
              * 
              */
-            /*
-            //The data to send to the API
-            $postData = array(
-                'kind' => 'blogger#post',
-                'blog' => array('id' => $blogID),
-                'title' => 'A new post',
-                'content' => 'With <b>exciting</b> content...'
-            );
+            //file_put_contents("tutorial.txt", $body_params["paintdata"]);
+            
+            $tmp_tutorial  = uniqid()."tutorial.txt"; 
+            $h=fopen($tmp_tutorial,"wb");
+            if($h){
+                    fwrite($h,$body_params["paintdata"]);
+                    fclose($h);
+                    //$file=$tmp_tutorial;
+                    chmod($tmp_tutorial,0777);
 
-            // Setup cURL
-            $ch = curl_init('http://serverkizidev-env.elasticbeanstalk.com/tutorial/upload');
+            }
+            // save Thumb 
+            $tmp_screenshot = uniqid()."screenshot.jpg";
+            $fp = fopen($tmp_screenshot,'wb');
+            if($fp){
+                    fwrite($fp, base64_decode($body_params['thumbnail']));
+                    fclose($fp);
+                    chmod($tmp_screenshot,0777);					
+            }else{
+
+            }
+            
+            $post = array(
+                "tutorial"=>"@".$tmp_tutorial,
+                "screenshot"=>"@".$tmp_screenshot
+            );
+            
+            $ch = curl_init();
             curl_setopt_array($ch, array(
                 CURLOPT_POST => TRUE,
                 CURLOPT_RETURNTRANSFER => TRUE,
                 CURLOPT_HTTPHEADER => array(
+                    'Accept: application/json',
                     'Content-Type: multipart/form-data',
                     'X-User-Token: '.$credentials['user_token'],
                     'X-Caller-SKHR-ID: '.$credentials['user_skhr_id'] 
                 ),
-                CURLOPT_POSTFIELDS => json_encode($postData)
+                CURLOPT_POSTFIELDS => $post
             ));
-
-            // Send the request
-            $response = curl_exec($ch);
-
-            // Check for errors
-            if($response === FALSE){
-                die(curl_error($ch));
-            }
-
-            // Decode the response
-            $responseData = json_decode($response, TRUE);
-
-            // Print the date from the response
-            echo $response;
-            */
-            
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_HEADER, 0);
+            //curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_setopt($ch, CURLOPT_VERBOSE, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible;)");
-            curl_setopt($ch, CURLOPT_URL, _VIRUS_SCAN_URL);
-            curl_setopt($ch, CURLOPT_POST, true);
+            //curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            //curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible;)");
+            curl_setopt($ch, CURLOPT_URL, 'http://serverkizidev-env.elasticbeanstalk.com/tutorial/upload');
+            //curl_setopt($ch, CURLOPT_POST, true);
             // same as <input type="file" name="file_box">
-            $post = array(
-                "file_box"=>"@/path/to/myfile.jpg",
-            );
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $post); 
+            
+            //curl_setopt($ch, CURLOPT_POSTFIELDS, $post); 
             $response = curl_exec($ch);
+            $response_array = json_decode($response,TRUE);
+            //var_dump($response_array);
+            
+            
+            // adding tutorial to server db
+            
+            $post = array(
+                "tutorial_category_id" => 8,
+                "format_id" => 2,
+                "title" => $body_params['name'],
+                "description" => $body_params['description'],
+                "tutorial_path" => $response_array['tutorial_file']['tutorial_path'],
+                "screenshot_path" => $response_array['tutorial_file']['screenshot_path'],
+                "thumbnail_path" => $response_array['tutorial_file']['thumbnail_path'],
+                "featured" => FALSE
+            );                                                               
+            $data_string = json_encode($post);                                                                                   
+
+            $ch = curl_init('http://serverkizidev-env.elasticbeanstalk.com/tutorial');                                                                      
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                                                  
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Accept: application/json',                                                                          
+                'Content-Type: application/json',                                                                                
+                'Content-Length: ' . strlen($data_string),
+                'X-User-Token: '.$credentials['user_token'],
+                'X-Caller-SKHR-ID: '.$credentials['user_skhr_id']                                                                       
+            ));                                                                                                                   
+
+            $response = curl_exec($ch);
+            //echo($response);
+            curl_close($ch);
         ?>
     </body>
 </html>
