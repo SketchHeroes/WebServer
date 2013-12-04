@@ -80,6 +80,8 @@ and open the template in the editor.
             $response_array = json_decode($response,TRUE);
             //var_dump($response_array);
             
+            unlink($tmp_tutorial);
+            unlink($tmp_screenshot);
             
             // adding tutorial to server db
             
