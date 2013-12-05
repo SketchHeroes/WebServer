@@ -1,21 +1,11 @@
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
-            upload tutorial for web!
-        <?php
+<?php
+            // getting body data
             $data= file_get_contents("php://input");
             parse_str($data, $body_params);
             //var_dump($body_params);
             //var_dump($_REQUEST);
             
+            // getting query data = credential
             parse_str($_SERVER['QUERY_STRING'], $query_str_params);
             $url_params = explode("_", $query_str_params['user_data']);
             $credentials = array('user_skhr_id'=>$url_params[0],'user_token'=>$url_params[1]);
@@ -30,7 +20,10 @@ and open the template in the editor.
              */
             //file_put_contents("tutorial.txt", $body_params["paintdata"]);
             
-            $tmp_tutorial  = uniqid()."tutorial.txt"; 
+            // ----- creating temp files-----
+            
+            // tutorial tmp file
+            $tmp_tutorial  = uniqid().".txt"; 
             $h=fopen($tmp_tutorial,"wb");
             if($h){
                     fwrite($h,$body_params["paintdata"]);
@@ -39,8 +32,9 @@ and open the template in the editor.
                     chmod($tmp_tutorial,0777);
 
             }
-            // save Thumb 
-            $tmp_screenshot = uniqid()."screenshot.jpg";
+            
+            // screenshot tmp file
+            $tmp_screenshot = uniqid().".jpg";
             $fp = fopen($tmp_screenshot,'wb');
             if($fp){
                     fwrite($fp, base64_decode($body_params['thumbnail']));
@@ -50,9 +44,13 @@ and open the template in the editor.
 
             }
             
+            //echo "realpath: ".realpath('test.txt').PHP_EOL;
+            //echo "realpath: ".realpath($tmp_tutorial).PHP_EOL;
+            
+            // post parameters for files upload
             $post = array(
-                "tutorial"=>"@".$tmp_tutorial,
-                "screenshot"=>"@".$tmp_screenshot
+                "tutorial"=>"@".realpath($tmp_tutorial),
+                "screenshot"=>"@".realpath($tmp_screenshot)
             );
             
             $ch = curl_init();
@@ -78,15 +76,53 @@ and open the template in the editor.
             //curl_setopt($ch, CURLOPT_POSTFIELDS, $post); 
             $response = curl_exec($ch);
             $response_array = json_decode($response,TRUE);
-            //var_dump($response_array);
+            var_dump($response_array);
+            echo "response on files upload: ".$response.PHP_EOL;
             
+            // Check if any error occurred
+            if(!curl_errno($ch))
+            {
+                $info = curl_getinfo($ch);
+
+                echo 'Took ' . $info['total_time'] . ' seconds to send a request to ' . $info['url'];
+            }
+            else 
+            {
+                echo 'Curl error: ' . curl_error($ch);
+            }
+            
+            curl_close($ch);
+            
+            // deleting tmp files
             unlink($tmp_tutorial);
             unlink($tmp_screenshot);
             
+            //========================================
+            // getting category info by category title
+            
+            $qry_str = "?title=".urlencode($body_params['category']);
+            //echo "qry_str: ".$qry_str.PHP_EOL;
+            $ch = curl_init();
+
+            // Set query data here with the URL
+            curl_setopt($ch, CURLOPT_URL, 'http://serverkizidev-env.elasticbeanstalk.com/tutorial_category/title' . $qry_str); 
+
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, '3');
+            curl_setopt($ch, CURLOPT_HTTPHEADER,array('X-App-Token: db9f444834f79dbe8042345f9d4e5d92e3f9dca4524e7c29c84da59549ad7d28b9be523d5db81fdbcbf207e4c0e0ce65'));
+            $content_json = trim(curl_exec($ch));
+            curl_close($ch);
+            echo "getting category id response: ".$content_json.PHP_EOL;
+
+            $content = json_decode($content_json, TRUE);
+            //echo "content_json: ".$content_json.PHP_EOL;
+            
+            //==================================================================
             // adding tutorial to server db
             
+            // post parameters
             $post = array(
-                "tutorial_category_id" => 8,
+                "tutorial_category_id" => $content["category"]["tutorial_category_id"],
                 "format_id" => 2,
                 "title" => $body_params['name'],
                 "description" => $body_params['description'],
@@ -110,8 +146,8 @@ and open the template in the editor.
             ));                                                                                                                   
 
             $response = curl_exec($ch);
+            echo "registring tutorials in the db response:".$response;
             //echo($response);
             curl_close($ch);
-        ?>
-    </body>
-</html>
+             
+?>
