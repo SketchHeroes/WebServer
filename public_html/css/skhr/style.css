@@ -2288,6 +2288,18 @@ ul.achievements_gallery li img{
     height:50px;
     width:50px;
     margin: 0px 0px 0px 70px; 
+    cursor: pointer;
+    /*border: 1px black solid;*/
+}
+
+.tutorial_info .liked_it{
+    
+    float:left;
+    height:50px;
+    width:50px;
+    margin: 0px 0px 0px 70px; 
+    opacity: 0.4;
+    filter: alpha(opacity=40);
     /*border: 1px black solid;*/
 }
 

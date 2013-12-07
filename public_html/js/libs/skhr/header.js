@@ -740,6 +740,30 @@ function handleLogin(data, rest_caller, template_generator)
     
     var service = new Service();
     service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
+    
+    // if there is a tutorial like button on the page check if the logged in user has
+    // already liked this tutorial
+    var content_id = service.getParameterByName('tutorial_id');
+    if( $( ".tutorial_info .like_it" ).length !== 0 && typeof content_id !== 'undefined')
+    {
+        var promise_tutorial_likers = rest_caller.getContentLikes({"content_id":content_id});
+
+        promise_tutorial_likers.done(
+            function(data)
+            {
+                template_generator.tutorial_likes = data.likes;
+
+                $.each(template_generator.tutorial_likes, function( index, like )
+                {
+                    alert( "like.skhr_id:"+parseInt(like.skhr_id)+" === localStorage.caller_skhr_id:"+parseInt(localStorage.caller_skhr_id) );
+                    if( parseInt(like.skhr_id) === parseInt(localStorage.caller_skhr_id) )
+                    {
+                        $( ".tutorial_info .like_it" ).removeClass('like_it').addClass('liked_it');
+                        return false;
+                    }
+                });
+            }); 
+    }
 
 }
 function handleLogout()
@@ -755,6 +779,8 @@ function handleLogout()
     $(".account .options #register").css('display','inline-block');  
     
     $('.unfollow').attr('value','Follow').removeClass('unfollow').addClass('follow');  
+    
+    $( ".tutorial_info .liked_it" ).removeClass('liked_it').addClass('like_it');
     
     window.location.assign("index.html");
 

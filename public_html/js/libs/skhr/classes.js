@@ -675,6 +675,54 @@ RestCaller.prototype.getCategoryTutorials = function(params)
     return this.ajax();
 };
 
+RestCaller.prototype.getContentLikes = function(params)
+{
+    this.setResource("/content/likes");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("Accept","application/json");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    //this.setCustomHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
+    //this.setCustomHeader("X-Caller-SKHR-ID","3");  
+    
+    this.clearRequestParams();
+    
+    this.setRequestParam("content_id",params['content_id']);
+    
+    if(typeof params['start'] !== 'undefined' && typeof params['how_many'] !== 'undefined')
+    {
+        this.setRequestParam("start",params['start']);
+        this.setRequestParam("how_many",params['how_many']);
+    }
+    
+    return this.ajax();
+};
+
+RestCaller.prototype.likeTutorial = function(params)
+{
+    this.setResource("/tutorial/like");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json");
+    
+    this.setCustomHeader("X-Caller-SKHR-ID",params['caller_skhr_id'] );
+    this.setCustomHeader("X-User-Token",params['user_token']);
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("content_id",params['content_id']);
+    
+    return this.ajax();
+};
+
 //-------------------- Template class ------------------------------------------
 
 function TemplateGenerator()

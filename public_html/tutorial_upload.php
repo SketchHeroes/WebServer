@@ -1,4 +1,7 @@
 <?php
+            // Error handling needs to be added!!!
+
+    
             // getting body data
             $data= file_get_contents("php://input");
             parse_str($data, $body_params);
