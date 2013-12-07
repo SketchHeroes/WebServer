@@ -66,6 +66,15 @@ $(function(){
                     function(data)
                     {
                         template_generator.user_tutorials = data.tutorials; 
+                        
+                        $.each(template_generator.user_tutorials, function( index, tutorial )
+                        {
+                            if( parseInt(tutorial.content_id) === parseInt(content_id) )
+                            {
+                                template_generator.user_tutorials.splice(index,1);
+                                return false;
+                            }
+                        });
 
                         var length = template_generator.user_tutorials.length;
                         //template_generator.removeGallery("#user_tutorials_gallery_aside");

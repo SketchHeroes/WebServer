@@ -755,7 +755,7 @@ function handleLogin(data, rest_caller, template_generator)
 
                 $.each(template_generator.tutorial_likes, function( index, like )
                 {
-                    alert( "like.skhr_id:"+parseInt(like.skhr_id)+" === localStorage.caller_skhr_id:"+parseInt(localStorage.caller_skhr_id) );
+                    //alert( "like.skhr_id:"+parseInt(like.skhr_id)+" === localStorage.caller_skhr_id:"+parseInt(localStorage.caller_skhr_id) );
                     if( parseInt(like.skhr_id) === parseInt(localStorage.caller_skhr_id) )
                     {
                         $( ".tutorial_info .like_it" ).removeClass('like_it').addClass('liked_it');
