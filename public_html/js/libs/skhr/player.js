@@ -20,7 +20,62 @@ $(function(){
     var service = new Service();
     var content_id = service.getParameterByName('tutorial_id');
     //alert("content_id: "+content_id);
+    //alert(window.location);
     
+    //$(".fb_like_placeholder_test").html('<div class="fb-like" data-href="'+window.location+'" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>');
+    //$(".fb_like_placeholder .fb-like").attr('data-href',window.location);
+    //FB.XFBML.parse();
+        
+        
+// -----------------------SOCIAL NETWORKS DATA-----------------------------------------
+    /*
+    (function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/en_US/all.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                  }(document, 'script', 'facebook-jssdk'));
+    var deferred = $.Deferred();
+    window.fb_loaded = deferred.promise();
+
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '390754447617631',
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true  // parse XFBML
+        });
+    };
+
+    deferred.resolve();
+    
+    $.when(window.fb_loaded).then(function(){
+       
+        $(".fb_like_placeholder_test").html('<div class="fb-like" data-href="'+window.location+'" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>');
+        FB.XFBML.parse();
+        //alert(JSON.strigify(FB.XFBML))
+        //FB.XFBML.parse($('.fb_like_placeholder'));
+
+    });
+    */
+    /*
+    $.ajaxSetup({ cache: true });
+    $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+      FB.init({
+        appId: '390754447617631',
+        status     : true, // check login status
+        cookie     : true, // enable cookies to allow the server to access the session
+        xfbml      : true  // parse XFBML
+      });  
+      $(".fb_like_placeholder").html('<div class="fb-like" data-href="'+window.location+'" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>');
+      FB.XFBML.parse();
+      //$('#loginbutton,#feedbutton').removeAttr('disabled');
+      //FB.getLoginStatus(updateStatusCallback);
+    });
+    */
+    
+
 // -----------------------TUTORIAL DATA-----------------------------------------
     
     //var content_id = 22;

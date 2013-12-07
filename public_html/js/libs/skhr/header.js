@@ -7,6 +7,25 @@
 $(function(){
     //alert('You are in ' + (document.compatMode==='CSS1Compat'?'Standards':'Quirks') + ' mode.')
     // difining global variables
+    //alert($(".fb_like_placeholder").attr('class'));
+    //$(".fb_like_placeholder").html('<div class="fb-like" data-href="'+window.location+'" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>');
+    
+    $.ajaxSetup({ cache: true });
+    $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+        FB.init({
+          appId: '390754447617631',
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true  // parse XFBML
+        });  
+        //alert($(".fb_like_placeholder").attr('class'));
+        //$(".fb_like_placeholder").html('<div class="fb-like" data-href="'+window.location+'" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>');
+        //FB.XFBML.parse();
+      //$('#loginbutton,#feedbutton').removeAttr('disabled');
+      //FB.getLoginStatus(updateStatusCallback);
+    });
+    
+    
     
     $("header.main").load("header.html", function() {
         //alert( "Load was performed." );
