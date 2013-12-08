@@ -401,6 +401,50 @@ RestCaller.prototype.loginNativeUserUsername = function(params)
     return this.ajax();
 };
 
+RestCaller.prototype.loginFacebook = function(params)
+{
+    
+    //alert('params: '+JSON.stringify(params));
+    
+    this.setResource("/user/login_facebook");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("X-FB-User-Token",params['fb_user_token']);
+    this.setCustomHeader("Accept","application/json"); 
+    
+    this.clearRequestParams();
+    this.setRequestParam("username",params['username']);
+    this.setRequestParam("email",params['email']);
+    this.setRequestParam("id",params['id']);
+ 
+    if(typeof params['first_name'] !== 'undefined')
+    {
+        this.setRequestParam("first_name",params['first_name']);
+    }
+    
+    if(typeof params['last_name'] !== 'undefined')
+    {
+        this.setRequestParam("last_name",params['last_name']);
+    }
+    
+    if(typeof params['link'] !== 'undefined')
+    {
+        this.setRequestParam("link",params['link']);
+    }
+    
+    if(typeof params['updated_time'] !== 'undefined')
+    {
+        this.setRequestParam("updated_time",params['updated_time']);
+    }
+    
+    return this.ajax();
+};
+
+
 RestCaller.prototype.startFollowingUser = function(params)
 {
     this.setResource("/user/follow");

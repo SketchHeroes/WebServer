@@ -227,13 +227,37 @@ $(function(){
 
 
         });
+        
+//----------------------------LOGGING IN WITH FACEBOOK------------------------------
+//=============================================================================
+
+
+       $(".button_facebook").click(function(e) 
+        { 
+            //alert($("#popup_login input[name=username_email]").val());
+            $("#popup_login #native_error").text('');
+            
+            $(".popup").fadeOut(); 
+            $("body .overlay").remove(); 
+            
+            fb_login(rest_caller,template_generator);
+            
+
+        });
 
 
 //------------------------------------- LOGGING OUT-----------------------------
 
 $(".options #logout").click(function(e) 
 { 
+    /*
+    FB.logout(function(response) 
+    {
+        // user is now logged out
+    });
+    */
     handleLogout();
+    
 });
 //------------------------------------- REGISTERING------------------------------
 
@@ -805,6 +829,70 @@ function handleLogout()
     
     $( ".tutorial_info .liked_it" ).removeClass('liked_it').addClass('like_it');
     
-    window.location.assign("index.html");
+    alert(window.location.href);
+    
+    if( !window.location.href.match("index.html#?$") )
+    {
+        //alert(typeof window.location);
+        window.location.assign("index.html");
+    }
 
+}
+
+function fb_login(rest_caller,template_generator)
+{   
+    var user = {};
+    
+    FB.login(function(response) {
+
+        if (response.authResponse) 
+        {
+            //console.log('Welcome!  Fetching your information.... ');
+            //console.log(response); // dump complete info
+            access_token    = response.authResponse.accessToken; //get access token
+            user_id         = response.authResponse.userID; //get FB UID
+            
+            user.fb_user_token  = access_token;
+            user.id             = user_id;
+
+            FB.api('/me', function(response) 
+            {
+                //alert(JSON.stringify(response));
+                user.email      = response.email; 
+                user.username   = response.username; 
+                //alert('user: '+JSON.stringify(user));
+                user.first_name = response.first_name;
+                user.last_name = response.last_name;
+                user.link = response.link;
+                user.updated_time = response.updated_time;
+                
+                //alert('user: '+JSON.stringify(user));
+                var promise_login = rest_caller.loginFacebook(user);
+
+                // LOGIN successful
+                promise_login.done(
+                    function(data)
+                    { 
+                        handleLogin(data, rest_caller, template_generator);                    
+                    });  
+
+                });  
+            
+            //return user;
+
+        } 
+        else 
+        {
+            //user hit cancel button
+            //onsole.log('User cancelled login or did not fully authorize.');
+            //return null;
+
+        }
+    }, {
+        scope: 'email'
+    });
+    
+    //return user;
+    
+    
 }

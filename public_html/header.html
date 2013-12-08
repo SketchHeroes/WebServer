@@ -22,17 +22,19 @@
                -->
                 
                <script>
-
+                   /*
                     function fb_login(){
                         FB.login(function(response) {
 
                             if (response.authResponse) {
                                 console.log('Welcome!  Fetching your information.... ');
+                                alert('old fb_login');
                                 //console.log(response); // dump complete info
                                 access_token = response.authResponse.accessToken; //get access token
                                 user_id = response.authResponse.userID; //get FB UID
 
                                 FB.api('/me', function(response) {
+                                    alert(JSON.stringify(response));
                                     user_email = response.email; //get user email
                               // you can store this data into your database             
                                 });
@@ -46,6 +48,7 @@
                             scope: 'publish_stream,email'
                         });
                     }
+                    */
                 </script>
                 <div class="logo">
                     <a href="index.html">
@@ -147,7 +150,7 @@
                                         <p class="forgot_pass"><a href='#'>Forgotten your password?</a></p>
                                         <p class="facebook_caption">Or log in using Facebook:</p>
                                         <p class="error_msg" id="facebook_error"></p>
-                                        <p><input name="" class="button_facebook" type="button" value="Facebook" onclick="fb_login();"/></p>
+                                        <p><input name="" class="button_facebook" type="button" value="Facebook" /></p>
                                         <!--
                                         <div class="fb-login-button" data-width="400" data-height="60" data-max-rows="1" data-show-faces="false" data-size="xlarge">
                                             . . . . . . . Facebook. . . . . . . . 
