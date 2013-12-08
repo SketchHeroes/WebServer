@@ -476,6 +476,52 @@ $(".options #logout").click(function(e)
         });
         
         
+        
+//------------------------------MEMBERS pop ups-----------------------------------------
+//===========================================================================================
+
+        // members popup
+
+        $(".all_members").click(function(e) 
+         { 
+             //alert('leaderboard bitches');
+             
+             var overlay = $('<div class="overlay"></div>');
+             $("body").append(overlay);
+
+             $("#popup_members").fadeIn(); 
+             $("#popup_members .inner_popup").focus();
+             
+
+             // get members- only the first time user presses members button
+             if(typeof template_generator.all_members === 'undefined')
+             {
+                 //alert('first_time');
+                 
+                 var promise_users_count = rest_caller.getUsersCount({}); 
+                 
+
+                 promise_users_count.done(
+                         function(data)
+                         {         
+                            template_generator.users_count= data.count;
+                            alert(template_generator.users_count);
+                            
+                            //template_generator.removeUserListComplex("#members_list");
+                            //template_generator.addUserListComplex("#members_list", template_generator.leaderboard_users.length); 
+                            //template_generator.displayUserListComlex("#members_list", template_generator.leaderboard_users);
+                            
+                         });
+                
+                         
+             }
+
+         });
+
+        $("#popup_members .close").click(function(e) { 
+                 $("#popup_members").fadeOut(); 
+                 $("body .overlay").remove();
+        }); 
 
 //====================================MENU======================================
         $(".main_menu #competitions_link").click(function(event){
@@ -829,7 +875,7 @@ function handleLogout()
     
     $( ".tutorial_info .liked_it" ).removeClass('liked_it').addClass('like_it');
     
-    alert(window.location.href);
+    //alert(window.location.href);
     
     if( !window.location.href.match("index.html#?$") )
     {

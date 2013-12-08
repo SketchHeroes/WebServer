@@ -91,7 +91,7 @@
                             <img src="images/members_link_unselected.png" alt="members" />
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="#">All Members</a>
+                                    <a href="#" class="all_members">All Members</a>
                                 </li>
                                 <li>
                                     <a href="#">Following</a>
@@ -219,6 +219,12 @@
                     
 
 
+                    
+                    
+                    
+            
+                 </div>
+                
                     <div class="popup" id="popup_leaderboard">
                         <h1 class="caption">Leaderboard</h1>
                         
@@ -276,8 +282,29 @@
                             </div>
                         </div>
                     </div>
-            
-                 </div>
+                
+                    <div class="popup" id="popup_members">
+                        <h1 class="caption">Members</h1>
+                        <div class="navigator">
+                            <input type="button" id="first" value="First"/>
+                            <input type="button" id="left" value="<-"/>
+                            <input type="button" id="page0" value="..."/>
+                            <input type="button" id="page1" value="..."/>
+                            <input type="button" id="page2" value="..."/>
+                            <input type="button" id="page3" value="..."/>
+                            <input type="button" id="page4" value="..."/>
+                            <input type="button" id="right" value="->"/>
+                            <input type="button" id="last" value="Last"/>
+                        </div>
+                            
+                        <div class="inner_popup">
+                            <a href="#" class="close">X</a>
+                            <div id="members_list">
+
+                            </div>
+                        </div>
+                    </div>
+                
 
 
             

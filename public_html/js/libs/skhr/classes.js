@@ -590,6 +590,45 @@ RestCaller.prototype.getUserFollowed = function(params)
     return this.ajax();
 };
 
+RestCaller.prototype.getUsers= function(params)
+{
+    this.setResource("/users");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json"); 
+    
+    this.clearRequestParams();
+    this.setRequestParam("start", params['start']);
+    this.setRequestParam("how_many", params['how_many']);
+    
+    if(typeof params['user_related_data'] !== 'undefined')
+    {
+        this.setRequestParam("user_related_data",params['user_related_data']);
+    }
+    
+    return this.ajax();
+};
+
+RestCaller.prototype.getUsersCount= function(params)
+{
+    this.setResource("/users/count");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json"); 
+    
+    this.clearRequestParams();
+    
+    return this.ajax();
+};
+
 RestCaller.prototype.getUserAchievements = function(params)
 {
     this.setResource("/user/achievements");

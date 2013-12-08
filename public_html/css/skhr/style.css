@@ -596,6 +596,60 @@ span.pluginFaviconButtonBorder{
 }
 */
 
+
+
+/* POPUP MEMBERS */
+
+#popup_members
+{
+    width: 700px;
+    height: 720px;
+    
+    top: 50px;
+    left:50%;
+
+    /*border: 1px solid #FF0000;*/
+
+    margin: 0px 0px 0px -350px; 
+    z-index: 900;
+    
+    
+    background: url(../../images/top-turorials-bg2.png) top no-repeat;
+}
+
+#popup_members .inner_popup
+{
+    width: 700px;
+    height: 620px;
+    
+    background: #F2F2F2;
+
+    border: 40px solid #92C0CF;
+
+    margin: 30px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px;
+    
+    overflow-y: scroll;
+}
+
+#popup_members .close
+{
+    margin: 20px 0px 0px 0px; 
+}
+
+
+
+/*------------*/
+/*
+.popup form .faceb {
+    background: linear-gradient(to bottom, #5A87AA 0%, #265376 100%) repeat scroll 0 0 transparent;
+    border: 1px solid rgba(20, 59, 89, 0.61);
+    color: #FFFFFF;
+    padding: 5px 5px 5px 5px; 
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+*/
+
 .overlay {
     width:100%; 
     height:100%; 
@@ -2806,6 +2860,26 @@ ul.competitions_list li{
 
 
 .category .category_tutorials .navigator input[type=button]{
+    
+    width:50px;
+    height: 50px;
+    
+    margin: 0px 10px 0px 10px;
+}
+
+
+#popup_members .navigator{
+    
+    width: 670px;
+    height: 50px;
+    
+    border: 1px red dashed;
+    
+    margin: 40px auto 40px auto;
+}
+
+
+#popup_members .navigator input[type=button]{
     
     width:50px;
     height: 50px;
