@@ -723,6 +723,28 @@ RestCaller.prototype.likeTutorial = function(params)
     return this.ajax();
 };
 
+RestCaller.prototype.viewTutorial = function(params)
+{
+    this.setResource("/tutorial/view");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json");
+    
+    this.setCustomHeader("X-Caller-SKHR-ID",params['caller_skhr_id'] );
+    this.setCustomHeader("X-User-Token",params['user_token']);
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("content_id",params['content_id']);
+    
+    return this.ajax();
+};
+
 //-------------------- Template class ------------------------------------------
 
 function TemplateGenerator()
