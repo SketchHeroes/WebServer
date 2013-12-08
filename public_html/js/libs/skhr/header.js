@@ -18,9 +18,13 @@ $(function(){
           cookie     : true, // enable cookies to allow the server to access the session
           xfbml      : true  // parse XFBML
         });  
+        
+        $(document).trigger('fbload');
         //alert($(".fb_like_placeholder").attr('class'));
         //$(".fb_like_placeholder").html('<div class="fb-like" data-href="'+window.location+'" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>');
-        //FB.XFBML.parse();
+        //$(".fb_like_placeholder").html('<fb:like id="fbLike" href="'+window.location+'" send="true" width="450" show_faces="true" font=""></fb:like>');
+    
+        //FB.XFBML.parse($(".fb_like_placeholder"));
       //$('#loginbutton,#feedbutton').removeAttr('disabled');
       //FB.getLoginStatus(updateStatusCallback);
     });

@@ -19,12 +19,40 @@ $(function(){
     
     var service = new Service();
     var content_id = service.getParameterByName('tutorial_id');
+    
+    $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT BEING LISTENED FOR
+        function(){
+           var url = ""+window.location;
+           url = url.replace('localhost','127.0.0.1');
+           alert(url);
+           $("#fb_like_placeholder").html('<div class="fb-like" data-href="'+url+'" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>');
+           FB.XFBML.parse(document.getElementById("fb_like_placeholder"));
+        });
+    
+    /*
+    
+    $.ajaxSetup({ cache: true });
+    $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+        FB.init({
+          appId: '390754447617631',
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true  // parse XFBML
+        });  
+        alert(window.location);
+        //$("#fb_like_placeholder").html('<fb:like id="fbLike" href="'+window.location+'" send="true" width="450" show_faces="true" font=""></fb:like>');
+    
+        //FB.XFBML.parse(document.getElementById("fb_like_placeholder"));
+      //$('#loginbutton,#feedbutton').removeAttr('disabled');
+      //FB.getLoginStatus(updateStatusCallback);
+    });
     //alert("content_id: "+content_id);
     //alert(window.location);
     
     //$(".fb_like_placeholder_test").html('<div class="fb-like" data-href="'+window.location+'" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>');
     //$(".fb_like_placeholder .fb-like").attr('data-href',window.location);
     //FB.XFBML.parse();
+    */
         
         
 // -----------------------SOCIAL NETWORKS DATA-----------------------------------------
