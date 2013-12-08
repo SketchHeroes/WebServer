@@ -20,14 +20,21 @@ $(function(){
     var service = new Service();
     var content_id = service.getParameterByName('tutorial_id');
     
+    var url = ""+window.location;
+    url = url.replace('localhost','127.0.0.1');
+    //alert(url);
+    
     $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT BEING LISTENED FOR
         function(){
-           var url = ""+window.location;
-           url = url.replace('localhost','127.0.0.1');
-           alert(url);
            $("#fb_like_placeholder").html('<div class="fb-like" data-href="'+url+'" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>');
-           FB.XFBML.parse(document.getElementById("fb_like_placeholder"));
+           $("#fb_share_placeholder").html('<div class="fb-share-button" data-href="'+url+'" data-type="button_count"></div>');
+           $("#facebook_comments").html('<div class="fb-comments" data-href="'+url+'" data-numposts="5" data-colorscheme="light"></div>');
+           //FB.XFBML.parse(document.getElementById("fb_like_placeholder"));
         });
+    $("#googleplus_like_placeholder").html('<div class="g-plusone" data-href="'+url+'"></div>');
+    $("#twitter_like_placeholder").html('<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+url+'" data-lang="en">Tweet</a>');
+           
+    
     
     /*
     

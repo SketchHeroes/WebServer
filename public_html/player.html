@@ -17,7 +17,28 @@ and open the template in the editor.
         
     </head>
     <body>
-        
+            <!--
+               <div id="fb-root"></div>
+              
+               <script>
+                   (function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/en_US/all.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                  }(document, 'script', 'facebook-jssdk'));
+
+                    window.fbAsyncInit = function() {
+                        FB.init({
+                          appId      : '390754447617631',
+                          status     : true, // check login status
+                          cookie     : true, // enable cookies to allow the server to access the session
+                          xfbml      : true  // parse XFBML
+                        });
+                    };
+               </script>
+           -->   
         <div class="wrapper">
             <header class="main">
                 
@@ -80,25 +101,35 @@ and open the template in the editor.
                             <!--<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.sketchheroes.com%2F&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=390754447617631" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>-->
                             
                             <div id="fb_like_placeholder">
-                                <div class="fb-like" data-href="http://www.sketchheroes.com" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>                           
+                                <!--
+                                <div class="fb-like" data-href="http://www.sketchheroes.com" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>      
+                                -->
                             </div>
                             
                             <div id="googleplus_like_placeholder">
+                                <!--
                                 <div class="g-plusone" data-href="http://www.sketchheroes.com"></div>
+                                -->
                             </div>
                             <div id="twitter_like_placeholder">
+                                <!--
                                 <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.sketchheroes.com/" data-lang="en">Tweet</a>
+                                -->
                             </div>
                             <div id="fb_share_placeholder">
+                                <!--
                                 <div class="fb-share-button" data-href="http://www.sketchheroes.com" data-type="button_count"></div>
+                                -->
                             </div>
 
                         </div>
                     
                     </div>
                     
-                    <div class="facebook_comments">
+                    <div class="facebook_comments" id="facebook_comments">
+                        <!--
                         <div class="fb-comments" data-href="http://www.sketchheroes.com" data-numposts="5" data-colorscheme="light"></div>
+                        -->
                     </div>
                     
                 </footer>

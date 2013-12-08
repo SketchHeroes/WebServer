@@ -10,7 +10,7 @@ $(function(){
     //alert($(".fb_like_placeholder").attr('class'));
     //$(".fb_like_placeholder").html('<div class="fb-like" data-href="'+window.location+'" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>');
     
-    $.ajaxSetup({ cache: true });
+    $.ajaxSetup({ cache: true, crossDomain:true });
     $.getScript('//connect.facebook.net/en_UK/all.js', function(){
         FB.init({
           appId: '390754447617631',
