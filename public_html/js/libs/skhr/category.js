@@ -78,7 +78,7 @@ $(function(){
 
                 var length = template_generator.category_tutorials.length;
                 last_page = Math.floor((length-1)/(tutorials_per_part*2));
-                displayPagination(".navigator", nav_pages_length, gallery_page, last_page, first_in_range);
+                displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
                 outlinePage(gallery_page);
                 //alert(last_page);
                 
@@ -129,7 +129,7 @@ $(function(){
                     var length = template_generator.category_tutorials.length;
                     last_page = Math.floor((length-1)/(tutorials_per_part*2));
                     gallery_page = 0;
-                    displayPagination(".navigator", nav_pages_length, gallery_page, last_page, first_in_range);
+                    displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
                     outlinePage(gallery_page);
                     //alert(last_page);
                 
@@ -174,7 +174,7 @@ $(function(){
                     var length = template_generator.category_tutorials.length;
                     last_page = Math.floor((length-1)/(tutorials_per_part*2));
                     gallery_page = 0;
-                    displayPagination(".navigator", nav_pages_length, gallery_page, last_page, first_in_range);
+                    displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
                     outlinePage(gallery_page);
                     //alert(last_page);
                 
@@ -186,7 +186,7 @@ $(function(){
                 }); 
     });
     
-    $( ".navigator #left" ).click(function(event) {
+    $( ".category_tutorials .navigator #left" ).click(function(event) {
         
         if(gallery_page>0)
         {
@@ -202,7 +202,7 @@ $(function(){
             if(gallery_page<first_in_range)
             {
                 first_in_range = gallery_page;
-                displayPagination(".navigator", nav_pages_length, gallery_page, last_page, first_in_range);
+                displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
             }
             outlinePage(gallery_page);
             
@@ -211,7 +211,7 @@ $(function(){
         
     });
     
-    $( ".navigator #right" ).click(function(event) {
+    $( ".category_tutorials .navigator #right" ).click(function(event) {
 
     
         if(gallery_page<last_page)
@@ -228,7 +228,7 @@ $(function(){
             if(gallery_page>=first_in_range+nav_pages_length)
             {
                 first_in_range = gallery_page;
-                displayPagination(".navigator", nav_pages_length, gallery_page, last_page, first_in_range);
+                displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
             }
                                                         
             outlinePage(gallery_page);
@@ -238,7 +238,7 @@ $(function(){
         }
     });
     
-    $( ".navigator #first" ).click(function(event) {
+    $( ".category_tutorials .navigator #first" ).click(function(event) {
         
         if(gallery_page !== 0)
         {
@@ -254,7 +254,7 @@ $(function(){
             if(gallery_page<first_in_range)
             {
                 first_in_range = gallery_page;
-                displayPagination(".navigator", nav_pages_length, gallery_page, last_page, first_in_range);
+                displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
             }
                                                         
             outlinePage(gallery_page);
@@ -265,7 +265,7 @@ $(function(){
         
     });
     
-    $( ".navigator #last" ).click(function(event) {
+    $( ".category_tutorials .navigator #last" ).click(function(event) {
 
     
         if(gallery_page !== last_page)
@@ -282,7 +282,7 @@ $(function(){
             if(gallery_page>=first_in_range+nav_pages_length)
             {
                 first_in_range = gallery_page;
-                displayPagination(".navigator", nav_pages_length, gallery_page, last_page, first_in_range);
+                displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
             }
                                                         
             outlinePage(gallery_page);
@@ -292,7 +292,7 @@ $(function(){
         }
     });
     
-    $(".navigator [id^=page]").click(function(event) {
+    $(".category_tutorials .navigator [id^=page]").click(function(event) {
         
         
         var new_page = parseInt(event.target.value)-1;
@@ -341,13 +341,13 @@ function switchActive(li)
 
 function outlinePage(page)
 {
-    $(".navigator [id^=page]").css('border','1px red hidden');
-    $(".navigator [id=page"+page+"]").css('border','1px red solid');
+    $(".category_tutorials .navigator [id^=page]").css('border','1px red hidden');
+    $(".category_tutorials .navigator [id=page"+page+"]").css('border','1px red solid');
 }
 
 function displayPagination(navigator_target, nav_pages_length, page, last_page, first_in_range)
 {                                                    
-    $(".navigator [id^=page]").attr('value','...');
+    $(".category_tutorials .navigator [id^=page]").attr('value','...');
     
     for(var i=0; i<nav_pages_length, i+first_in_range<=last_page; i++)
     {

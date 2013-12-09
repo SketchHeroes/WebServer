@@ -41,6 +41,13 @@ $(function(){
         
         var leader_board_length  = 50;
         
+        // configurations for member navigation
+        var members_per_page = 4;
+        var members_gallery_page = 0;
+        var members_nav_pages_length = 5;
+        var members_first_in_range = 0;
+        var members_last_page = 0;
+        
         if( account.isLoggedIn() )
         {
             handleLogin(    
@@ -494,8 +501,8 @@ $(".options #logout").click(function(e)
              
 
              // get members- only the first time user presses members button
-             if(typeof template_generator.all_members === 'undefined')
-             {
+             //if(typeof template_generator.all_members === 'undefined')
+             //{
                  //alert('first_time');
                  
                  var promise_users_count = rest_caller.getUsersCount({}); 
@@ -505,16 +512,277 @@ $(".options #logout").click(function(e)
                          function(data)
                          {         
                             template_generator.users_count= data.count;
-                            alert(template_generator.users_count);
                             
-                            //template_generator.removeUserListComplex("#members_list");
-                            //template_generator.addUserListComplex("#members_list", template_generator.leaderboard_users.length); 
-                            //template_generator.displayUserListComlex("#members_list", template_generator.leaderboard_users);
-                            
-                         });
-                
+                            //---------------------------MEMBERS-----------------------------
+                            var length = template_generator.users_count;
+                            members_last_page = Math.floor((length-1)/(members_per_page));
+                            displayMembersPagination("#popup_members .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
+                            outlineMembersPage(members_gallery_page);
+                            //alert(last_page);
+
+                            var promise_users = rest_caller.getUsers({  "start":members_gallery_page*members_per_page,
+                                                                        "how_many":members_gallery_page*members_per_page+members_per_page,
+                                                                        "user_related_data":{
+                                                                                                "user_followed":"user_followed",
+                                                                                                "user_follows":"user_follows",
+                                                                                                "user_tutorials":"user_tutorials",
+                                                                                                "user_views":"user_views",
+                                                                                                "user_likes":"user_likes",
+                                                                                                "user_comments":"user_comments"
+                                                                                            }});
+
+                            promise_users.done(
+                                    function(data)
+                                    { 
+                                            template_generator.users = data.users;
+
+                                            template_generator.removeUserListComplex("#members_list");
+                                            template_generator.addUserListComplex("#members_list", template_generator.users.length); 
+                                            template_generator.displayUserListComlex("#members_list", template_generator.users); 
+
+                                           //alert(tutorial_filter);
+
+                                       }); 
+
+
+
+                        
+
+                            $( "#popup_members .navigator #left" ).click(function(event) {
+
+                                if(members_gallery_page>0)
+                                {
+                                    members_gallery_page--;
+
+                                    $("#members_list").fadeOut();
+
+                                    var promise_users = rest_caller.getUsers({  "start":members_gallery_page*members_per_page,
+                                                                        "how_many":members_gallery_page*members_per_page+members_per_page,
+                                                                        "user_related_data":{
+                                                                                                "user_followed":"user_followed",
+                                                                                                "user_follows":"user_follows",
+                                                                                                "user_tutorials":"user_tutorials",
+                                                                                                "user_views":"user_views",
+                                                                                                "user_likes":"user_likes",
+                                                                                                "user_comments":"user_comments"
+                                                                                            }});
+
+                                    promise_users.done(
+                                            function(data)
+                                            { 
+                                                    template_generator.users = data.users;
+
+                                                    template_generator.removeUserListComplex("#members_list");
+                                                    template_generator.addUserListComplex("#members_list", template_generator.users.length); 
+                                                    template_generator.displayUserListComlex("#members_list", template_generator.users); 
+
+                                                   //alert(tutorial_filter);
+
+                                               }); 
+
+                                    if(members_gallery_page<members_first_in_range)
+                                    {
+                                        members_first_in_range = members_gallery_page;
+                                        displayMembersPagination("#popup_members .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
+                                    }
+                                    outlineMembersPage(members_gallery_page);
+
+                                    $("#members_list").fadeIn();
+                                }
+
+                            });
+
+                            $( "#popup_members .navigator #right" ).click(function(event) {
+
+
+                                if(members_gallery_page<members_last_page)
+                                {
+                                    members_gallery_page++;
+
+                                    $("#members_list").fadeOut();
+
+                                    var promise_users = rest_caller.getUsers({  "start":members_gallery_page*members_per_page,
+                                                                        "how_many":members_gallery_page*members_per_page+members_per_page,
+                                                                        "user_related_data":{
+                                                                                                "user_followed":"user_followed",
+                                                                                                "user_follows":"user_follows",
+                                                                                                "user_tutorials":"user_tutorials",
+                                                                                                "user_views":"user_views",
+                                                                                                "user_likes":"user_likes",
+                                                                                                "user_comments":"user_comments"
+                                                                                            }});
+
+                                    promise_users.done(
+                                            function(data)
+                                            { 
+                                                    template_generator.users = data.users;
+
+                                                    template_generator.removeUserListComplex("#members_list");
+                                                    template_generator.addUserListComplex("#members_list", template_generator.users.length); 
+                                                    template_generator.displayUserListComlex("#members_list", template_generator.users); 
+
+                                                   //alert(tutorial_filter);
+
+                                               }); 
+
+                                    if(members_gallery_page>=members_first_in_range+members_nav_pages_length)
+                                    {
+                                        members_first_in_range = members_gallery_page;
+                                        displayMembersPagination("#popup_members  .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
+                                    }
+
+                                    outlineMembersPage(members_gallery_page);
+
+
+                                    $("#members_list").fadeIn();
+                                }
+                            });
+
+                            $( "#popup_members .navigator #first" ).click(function(event) {
+
+                                if(members_gallery_page !== 0)
+                                {
+                                    members_gallery_page = 0;
+
+                                    $("#members_list").fadeOut();
+
+                                    var promise_users = rest_caller.getUsers({  "start":members_gallery_page*members_per_page,
+                                                                        "how_many":members_gallery_page*members_per_page+members_per_page,
+                                                                        "user_related_data":{
+                                                                                                "user_followed":"user_followed",
+                                                                                                "user_follows":"user_follows",
+                                                                                                "user_tutorials":"user_tutorials",
+                                                                                                "user_views":"user_views",
+                                                                                                "user_likes":"user_likes",
+                                                                                                "user_comments":"user_comments"
+                                                                                            }});
+
+                                    promise_users.done(
+                                            function(data)
+                                            { 
+                                                    template_generator.users = data.users;
+
+                                                    template_generator.removeUserListComplex("#members_list");
+                                                    template_generator.addUserListComplex("#members_list", template_generator.users.length); 
+                                                    template_generator.displayUserListComlex("#members_list", template_generator.users); 
+
+                                                   //alert(tutorial_filter);
+
+                                               }); 
+
+                                    if(members_gallery_page<members_first_in_range)
+                                    {
+                                        members_first_in_range = members_gallery_page;
+                                        displayMembersPagination("#popup_members  .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
+                                    }
+
+                                    outlineMembersPage(members_gallery_page);
+
+
+                                    $("#members_list").fadeIn();
+                                }
+
+                            });
+
+                            $( "#popup_members .navigator #last" ).click(function(event) {
+
+
+                                if(members_gallery_page !== members_last_page)
+                                {
+                                    members_gallery_page = members_last_page;
+                                    
+                                    //alert('members_last_page: '+members_last_page);
+
+                                    $("#members_list").fadeOut();
+
+                                    var promise_users = rest_caller.getUsers({  "start":members_gallery_page*members_per_page,
+                                                                        "how_many":members_gallery_page*members_per_page+members_per_page,
+                                                                        "user_related_data":{
+                                                                                                "user_followed":"user_followed",
+                                                                                                "user_follows":"user_follows",
+                                                                                                "user_tutorials":"user_tutorials",
+                                                                                                "user_views":"user_views",
+                                                                                                "user_likes":"user_likes",
+                                                                                                "user_comments":"user_comments"
+                                                                                            }});
+
+                                    promise_users.done(
+                                            function(data)
+                                            { 
+                                                    template_generator.users = data.users;
+
+                                                    template_generator.removeUserListComplex("#members_list");
+                                                    template_generator.addUserListComplex("#members_list", template_generator.users.length); 
+                                                    template_generator.displayUserListComlex("#members_list", template_generator.users); 
+
+                                                   //alert(tutorial_filter);
+
+                                               }); 
+
+                                    if(members_gallery_page>=members_first_in_range+members_nav_pages_length)
+                                    {
+                                        members_first_in_range = members_gallery_page;
+                                        displayMembersPagination("#popup_members  .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
+                                    }
+
+                                    outlineMembersPage(members_gallery_page);
+
+                                    $("#members_list").fadeIn();
+
+                                }
+                            });
+
+                            $("#popup_members .navigator [id^=page]").click(function(event) {
+
+
+                                var new_page = parseInt(event.target.value)-1;
+
+                                //alert(new_page);
+
+                                if( !isNaN(new_page) && members_gallery_page !== new_page )
+                                {
+                                    members_gallery_page = new_page;
+
+                                    $("#members_list").fadeOut();
+
+                                    var promise_users = rest_caller.getUsers({  "start":members_gallery_page*members_per_page,
+                                                                        "how_many":members_gallery_page*members_per_page+members_per_page,
+                                                                        "user_related_data":{
+                                                                                                "user_followed":"user_followed",
+                                                                                                "user_follows":"user_follows",
+                                                                                                "user_tutorials":"user_tutorials",
+                                                                                                "user_views":"user_views",
+                                                                                                "user_likes":"user_likes",
+                                                                                                "user_comments":"user_comments"
+                                                                                            }});
+
+                                    promise_users.done(
+                                            function(data)
+                                            { 
+                                                    template_generator.users = data.users;
+
+                                                    template_generator.removeUserListComplex("#members_list");
+                                                    template_generator.addUserListComplex("#members_list", template_generator.users.length); 
+                                                    template_generator.displayUserListComlex("#members_list", template_generator.users); 
+
+                                                   //alert(tutorial_filter);
+
+                                               }); 
+
+                                    outlineMembersPage(members_gallery_page);
+
+                                    $("#members_list").fadeIn();
+                                }
+
+                            });
+
+
+                        //==============================================================================
+
+                        });  
+
                          
-             }
+             //}
 
          });
 
@@ -942,3 +1210,25 @@ function fb_login(rest_caller,template_generator)
     
     
 }
+
+
+
+//=====================================MEMBER NAVIGATION FUNCTIONS================================
+
+function outlineMembersPage(page)
+{
+    $("#popup_members .navigator [id^=page]").css('border','1px red hidden');
+    $("#popup_members .navigator [id=page"+page+"]").css('border','1px red solid');
+}
+
+function displayMembersPagination(navigator_target, nav_pages_length, page, last_page, first_in_range)
+{                                                    
+    $("#popup_members .navigator [id^=page]").attr('value','...');
+
+    for(var i=0; i<nav_pages_length, i+first_in_range<=last_page; i++)
+    {
+        $(navigator_target+" #page"+i).attr('value',first_in_range+i+1);
+        //alert(navigator_target+" #page"+i);
+    }
+}
+                           
