@@ -1250,7 +1250,7 @@ TemplateGenerator.prototype.displayTutorial = function(target,tutorial)
     $(target).find('.tutorial_info .avatar').css("background-image", "url("+tutorial.author.avatar_path+")"); 
     $(target).find('.tutorial_info .author_name').html('<a href="profile.html?user_id='+tutorial.author_skhr_id+'">'+tutorial.author.username+'</a>');  
                     
-    $(target).find(".tutorial_info .stat .tutorial_comments").text(tutorial.tutorials_skhr);
+    $(target).find(".tutorial_info .stat .tutorial_comments").text(tutorial.comments.comments_skhr);
     $(target).find(".tutorial_info .stat .tutorial_likes").text(tutorial.likes.likes_skhr);
     $(target).find(".tutorial_info .stat .tutorial_views").text(tutorial.views.views_skhr);
     //$(target).find('.tutorial_info div.likes').text(tutorial.likes.likes_skhr);
