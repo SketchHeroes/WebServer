@@ -206,6 +206,78 @@ RestCaller.prototype.getTutorials = function(params)
         this.setRequestParam("time_constraint",{"timestamp_field":"created_at","operator":"younger_then","time_amount":"1","time_interval":""+params['time_constraint']+""});
   
     return this.ajax();
+};
+
+// request abstraction methods
+
+RestCaller.prototype.getComments = function(params)
+{
+    this.setResource("/comments");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("Accept","application/json");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    //this.setCustomHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
+    //this.setCustomHeader("X-Caller-SKHR-ID","3");  
+    
+    this.clearRequestParams();
+    
+    this.setRequestParam("locked",0);
+    
+    this.setRequestParam("start",params['start']);
+    this.setRequestParam("how_many",params['how_many']);
+    
+    if(typeof params['comment_order_by'] !== 'undefined')
+        this.setRequestParam("comment_order_by",params['tutorial_order_by']);
+    else
+        this.setRequestParam("comment_order_by",{"order_by_content_id":"DESC"});
+        
+    if(typeof params['target_content_id'] !== 'undefined')    
+        this.setRequestParam("target_content_id",params['target_content_id']);
+        
+    if(typeof params['author_skhr_id'] !== 'undefined')    
+        this.setRequestParam("author_skhr_id",params['author_skhr_id']);
+    
+    return this.ajax();
+}; 
+
+RestCaller.prototype.getContentComments = function(params)
+{
+    this.setResource("/content/comments");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("Accept","application/json");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    //this.setCustomHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
+    //this.setCustomHeader("X-Caller-SKHR-ID","3");  
+    
+    this.clearRequestParams();
+    
+    this.setRequestParam("locked",0);
+    
+    if(typeof params['start'] !== 'undefined' && typeof params['how_many'] !== 'undefined')
+    {
+        this.setRequestParam("start", params['start']);
+        this.setRequestParam("how_many", params['how_many']);
+    }
+    
+    if(typeof params['comment_order_by'] !== 'undefined')
+        this.setRequestParam("comment_order_by",params['tutorial_order_by']);
+    else
+        this.setRequestParam("comment_order_by",{"order_by_content_id":"DESC"});
+        
+    this.setRequestParam("target_content_id",params['target_content_id']);
+        
+    if(typeof params['author_skhr_id'] !== 'undefined')    
+        this.setRequestParam("author_skhr_id",params['author_skhr_id']);
+    
+    return this.ajax();
 };  
     
 
@@ -827,6 +899,30 @@ RestCaller.prototype.viewTutorial = function(params)
     
     return this.ajax();
 };
+
+RestCaller.prototype.postTutorialComment = function(params)
+{
+    this.setResource("/tutorial/comment");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json");
+    
+    this.setCustomHeader("X-Caller-SKHR-ID",params['caller_skhr_id'] );
+    this.setCustomHeader("X-User-Token",params['user_token']);
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("target_content_id",params['target_content_id']);
+    this.setRequestParam("comment",params['comment']);
+    
+    return this.ajax();
+};
+
 
 //-------------------- Template class ------------------------------------------
 
@@ -1644,6 +1740,53 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
         var service = new Service();
         service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
     }
+};   
+
+
+TemplateGenerator.prototype.displayCommentsList= function(target, comments)
+{
+    //alert(top_users[0].username);
+    
+    //alert(JSON.stringify(comments));
+    
+    var list = $('<ul class="comments_list"></ul>');
+    
+    var i=0;
+
+    $.each(comments, function( index, comment )
+    {
+        i++;
+        var single_record = $('<li class="clearfix"></li>');
+            
+            var avatar = $('<div class="avatar"></div');
+            single_record.append(avatar);
+        
+                var img = $('<img src="'+comment.author.avatar_path+'" title="'+comment.author.username+'" alt="Commenter avatar" />');
+                avatar.append(img);
+            
+            var comment_box = $('<div class="comment_box"></div');
+            single_record.append(comment_box);
+                
+                var comment_username = $('<p class="comment_username">'+comment.author.username+'</p>');
+                comment_box.append(comment_username);
+                
+                var comment_comment = $('<p class="comment_comment">'+comment.comment+'</p>');
+                comment_box.append(comment_comment);
+                
+            var comment_timeago = $('<p class="comment_timeago"></p>');
+            single_record.append(comment_timeago);
+
+                var timeago = $('<abbr class="timeago_comment" title="'+comment.created_at+'"></abbr>');
+                comment_timeago.append(timeago);
+        
+        list.append(single_record);
+    });
+    
+    //alert(i);
+    
+    $('.comments_placeholder').append(list);
+    
+    $("abbr.timeago_comment").timeago();
 };   
 
 

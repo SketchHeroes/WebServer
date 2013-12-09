@@ -61,7 +61,19 @@ $(function(){
             function(data)
             {
                 template_generator.user_tutorial = data.tutorial; 
-                template_generator.displayTutorial('.player_section',template_generator.user_tutorial);   
+                template_generator.displayTutorial('.player_section',template_generator.user_tutorial); 
+                
+                //------------------------TUTORIALS COMMENTS-----------------------------------------
+                
+                var promise_tutorial_comments = rest_caller.getContentComments({"target_content_id":content_id});
+    
+                promise_tutorial_comments.done(
+                        function(data)
+                        {
+                            template_generator.tutorial_comments = data.comments;;
+                            template_generator.displayCommentsList('.comments_placeholder',template_generator.tutorial_comments); 
+                            
+                        });
                 
                 //------------------------TUTORIALS LIKES-----------------------------------------
                 // if user logged in checking if he has already liked this tutorial
@@ -114,6 +126,57 @@ $(function(){
                     });
 
             }); 
+            
+    //----------------------------ADD COMMENT-----------------------------------
+    $("body").on('click', ".comment_button", function(event) {
+            
+            if( account.isLoggedIn() )
+            {
+                var comment = $('#comment_text').val();
+                //alert(comment);
+                
+                var promise_comment= rest_caller.postTutorialComment({
+                                                                    'caller_skhr_id':localStorage.caller_skhr_id,
+                                                                    'user_token':localStorage.user_token,
+                                                                    'target_content_id':content_id,
+                                                                    'comment':comment
+                                                                });
+    
+                promise_comment.done(
+                    function(data)
+                    {
+                        $('#comment_text').val('');
+                        $('.comments_placeholder').fadeOut();
+                        
+                        var promise_tutorial_comments = rest_caller.getContentComments({"target_content_id":content_id});
+    
+                        promise_tutorial_comments.done(
+                                function(data)
+                                {
+                                    $('.comments_list').remove();
+                                    template_generator.tutorial_comments = data.comments;;
+                                    template_generator.displayCommentsList('.comments_placeholder',template_generator.tutorial_comments); 
+                                    $('.comments_placeholder').fadeIn();
+
+                                });
+
+                    });
+                
+                        
+            }
+            else
+            {
+                var overlay = $('<div class="overlay"></div>');
+                $("body").append(overlay);
+
+                $('.popup').fadeOut();
+                $("#popup_login").fadeIn(); 
+                $("#popup_login input[name=username_email]").focus();
+            }
+            
+    });  
+    //----------------------------LIKE BUTTON-----------------------------------        
+            
     $("body").on('click', ".tutorial_info .like_it", function(event) {
     //$( ".tutorial_info .like_it" ).click(function(event) {
 

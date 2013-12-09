@@ -2393,6 +2393,136 @@ ul.achievements_gallery li img{
     /*border: 1px blue solid;*/
 }
 
+.player_section footer .skhr_comments
+{
+    /*width:824px;*/
+    margin: 10px 10px 10px 10px;
+    padding: 0px 0px 0px 0px;
+    /*border: 1px blue dashed;*/
+}
+
+.skhr_comments .comment_input
+{
+    margin: 10px 10px 10px 10px;
+    padding: 0px 0px 0px 0px;
+    /*border: 1px red dashed;*/
+    background: #C4C4C4;
+}
+
+
+.skhr_comments .avatar
+{
+    float:left;
+    height:60px;
+    width:60px;
+    margin: 10px 10px 10px 10px;
+    padding: 0px 0px 0px 0px;
+    /*border: 1px orange dashed;*/
+}
+
+
+.skhr_comments .avatar
+{
+    float:left;
+    height:60px;
+    width:60px;
+    margin: 10px 10px 10px 10px;
+    padding: 0px 0px 0px 0px;
+    /*border: 1px orange dashed;*/
+}
+
+.skhr_comments .avatar img
+{
+    height:60px;
+    width:60px; 
+}
+
+.skhr_comments .comment_input .comment_box
+{
+    margin: 10px 10px 0px 80px;
+    padding: 0px 0px 0px 0px;
+    /*border: 1px teal dashed;*/
+    height: 50px;
+}
+
+.skhr_comments .comment_input .comment_box textarea
+{
+    height: 100%;
+    width: 100%;
+    font-size: 12px;
+    font-weight: bolder;
+}
+
+.comments_placeholder .comment_box
+{
+    margin: 10px 10px 0px 80px;
+    padding: 0px 0px 0px 0px;
+    /*border: 1px teal dashed;*/
+}
+
+.comments_placeholder .comment_username
+{
+    font-size: 15px;
+    font-weight: bolder;
+}
+.comments_placeholder .comment_comment
+{
+    font-size: 12px;
+}
+
+.comments_placeholder .comment_timeago
+{
+    color: #818181;
+    font-size: 10px;
+    margin: 10px 10px 10px 80px;
+}
+
+.skhr_comments .comment_button
+{
+    float: right;
+    margin: 5px 10px 5px 0px;
+    padding: 0px 0px 0px 0px;
+    height:25px;
+    width:80px;
+    background: #A4A4A4;
+    
+    border: 1px #FFFFFF solid;
+    border-radius: 0px 0px 0px 0px;
+    
+    color: #FFFFFF;
+    
+    font-size: 12px;
+    font-weight: bolder;
+    
+    cursor: pointer;
+        
+}
+
+.skhr_comments .comments_placeholder
+{
+    margin: 10px 10px 10px 10px;
+    padding: 0px 0px 0px 0px;
+    /*border: 1px green dashed;*/
+}
+
+.comments_list
+{
+    float:left;
+    margin: 0px 0px 0px 0px; 
+    /*height: 700px;*/
+    width: 100%;
+    background: #DBD9D9;
+    list-style-type: none;
+}
+
+.comments_list li{
+    /*height: 100px;*/
+    width: 100%;
+    border-bottom:1px solid #CDCDCD;
+    background: #F8F8F8;
+}
+
+
 #other_user_tutorials
 {
     margin: 0px 0px 0px 720px; 
