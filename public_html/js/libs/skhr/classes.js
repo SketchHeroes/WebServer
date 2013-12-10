@@ -953,6 +953,9 @@ TemplateGenerator.prototype.addGallery = function(target, size)
     {
         var single_record = $('<li></li>');
         
+            var place = $('<div class="place"></img>');
+            single_record.append(place);
+        
             var div = $('<div></div>');
             single_record.append(div);
         
@@ -991,6 +994,9 @@ TemplateGenerator.prototype.addGallery = function(target, size)
                     
                     var author_name = $('<div class="author_name"></div>');
                     info_panel.append(author_name);
+                    
+            var place = $('<div class="vote"></img>');
+            single_record.append(place);
         
         list.append(single_record);
     };

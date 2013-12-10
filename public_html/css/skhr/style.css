@@ -884,6 +884,31 @@ nav#secondary_menu{
     border: 1px #000000 solid;
 }
 
+.submissions_gallery .gallery li .place{ 
+    
+    margin: 0px 0px 0px 0px;  
+    height:30px;
+    width:220px;
+    background-color: #ECECEC;
+    /*border:1px solid red;*/
+}
+
+.submissions_gallery .gallery li .place img{ 
+    
+ 
+    height:30px;
+    width:220px;
+}
+
+.submissions_gallery .gallery li .vote{ 
+    
+ 
+    margin: 0px 0px 0px 0px;  
+    height:40px;
+    width:220px;
+    background-color: #ECECEC;
+}
+
 .gallery div.tutorial_title {
     float: left;
     
@@ -2802,8 +2827,8 @@ ul.achievements_gallery li img{
 .submissions_gallery{
     width:964px;
     
-    background: #ECECEC url(../../images/cover_down_frame_big.png) center bottom no-repeat;
-    background-size:100% auto;
+    /*background: #ECECEC url(../../images/cover_down_frame_big.png) center bottom no-repeat;
+    background-size:100% auto;*/
     
     padding: 0px 0px 0px 0px;
     margin: 0px 30px 0px 30px;

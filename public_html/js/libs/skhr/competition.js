@@ -40,8 +40,8 @@ $(function(){
                     function(data)
                     {
                         template_generator.submissions = data.competition_tutorials;
-                        template_generator.addSimpleGallery(".submissions .submissions_gallery",template_generator.submissions.length);
-                        template_generator.displayTutorialGallerySimple(".submissions .submissions_gallery",template_generator.submissions);
+                        template_generator.addGallery(".submissions .submissions_gallery",template_generator.submissions.length);
+                        template_generator.displayTutorialGallery(".submissions .submissions_gallery",template_generator.submissions);
                     });
 
                 
