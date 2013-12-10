@@ -1105,6 +1105,27 @@ function handleLogin(data, rest_caller, template_generator)
     var service = new Service();
     service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
     
+    //alert(parseInt(localStorage.caller_skhr_id)+ " " +parseInt($(".statistics3 .follow_button").attr('id')) );
+    //alert('handle login');
+    
+    // for each user info (for now there is only one such per page (profile page)
+    // if the user is viewing his own profile displaying invite button
+    $('.user_info').each(
+            function()
+            {
+                //alert('user_info found and it has id '+this.id);
+                if( $(".statistics3 .follow_button").length !==0 
+                        && 
+                    parseInt(localStorage.caller_skhr_id) === parseInt($(".statistics3 .follow_button").attr('id')) )
+                {
+                    
+                    //alert('adding invite friends button - LOGIN');
+                    template_generator.displayInviteFriendsButton('#'+this.id);
+                }
+            });
+    
+    
+    
     // if there is a tutorial like button on the page check if the logged in user has
     // already liked this tutorial
     var content_id = service.getParameterByName('tutorial_id');

@@ -1835,9 +1835,25 @@ TemplateGenerator.prototype.displayUser= function(target, user)
     $(target).find(".statistics2 .stat .user_tutorials").text(user.tutorials.tutorials_skhr);
     $(target).find(".statistics2 .stat .user_likes").text(user.likes.likes_skhr);
     $(target).find(".statistics2 .stat .user_views").text(user.views.views_skhr);
+    
+    var account = new Account();
+    // if the user is viewing his own profile displaying invite button
+    if( account.isLoggedIn() && parseInt(localStorage.caller_skhr_id) === parseInt(user.skhr_id) )
+    {
+        //alert('adding invite friends button - PROFILE');
+        this.displayInviteFriendsButton(target);
+    }
+    
 
     
-};    
+};   
+TemplateGenerator.prototype.displayInviteFriendsButton= function(target)
+{
+    //alert('adding invite friends button');
+    var invite_friends = $('<input class="invite_friends" type="button" value="Invite frieds"/>)');
+    $(target).find(".statistics2 .invite_friends").remove();
+    $(target).find(".statistics2").append(invite_friends);
+}
 
 
 TemplateGenerator.prototype.displayTwoPartGallery= function(part_one_target, part_two_target, tutorials_per_part, page)
