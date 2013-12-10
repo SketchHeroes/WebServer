@@ -41,19 +41,19 @@ $(function(){
                 {
                     case 0:
                         $('.competition_time_frame .status').text('Competition starts in: ')
-                        service.displayCountDown(template_generator.competition.submission_start);
+                        template_generator.displayCountDown('#countdown',template_generator.competition.submission_start);
                         break;
                     case 1:
                         $('.competition_time_frame .status').text('Submission time left: ')
-                        service.displayCountDown(template_generator.competition.voting_start);
+                        template_generator.displayCountDown('#countdown',template_generator.competition.voting_start);
                         break;
                     case 2:
                         $('.competition_time_frame .status').text('Voting time left: ')
-                        service.displayCountDown(template_generator.competition.competition_stop);
+                        template_generator.displayCountDown('#countdown',template_generator.competition.competition_stop);
                         break;
                     case 3:
                         $('.competition_time_frame .status').text('Competition finished since: ')
-                        service.displayCountDown(template_generator.competition.competition_stop);
+                        template_generator.displayCountDown('#countdown',template_generator.competition.competition_stop);
                         break;
                     default:
     
