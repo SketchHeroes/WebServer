@@ -208,7 +208,7 @@ header.main
 .account .avatar img{
     height:60px;
     width:60px;
-    border:1px red dashed;
+    /*border:1px red dashed;*/
 }
 /*
 .login .avatar {
@@ -528,7 +528,7 @@ span.pluginFaviconButtonBorder{
     
     margin: 0px auto 0px auto;
     
-    border: 1px red dashed;
+    /*border: 1px red dashed;*/
 }
 
 #popup_leaderboard .menu > ul img.filter
@@ -2699,6 +2699,15 @@ ul.achievements_gallery li img{
     text-overflow:ellipsis;
 }
 
+.competition_info .header_caption a{
+    font-size: 18px;
+    color: #FFFFFF;
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+}
+
 .competition_info .thumbnail{
     
     float: left;
@@ -2895,7 +2904,7 @@ ul.competitions_list li{
     font-size: 30px;
     color: #B47703;
     
-    border: 1px red dashed;
+    /*border: 1px red dashed;*/
 }
 
 .category .menu{
@@ -2916,7 +2925,7 @@ ul.competitions_list li{
     
     margin: 0px auto 0px auto;
     
-    border: 1px red dashed;
+    /*border: 1px red dashed;*/
 }
 
 .category .menu > ul img.filter
@@ -2980,7 +2989,7 @@ ul.competitions_list li{
     width:950px;
     /*height: 1000px;*/
     
-    border: 1px red dashed;
+    /*border: 1px red dashed;*/
     
     margin: 20px auto 0px auto;
 }
@@ -2990,7 +2999,7 @@ ul.competitions_list li{
     width:940px;
     height: 600px;
     
-    border: 1px red dashed;
+    /*border: 1px red dashed;*/
     
     margin: 20px auto 0px auto;
 }
@@ -3005,7 +3014,7 @@ ul.competitions_list li{
     width:940px;
     height: 250px;
     
-    border: 1px red dashed;
+    /*border: 1px red dashed;*/
     
     margin: 20px auto 0px auto;
 }
@@ -3015,7 +3024,7 @@ ul.competitions_list li{
     width:940px;
     height: 600px;
     
-    border: 1px red dashed;
+    /*border: 1px red dashed;*/
     
     margin: 20px auto 0px auto;
 }
@@ -3025,7 +3034,7 @@ ul.competitions_list li{
     width: 670px;
     height: 50px;
     
-    border: 1px red dashed;
+    /*border: 1px red dashed;*/
     
     margin: 40px auto 40px auto;
 }
@@ -3045,7 +3054,7 @@ ul.competitions_list li{
     width: 670px;
     height: 50px;
     
-    border: 1px red dashed;
+    /*border: 1px red dashed;*/
     
     margin: 40px auto 40px auto;
 }

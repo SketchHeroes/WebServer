@@ -32,32 +32,6 @@ $(function(){
                 template_generator.competition = data.competition;
                 //template_generator.addCompetition(".competition");
                 template_generator.displayCompetition(".competition",template_generator.competition);
-                
-                var date_until;
-                
-                //alert(template_generator.competition.status);
-                
-                switch(parseInt(template_generator.competition.status))
-                {
-                    case 0:
-                        $('.competition_time_frame .status').text('Competition starts in: ')
-                        template_generator.displayCountDown('#countdown',template_generator.competition.submission_start);
-                        break;
-                    case 1:
-                        $('.competition_time_frame .status').text('Submission time left: ')
-                        template_generator.displayCountDown('#countdown',template_generator.competition.voting_start);
-                        break;
-                    case 2:
-                        $('.competition_time_frame .status').text('Voting time left: ')
-                        template_generator.displayCountDown('#countdown',template_generator.competition.competition_stop);
-                        break;
-                    case 3:
-                        $('.competition_time_frame .status').text('Competition finished since: ')
-                        template_generator.displayCountDown('#countdown',template_generator.competition.competition_stop);
-                        break;
-                    default:
-    
-                }
                     
                 var promise_submissions = rest_caller.getLatestCompetitionTutorials(
                                                     {"competition_id":template_generator.competition.competition_id});

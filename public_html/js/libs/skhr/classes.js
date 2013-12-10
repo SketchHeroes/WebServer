@@ -1571,8 +1571,17 @@ TemplateGenerator.prototype.addCompetition = function(target)
                     
             var complete_button = $('<input class="compete" type="button" value="COMPETE"/>');  
             details.append(complete_button);
+    
+    var time_frame = $("<div class='competition_time_frame'></div>");
+    
+        var status = $('<div class="status"></div>');
+        time_frame.append(status);
+        
+        var countdown = $("<div class='countdown'></div>");
+        time_frame.append(countdown);
                 
-    $(target).append(article);
+    $(target).append(article);           
+    $(target).append(time_frame);
 
 };           
   
@@ -1584,7 +1593,7 @@ TemplateGenerator.prototype.addCompetitions = function(target, size)
     
     for(var i=0; i<size; i++)
     {
-        var item = $("<li></li");
+        var item = $("<li id='competition"+i+"'></li");
         list.append(item);
         
             var article = $('<article class="competition_info"></article>');
@@ -1640,6 +1649,16 @@ TemplateGenerator.prototype.addCompetitions = function(target, size)
 
                     var complete_button = $('<input class="compete" type="button" value="COMPETE"/>');  
                     details.append(complete_button);
+            
+            var time_frame = $("<div class='competition_time_frame'></div>");
+    
+                var status = $('<div class="status"></div>');
+                time_frame.append(status);
+
+                var countdown = $("<div class='countdown'></div>");
+                time_frame.append(countdown);
+            
+            $(item).append(time_frame);
     }
     
     $(target).append(list);
@@ -1656,13 +1675,42 @@ TemplateGenerator.prototype.displayCompetition = function(target,competition)
     $(target+" .competition_info .header_caption").text(competition.title); 
     $(target+" .competition_info .details .description").text(competition.description);     
     
+    this.displayCountDownPerStatus(".competition",competition);
+    
 
-};           
+}; 
 
+TemplateGenerator.prototype.displayCountDownPerStatus = function(target,competition)
+{
+    // display countdown          
+    switch(parseInt(competition.status))
+    {
+        case 0:
+            $(target).find('.competition_time_frame .status').text('Competition starts in: ')
+            this.displayCountDown(target+' .countdown', competition.submission_start);
+            break;
+        case 1:
+            $(target).find('.competition_time_frame .status').text('Submission time left: ')
+            this.displayCountDown(target+' .countdown', competition.voting_start);
+            break;
+        case 2:
+            $(target).find('.competition_time_frame .status').text('Voting time left: ')
+            this.displayCountDown(target+' .countdown', competition.competition_stop);
+            break;
+        case 3:
+            $(target).find('.competition_time_frame .status').text('Competition finished since: ')
+            this.displayCountDown(target+' .countdown', competition.competition_stop);
+            break;
+        default:
+
+    }
+}
 
 TemplateGenerator.prototype.displayCompetitions = function(target,competitions)
 {
     var i = 0;
+    var template_generator = this;
+    
     $(target+' > ul > li').each(
             function()
             { 
@@ -1672,8 +1720,9 @@ TemplateGenerator.prototype.displayCompetitions = function(target,competitions)
 
                 $(this).find(".competition_info .header_caption").html('<a href="competition.html?competition_id='+competitions[i].competition_id+'">'+competitions[i].title+'</a>'); 
                 $(this).find(".competition_info .details .description").text(competitions[i].description);     
+
+                template_generator.displayCountDownPerStatus("#"+this.id,competitions[i]);   
                 
-                //alert(i);
                 i++;
             });
     
