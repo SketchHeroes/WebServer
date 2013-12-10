@@ -74,6 +74,7 @@ $(function(){
                                      //alert(template_generator.user_followed.length);
                                      
                                     $('#popup_fans h1.caption').text('Fans('+template_generator.user_followed.length+')');
+                                    template_generator.removeUserListComplex("#fans_list");
                                     template_generator.addUserListComplex("#fans_list", template_generator.user_followed.length); 
                                     template_generator.displayUserListComlex("#fans_list", template_generator.user_followed);
                                     
@@ -128,6 +129,7 @@ $(function(){
                                      //alert(template_generator.user_followed.length);
                                      
                                     $('#popup_following h1.caption').text('Following('+template_generator.user_follows.length+')');
+                                    template_generator.removeUserListComplex("#following_list");
                                     template_generator.addUserListComplex("#following_list", template_generator.user_follows.length); 
                                     template_generator.displayUserListComlex("#following_list", template_generator.user_follows);
                                  });
