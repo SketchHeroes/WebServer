@@ -236,7 +236,7 @@ header.main
         
 	z-index: 999;
 	display: none;
-	position: fixed;
+	position: absolute;
         
 }
 

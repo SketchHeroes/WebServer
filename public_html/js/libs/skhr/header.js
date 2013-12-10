@@ -1092,7 +1092,10 @@ function handleLogin(data, rest_caller, template_generator)
                     $(".avatar #logged_in_avatar").attr('src',data.user.avatar_path);
                     //alert(data.user.avatar_path);
                 }
-                $(".account .options #username").text(data.user.username).css('display','inline-block');
+                
+                $(".account .options #username").html('<a href="profile.html?user_id='+data.user.skhr_id+'">'+data.user.username+'</a>')
+                                                .css('display','inline-block');
+                //$(".account .options #username").text(data.user.username).css('display','inline-block');
                 $(".account .options #logout").css('display','inline-block');
                 $(".account .options #login").css('display','none');
                 $(".account .options #register").css('display','none');              
