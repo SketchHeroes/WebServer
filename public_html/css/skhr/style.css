@@ -2813,15 +2813,32 @@ ul.achievements_gallery li img{
     margin: 10px 0px 0px 0px;
 }
 
-.submission_time{
-    height: 30px;
-    width: 500px;
+.competition_time_frame{
+    height: 35px;
+    width: 605px;
     
-    margin: 0px auto;
+    margin: 10px auto 0px auto;
     
     /*border: 1px black dashed;*/
     
     font-size: 18px;
+    font-weight: bolder;
+}
+
+.competition_time_frame .status{
+    float: left;
+    height: 30px;
+    width: 200px;
+    text-align: right;
+    /*border: 1px red dashed;*/
+}
+
+.competition_time_frame .countdown{
+    margin: 0px 0px 0px 200px;
+    height: 30px;
+    width: 400px;
+    text-align: right;
+    /*border: 1px blue dashed;*/
 }
 
 .submissions_gallery{

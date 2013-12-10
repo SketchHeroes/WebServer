@@ -1912,6 +1912,60 @@ Service.prototype.getParameterByName = function(name)
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 };
 
+Service.prototype.displayCountDown = function(timestamp_string)
+{
+    var t = timestamp_string.split(/[- :]/);
+    var target_date = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]).getTime();
+    
+    //var target_date = new Date("Aug 15, 2019").getTime();
+ 
+    // variables for time units
+    var days, hours, minutes, seconds;
+
+    // get tag element
+    var countdown = document.getElementById("countdown");
+    
+    setInterval(function () {
+
+        // find the amount of "seconds" between now and target
+        var current_date = new Date().getTime();
+        var seconds_left;
+        
+        if(target_date >= current_date)
+            seconds_left = (target_date - current_date) / 1000;
+        else
+            seconds_left = (current_date - target_date) / 1000;
+
+        // do some time calculations
+        days = parseInt(seconds_left / 86400);
+        if(days < 10) 
+          days = "0" + days;
+        
+        
+        seconds_left = seconds_left % 86400;
+        hours = parseInt(seconds_left / 3600);
+        if(hours < 10) 
+          hours = "0" + hours;
+      
+        seconds_left = seconds_left % 3600;
+        minutes = parseInt(seconds_left / 60);
+        if(minutes < 10) 
+          minutes = "0" + minutes;
+        
+        seconds = parseInt(seconds_left % 60);
+        if(seconds < 10) 
+          seconds = "0" + seconds; 
+
+        // format countdown string + set tag value
+        countdown.innerHTML = " "+days + " days : " + hours + " hours : " + minutes + " minutes : " + seconds + " seconds";
+        //countdown.innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
+
+        
+        //alert( days + ":" + hours + ":" + minutes + ":" + seconds );
+
+    }, 1000);
+};
+
 
 Service.prototype.updateFollowButtons = function(params)
 {
