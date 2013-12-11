@@ -30,6 +30,11 @@ $(function(){
             function(data)
             {
                 template_generator.competition = data.competition;
+                
+                localStorage.is_participating = template_generator.competition.is_participating;
+                localStorage.has_voted = template_generator.competition.has_voted;
+                localStorage.competition_status = template_generator.competition.status;
+                //alert(localStorage.has_voted);
                 //template_generator.addCompetition(".competition");
                 template_generator.displayCompetition(".competition",template_generator.competition);
                     

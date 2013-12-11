@@ -379,6 +379,14 @@ RestCaller.prototype.getCompetition = function(params)
     this.setCustomHeader("X-App-Token",this.app_token);
     this.setCustomHeader("Accept","application/json"); 
     
+    if(localStorage.caller_skhr_id && localStorage.user_token)
+    {
+        //alert('logged in: '+localStorage.caller_skhr_id+' '+localStorage.user_token);
+        this.setCustomHeader("X-Caller-SKHR-ID",localStorage.caller_skhr_id );
+        this.setCustomHeader("X-User-Token",localStorage.user_token);
+    }
+    
+    
     this.clearRequestParams();
     
     this.setRequestParam("competition_id",params['competition_id']);
@@ -1337,6 +1345,26 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
     //$('#data').html("Tutorials:<br /><br />");  
     //$('body').html("found:<br />");
     //alert(this.featured_tutorials[0].thumbnail_path);
+    //alert(typeof localStorage.has_voted +" : "+  localStorage.has_voted);
+    //alert('localStorage.has_voted === true :'+(localStorage.has_voted === 'true'));
+    
+    var show_place = false;
+    if( $(target).hasClass('submissions_gallery') 
+                    &&
+        parseInt(localStorage.competition_status) === 4  )
+    {
+        show_place = true;
+    }    
+    
+    var show_vote_buttons = false;
+    if( $(target).hasClass('submissions_gallery') 
+            && 
+        localStorage.has_voted ==='false' 
+            && 
+        parseInt(localStorage.competition_status) === 2  )
+    {
+        show_vote_buttons = true;
+    }
     
     var i = 0;
     $(target+' > ul.gallery > li').each(
@@ -1394,6 +1422,22 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                     
                     $(this).find('.info_panel').append(button);
                     //$(this).find('.follow_button').attr('id',tutorials[i].author_skhr_id);
+                    
+                    // add voting button in case this is a submition gallery
+                    if(show_place)
+                    {
+                        //alert('inside submission gallery');
+                        var vote_button = $('<input type="button" class="vote_button" value="Vote" id="'+tutorials[i].content_id+'"/>');
+                        $(this).find('.place').append(vote_button);
+                    }
+                    
+                    // add voting button in case this is a submition gallery
+                    if( show_vote_buttons )
+                    {
+                        //alert('inside submission gallery');
+                        var vote_button = $('<input type="button" class="vote_button" value="Vote" id="'+tutorials[i].content_id+'"/>');
+                        $(this).find('.vote').append(vote_button);
+                    }
                 }
         
                 i++;
@@ -1568,9 +1612,6 @@ TemplateGenerator.prototype.addCompetition = function(target)
         
                     var caption = $('<div class="caption" id="place3">3rd place</div>');  
                     place.append(caption);
-                    
-            var complete_button = $('<input class="compete" type="button" value="COMPETE"/>');  
-            details.append(complete_button);
     
     var time_frame = $("<div class='competition_time_frame'></div>");
     
@@ -1646,9 +1687,6 @@ TemplateGenerator.prototype.addCompetitions = function(target, size)
 
                             var caption = $('<div class="caption" id="place3">3rd place</div>');  
                             place.append(caption);
-
-                    var complete_button = $('<input class="compete" type="button" value="COMPETE"/>');  
-                    details.append(complete_button);
             
             var time_frame = $("<div class='competition_time_frame'></div>");
     
@@ -1673,38 +1711,19 @@ TemplateGenerator.prototype.displayCompetition = function(target,competition)
     $(target+" .competition_info .thumbnail").append(thumbnail_img);
     
     $(target+" .competition_info .header_caption").text(competition.title); 
-    $(target+" .competition_info .details .description").text(competition.description);     
+    $(target+" .competition_info .details .description").text(competition.description);   
     
+    $(target+" .competition_info .details .compete").remove();
+    if( parseInt(competition.status) === 1 )
+    {
+        var complete_button = $('<input class="compete" type="button" value="COMPETE"/>');
+        $(target+" .competition_info .details").append(complete_button);  
+    }
+
     this.displayCountDownPerStatus(".competition",competition);
     
 
 }; 
-
-TemplateGenerator.prototype.displayCountDownPerStatus = function(target,competition)
-{
-    // display countdown          
-    switch(parseInt(competition.status))
-    {
-        case 0:
-            $(target).find('.competition_time_frame .status').text('Competition starts in: ')
-            this.displayCountDown(target+' .countdown', competition.submission_start);
-            break;
-        case 1:
-            $(target).find('.competition_time_frame .status').text('Submission time left: ')
-            this.displayCountDown(target+' .countdown', competition.voting_start);
-            break;
-        case 2:
-            $(target).find('.competition_time_frame .status').text('Voting time left: ')
-            this.displayCountDown(target+' .countdown', competition.competition_stop);
-            break;
-        case 3:
-            $(target).find('.competition_time_frame .status').text('Competition finished since: ')
-            this.displayCountDown(target+' .countdown', competition.competition_stop);
-            break;
-        default:
-
-    }
-}
 
 TemplateGenerator.prototype.displayCompetitions = function(target,competitions)
 {
@@ -1719,7 +1738,13 @@ TemplateGenerator.prototype.displayCompetitions = function(target,competitions)
                 $(this).find(".competition_info .thumbnail").append(thumbnail_img);
 
                 $(this).find(".competition_info .header_caption").html('<a href="competition.html?competition_id='+competitions[i].competition_id+'">'+competitions[i].title+'</a>'); 
-                $(this).find(".competition_info .details .description").text(competitions[i].description);     
+                $(this).find(".competition_info .details .description").text(competitions[i].description);   
+                
+                $(this).find(".competition_info .details .enter_link").remove();
+                var link = $('<a class="enter_link" href="competition.html?competition_id='+competitions[i].competition_id+'"></a>');
+                    var enter_button = $('<input class="enter" type="button" value="ENTER"/>');
+                    link.append(enter_button);
+                $(this).find(".competition_info .details").append(link);
 
                 template_generator.displayCountDownPerStatus("#"+this.id,competitions[i]);   
                 
@@ -1932,6 +1957,32 @@ TemplateGenerator.prototype.setRecords = function(records)
 {
     this.records = records;
 };
+
+TemplateGenerator.prototype.displayCountDownPerStatus = function(target,competition)
+{
+    // display countdown          
+    switch(parseInt(competition.status))
+    {
+        case 0:
+            $(target).find('.competition_time_frame .status').text('Competition starts in: ')
+            this.displayCountDown(target+' .countdown', competition.submission_start);
+            break;
+        case 1:
+            $(target).find('.competition_time_frame .status').text('Submission time left: ')
+            this.displayCountDown(target+' .countdown', competition.voting_start);
+            break;
+        case 2:
+            $(target).find('.competition_time_frame .status').text('Voting time left: ')
+            this.displayCountDown(target+' .countdown', competition.competition_stop);
+            break;
+        case 3:
+            $(target).find('.competition_time_frame .status').text('Competition finished since: ')
+            this.displayCountDown(target+' .countdown', competition.competition_stop);
+            break;
+        default:
+
+    }
+}
 
 TemplateGenerator.prototype.displayCountDown = function(target,timestamp_string)
 {

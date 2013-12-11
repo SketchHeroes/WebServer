@@ -13,6 +13,10 @@ header, section, footer, aside, nav, article, figure
     display: block; 
 }
 
+input[type=button]{
+    cursor: pointer;
+}
+
 .error_msg
 {
     font-size:15px;
@@ -1006,6 +1010,24 @@ div.comments{
     
     font-size:12px;
     font-weight: bold;
+    
+    color: #FFFFFF;
+}
+
+.vote_button{ 
+    margin: 0px auto 0px 10px;
+    padding: 0px auto 0px auto;
+    height:40px;
+    width:200px;
+    cursor: pointer;
+    
+    background: #FBBD49;
+    
+    border: 4px #B47703 solid;
+    border-radius: 12px 12px 12px 12px;
+    
+    font-size:20px;
+    font-weight: bolder;
     
     color: #FFFFFF;
 }
@@ -2801,7 +2823,7 @@ ul.achievements_gallery li img{
     /*border: 1px black dashed;*/
 }
 
-.competition_info .details .compete{
+.competition_info .details .compete, .competition_info .details .enter{
     
     float:right;
     
