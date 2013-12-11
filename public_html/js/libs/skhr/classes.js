@@ -1351,7 +1351,7 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
     var show_place = false;
     if( $(target).hasClass('submissions_gallery') 
                     &&
-        parseInt(localStorage.competition_status) === 4  )
+        parseInt(localStorage.competition_status) === 3  )
     {
         show_place = true;
     }    
@@ -1424,11 +1424,11 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                     //$(this).find('.follow_button').attr('id',tutorials[i].author_skhr_id);
                     
                     // add voting button in case this is a submition gallery
-                    if(show_place)
+                    if(show_place && i<3)
                     {
                         //alert('inside submission gallery');
-                        var vote_button = $('<input type="button" class="vote_button" value="Vote" id="'+tutorials[i].content_id+'"/>');
-                        $(this).find('.place').append(vote_button);
+                        var img = $('<img class="place" alt="Winner Place'+(i+1)+'" src="images/place'+(i+1)+'.png"/>');
+                        $(this).find('.place').append(img);
                     }
                     
                     // add voting button in case this is a submition gallery
@@ -1976,7 +1976,7 @@ TemplateGenerator.prototype.displayCountDownPerStatus = function(target,competit
             this.displayCountDown(target+' .countdown', competition.competition_stop);
             break;
         case 3:
-            $(target).find('.competition_time_frame .status').text('Competition finished since: ')
+            $(target).find('.competition_time_frame .status').text('Finished since: ')
             this.displayCountDown(target+' .countdown', competition.competition_stop);
             break;
         default:
