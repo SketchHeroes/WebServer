@@ -32,7 +32,7 @@ $(function(){
                 template_generator.competition = data.competition;
                 
                 localStorage.is_participating = template_generator.competition.is_participating;
-                localStorage.has_voted = template_generator.competition.has_voted;
+                //localStorage.has_voted = template_generator.competition.has_voted;
                 localStorage.competition_status = template_generator.competition.status;
                 //alert(localStorage.has_voted);
                 //template_generator.addCompetition(".competition");
@@ -47,11 +47,34 @@ $(function(){
                         template_generator.submissions = data.competition_tutorials;
                         template_generator.addGallery(".submissions .submissions_gallery",template_generator.submissions.length);
                         template_generator.displayTutorialGallery(".submissions .submissions_gallery",template_generator.submissions);
+                        
+                        
+                        
                     });
 
                 
             });
+//===================================VOTE BUTTON==============================
+        $('body').on('click', '.vote', function(e)
+        //$(".follow_button").click(function(e) 
+        { 
+            var target = $(e.target);
+            
+            var promise_vote= rest_caller.postCompetitionVote({
+                                                                'caller_skhr_id':localStorage.caller_skhr_id,
+                                                                'user_token':localStorage.user_token,
+                                                                "competition_tutorial_id":e.target.id
+                                                            });
 
+            promise_vote.done(
+                function(data)
+                {
+                    target.removeClass('vote').addClass('voted').attr('value','Voted');
+
+                });
+                
+
+        });
 
 //==============================================================================
     

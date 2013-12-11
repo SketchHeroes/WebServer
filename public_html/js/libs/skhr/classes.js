@@ -403,7 +403,14 @@ RestCaller.prototype.getLatestCompetitionTutorials = function(params)
     this.clearCustomHeaders();
     this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
     this.setCustomHeader("X-App-Token",this.app_token);
-    this.setCustomHeader("Accept","application/json"); 
+    this.setCustomHeader("Accept","application/json");
+    
+    if(localStorage.caller_skhr_id && localStorage.user_token)
+    {
+        //alert('logged in: '+localStorage.caller_skhr_id+' '+localStorage.user_token);
+        this.setCustomHeader("X-Caller-SKHR-ID",localStorage.caller_skhr_id );
+        this.setCustomHeader("X-User-Token",localStorage.user_token);
+    } 
     
     this.clearRequestParams();
     if(typeof params['start'] !== 'undefined' && typeof params['how_many'] !== 'undefined')
@@ -931,6 +938,30 @@ RestCaller.prototype.postTutorialComment = function(params)
     return this.ajax();
 };
 
+RestCaller.prototype.postCompetitionVote = function(params)
+{
+    //alert('in post competition vote');
+    
+    this.setResource("/competition/vote");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json");
+    
+    this.setCustomHeader("X-Caller-SKHR-ID",params['caller_skhr_id'] );
+    this.setCustomHeader("X-User-Token",params['user_token']);
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("competition_tutorial_id",params['competition_tutorial_id']);
+    
+    return this.ajax();
+};
+
 
 //-------------------- Template class ------------------------------------------
 
@@ -1003,7 +1034,7 @@ TemplateGenerator.prototype.addGallery = function(target, size)
                     var author_name = $('<div class="author_name"></div>');
                     info_panel.append(author_name);
                     
-            var place = $('<div class="vote"></img>');
+            var place = $('<div class="vote_frame"></img>');
             single_record.append(place);
         
         list.append(single_record);
@@ -1359,8 +1390,6 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
     var show_vote_buttons = false;
     if( $(target).hasClass('submissions_gallery') 
             && 
-        localStorage.has_voted ==='false' 
-            && 
         parseInt(localStorage.competition_status) === 2  )
     {
         show_vote_buttons = true;
@@ -1385,6 +1414,9 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                 $(this).find("div.author_name a").remove(); 
                 
                 $(this).find(".follow_button").remove();
+                
+                $(this).find(".vote_button").remove();
+                $(this).find(".place_img").remove();
                 
                 // if there is data adding new data to gallery
                 if(tutorials[i] !== undefined) 
@@ -1427,16 +1459,21 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                     if(show_place && i<3)
                     {
                         //alert('inside submission gallery');
-                        var img = $('<img class="place" alt="Winner Place'+(i+1)+'" src="images/place'+(i+1)+'.png"/>');
+                        var img = $('<img class="place_img" alt="Winner Place'+(i+1)+'" src="images/place'+(i+1)+'.png"/>');
                         $(this).find('.place').append(img);
                     }
                     
                     // add voting button in case this is a submition gallery
                     if( show_vote_buttons )
                     {
-                        //alert('inside submission gallery');
-                        var vote_button = $('<input type="button" class="vote_button" value="Vote" id="'+tutorials[i].content_id+'"/>');
-                        $(this).find('.vote').append(vote_button);
+                        //alert(!tutorials[i].has_voted);
+                        
+                        var vote_button = $('<input type="button" class="vote_button vote" value="Vote" id="'+tutorials[i].competition_tutorial_id+'"/>');
+
+                        if(tutorials[i].has_voted)
+                            vote_button.removeClass('vote').addClass('voted').attr('value','Voted');
+                        
+                        $(this).find('.vote_frame').append(vote_button);
                     }
                 }
         

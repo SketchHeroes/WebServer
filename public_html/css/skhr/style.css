@@ -885,9 +885,14 @@ nav#secondary_menu{
     _height: 248px;
     margin: 10px 0px 10px 0px;
     background: #FFFFFF;
-    border: 1px #000000 solid;
+    border: 1px #B5B5B5 solid;
 }
 
+.submissions_gallery .gallery{ 
+    
+    margin: 0px 0px 0px 30px; 
+    /*border:1px solid red;*/
+}
 .submissions_gallery .gallery li .place{ 
     
     margin: 0px 0px 0px 0px;  
@@ -904,7 +909,7 @@ nav#secondary_menu{
     width:220px;
 }
 
-.submissions_gallery .gallery li .vote{ 
+.submissions_gallery .gallery li .vote_frame{ 
     
  
     margin: 0px 0px 0px 0px;  
@@ -912,6 +917,7 @@ nav#secondary_menu{
     width:220px;
     background-color: #ECECEC;
 }
+
 
 .gallery div.tutorial_title {
     float: left;
@@ -1030,6 +1036,11 @@ div.comments{
     font-weight: bolder;
     
     color: #FFFFFF;
+}
+
+.voted{
+    opacity: 0.4;
+    filter: alpha(opacity=40);
 }
 
 img.likes_image,
