@@ -1373,28 +1373,6 @@ TemplateGenerator.prototype.displayPainter = function(params)
 
 TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
 {
-    //$('#data').html("Tutorials:<br /><br />");  
-    //$('body').html("found:<br />");
-    //alert(this.featured_tutorials[0].thumbnail_path);
-    //alert(typeof localStorage.has_voted +" : "+  localStorage.has_voted);
-    //alert('localStorage.has_voted === true :'+(localStorage.has_voted === 'true'));
-    
-    var show_place = false;
-    if( $(target).hasClass('submissions_gallery') 
-                    &&
-        parseInt(localStorage.competition_status) === 3  )
-    {
-        show_place = true;
-    }    
-    
-    var show_vote_buttons = false;
-    if( $(target).hasClass('submissions_gallery') 
-            && 
-        parseInt(localStorage.competition_status) === 2  )
-    {
-        show_vote_buttons = true;
-    }
-    
     var i = 0;
     $(target+' > ul.gallery > li').each(
             function()
@@ -1454,6 +1432,47 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                     
                     $(this).find('.info_panel').append(button);
                     //$(this).find('.follow_button').attr('id',tutorials[i].author_skhr_id);
+                }
+        
+                i++;
+            });
+            
+    var account = new Account();          
+    if( account.isLoggedIn() )
+    {
+        var service = new Service();
+        service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
+    }
+}; 
+
+TemplateGenerator.prototype.displaySubmissionsGalleryFeatures = function(target, tutorials)
+{
+    var show_place = false;
+    if( $(target).hasClass('submissions_gallery') 
+                    &&
+        parseInt(localStorage.competition_status) === 3  )
+    {
+        show_place = true;
+    }    
+    
+    var show_vote_buttons = false;
+    if( $(target).hasClass('submissions_gallery') 
+            && 
+        parseInt(localStorage.competition_status) === 2  )
+    {
+        show_vote_buttons = true;
+    }
+    
+    var i = 0;
+    $(target+' > ul.gallery > li').each(
+            function()
+            {
+                $(this).find(".vote_button").remove();
+                $(this).find(".place_img").remove();
+                
+                // if there is data adding new data to gallery
+                if(tutorials[i] !== undefined) 
+                { 
                     
                     // add voting button in case this is a submition gallery
                     if(show_place && i<3)
