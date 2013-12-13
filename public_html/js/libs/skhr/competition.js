@@ -10,6 +10,7 @@ $(function(){
     
     var rest_caller          = new RestCaller();
     var template_generator   = new TemplateGenerator();
+    var account              = new Account();
     
     // getting INITIAL data from the server
     
@@ -59,20 +60,30 @@ $(function(){
         //$(".follow_button").click(function(e) 
         { 
             var target = $(e.target);
-            
-            var promise_vote= rest_caller.postCompetitionVote({
-                                                                'caller_skhr_id':localStorage.caller_skhr_id,
-                                                                'user_token':localStorage.user_token,
-                                                                "competition_tutorial_id":e.target.id
-                                                            });
+            if( account.isLoggedIn() )
+            {
+                var promise_vote= rest_caller.postCompetitionVote({
+                                                                    'caller_skhr_id':localStorage.caller_skhr_id,
+                                                                    'user_token':localStorage.user_token,
+                                                                    "competition_tutorial_id":e.target.id
+                                                                });
 
-            promise_vote.done(
-                function(data)
-                {
-                    target.removeClass('vote').addClass('voted').attr('value','Voted');
+                promise_vote.done(
+                    function(data)
+                    {
+                        target.removeClass('vote').addClass('voted').attr('value','Voted');
 
-                });
-                
+                    });
+            }
+            else
+            {
+                var overlay = $('<div class="overlay"></div>');
+                $("body").append(overlay);
+
+                $('.popup').fadeOut();
+                $("#popup_login").fadeIn(); 
+                $("#popup_login input[name=username_email]").focus();
+            }
 
         });
 
