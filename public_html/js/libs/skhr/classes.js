@@ -1498,13 +1498,6 @@ TemplateGenerator.prototype.displaySubmissionsGalleryFeatures = function(target,
         
                 i++;
             });
-            
-    var account = new Account();          
-    if( account.isLoggedIn() )
-    {
-        var service = new Service();
-        service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
-    }
 };    
 
 

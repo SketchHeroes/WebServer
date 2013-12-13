@@ -39,23 +39,24 @@ $(function(){
                 //template_generator.addCompetition(".competition");
                 template_generator.displayCompetition(".competition",template_generator.competition);
                 
-                //alert('loading submissions');
-                var promise_submissions = rest_caller.getLatestCompetitionTutorials(
-                                                    {"competition_id":template_generator.competition.competition_id});
-
-                promise_submissions.done(
-                    function(data)
-                    {
-                        template_generator.submissions = data.competition_tutorials;
-                        template_generator.addGallery(".submissions .submissions_gallery",template_generator.submissions.length);
-                        template_generator.displayTutorialGallery(".submissions .submissions_gallery",template_generator.submissions);
-                        template_generator.displaySubmissionsGalleryFeatures(".submissions .submissions_gallery",template_generator.submissions);
-                        
-                        
-                    });
-
+                
                 
             });
+    //alert('loading submissions');
+    var promise_submissions = rest_caller.getLatestCompetitionTutorials(
+                                        {"competition_id":competition_id});
+
+    promise_submissions.done(
+        function(data)
+        {
+            template_generator.submissions = data.competition_tutorials;
+            template_generator.addGallery(".submissions .submissions_gallery",template_generator.submissions.length);
+            template_generator.displayTutorialGallery(".submissions .submissions_gallery",template_generator.submissions);
+            template_generator.displaySubmissionsGalleryFeatures(".submissions .submissions_gallery",template_generator.submissions);
+
+
+        });
+
 //===================================VOTE BUTTON==============================
         $('body').on('click', '.vote', function(e)
         //$(".follow_button").click(function(e) 

@@ -50,7 +50,7 @@ $(function(){
         
         if( account.isLoggedIn() )
         {
-            alert('because of login handle login');
+            //alert('because of login handle login');
             
             handleLogin(    
                             {"caller_skhr_id":localStorage.caller_skhr_id, "user_token":localStorage.user_token}, 
@@ -1065,7 +1065,7 @@ function getTopUsersByFilter(leader_board_length, filter, period)
 
 function handleLogin(data, rest_caller, template_generator)
 {
-    alert('handle login');
+    //alert('handle login');
     
     if(typeof data.user !== 'undefined')
     {
@@ -1153,11 +1153,11 @@ function handleLogin(data, rest_caller, template_generator)
                 });
             }); 
     }
-    /*
+    
     // if loggin done on competition page - reloading page
-    if( $( ".submissions_gallery" ).length !== 0 )
+    if( $( ".submissions_gallery .gallery" ).length !== 0 )
     {
-        alert('reloading submissions');
+        //alert('reloading submissions');
         
         var competition_id = service.getParameterByName('competition_id');
                 
@@ -1171,12 +1171,11 @@ function handleLogin(data, rest_caller, template_generator)
                 template_generator.removeGallery(".submissions_gallery");
                 template_generator.addGallery(".submissions .submissions_gallery",template_generator.submissions.length);
                 template_generator.displayTutorialGallery(".submissions .submissions_gallery",template_generator.submissions);
-
-
+                template_generator.displaySubmissionsGalleryFeatures(".submissions .submissions_gallery",template_generator.submissions);             
 
             });
     }
-    */
+    
 
 }
 function handleLogout()
