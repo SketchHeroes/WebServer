@@ -56,6 +56,25 @@ $(function(){
 
 
         });
+        
+//========================CHOOSE SOURCE POPUP=================================
+
+        $('body').on('click', '.competition .compete', function(e)
+        //$(".competition .compete").click(function(e) 
+        { 
+            var overlay = $('<div class="overlay"></div>');
+            $("body").append(overlay);
+
+            $('.popup').fadeOut();
+            $("#popup_choose_source").fadeIn();
+
+        });
+
+        $("#popup_choose_source .close").click(function(e) { 
+                $("#popup_choose_source").fadeOut(); 
+                $("body .overlay").remove();
+        }); 
+
 
 //===================================VOTE BUTTON==============================
         $('body').on('click', '.vote', function(e)
