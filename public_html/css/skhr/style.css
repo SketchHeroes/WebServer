@@ -244,6 +244,92 @@ header.main
         
 }
 
+#popup_choose_completed
+{
+    width: 300px;
+    height: 300px;
+	
+    padding: 0px 0px 0px 0px;
+    background: #FFFFFF;
+
+    top: 100px;
+    left:50%;
+
+    border: 10px solid grey;
+    border-radius: 0px 0px 0px 0px;
+
+    margin: 0px 0px 0px -150px; 
+}
+
+#popup_choose_completed .inner_popup
+{
+    margin: 40px 10px 10px 10px; 
+    text-align: center;
+    vertical-align: central;
+    font-size: 15px;
+}
+
+#popup_choose_completed .inner_popup .message
+{
+    margin: 40px 10px 10px 10px; 
+    text-align: center;
+    vertical-align: central;
+}
+
+#popup_choose_completed .inner_popup .message .countdown
+{
+    font-weight: bold;
+}
+
+#popup_choose_gallery
+{
+    width: 740px;
+    height: 600px;
+	
+    padding: 0px 0px 0px 0px;
+    background: #F2F2F2;
+
+    top: 50px;
+    left:50%;
+
+    border: 5px solid #FBBD49;
+    border-radius: 10px 10px 10px 10px;
+
+    margin: 0px 0px 0px -400px; 
+}
+
+#popup_choose_gallery .gallery_wrapper
+{
+    margin: 40px 10px 10px 10px; 
+    
+    overflow-y: scroll;
+    
+    max-height: 540px;
+    _height: 540px;
+    
+    border: 3px solid #71959E;
+}
+
+#popup_choose_gallery .choose_tutorial_gallery{
+    
+    margin: 0px 0px 0px 0px; 
+    padding: 0px 0px 0px 10px;
+    
+    /*border: 1px dashed #FBBD49;*/
+}
+
+#popup_choose_gallery .submission{
+    
+    cursor: pointer;
+    
+}
+
+#popup_choose_gallery .submission:active{
+    
+    cursor:wait;
+    border: 1px solid red;
+}
+
 #popup_choose_source
 {
     width: 300px;

@@ -938,6 +938,29 @@ RestCaller.prototype.postTutorialComment = function(params)
     return this.ajax();
 };
 
+RestCaller.prototype.postCompetitionTutorial= function(params)
+{
+    this.setResource("/competition/tutorial");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json");
+    
+    this.setCustomHeader("X-Caller-SKHR-ID",params['caller_skhr_id'] );
+    this.setCustomHeader("X-User-Token",params['user_token']);
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("content_id",params['content_id']);
+    this.setRequestParam("competition_id",params['competition_id']);
+    
+    return this.ajax();
+};
+
 RestCaller.prototype.postCompetitionVote = function(params)
 {
     //alert('in post competition vote');
@@ -1444,6 +1467,79 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
         service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
     }
 }; 
+
+
+TemplateGenerator.prototype.displayTutorialChooseGallery = function(target, tutorials)
+{
+    var i = 0;
+    $(target+' > ul.gallery > li').each(
+            function()
+            {
+                //clearing old data from gallery
+                
+                $(this).find("div.tutorial_title a").remove(); 
+                $(this).find("div.thumbnail a").remove();
+                
+                $(this).find('div.likes').text('');
+                $(this).find('div.views').text('');
+                $(this).find('div.comments').text('');
+                
+                //$(this).find('img.pic').remove();
+                $(this).find('.avatar').css("background-image", "none");  
+                
+                $(this).find("div.author_name a").remove(); 
+                
+                $(this).find(".follow_button").remove();
+                
+                $(this).find(".vote_button").remove();
+                $(this).find(".place_img").remove();
+                
+                // if there is data adding new data to gallery
+                if(tutorials[i] !== undefined) 
+                { 
+                    // adding tutorial_title
+                    
+                    var link = $('<a href="player.html?tutorial_id='+tutorials[i].content_id+'">'+tutorials[i].title+'</a>');
+                    $(this).find("div.tutorial_title").append(link); 
+
+                    // adding tutorial thumbnail
+                    //alert($(this).find("div.thumbnail img").attr('src'));
+                    var thumbnail = $('<img class="thumbnail submission" id="submission'+tutorials[i].content_id+'" alt="tutorial_thumbnail" src="'+tutorials[i].thumbnail_path+'" >');      
+                    $(this).find("div.thumbnail").append(thumbnail);
+
+                    // adding related data
+                    $(this).find('div.likes').text(tutorials[i].likes.likes_skhr);
+                    $(this).find('div.views').text(tutorials[i].views.views_skhr);
+                    $(this).find('div.comments').text(tutorials[i].comments.comments_skhr);
+
+                    if(tutorials[i].author.avatar_path !== null) 
+                    {
+                        //var avatar = $('<img alt="avatar" class="pic" src="'+tutorials[i].author.avatar_path+'" >');
+                        //$(this).find('.avatar').append(avatar);
+                        $(this).find('.avatar').css("background-image", "url("+tutorials[i].author.avatar_path+")");  
+                    }
+
+                    // adding author_name 
+                    var link = $('<a href="profile.html?user_id='+tutorials[i].author_skhr_id+'">'+tutorials[i].author.username+'</a>');      
+                    $(this).find("div.author_name").append(link);
+
+                    var button = $('<input type="button" class="follow_button follow" value="Follow" id="'+tutorials[i].author_skhr_id+'"/>');
+                    
+                    $(this).find('.info_panel').append(button);
+                    //$(this).find('.follow_button').attr('id',tutorials[i].author_skhr_id);
+                }
+        
+                i++;
+            });
+            
+    var account = new Account();          
+    if( account.isLoggedIn() )
+    {
+        var service = new Service();
+        service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
+    }
+}; 
+
 
 TemplateGenerator.prototype.displaySubmissionsGalleryFeatures = function(target, tutorials)
 {

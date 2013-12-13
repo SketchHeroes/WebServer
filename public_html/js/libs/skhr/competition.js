@@ -75,7 +75,85 @@ $(function(){
                 $("body .overlay").remove();
         }); 
 
+        
+//========================CHOOSE TUTORIAL GALLERY POPUP=================================
 
+        $('body').on('click', '.choose_from_gallery_button', function(e)
+        //$(".competition .compete").click(function(e) 
+        { 
+            $('.popup').fadeOut();
+            $("#popup_choose_gallery").fadeIn();
+            
+            var promise_user_tutorials = rest_caller.getUserTutorials({
+                                                                            "author_skhr_id":localStorage.caller_skhr_id,
+                                                                            "tutorial_order_by":{"order_by_content_id":"DESC"}
+                                                                        });
+
+            promise_user_tutorials.done(
+                function(data)
+                {
+                    template_generator.user_tutorials = data.tutorials;
+
+                    var length = template_generator.user_tutorials.length;
+                    template_generator.removeGallery(".choose_tutorial_gallery");
+                    template_generator.addGallery(".choose_tutorial_gallery", length);
+                    template_generator.displayTutorialChooseGallery(".choose_tutorial_gallery", template_generator.user_tutorials);
+
+                });
+
+        });
+
+        $("#popup_choose_gallery .close").click(function(e) { 
+                $("#popup_choose_gallery").fadeOut(); 
+                $("body .overlay").remove();
+        }); 
+
+        
+//========================SUBMISSIONS GALLERY=================================
+
+        $('body').on('click', '.submission', function(e)
+        //$(".competition .compete").click(function(e) 
+        { 
+            var target = $(e.target);
+            
+            //target.attr('src','images/ajax-loader.gif');
+            $("#popup_choose_gallery").fadeOut(); 
+            
+            var content_id = target.attr('id');
+            content_id = content_id.replace('submission','')
+            //alert(content_id);
+            //alert(JSON.stringify(template_generator.competition.title)+' + '+JSON.stringify(template_generator.displayCountDown('#popup_choose_completed .inner_popup .message .countdown', template_generator.competition.voting_start)));
+            
+            var promise_vote= rest_caller.postCompetitionTutorial({
+                                                                        'caller_skhr_id':localStorage.caller_skhr_id,
+                                                                        'user_token':localStorage.user_token,
+                                                                        "competition_id":competition_id,
+                                                                        "content_id":content_id
+                                                                   });
+
+            promise_vote.done(
+                function(data)
+                {
+                    $("#popup_choose_completed .inner_popup .message").html('<p>You have entered `'+template_generator.competition.title+'` competition.<br />Voting will start in <br /><br /><p class="countdown"></p><br /><h2>Good Luck</h2>');
+                    template_generator.displayCountDown('#popup_choose_completed .inner_popup .message .countdown', template_generator.competition.voting_start);
+                    $("#popup_choose_completed").fadeIn();
+                });
+                
+            promise_vote.fail(
+                function(data)
+                {
+                    //alert(JSON.stringify(JSON.parse(data.responseText))+' + '+JSON.stringify(data));
+                    $("#popup_choose_completed .inner_popup .message").html('<p>Ooops....</p><p>Something went wrong :( </p><br /><h2>'+JSON.parse(data.responseText).error.message+'</h2>');
+                    $("#popup_choose_completed").fadeIn();       
+                });
+        });
+        
+//=========================================================
+
+        $("#popup_choose_completed .close").click(function(e) { 
+                $("#popup_choose_completed").fadeOut(); 
+                $("body .overlay").remove();
+        });
 //===================================VOTE BUTTON==============================
         $('body').on('click', '.vote', function(e)
         //$(".follow_button").click(function(e) 
