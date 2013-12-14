@@ -17,11 +17,13 @@ $(function(){
     //var video_id = "24";	
     //var load_url = 'http://www.sketchheroes.com/video/get?artwork_id=24';
     
+    // indicates if the page needs to be reloded
+    var reload = false;
     
     var service = new Service();
     var competition_id = service.getParameterByName('competition_id');
     
-// -----------------------TUTORIAL DATA-----------------------------------------
+// -----------------------COMPETITION-----------------------------------------
 
     //var competition_id = 1;
     
@@ -43,6 +45,8 @@ $(function(){
                 
             });
     //alert('loading submissions');
+        
+// -----------------------COMPETITION SUBMISSIONS-----------------------------------------
     var promise_submissions = rest_caller.getLatestCompetitionTutorials(
                                         {"competition_id":competition_id});
 
@@ -50,6 +54,7 @@ $(function(){
         function(data)
         {
             template_generator.submissions = data.competition_tutorials;
+            template_generator.removeGallery(".submissions_gallery");
             template_generator.addGallery(".submissions .submissions_gallery",template_generator.submissions.length);
             template_generator.displayTutorialGallery(".submissions .submissions_gallery",template_generator.submissions);
             template_generator.displaySubmissionsGalleryFeatures(".submissions .submissions_gallery",template_generator.submissions);
@@ -66,7 +71,16 @@ $(function(){
             $("body").append(overlay);
 
             $('.popup').fadeOut();
-            $("#popup_choose_source").fadeIn();
+            
+            if( account.isLoggedIn() )
+            { 
+                $("#popup_choose_source").fadeIn();
+            }
+            else
+            {
+                $("#popup_login").fadeIn(); 
+                $("#popup_login input[name=username_email]").focus();
+            }
 
         });
 
@@ -134,9 +148,11 @@ $(function(){
             promise_vote.done(
                 function(data)
                 {
+                    //$(".competition_info .details .competing").removeClass('.competing').addClass('compete');
                     $("#popup_choose_completed .inner_popup .message").html('<p>You have entered `'+template_generator.competition.title+'` competition.<br />Voting will start in <br /><br /><p class="countdown"></p><br /><h2>Good Luck</h2>');
                     template_generator.displayCountDown('#popup_choose_completed .inner_popup .message .countdown', template_generator.competition.voting_start);
                     $("#popup_choose_completed").fadeIn();
+                    reload = true;
                 });
                 
             promise_vote.fail(
@@ -153,6 +169,8 @@ $(function(){
         $("#popup_choose_completed .close").click(function(e) { 
                 $("#popup_choose_completed").fadeOut(); 
                 $("body .overlay").remove();
+                if(reload === true)
+                    location.reload();
         });
 //===================================VOTE BUTTON==============================
         $('body').on('click', '.vote', function(e)

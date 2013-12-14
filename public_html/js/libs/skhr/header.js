@@ -1065,7 +1065,7 @@ function getTopUsersByFilter(leader_board_length, filter, period)
 
 function handleLogin(data, rest_caller, template_generator)
 {
-    //alert('handle login');
+    //console.log('handle login');
     
     if(typeof data.user !== 'undefined')
     {
@@ -1154,12 +1154,27 @@ function handleLogin(data, rest_caller, template_generator)
             }); 
     }
     
-    // if loggin done on competition page - reloading page
+    // if loggin done on competition page - reloading page data
     if( $( ".submissions_gallery .gallery" ).length !== 0 )
     {
-        //alert('reloading submissions');
+        //console.log('reloading submissions');
         
         var competition_id = service.getParameterByName('competition_id');
+        
+        var promise_competition = rest_caller.getCompetition({"competition_id":competition_id});
+    
+        promise_competition.done(
+                function(data)
+                {
+                    template_generator.competition = data.competition;
+
+                    localStorage.is_participating = template_generator.competition.is_participating;
+                    //localStorage.has_voted = template_generator.competition.has_voted;
+                    localStorage.competition_status = template_generator.competition.status;
+                    //alert(localStorage.has_voted);
+                    //template_generator.addCompetition(".competition");
+                    template_generator.displayCompetition(".competition",template_generator.competition);
+                });
                 
         var promise_submissions = rest_caller.getLatestCompetitionTutorials(
                                             {"competition_id":competition_id});

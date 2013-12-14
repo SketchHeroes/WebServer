@@ -1861,7 +1861,20 @@ TemplateGenerator.prototype.displayCompetition = function(target,competition)
     $(target+" .competition_info .details .compete").remove();
     if( parseInt(competition.status) === 1 )
     {
-        var complete_button = $('<input class="compete" type="button" value="COMPETE"/>');
+        var complete_button;    
+        
+        if( competition.is_participating === true )
+        {
+            //console.log('is true');
+            complete_button = $('<input class="competing" type="button" value="COMPETING"/>');
+        }
+        else
+        {
+            //console.log('is false');
+            //console.log("is_participating (typeof:"+typeof competition.is_participating+" ):  "+competition.is_participating+" = false: "+(competition.is_participating === false));
+            complete_button = $('<input class="compete" type="button" value="COMPETE"/>');
+        }
+            
         $(target+" .competition_info .details").append(complete_button);  
     }
 

@@ -2965,7 +2965,9 @@ ul.achievements_gallery li img{
     /*border: 1px black dashed;*/
 }
 
-.competition_info .details .compete, .competition_info .details .enter{
+.competition_info .details .compete, 
+.competition_info .details .competing, 
+.competition_info .details .enter{
     
     float:right;
     
@@ -2984,6 +2986,12 @@ ul.achievements_gallery li img{
     width: 120px;
     
     margin: 10px 0px 0px 0px;
+}
+
+.competition_info .details .competing
+{
+    opacity:0.4;
+    filter:alpha(opacity=40);
 }
 
 .competition_time_frame{
