@@ -17,6 +17,10 @@ input[type=button]{
     cursor: pointer;
 }
 
+.close{
+    /*background: #ffffff url(../../images/close-icon.jpg) center 0 no-repeat;*/
+}
+
 .error_msg
 {
     font-size:15px;

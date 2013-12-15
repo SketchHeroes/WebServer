@@ -919,6 +919,120 @@ $(".options #logout").click(function(e)
                 $("#popup_login input[name=username_email]").focus();
             }
         });
+        
+//===========================FANS===============================================
+
+        // fans popup
+        $('body').on('click', '.fans_caller', function(e)
+        //$(".fans").click(function(e) 
+         { 
+             if( account.isLoggedIn() )
+             {
+                var overlay = $('<div class="overlay"></div>');
+                $("body").append(overlay);
+
+                $("#popup_fans").fadeIn(); 
+                $("#popup_fans .inner_popup").focus();
+                // get user fans - only the first time user presses fans button
+                //if(typeof template_generator.user_followed === 'undefined')
+                //{
+                    //alert('first_time');
+                    var promise_user_followed = rest_caller.getUserFollowed({   "skhr_id":localStorage.caller_skhr_id,
+                                                                                "user_related_data":{
+                                                                                                        "user_followed":"user_followed",
+                                                                                                        "user_follows":"user_follows",
+                                                                                                        "user_tutorials":"user_tutorials",
+                                                                                                        "user_views":"user_views",
+                                                                                                        "user_likes":"user_likes",
+                                                                                                        "user_comments":"user_comments"
+                                                                                                    }});
+
+                    promise_user_followed.done(
+                            function(data)
+                            {         
+                               template_generator.user_followed = data.user_followed;   
+                                //alert(template_generator.user_followed.length);
+
+                               $('#popup_fans h1.caption').text('Fans('+template_generator.user_followed.length+')');
+                               template_generator.removeUserListComplex("#fans_list");
+                               template_generator.addUserListComplex("#fans_list", template_generator.user_followed.length); 
+                               template_generator.displayUserListComlex("#fans_list", template_generator.user_followed);
+
+                            });
+                //}
+             }
+            else
+            {
+                var overlay = $('<div class="overlay"></div>');
+                $("body").append(overlay);
+
+                $('.popup').fadeOut();
+                $("#popup_login").fadeIn(); 
+                $("#popup_login input[name=username_email]").focus();
+            }
+
+         });
+
+        $("#popup_fans .close").click(function(e) { 
+                 $("#popup_fans").fadeOut(); 
+                 $("body .overlay").remove();
+        }); 
+ 
+//===========================FOLLOWING==========================================               
+
+        $('body').on('click', '.following_caller', function(e)
+        { 
+            if( account.isLoggedIn() )
+            {
+                var overlay = $('<div class="overlay"></div>');
+                $("body").append(overlay);
+
+                $("#popup_following").fadeIn(); 
+                $("#popup_following .inner_popup").focus();
+
+                // get user fans - only the first time user presses fans button
+                if(typeof template_generator.user_follows === 'undefined')
+                {
+                    //alert('first_time');
+                    var promise_user_follows = rest_caller.getUserFollows({   "skhr_id":localStorage.caller_skhr_id,
+                                                                                "user_related_data":{
+                                                                                                        "user_followed":"user_followed",
+                                                                                                        "user_follows":"user_follows",
+                                                                                                        "user_tutorials":"user_tutorials",
+                                                                                                        "user_views":"user_views",
+                                                                                                        "user_likes":"user_likes",
+                                                                                                        "user_comments":"user_comments"
+                                                                                                    }});
+
+                    promise_user_follows.done(
+                            function(data)
+                            {         
+                               template_generator.user_follows = data.user_follows;   
+                                //alert(template_generator.user_followed.length);
+
+                               $('#popup_following h1.caption').text('Following('+template_generator.user_follows.length+')');
+                               template_generator.removeUserListComplex("#following_list");
+                               template_generator.addUserListComplex("#following_list", template_generator.user_follows.length); 
+                               template_generator.displayUserListComlex("#following_list", template_generator.user_follows);
+                            });
+                }
+            }
+            else
+            {
+                var overlay = $('<div class="overlay"></div>');
+                $("body").append(overlay);
+
+                $('.popup').fadeOut();
+                $("#popup_login").fadeIn(); 
+                $("#popup_login input[name=username_email]").focus();
+            }
+
+        });
+
+        $("#popup_following .close").click(function(e) { 
+                 $("#popup_following").fadeOut(); 
+                 $("body .overlay").remove();
+        }); 
     });
     
 });
@@ -1199,7 +1313,7 @@ function handleLogin(data, rest_caller, template_generator)
         promise_messages.done(
             function(data)
             {
-                alert('got new messages');
+                //alert('got new messages');
                 template_generator.messages = data.messages;
                 $( "#notifications .notification_list" ).remove();
                 template_generator.addNotificationList("#notifications", template_generator.messages.length);
