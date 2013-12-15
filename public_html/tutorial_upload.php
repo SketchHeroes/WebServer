@@ -151,7 +151,41 @@
             $response = curl_exec($ch);
             //echo "registring tutorials in the db response:".$response;
             //echo($response);
+            //var_dump($response);
+            //var_dump(json_decode($response));
+            $response_json = json_decode($response,TRUE);
+            
             curl_close($ch);
+            
+            //==================================================================
+            // if competition url param set adding this tutorial to competition
+            
+            if( isset($url_params[2]) )
+            {
+                // post parameters
+                $post = array(
+                    "competition_id" => $url_params[2],
+                    "content_id" => $response_json["tutorial"]["content_id"],
+                );                                                               
+                $data_string = json_encode($post);                                                                                   
+
+                $ch = curl_init('http://serverkizidev-env.elasticbeanstalk.com/competition/tutorial');                                                                      
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                                                  
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'Accept: application/json',                                                                          
+                    'Content-Type: application/json',                                                                                
+                    'Content-Length: ' . strlen($data_string),
+                    'X-User-Token: '.$credentials['user_token'],
+                    'X-Caller-SKHR-ID: '.$credentials['user_skhr_id']                                                                       
+                ));                                                                                                                   
+
+                $response = curl_exec($ch);
+                //echo "registring tutorials in the db response:".$response;
+                //echo($response);
+                curl_close($ch);
+            }
             
             header('HTTP/1.1 201 Created');
              

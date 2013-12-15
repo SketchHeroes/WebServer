@@ -89,7 +89,15 @@ $(function(){
                 $("body .overlay").remove();
         }); 
 
-        
+         
+//========================CREATE NEW TUTORIAL FOR COMPETITION===================
+
+        $('body').on('click', '.create_for_competition_button', function(e)
+        //$(".competition .compete").click(function(e) 
+        { 
+            $('.popup').fadeOut();
+            window.location.assign("painter.html?competition_id=2");
+        });       
 //========================CHOOSE TUTORIAL GALLERY POPUP=================================
 
         $('body').on('click', '.choose_from_gallery_button', function(e)

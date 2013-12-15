@@ -17,7 +17,8 @@ $(function(){
     //var load_url = 'http://www.sketchheroes.com/video/get?artwork_id=24';
     
     
-    
+    var service = new Service();
+    var competition_id = service.getParameterByName('competition_id');
 // -----------------------TUTORIAL DATA-----------------------------------------
 
     if( !account.isLoggedIn() )
@@ -26,7 +27,11 @@ $(function(){
     }
     
     // loading 
-    template_generator.displayPainter({"user_id":localStorage.caller_skhr_id, "user_token":localStorage.user_token}); 
+    template_generator.displayPainter({
+                                        "user_id":localStorage.caller_skhr_id, 
+                                        "user_token":localStorage.user_token,
+                                        "competition_id":competition_id
+                                    }); 
 
     
     /*

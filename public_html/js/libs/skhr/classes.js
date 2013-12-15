@@ -1368,7 +1368,19 @@ TemplateGenerator.prototype.displayPainter = function(params)
     var video_id = 0;
     //var save_url = "http://www.sketchheroes.com/video/create/user/80742"; 	
     //var save_url = rest_caller.domain + "/tutorial/upload";	
-    var save_url = "tutorial_upload.php?user_data="+params['user_id']+"_"+params['user_token'];
+    var save_url;
+    /*
+    alert(params['competition_id'] + ", typeof: "
+            + typeof params['competition_id']
+            +", lenght: "+params['competition_id'].length
+            +", === 0: "+(params['competition_id'].length === 0)
+            +", == 0: "+(params['competition_id'].length == 0));
+    */
+    
+    if( params['competition_id'].length === 0 )
+        save_url = "tutorial_upload.php?user_data="+params['user_id']+"_"+params['user_token'];
+    else
+        save_url = "tutorial_upload.php?user_data="+params['user_id']+"_"+params['user_token']+"_"+params['competition_id'];
     //alert(save_url);
     var flash ="painter_img_upload.swf"; 
 
