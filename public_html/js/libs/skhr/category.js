@@ -35,6 +35,8 @@ $(function(){
             switchActive($('#popular_link'));
             break;
     }
+    
+    var like = service.getParameterByName('like');
     //alert(category_id);
     var tutorials_per_part = 8;
     
@@ -69,7 +71,11 @@ $(function(){
     var tutorial_filter = $( ".category_menu_list > li > img.active" ).attr('id');
     var promise_category_tutorials;
 
-    promise_category_tutorials = getCategoryTutorialsByFilter(category_id, tutorial_filter); 
+    promise_category_tutorials = getCategoryTutorialsByFilter({
+                                                                    "category_id":category_id, 
+                                                                    "tutorial_filter":tutorial_filter,
+                                                                    "like":like
+                                                                }); 
 
     promise_category_tutorials.done(
             function(data)
@@ -119,7 +125,11 @@ $(function(){
             {
                 $(".category .gallery").fadeOut();
                 var tutorial_filter = $( ".category_menu_list > li > img.active" ).attr('id');
-                var promise_category_tutorials = getCategoryTutorialsByFilter(category_id, tutorial_filter); 
+                var promise_category_tutorials = getCategoryTutorialsByFilter({
+                                                                                "category_id":category_id, 
+                                                                                "tutorial_filter":tutorial_filter,
+                                                                                "like":like
+                                                                                }); 
                 
                 promise_category_tutorials.done(
                 function(data)
@@ -162,9 +172,18 @@ $(function(){
         var promise_category_tutorials;
         
         if(period === "all_time")
-            promise_category_tutorials = getCategoryTutorialsByFilter(category_id, tutorial_filter); 
+            promise_category_tutorials = getCategoryTutorialsByFilter({
+                                                                        "category_id":category_id, 
+                                                                        "tutorial_filter":tutorial_filter,
+                                                                        "like":like
+                                                                    }); 
         else
-            promise_category_tutorials = getCategoryTutorialsByFilter(category_id,tutorial_filter, period); 
+            promise_category_tutorials = getCategoryTutorialsByFilter({
+                                                                        "category_id":category_id, 
+                                                                        "tutorial_filter":tutorial_filter, 
+                                                                        "period":period,
+                                                                        "like":like
+                                                                    }); 
 
         promise_category_tutorials.done(
                 function(data)
@@ -357,53 +376,60 @@ function displayPagination(navigator_target, nav_pages_length, page, last_page, 
 }
 
 
-function getCategoryTutorialsByFilter(category_id, filter, period)
+function getCategoryTutorialsByFilter(params)
 {
-    
+    //alert(JSON.stringify(params));
     var rest_caller = new RestCaller();
     var promise_category_tutorials;
     
-    switch (filter)
+    switch (params['tutorial_filter'])
     {
         case "featured":
             promise_category_tutorials = rest_caller.getCategoryTutorials(
                                                             {
-                                                                "tutorial_category_id":category_id,
+                                                                "tutorial_category_id":params['category_id'],
                                                                 "featured":1,
+                                                                "like":params['like']
                                                             });
-            //alert(filter);
+            //alert(params['tutorial_filter']);
             break;
         case "recent":
             promise_category_tutorials = rest_caller.getCategoryTutorials(
                                                                 {
-                                                                   "tutorial_category_id":category_id,
+                                                                    "tutorial_category_id":params['category_id'],
+                                                                    "like":params['like']
                                                                 });
-            //alert(filter);
+            //alert(params['tutorial_filter']);
             break;
 
         case "popular":
-            if (typeof period === "undefined" || period === null) 
+            if (typeof params['period'] === "undefined" || params['period'] === null) 
                 
             { 
                 
                 promise_category_tutorials = rest_caller.getCategoryTutorials({
-                                                                "tutorial_category_id":category_id,
-                                                                "tutorial_count":{"count_views_skhr":"DESC"}}); 
-                //alert(filter+" All Time");                                              
+                                                                "tutorial_category_id":params['category_id'],
+                                                                "tutorial_count":{"count_views_skhr":"DESC"},
+                                                                "like":params['like']
+                                                            }); 
+                //alert(params['tutorial_filter']+" All Time");                                              
             }
             else
             {
                 promise_category_tutorials = rest_caller.getCategoryTutorials({
-                                                                "tutorial_category_id":category_id,
-                                                                "time_constraint":period,
-                                                                "tutorial_count":{"count_views_skhr":"DESC"}});   
-                //alert(filter+" "+period);
+                                                                "tutorial_category_id":params['category_id'],
+                                                                "time_constraint":params['period'],
+                                                                "tutorial_count":{"count_views_skhr":"DESC"},
+                                                                "like":params['like']
+                                                            });   
+                //alert(params['tutorial_filter']+" "+params['period']);
             }
             break;
         default:
             promise_category_tutorials = rest_caller.getCategoryTutorials(
                                                                 {
-                                                                    "tutorial_category_id":category_id,
+                                                                    "tutorial_category_id":params['category_id'],
+                                                                    "like":params['like']
                                                                 });
             //alert("default: recent");
             break;

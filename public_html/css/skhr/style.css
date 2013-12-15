@@ -3333,3 +3333,17 @@ ul.competitions_list li{
     margin: 0px 10px 0px 10px;
 }
 
+.searchoform input[type="text"] {
+    float: left;
+    height: 23px;
+    width: 160px;
+}
+
+.searchoform input[type="button"] {
+    background-color: #FFFFFF;
+    border: 1px grey solid;
+    float: left;
+    height: 23px;
+    overflow: hidden;
+    width: 23px;
+}

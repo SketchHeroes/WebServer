@@ -851,6 +851,11 @@ RestCaller.prototype.getCategoryTutorials = function(params)
     
     this.clearRequestParams();
     
+    if( params['like'].length > 0)
+    {
+        this.setRequestParam("tutorial_search_like",{"title":"%"+params['like']+"%"});
+    }
+    
     this.setRequestParam("locked",0);
     
     this.setRequestParam("tutorial_category_id",params['tutorial_category_id']);

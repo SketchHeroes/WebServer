@@ -58,8 +58,19 @@ $(function(){
                             template_generator
                        );
         }
+        
+//===============================SEARCH=========================================
 
-        // expendable menu buttons
+        $( "#search_button" ).click(function(event) 
+        {
+
+            event.stopPropagation(); 
+
+            //alert($("#search_text").val());
+            
+            window.location.assign("category.html?filter=recent&like="+$("#search_text").val());
+        });
+//===============================EXPANDABLE MENU BUTTONS========================
 
         $( ".expandable > img" ).click(function(event) {
 
