@@ -1190,6 +1190,23 @@ function handleLogin(data, rest_caller, template_generator)
 
             });
     }
+    // if loggin done on competition page - reloading page data
+    if( $( "#notifications .notification_list" ).length !== 0 )
+    {
+        //console.log('reloading notification_list');
+        var promise_messages = rest_caller.getMessages({"start":0,"how_many":50});
+
+        promise_messages.done(
+            function(data)
+            {
+                alert('got new messages');
+                template_generator.messages = data.messages;
+                $( "#notifications .notification_list" ).remove();
+                template_generator.addNotificationList("#notifications", template_generator.messages.length);
+                template_generator.displayNotificationList("#notifications", template_generator.messages);
+                
+            });
+    }
     
 
 }

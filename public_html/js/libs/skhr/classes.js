@@ -231,7 +231,7 @@ RestCaller.prototype.getComments = function(params)
     this.setRequestParam("how_many",params['how_many']);
     
     if(typeof params['comment_order_by'] !== 'undefined')
-        this.setRequestParam("comment_order_by",params['tutorial_order_by']);
+        this.setRequestParam("comment_order_by",params['comment_order_by']);
     else
         this.setRequestParam("comment_order_by",{"order_by_content_id":"DESC"});
         
@@ -243,6 +243,41 @@ RestCaller.prototype.getComments = function(params)
     
     return this.ajax();
 }; 
+
+
+RestCaller.prototype.getMessages = function(params)
+{
+    this.setResource("/messages");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("Accept","application/json");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    //this.setCustomHeader("X-User-Token","d09ab3f92fd5433eafe7a6753d6ab038cf7eea7f4ad53d37d0f1f3e41308fe6b75310ce4cf7a1819495fc347e613ed3d");
+    //this.setCustomHeader("X-Caller-SKHR-ID","3"); 
+    
+    if(localStorage.caller_skhr_id && localStorage.user_token)
+    {
+        //alert('logged in: '+localStorage.caller_skhr_id+' '+localStorage.user_token);
+        this.setCustomHeader("X-Caller-SKHR-ID",localStorage.caller_skhr_id );
+        this.setCustomHeader("X-User-Token",localStorage.user_token);
+    } 
+    
+    this.clearRequestParams();
+    
+    this.setRequestParam("start",params['start']);
+    this.setRequestParam("how_many",params['how_many']);
+    
+    if(typeof params['msg_order_by'] !== 'undefined')
+        this.setRequestParam("msg_order_by",params['msg_order_by']);
+    else
+        this.setRequestParam("msg_order_by",{"order_by_message_id":"DESC"});
+    
+    return this.ajax();
+}; 
+
 
 RestCaller.prototype.getContentComments = function(params)
 {
@@ -1290,13 +1325,13 @@ TemplateGenerator.prototype.displayUserListComlex= function(target, users)
     }
 };  
 
-TemplateGenerator.prototype.addNotificationList = function(target)
+TemplateGenerator.prototype.addNotificationList = function(target, length)
 {
     //$('#data').html("Tutorials:<br /><br />");  
    
     var list = $('<ul class="notification_list"></ul>');
     
-    for(var i=0; i<40; i++)
+    for(var i=0; i<length; i++)
     {
         var single_record = $('<li></li>');
         
@@ -1306,7 +1341,83 @@ TemplateGenerator.prototype.addNotificationList = function(target)
     
     $(target).append(list);
     
-};
+};   
+
+
+TemplateGenerator.prototype.displayNotificationList= function(target, messages)
+{
+    //alert(top_users[0].username);
+    
+    var i = 0;
+    $(target+' > ul.notification_list > li').each(
+            function()
+            {
+                //alert(JSON.stringify($(this)));
+                // adding tutorial_title
+                
+                $(this).text('');
+                
+                if(messages[i] !== undefined) 
+                {
+                    $(this).text(messages[i].payload);
+                }
+        
+                i++;
+            });
+}; 
+
+
+
+TemplateGenerator.prototype.addNotificationComplexList = function(target, length)
+{
+    //$('#data').html("Tutorials:<br /><br />");  
+    
+    $(target).find('.notification_complex_list').remove();
+   
+    var list = $('<ul class="notification_complex_list"></ul>');
+    
+    for(var i=0; i<length; i++)
+    {
+        var single_record = $('<li></li>');
+            
+            var created_at = $('<div class="created_at"></div>');
+            single_record.append(created_at);
+            
+            var payload = $('<div class="payload"></div>');
+            single_record.append(payload);
+        
+        list.append(single_record);
+    };
+
+    
+    $(target).append(list);
+    
+};  
+
+TemplateGenerator.prototype.displayNotificationComplexList= function(target, messages)
+{
+    //alert(top_users[0].username);
+    var template_generator = this;
+    
+    var i = 0;
+    $(target+' > ul.notification_complex_list > li').each(
+            function()
+            {
+                //alert(JSON.stringify($(this)));
+                // adding tutorial_title
+                
+                $(this).find('.created_at').text('');
+                $(this).find('.payload').text('');
+                
+                if(messages[i] !== undefined) 
+                {
+                    $(this).find('.created_at').text(template_generator.getDateOnly(messages[i].created_at));
+                    $(this).find('.payload').text(messages[i].payload);
+                }
+        
+                i++;
+            });
+};  
 
 
 TemplateGenerator.prototype.displayTutorial = function(target,tutorial)
@@ -2134,30 +2245,47 @@ TemplateGenerator.prototype.displayCountDownPerStatus = function(target,competit
     switch(parseInt(competition.status))
     {
         case 0:
-            $(target).find('.competition_time_frame .status').text('Competition starts in: ')
+            $(target).find('.competition_time_frame .status').text('Competition starts in: ');
             this.displayCountDown(target+' .countdown', competition.submission_start);
             break;
         case 1:
-            $(target).find('.competition_time_frame .status').text('Submission time left: ')
+            $(target).find('.competition_time_frame .status').text('Submission time left: ');
             this.displayCountDown(target+' .countdown', competition.voting_start);
             break;
         case 2:
-            $(target).find('.competition_time_frame .status').text('Voting time left: ')
+            $(target).find('.competition_time_frame .status').text('Voting time left: ');
             this.displayCountDown(target+' .countdown', competition.competition_stop);
             break;
         case 3:
-            $(target).find('.competition_time_frame .status').text('Finished since: ')
+            $(target).find('.competition_time_frame .status').text('Finished since: ');
             this.displayCountDown(target+' .countdown', competition.competition_stop);
             break;
         default:
 
     }
-}
+};
+
+TemplateGenerator.prototype.getDateFromTimeStampDate = function(timestamp_string)
+{
+    var t = timestamp_string.split(/[- :]/);
+    return new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]); 
+};
+
+TemplateGenerator.prototype.getDateOnly = function(timestamp_string)
+{
+    var date = this.getDateFromTimeStampDate(timestamp_string);
+    
+    //alert(typeof date);
+    
+    return date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear();
+};
 
 TemplateGenerator.prototype.displayCountDown = function(target,timestamp_string)
 {
-    var t = timestamp_string.split(/[- :]/);
-    var target_date = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]).getTime();
+    //var t = timestamp_string.split(/[- :]/);
+    //var target_date = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]).getTime();
+    
+    var target_date = this.getDateFromTimeStampDate(timestamp_string).getTime();
     
     //var target_date = new Date("Aug 15, 2019").getTime();
  

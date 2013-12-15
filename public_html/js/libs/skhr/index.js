@@ -38,14 +38,13 @@ $(function(){
     template_generator.addGallery("#top_tutorials_gallery",top_tutorials_length);
     template_generator.addGalleryLess("#recent_tutorials_gallery", recent_tutorials_length);
     template_generator.addSimpleGallery("#latest_submissions", latest_submissions_length);
-   
-    template_generator.addNotificationList("#notifications");
 
     var promise_featured    = rest_caller.getTutorials({"start":0,"how_many":featured_length+1,"featured":1,"tutorial_count":{"count_views_skhr":"DESC"}});
     var promise_top_users   = rest_caller.getTopUsers({"start":0,"how_many":top_users_length,"time_constraint":$( "#top_heroes .active" ).attr('id')});
     var promise_top         = rest_caller.getTutorials({"start":0,"how_many":top_tutorials_length,"time_constraint":$( "#top_tutorials_gallery .active" ).attr('id'),"tutorial_count":{"count_views_skhr":"DESC"}});
     var promise_recent      = rest_caller.getTutorials({"start":0,"how_many":recent_tutorials_length});
     var promise_latest_competition = rest_caller.getLatestCompetitions({"start":0,"how_many":1});
+    var promise_messages = rest_caller.getMessages({"start":0,"how_many":50});
     
     promise_featured.done(
             function(data)
@@ -113,7 +112,54 @@ $(function(){
                 }
                 
             });
+            
+            
+            
+    promise_messages.done(
+            function(data)
+            {
+                //alert('got messages');
+                template_generator.messages = data.messages;
+                template_generator.addNotificationList("#notifications", template_generator.messages.length);
+                template_generator.displayNotificationList("#notifications", template_generator.messages);
+                
+            });
    
+//==============================================================================
+
+//========================POPUP MESSAGES========================================
+
+        $('body').on('click', 'ul.notification_list li', function(e)
+        //$(".competition .compete").click(function(e) 
+        { 
+            var overlay = $('<div class="overlay"></div>');
+            $("body").append(overlay);
+
+            $('.popup').fadeOut();
+            
+            $("#popup_messages").fadeIn();
+            
+            
+            var promise_messages = rest_caller.getMessages({"start":0,"how_many":50});    
+            
+            promise_messages.done(
+                    function(data)
+                    {
+                        //alert('got messages');
+                        template_generator.messages = data.messages;
+                        template_generator.addNotificationComplexList("#messages_list", template_generator.messages.length);
+                        template_generator.displayNotificationComplexList("#messages_list", template_generator.messages);
+
+                    });
+
+        });
+
+        $("#popup_messages .close").click(function(e) { 
+                $("#popup_messages").fadeOut(); 
+                $("body .overlay").remove();
+        }); 
+        
+//==============================================================================
     
     $( "#featured_tutorials .arrow_left img" ).click(function(event) {
         

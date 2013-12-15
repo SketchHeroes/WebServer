@@ -604,6 +604,50 @@ span.pluginFaviconButtonBorder{
 {
 }
 
+/* POPUP FOLLOWING */
+
+#popup_messages
+{
+    width: 700px;
+    height: 720px;
+    
+    top: 50px;
+    left:50%;
+
+    /*border: 1px solid #FF0000;*/
+
+    margin: 0px 0px 0px -350px; 
+    z-index: 900;
+    
+    
+    background: url(../../images/notifications-header.png) top no-repeat;
+}
+
+#popup_messages .inner_popup
+{
+    width: 700px;
+    height: 620px;
+    
+    background: #F2F2F2;
+
+    border: 40px solid #92C0CF;
+
+    margin: 120px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px;
+    
+    overflow-y: scroll;
+}
+
+#popup_messages .close
+{
+    margin: 120px 0px 0px 0px; 
+}
+
+
+#popup_messages #messages_list
+{
+}
+
 
 /* POPUP LEADERBOARD */
 
@@ -960,12 +1004,57 @@ nav#secondary_menu{
     /*width: 150px;*/
     margin: 10px 10px 10px 10px;
     background: #C3C3C3;
+    color: #FFFFFF;
+    font-weight: bold;
     /*padding: 50px 50px 50px 50px;*/  
     
     white-space:nowrap; 
     overflow:hidden; 
     text-overflow:ellipsis;
     
+}
+
+.notification_complex_list
+{
+    /*border:1px solid red;*/
+    /*height: 390px;*/
+    /*width: 150px;*/
+    margin: 0px 10px 10px 10px;
+    /*padding: 50px 50px 50px 50px;*/
+    overflow: auto;
+    list-style-type: none;
+    
+}
+
+.notification_complex_list li
+{
+    border-bottom: 2px solid #CA5573;
+    /*height: 40px;  */
+    /*width: 150px;*/
+    margin: 10px 10px 10px 10px;
+    /*background: #C3C3C3;
+    color: #FFFFFF;*/
+    font-weight: bold;
+    /*padding: 50px 50px 50px 50px;*/  
+    /*
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    */
+    
+}
+
+.notification_complex_list li .created_at
+{
+    float:left;
+    width:100px;
+    /*border:1px blue dashed;*/
+}
+
+.notification_complex_list li .payload
+{
+    margin: 0px 0px 0px 100px;
+    /*border:1px green dashed;*/
 }
 /* ARROWS */
 
