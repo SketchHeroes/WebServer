@@ -48,6 +48,8 @@ $(function(){
         var members_first_in_range = 0;
         var members_last_page = 0;
         
+        //$('.searchoform').attr("action","category.html?filter=recent&like="+$("#search_text").val());
+        
         if( account.isLoggedIn() )
         {
             //alert('because of login handle login');
@@ -60,7 +62,14 @@ $(function(){
         }
         
 //===============================SEARCH=========================================
-
+        
+        
+        $( ".searchoform" ).submit(function( event ) {
+            //alert( "Handler for .submit() called." );
+            event.preventDefault();
+            window.location.assign("category.html?filter=recent&like="+$("#search_text").val());
+        });
+        
         $( "#search_button" ).click(function(event) 
         {
 
