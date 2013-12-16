@@ -608,7 +608,7 @@ span.pluginFaviconButtonBorder{
 {
 }
 
-/* POPUP FOLLOWING */
+/* POPUP MESSAGES */
 
 #popup_messages
 {
@@ -652,6 +652,134 @@ span.pluginFaviconButtonBorder{
 {
 }
 
+
+
+/* POPUP CONTACT US */
+
+#popup_contact_us
+{
+    width: 700px;
+    height: 720px;
+    
+    top: 50px;
+    left:50%;
+
+    /*border: 1px solid #FF0000;*/
+
+    margin: 0px 0px 0px -350px; 
+    z-index: 900;
+    
+    
+    background: url(../../images/contact-us-header.png) top no-repeat;
+}
+
+#popup_contact_us .inner_popup
+{
+    width: 700px;
+    height: 620px;
+    
+    background: #F2F2F2;
+
+    border: 40px solid #92C0CF;
+
+    margin: 120px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px;
+    
+    overflow-y: scroll;
+}
+
+#popup_contact_us .close
+{
+    margin: 120px 0px 0px 0px; 
+}
+
+#popup_contact_us form{
+    margin: 0px 0px 0px 0px;
+    background: #F2F2F2;
+}
+
+#popup_contact_us form input, #popup_contact_us form label
+{
+    margin: 10px 0px 10px 30px;
+}
+
+#popup_contact_us form input[type="submit"]
+{
+    margin: 0px 0px 0px 30px;
+    border: 1px solid #93C1D0;
+    border-radius: 15px 15px 15px 15px;
+    background-color: #9BC9D7;
+    
+    width: 100px;
+    height: 40px;
+}
+
+
+#popup_contact_us form input[type="text"], #popup_contact_us form input[type="password"] {
+    background-color: #FFFFFF;
+    border: 1px solid #93C1D0;
+    border-radius: 5px 5px 5px 5px;
+    color: #000000;
+    display: block;
+    font-size: 20px;
+    height: 30px;
+    width: 200px;
+    
+    margin: 10px 0px 0px 30px; 
+}
+
+
+#popup_contact_us  form textarea{
+    background-color: #FFFFFF;
+    border: 1px solid #93C1D0;
+    border-radius: 5px 5px 5px 5px;
+    color: #000000;
+    display: block;
+    font-size: 20px;
+    height: 180px;
+    width: 500px;
+    
+    margin: 10px 0px 0px 30px; 
+}
+
+/* POPUP ABOUT US */
+
+#popup_about_us
+{
+    width: 700px;
+    height: 720px;
+    
+    top: 50px;
+    left:50%;
+
+    /*border: 1px solid #FF0000;*/
+
+    margin: 0px 0px 0px -350px; 
+    z-index: 900;
+    
+    
+    background: url(../../images/contact-us-header.png) top no-repeat;
+}
+
+#popup_about_us .inner_popup
+{
+    width: 700px;
+    height: 620px;
+    
+    background: #F2F2F2;
+
+    border: 40px solid #92C0CF;
+
+    margin: 120px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px;
+    
+    overflow-y: scroll;
+}
+
+#popup_about_us .close
+{
+    margin: 120px 0px 0px 0px; 
+}
 
 /* POPUP LEADERBOARD */
 
@@ -3346,4 +3474,25 @@ ul.competitions_list li{
     height: 23px;
     overflow: hidden;
     width: 23px;
+}
+
+/* PRIVACY POLICY */
+
+.policy{
+    
+    margin: 50px 10px 10px 10px;
+    /*border: 1px red dashed;*/
+    
+}
+
+
+.policy p, .policy h2, .policy section{
+    
+    margin: 20px 0px 0px 20px;
+    /*border: 1px blue dashed;*/
+    
+}
+
+.policy ul{
+    list-style-position: inside;
 }

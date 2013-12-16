@@ -61,6 +61,50 @@ $(function(){
                        );
         }
         
+//===============================PRIVACY POLICY=================================
+
+
+
+        $('body').on('click', '#button_privacy_policy', function(e)
+        { 
+           window.location.assign("policy.html");
+        });
+        
+//===============================CONTACT_US=====================================
+
+        $('body').on('click', '#button_contact_us', function(e)
+        { 
+           var overlay = $('<div class="overlay"></div>');
+           $("body").append(overlay);
+           
+           //console.log('overlay appended');
+
+           $("#popup_contact_us").fadeIn(); 
+           //$("#popup_contact_us .inner_popup").focus();
+           
+           //console.log('popup_contact_us appended');
+        });
+
+        $("#popup_contact_us .close").click(function(e) { 
+               $("#popup_contact_us").fadeOut(); 
+               $("body .overlay").remove();
+        });         
+//===============================ABOUT_US=====================================
+
+        $('body').on('click', '#button_about_us', function(e)
+        { 
+           var overlay = $('<div class="overlay"></div>');
+           $("body").append(overlay);
+
+           $("#popup_about_us").fadeIn(); 
+           //$("#popup_contact_us .inner_popup").focus();
+        });
+
+        $("#popup_about_us .close").click(function(e) { 
+               $("#popup_about_us").fadeOut(); 
+               $("body .overlay").remove();
+        }); 
+        
 //===============================SEARCH=========================================
         
         
