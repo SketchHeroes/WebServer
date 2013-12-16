@@ -1288,6 +1288,7 @@ div.author_name{
 }
 
 .gallery img.thumbnail{ 
+    border: 1px solid #B5B5B5;
     height:153px;
     width:212px;
 }
@@ -1584,7 +1585,7 @@ img.comments_image{
     margin: 0px 0px 0px 0px;
     height:100px;
     width:138px;
-    /*border:1px solid blue;*/
+    border:1px solid #B5B5B5;
     background:#000000;
     display: block;
 }
@@ -2033,7 +2034,7 @@ img.comments_image{
 .gallery_less img.thumbnail{ 
     height:120px;
     width:166px;
-    /*border:1px solid #0f0;*/
+    border:1px solid #B5B5B5;
     background:#000000;
     display: block;
 }

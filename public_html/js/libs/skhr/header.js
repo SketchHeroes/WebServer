@@ -955,7 +955,7 @@ $(".options #logout").click(function(e)
 
         });
 //=======================CREATE TUTORIAL BUTTON=================================
-        $('body').on('click', '#create_tutorial, #button_create', function(e)
+        $('body').on('click', '#create_tutorial, #button_create, #create_link img', function(e)
         //$(".follow_button").click(function(e) 
         { 
             if( account.isLoggedIn() )
