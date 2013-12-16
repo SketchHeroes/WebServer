@@ -68,7 +68,14 @@ $(function(){
         $('body').on('click', '#button_privacy_policy', function(e)
         { 
            window.location.assign("policy.html");
-        });
+        });         
+//===============================ABOUT_US=====================================
+
+        $('body').on('click', '#button_about_us', function(e)
+        { 
+           window.location.assign("about_us.html");
+        }); 
+  
         
 //===============================CONTACT_US=====================================
 
@@ -88,23 +95,7 @@ $(function(){
         $("#popup_contact_us .close").click(function(e) { 
                $("#popup_contact_us").fadeOut(); 
                $("body .overlay").remove();
-        });         
-//===============================ABOUT_US=====================================
-
-        $('body').on('click', '#button_about_us', function(e)
-        { 
-           var overlay = $('<div class="overlay"></div>');
-           $("body").append(overlay);
-
-           $("#popup_about_us").fadeIn(); 
-           //$("#popup_contact_us .inner_popup").focus();
-        });
-
-        $("#popup_about_us .close").click(function(e) { 
-               $("#popup_about_us").fadeOut(); 
-               $("body .overlay").remove();
-        }); 
-        
+        });      
 //===============================SEARCH=========================================
         
         
@@ -396,51 +387,50 @@ $(".options #logout").click(function(e)
         //===========================================================================================
 
         // leaderboard popup
+        $('body').on('click', '.leaderboard, .main_menu #top_heroes_link, #top_heroes .view_more, #button_top_heroes', function(e)
+        { 
+            //alert('leaderboard bitches');
 
-        $(".leaderboard, .main_menu #top_heroes_link, #top_heroes .view_more").click(function(e) 
-         { 
-             //alert('leaderboard bitches');
-             
-             var overlay = $('<div class="overlay"></div>');
-             $("body").append(overlay);
+            var overlay = $('<div class="overlay"></div>');
+            $("body").append(overlay);
 
-             $("#popup_leaderboard").fadeIn(); 
-             $("#popup_leaderboard .inner_popup").focus();
-             
+            $("#popup_leaderboard").fadeIn(); 
+            $("#popup_leaderboard .inner_popup").focus();
 
-             // get user leaderboard - only the first time user presses leaderboard button
-             if(typeof template_generator.leaderboard_users === 'undefined')
-             {
-                 //alert('first_time');
-                 
-                 var top_users_filter = $( ".leaderboard_menu_list > li > img.active" ).attr('id');
-                 
-                 //alert(top_users_filter);
-                 
 
-                 var promise_top_users = getTopUsersByFilter(leader_board_length, top_users_filter); 
-                 
+            // get user leaderboard - only the first time user presses leaderboard button
+            if(typeof template_generator.leaderboard_users === 'undefined')
+            {
+                //alert('first_time');
 
-                 promise_top_users.done(
-                         function(data)
-                         {         
-                            template_generator.leaderboard_users= data.users;   
-                            
-                            template_generator.removeUserListComplex("#leader_list");
-                            template_generator.addUserListComplex("#leader_list", template_generator.leaderboard_users.length); 
-                            template_generator.displayUserListComlex("#leader_list", template_generator.leaderboard_users);
-                            /*
-                            if( account.isLoggedIn() )
-                            {
-                                var service = new Service();
-                                service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
-                            }
-                            */
-                         });
-                         
-             }
+                var top_users_filter = $( ".leaderboard_menu_list > li > img.active" ).attr('id');
 
-         });
+                //alert(top_users_filter);
+
+
+                var promise_top_users = getTopUsersByFilter(leader_board_length, top_users_filter); 
+
+
+                promise_top_users.done(
+                        function(data)
+                        {         
+                           template_generator.leaderboard_users= data.users;   
+
+                           template_generator.removeUserListComplex("#leader_list");
+                           template_generator.addUserListComplex("#leader_list", template_generator.leaderboard_users.length); 
+                           template_generator.displayUserListComlex("#leader_list", template_generator.leaderboard_users);
+                           /*
+                           if( account.isLoggedIn() )
+                           {
+                               var service = new Service();
+                               service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
+                           }
+                           */
+                        });
+
+            }
+
+        });
 
         $("#popup_leaderboard .close").click(function(e) { 
                  $("#popup_leaderboard").fadeOut(); 
@@ -554,9 +544,8 @@ $(".options #logout").click(function(e)
 //===========================================================================================
 
         // members popup
-
-        $(".all_members").click(function(e) 
-         { 
+        $('body').on('click', '.all_members, #button_members', function(e)
+        {
              //alert('leaderboard bitches');
              
              var overlay = $('<div class="overlay"></div>');
@@ -966,7 +955,7 @@ $(".options #logout").click(function(e)
 
         });
 //=======================CREATE TUTORIAL BUTTON=================================
-        $('body').on('click', '#create_tutorial', function(e)
+        $('body').on('click', '#create_tutorial, #button_create', function(e)
         //$(".follow_button").click(function(e) 
         { 
             if( account.isLoggedIn() )
