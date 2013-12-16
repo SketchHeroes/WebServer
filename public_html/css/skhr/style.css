@@ -1019,20 +1019,22 @@ nav#secondary_menu{
 {    
     margin: 55px 0px 0px 0px; 
     float: left;
-    width: 730px;
+    width: 750px;
     height: 634px;
     background:#ECECEC;
+    /*border: 1px red solid;*/
 }
 
 #featured_tutorials_gallery
 {  
     float: left;
     height: 634px;
-    width: 670px;
+    width: 685px;
     /*width: 650px;*/
     
+    /*border: 1px red solid;*/
     padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 5px;
 }
 
 #featured_tutorials_gallery .gallery{
@@ -1046,9 +1048,9 @@ nav#secondary_menu{
 
 #first_side_panel
 {
-    margin: 55px 0px 0px 730px; 
+    margin: 55px 0px 0px 750px; 
     height: 634px;  
-    width:294px;
+    width:274px;
     background: #ECECEC url(../../images/side-line-bg.png) left top 0 no-repeat;
     
 }
@@ -1064,7 +1066,7 @@ nav#secondary_menu{
 
 #create_button img
 {
-    margin: 10px 0px 0px 145px;
+    margin: 10px 0px 0px 125px;
     cursor: pointer;
 }
 
@@ -1196,9 +1198,9 @@ nav#secondary_menu{
     width: 222px;
     min-height: 248px;
     _height: 248px;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 5px 10px 0px;
     background: #FFFFFF;
-    border: 1px #B5B5B5 solid;
+    border: 3px #B5B5B5 solid;
 }
 
 .submissions_gallery .gallery{ 
@@ -1210,7 +1212,7 @@ nav#secondary_menu{
     
     margin: 0px 0px 0px 0px;  
     height:30px;
-    width:220px;
+    width:217px;
     background-color: #ECECEC;
     /*border:1px solid red;*/
 }
@@ -1219,7 +1221,7 @@ nav#secondary_menu{
     
  
     height:30px;
-    width:220px;
+    width:217px;
 }
 
 .submissions_gallery .gallery li .vote_frame{ 
@@ -1227,7 +1229,7 @@ nav#secondary_menu{
  
     margin: 0px 0px 0px 0px;  
     height:40px;
-    width:220px;
+    width:217px;
     background-color: #ECECEC;
 }
 
@@ -1281,16 +1283,16 @@ div.author_name{
 
 .gallery div.thumbnail{ 
     margin: 5px 5px 0px 5px;
-    height:153px;
-    width:212px;
+    height:150px;
+    width:205px;
     background: #000000;
     display: block;
 }
 
 .gallery img.thumbnail{ 
     border: 1px solid #B5B5B5;
-    height:153px;
-    width:212px;
+    height:150px;
+    width:205px;
 }
 
 div.likes,
@@ -1433,7 +1435,7 @@ img.comments_image{
 }
 
 .gallery .follow_button, .gallery .unfollow_button{ 
-    margin: 0px 0px 0px 0px;
+    margin: 0px 5px 0px 0px;
     height:30px;
     width:70px;
     float: right;
@@ -1906,6 +1908,8 @@ img.comments_image{
     
     padding: 0px 0px 0px 0px;
     margin: 50px 0px 0px 0px;
+    
+    /*border:1px solid red;*/
           
     background: #DBD9D9 url(../../images/top-turorials-bg2.png) left top 0 no-repeat;
 }
@@ -1913,9 +1917,11 @@ img.comments_image{
 #top_tutorials_gallery .gallery
 {
     clear:both;
-    margin: 30px 0px 0px 30px; 
-    width: 670px;
+    margin: 30px 0px 0px 25px; 
+    width: 690px;
     /*height: 594px;*/
+    
+    /*border:1px solid red;*/
 }
 
 
