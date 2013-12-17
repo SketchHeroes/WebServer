@@ -60,6 +60,7 @@ $(function(){
                             template_generator
                        );
         }
+
         
 //===============================PRIVACY POLICY=================================
 
@@ -1264,7 +1265,8 @@ function handleLogin(data, rest_caller, template_generator)
                     //alert(data.user.avatar_path);
                 }
                 
-                $(".account .options #username").html('<a href="profile.html?user_id='+data.user.skhr_id+'">'+data.user.username+'</a>')
+                $(".avatar > a").attr('href','profile.html?user_id='+data.user.skhr_id);
+                $(".account .options #username").html('&#9658; <a href="profile.html?user_id='+data.user.skhr_id+'">'+data.user.username+'</a>')
                                                 .css('display','inline-block');
                 //$(".account .options #username").text(data.user.username).css('display','inline-block');
                 $(".account .options #logout").css('display','inline-block');

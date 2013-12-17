@@ -10,9 +10,9 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <link rel="stylesheet" type="text/css" href="css/master.css" />
+        <link rel="stylesheet" type="text/css" href="css/tooltiplster-master/tooltipster.css" /> 
         
         <link rel="stylesheet" href="css/skhr/style.css">
-        <link rel="stylesheet" href="css/skhr/player.css">
         
         
     </head>
@@ -51,17 +51,6 @@ and open the template in the editor.
                         
                 </div>
                 <div class="category_tutorials">
-                    <div class="navigator">
-                        <input type="button" id="first" value="First"/>
-                        <input type="button" id="left" value="<-"/>
-                        <input type="button" id="page0" value="..."/>
-                        <input type="button" id="page1" value="..."/>
-                        <input type="button" id="page2" value="..."/>
-                        <input type="button" id="page3" value="..."/>
-                        <input type="button" id="page4" value="..."/>
-                        <input type="button" id="right" value="->"/>
-                        <input type="button" id="last" value="Last"/>
-                    </div>
                     <div class="first_part">
                         
                     </div>
@@ -94,7 +83,7 @@ and open the template in the editor.
             
             <script type="text/javascript" src="js/libs/jquery-1.9.1/jquery-1.9.1.js"></script>
             <script type="text/javascript" src="js/libs/jquery.xdomainrequest/jquery.xdomainrequest.js"></script>
-            <script type="text/javascript" src="js/libs/skhr/swfobject.js"></script>
+            <script type="text/javascript" src="js/libs/tooltiplster-master/jquery.tooltipster.min.js"></script>
             <script type="text/javascript" src="js/libs/jquery.timeago/jquery.timeago.js"></script>
             <!--<script type="text/javascript" src="js/libs/jqueryui-1.10.3/jquery-ui-1.10.3.custom.min.js"></script>-->
            
@@ -103,6 +92,12 @@ and open the template in the editor.
             <script type="text/javascript" src="js/libs/skhr/header.js"></script>
             <script type="text/javascript" src="js/libs/skhr/footer.js"></script>
             <script type="text/javascript" src="js/libs/skhr/category.js"></script>
+            
+            <script>
+                $(document).ready(function() {
+                    $('.tooltip').tooltipster();
+                });
+            </script>
             
             
         </div>

@@ -1058,7 +1058,7 @@ TemplateGenerator.prototype.addGallery = function(target, size)
             var place = $('<div class="place"></img>');
             single_record.append(place);
         
-            var div = $('<div></div>');
+            var div = $('<div class="inner"></div>');
             single_record.append(div);
         
                 var tutorial_title = $('<div class="tutorial_title"></div>');
@@ -1070,19 +1070,19 @@ TemplateGenerator.prototype.addGallery = function(target, size)
                 var info_panel = $('<div class="info_panel"></div>');
                 div.append(info_panel);
                     
-                    var image = $('<img class="likes_image" src="images/like.png">');
+                    var image = $('<img class="likes_image tooltip" src="images/like.png" title="Likes">');
                     info_panel.append(image);
                     
                     image = $('<div class="likes">');
                     info_panel.append(image);
                     
-                    image = $('<img class="views_image"src="images/view.png">');
+                    image = $('<img class="views_image tooltip" src="images/view.png" title="Views">');
                     info_panel.append(image);
                     
                     image = $('<div class="views">');
                     info_panel.append(image);
                     
-                    image = $('<img class="comments_image" src="images/comment.png">');
+                    image = $('<img class="comments_image tooltip" src="images/comment.png" title="Comments">');
                     info_panel.append(image);
                     
                     image = $('<div class="comments">');
@@ -1105,6 +1105,7 @@ TemplateGenerator.prototype.addGallery = function(target, size)
 
     
     $(target).append(list);
+    $('.tooltip').tooltipster();
     
 };  
 

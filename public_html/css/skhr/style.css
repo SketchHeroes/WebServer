@@ -13,6 +13,14 @@ header, section, footer, aside, nav, article, figure
     display: block; 
 }
 
+.period_panel img{
+    cursor: pointer;
+}
+
+#popup_leaderbord .menu{
+    cursor: pointer;
+}
+
 input[type=button]{
     cursor: pointer;
 }
@@ -32,7 +40,7 @@ input[type=button]{
     overflow:hidden; 
     text-overflow:ellipsis;
     
-    border: 1px red dotted;
+    /*border: 1px red dotted;*/
 }
 
 root { 
@@ -382,7 +390,7 @@ header.main
 #popup_login
 {
     width: 490px;
-    height: 530px;
+    height: 490px;
 	
     padding: 0px 0px 0px 0px;
     background: #C3C3C3;
@@ -812,7 +820,7 @@ span.pluginFaviconButtonBorder{
     /*background: red;*/
     /*border:1px solid black;*/
     margin: 3px 0px 0px 20px;
-    
+    cursor: pointer;
     /*
     border: 1px #779DA6 solid;
     border-radius: 30px 30px 30px 30px;
@@ -1200,7 +1208,6 @@ nav#secondary_menu{
     _height: 248px;
     margin: 10px 5px 10px 0px;
     background: #FFFFFF;
-    border: 3px #B5B5B5 solid;
 }
 
 .submissions_gallery .gallery{ 
@@ -1208,11 +1215,15 @@ nav#secondary_menu{
     margin: 0px 0px 0px 30px; 
     /*border:1px solid red;*/
 }
+.gallery li .inner{ 
+    
+    border: 3px #B5B5B5 solid;
+}
 .submissions_gallery .gallery li .place{ 
     
     margin: 0px 0px 0px 0px;  
     height:30px;
-    width:217px;
+    width:222px;
     background-color: #ECECEC;
     /*border:1px solid red;*/
 }
@@ -1221,7 +1232,7 @@ nav#secondary_menu{
     
  
     height:30px;
-    width:217px;
+    width:222px;
 }
 
 .submissions_gallery .gallery li .vote_frame{ 
@@ -1229,7 +1240,7 @@ nav#secondary_menu{
  
     margin: 0px 0px 0px 0px;  
     height:40px;
-    width:217px;
+    width:222px;
     background-color: #ECECEC;
 }
 
@@ -1242,7 +1253,7 @@ nav#secondary_menu{
     text-overflow:ellipsis;
     
     height:20px;
-    width:212px;
+    width:206px;
     
     margin: 20px 5px 0px 5px;
 }
@@ -1314,6 +1325,8 @@ div.comments{
     
     text-align: center;
     vertical-align: bottom;
+    
+    cursor: default;
     
     /*border: 1px red dotted;*/
 }
@@ -1446,7 +1459,7 @@ img.comments_image{
     
     margin: 0px 5px 0px 5px;
     /*height:80px;*/
-    width:212px;
+    width:206px;
     
     white-space: nowrap;
     overflow:visible;
@@ -1584,11 +1597,12 @@ img.comments_image{
 
 .simple_gallery img.thumbnail{ 
     /*float:left;*/
+    padding: 5px;
     margin: 0px 0px 0px 0px;
     height:100px;
     width:138px;
     border:1px solid #B5B5B5;
-    background:#000000;
+    background:#FFFFFF;
     display: block;
 }
 
@@ -2116,6 +2130,7 @@ footer #menu .footer_button{
     
     margin: 0px 0px 0px 10px;
     float: left;
+    cursor: pointer;
 }
 
 
@@ -2209,6 +2224,8 @@ img.frame
     text-overflow:ellipsis;
     
     color: #E4F8FD;
+    
+    font-weight: bold;
 }
 
 #user_info .statistics .xp_caption
@@ -2535,8 +2552,8 @@ ul.achievements_gallery li img{
 #user_tutorials_gallery .gallery
 {
     clear:both;
-    margin: 30px 0px 0px 30px; 
-    width: 670px;
+    margin: 30px 0px 0px 20px; 
+    width: 690px;
     /*height: 594px;*/
 }
 
@@ -3299,6 +3316,8 @@ ul.competitions_list li{
     /*border:1px solid black;*/
     margin: 3px 0px 0px 20px;
     
+    cursor: pointer;
+    
     /*
     border: 1px #779DA6 solid;
     border-radius: 30px 30px 30px 30px;
@@ -3464,3 +3483,36 @@ ul.competitions_list li{
 .policy ul{
     list-style-position: inside;
 }
+
+/*===================TOOL TIP=================================================*/
+/*
+.tooltip{
+    display: inline;
+    position: relative;
+}
+
+.tooltip:hover:after{
+    background-color: : #FFFFFF;
+    background: rgba(0,0,0,.8);
+    border-radius: 5px;
+    bottom: 26px;
+    color: #000000;
+    content: attr(title);
+    left: 20%;
+    padding: 5px 15px;
+    position: absolute;
+    z-index: 98;
+    width: 220px;
+}
+
+.tooltip:hover:before{
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 6px 6px 0 6px;
+    bottom: 20px;
+    content: "";
+    left: 50%;
+    position: absolute;
+    z-index: 99;
+}
+*/

@@ -52,7 +52,7 @@
                 </script>
                 <div class="logo">
                     <a href="index.html">
-                        <img src="images/logo.png" alt="logo" />
+                        <img src="images/logo.png" alt="logo" title="Home" class="tooltip"/>
                     </a>
                 </div>
                 
@@ -118,7 +118,7 @@
                 
                 <div class="account">
                      <div class="avatar">
-                         <a href="http://www.sketchheroes.com/Account/login">
+                         <a href="#">
                              <img src="images/avatar_def.png" alt="Login" title="logged in avatar" id="logged_in_avatar"/>
                          </a>
                      </div>
@@ -148,8 +148,10 @@
                                         <p><input name="username_email" type="text" placeholder="Username / Email" required autofocus pattern="[A-Za-z0-9_.]{3,256}" /></p> 
                                         <p><input name="password" type="password"  placeholder="Password" required pattern="[A-Za-z0-9]{6,12}" /></p>
                                         -->
+                                        <!--
                                         <p><input name="pass_options" type="radio"/>Remember my password</p>
                                         <p><input name="pass_options" type="radio" checked="checked"  />Keep me logged in</p>
+                                        -->
                                         <p class="error_msg" id="native_error"></p>
                                         <p><input name="" class="button_login" type="button" value="Log In" /></p>
                                         <p class="forgot_pass"><a href='#'>Forgotten your password?</a></p>
@@ -353,8 +355,18 @@
                             </form>
                         </div>
                     </div>
-
-
+                
+                    
+                    <script>
+                        $(document).ready(function() {
+                            $('.tooltip').tooltipster();
+                        });
+                    </script>
+                
+                <!--
+                <a href="#" title="This is some information for our tooltip." class="title"><span title="More">CSS3 Tooltip</span></a>
+                -->
+                
             
                 
             
