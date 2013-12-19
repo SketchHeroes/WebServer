@@ -1974,6 +1974,9 @@ TemplateGenerator.prototype.addCompetitions = function(target, size)
     }
     
     $(target).append(list);
+    
+    //$(target).find('.header_caption').css('position','static');
+    //$(target).find('.header_caption').css('position','absolute');
 
 };           
 
@@ -2023,7 +2026,7 @@ TemplateGenerator.prototype.displayCompetitions = function(target,competitions)
                 $(this).find(".competition_info .thumbnail img").remove(); 
                 var thumbnail_img = $('<img src="'+competitions[i].logo_path+'" alt="competition thumbnail" class="header" />');
                 $(this).find(".competition_info .thumbnail").append(thumbnail_img);
-
+                
                 $(this).find(".competition_info .header_caption").html('<a href="competition.html?competition_id='+competitions[i].competition_id+'">'+competitions[i].title+'</a>'); 
                 $(this).find(".competition_info .details .description").text(competitions[i].description);   
                 
@@ -2037,6 +2040,10 @@ TemplateGenerator.prototype.displayCompetitions = function(target,competitions)
                 
                 i++;
             });
+            
+            
+    //$(target).find('.header_caption').css('position','static');
+    //$(target).find('.header_caption').css('position','absolute');
     
 };      
 

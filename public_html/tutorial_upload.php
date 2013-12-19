@@ -12,6 +12,8 @@
             parse_str($_SERVER['QUERY_STRING'], $query_str_params);
             $url_params = explode("_", $query_str_params['user_data']);
             $credentials = array('user_skhr_id'=>$url_params[0],'user_token'=>$url_params[1]);
+            
+            //var_dump($url_params);
             /*
             $servg = "tmp/" ;
             //chmod($servg,0777);
@@ -79,6 +81,12 @@
             //curl_setopt($ch, CURLOPT_POSTFIELDS, $post); 
             $response = curl_exec($ch);
             $response_array = json_decode($response,TRUE);
+            
+            if(isset($response_array['error']))
+            {
+                header('HTTP/1.1 500 Internal Server Error');
+                exit(1);
+            }
             //var_dump($response_array);
             //echo "response on files upload: ".$response.PHP_EOL;
             
@@ -118,6 +126,12 @@
             //echo "getting category id response: ".$content_json.PHP_EOL;
 
             $content = json_decode($content_json, TRUE);
+            
+            if(isset($content['error']))
+            {
+                header('HTTP/1.1 500 Internal Server Error');
+                exit(1);
+            }
             //echo "content_json: ".$content_json.PHP_EOL;
             
             //==================================================================
@@ -155,12 +169,19 @@
             //var_dump(json_decode($response));
             $response_json = json_decode($response,TRUE);
             
+            if(isset($response_json['error']))
+            {
+                header('HTTP/1.1 500 Internal Server Error');
+                exit(1);
+            }
+            
             curl_close($ch);
             
             //==================================================================
             // if competition url param set adding this tutorial to competition
+            //echo 'tutorial_content_id: '.$response_json["tutorial"]["content_id"].PHP_EOL;
             
-            if( isset($url_params[2]) )
+            if( isset($url_params[2]) && isset( $response_json["tutorial"]["content_id"] ) )
             {
                 // post parameters
                 $post = array(
@@ -182,6 +203,15 @@
                 ));                                                                                                                   
 
                 $response = curl_exec($ch);
+                
+                $response_json = json_decode($response,TRUE);
+            
+                if(isset($response_json['error']))
+                {
+                    header('HTTP/1.1 500 Internal Server Error');
+                    exit(1);
+                }
+                
                 //echo "registring tutorials in the db response:".$response;
                 //echo($response);
                 curl_close($ch);
