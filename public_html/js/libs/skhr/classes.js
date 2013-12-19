@@ -1365,7 +1365,20 @@ TemplateGenerator.prototype.displayNotificationList= function(target, messages)
                 
                 if(messages[i] !== undefined) 
                 {
-                    $(this).text(messages[i].payload);
+                    var link;
+                    if((messages[i].link_path).length)
+                        link = $('<a href="'+messages[i].link_path+'"></a>')
+                    else
+                        link = $('<a href="#"></a>')
+                    $(this).append(link);
+                    
+                        var thumbnail = $('<img class="msg_thumbnail" src="'+messages[i].thumbnail_path+'"/>')
+                        link.append(thumbnail);
+                    
+                    var payload = $('<div class="msg_payload">'+messages[i].payload+'</div>')
+                    $(this).append(payload);
+                    
+                    //$(this).text(messages[i].payload);
                 }
         
                 i++;

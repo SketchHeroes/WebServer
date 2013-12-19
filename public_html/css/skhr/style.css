@@ -1106,15 +1106,32 @@ nav#secondary_menu{
     height: 40px;  
     /*width: 150px;*/
     margin: 10px 10px 10px 10px;
-    background: #C3C3C3;
-    color: #FFFFFF;
-    font-weight: bold;
     /*padding: 50px 50px 50px 50px;*/  
-    
+    /*
     white-space:nowrap; 
     overflow:hidden; 
     text-overflow:ellipsis;
+    */
     
+}
+
+.notification_list li .msg_thumbnail
+{
+    float:left;
+    height: 40px;
+    width: 40px;
+}
+
+.notification_list li .msg_payload
+{
+    margin: 0px 0px 0px 40px;
+    padding: 2px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 10px;
+    /*border: 1px red dashed;*/
+    height: 40px;
+    background-color: grey;
 }
 
 .notification_complex_list
