@@ -2411,7 +2411,11 @@ Service.prototype.updateFollowButtons = function(params)
 {
     //var service = this;
     //alert('removing self follow buttons');
-    $('.follow_button[id='+localStorage.caller_skhr_id+']').remove();
+    $('.follow_button[id='+localStorage.caller_skhr_id+']:not(.statistics3 input[type="button"])').remove();
+    $('.statistics3 .follow_button[id='+localStorage.caller_skhr_id+']').attr('value','Follow')
+                                                                        .removeClass('follow')
+                                                                        .removeClass('unfollow')
+                                                                        .addClass('disabled');
     
     var rest_caller = new RestCaller();
 
