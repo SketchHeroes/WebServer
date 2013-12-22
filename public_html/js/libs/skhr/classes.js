@@ -2410,6 +2410,8 @@ Service.prototype.getParameterByName = function(name)
 Service.prototype.updateFollowButtons = function(params)
 {
     //var service = this;
+    //alert('removing self follow buttons');
+    $('.follow_button[id='+localStorage.caller_skhr_id+']').remove();
     
     var rest_caller = new RestCaller();
 

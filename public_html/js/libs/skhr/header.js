@@ -1399,11 +1399,11 @@ function handleLogout()
     
     //alert(window.location.href);
     
-    if( !window.location.href.match("index.html#?$") )
-    {
+    //if( !window.location.href.match("index.html#?$") )
+    //{
         //alert(typeof window.location);
         window.location.assign("index.html");
-    }
+    //}
 
 }
 
