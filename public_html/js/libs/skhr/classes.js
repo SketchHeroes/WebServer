@@ -1189,7 +1189,7 @@ TemplateGenerator.prototype.addUserListComplex = function(target, length)
                     var div2 = $('<div class="stat"></div>');
                     stats.append(div2);
 
-                        var img = $('<img src="images/like.png" />');
+                        var img = $('<img class="tooltip" title="Likes" src="images/like.png" />');
                         div2.append(img);
 
                         var div3 = $('<div class="user_likes">0</div>');
@@ -1198,7 +1198,7 @@ TemplateGenerator.prototype.addUserListComplex = function(target, length)
                     div2 = $('<div class="stat"></div>');
                     stats.append(div2);
 
-                        var img = $('<img src="images/view.png" />');
+                        var img = $('<img class="tooltip" title="Views" src="images/view.png" />');
                         div2.append(img);
 
                         var div3 = $('<div class="user_views">0</div>');
@@ -1207,7 +1207,7 @@ TemplateGenerator.prototype.addUserListComplex = function(target, length)
                     div2 = $('<div class="stat"></div>');
                     stats.append(div2);
 
-                        var img = $('<img src="images/tutorial.png" />');
+                        var img = $('<img class="tooltip" title="Tutorials" src="images/tutorial.png" />');
                         div2.append(img);
 
                         var div3 = $('<div class="user_tutorials">0</div>');
@@ -1286,6 +1286,8 @@ TemplateGenerator.prototype.displayUserListComlex= function(target, users)
         var service = new Service();
         service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
     }
+    
+    $('.tooltip').tooltipster();
 };  
 
 TemplateGenerator.prototype.addNotificationList = function(target, length)
@@ -1616,6 +1618,8 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
         var service = new Service();
         service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
     }
+    
+    $('.tooltip').tooltipster();
 }; 
 
 
@@ -1740,6 +1744,8 @@ TemplateGenerator.prototype.displayTutorialChooseGallery = function(target, tuto
         var service = new Service();
         service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
     }
+    
+    $('.tooltip').tooltipster();
 }; 
 
 
@@ -2131,7 +2137,7 @@ TemplateGenerator.prototype.displayAchievementsGallery = function(target, achiev
     {
         var single_record = $('<li></li>');
         
-            var badge = $('<img class="badge" src="'+achievement.badge_path+'" alt="'+achievement.title+'" />');
+            var badge = $('<img class="badge tooltip" title="'+achievement.title+'" src="'+achievement.badge_path+'" alt="'+achievement.title+'" />');
             single_record.append(badge);
             //alert('appending');
         
@@ -2141,6 +2147,7 @@ TemplateGenerator.prototype.displayAchievementsGallery = function(target, achiev
     
     $('.achievements_window').append(list);
     
+    $('.tooltip').tooltipster();
 };    
 
 
@@ -2164,7 +2171,7 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
                     
                     //alert(JSON.stringify(top_users[i]));
                     
-                    var user_place = $('<div class="user_place">'+i+'</div>');
+                    var user_place = $('<div class="user_place">'+(i+1)+'</div>');
                     $(this).append(user_place); 
 
                     var user_name = $('<div class="user_name"></div>');

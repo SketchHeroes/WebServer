@@ -1745,7 +1745,8 @@ img.comments_image{
 .users_list li{
     height: 70px;
     width: 280px;
-    border:1px solid #FFFFFF;
+    font-weight: bold;
+    /*border:1px solid #FFFFFF;*/
 }
 
 .users_list .user_place{
@@ -1877,6 +1878,7 @@ img.comments_image{
     width:50px;
     height:20px;
     text-align: center;
+    cursor: default;
 
 }
 
@@ -2250,6 +2252,17 @@ img.frame
     font-weight: bold;
 }
 
+
+#user_info .statistics .username_underline{
+    width: 200px;
+    margin: 0px 0px 0px 0px;
+    display: block; 
+    height: 1px;
+    border: 0; 
+    border-top: 1px solid #779DA6;
+    padding: 0px;
+}
+
 #user_info .statistics .xp_caption
 {
     display: inline-block;
@@ -2259,6 +2272,8 @@ img.frame
     white-space:nowrap; 
     overflow:hidden; 
     text-overflow:ellipsis;
+    
+    font-weight: bold;
 }
 
 #user_info .statistics .xp
@@ -2270,6 +2285,8 @@ img.frame
     white-space:nowrap; 
     overflow:hidden; 
     text-overflow:ellipsis;
+    
+    font-weight: bold;
 }
 
 #user_info .statistics .level_title
@@ -2282,6 +2299,8 @@ img.frame
     white-space:nowrap; 
     overflow:hidden; 
     text-overflow:ellipsis;
+    
+    font-weight: bold;
 }
 
 #user_info .statistics .progress
@@ -2301,7 +2320,8 @@ img.frame
 #user_info .statistics .progress progress
 {
     width:170px;
-    /*color: #FBBD49;*/
+    /*color: #FBBD49;
+    background-color: #779DA6;*/
 }
 
 #user_info .statistics .progress .level_percent
@@ -2395,6 +2415,7 @@ img.frame
     height:20px;
     width:40px;  
     margin: 0px 0px 0px 0px;
+    cursor: default;
     /*border: 1px #FF0000 dotted;*/
 }
 
@@ -2416,7 +2437,7 @@ img.frame
     
     background: #A4D4E0;
     
-    border: 4px #779DA6 solid;
+    border: 1px #779DA6 solid;
     border-radius: 12px 12px 12px 12px;
     
     color: #FFFFFF;
