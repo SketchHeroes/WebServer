@@ -132,36 +132,39 @@ $(function(){
             
             if( account.isLoggedIn() )
             {
-                var comment = $('#comment_text').val();
-                //alert(comment);
-                
-                var promise_comment= rest_caller.postTutorialComment({
-                                                                    'caller_skhr_id':localStorage.caller_skhr_id,
-                                                                    'user_token':localStorage.user_token,
-                                                                    'target_content_id':content_id,
-                                                                    'comment':comment
-                                                                });
-    
-                promise_comment.done(
-                    function(data)
-                    {
-                        $('#comment_text').val('');
-                        $('.comments_placeholder').fadeOut();
-                        
-                        var promise_tutorial_comments = rest_caller.getContentComments({"target_content_id":content_id});
-    
-                        promise_tutorial_comments.done(
-                                function(data)
-                                {
-                                    $('.comments_list').remove();
-                                    template_generator.tutorial_comments = data.comments;;
-                                    template_generator.displayCommentsList('.comments_placeholder',template_generator.tutorial_comments); 
-                                    $('.comments_placeholder').fadeIn();
+                if($('#comment_text').val().length > 0 )
+                {
 
-                                });
+                    var comment = $('#comment_text').val();
+                    //alert(comment);
 
-                    });
-                
+                    var promise_comment= rest_caller.postTutorialComment({
+                                                                        'caller_skhr_id':localStorage.caller_skhr_id,
+                                                                        'user_token':localStorage.user_token,
+                                                                        'target_content_id':content_id,
+                                                                        'comment':comment
+                                                                    });
+
+                    promise_comment.done(
+                        function(data)
+                        {
+                            $('#comment_text').val('');
+                            $('.comments_placeholder').fadeOut();
+
+                            var promise_tutorial_comments = rest_caller.getContentComments({"target_content_id":content_id});
+
+                            promise_tutorial_comments.done(
+                                    function(data)
+                                    {
+                                        $('.comments_list').remove();
+                                        template_generator.tutorial_comments = data.comments;;
+                                        template_generator.displayCommentsList('.comments_placeholder',template_generator.tutorial_comments); 
+                                        $('.comments_placeholder').fadeIn();
+
+                                    });
+
+                        });
+                }
                         
             }
             else
@@ -211,8 +214,8 @@ $(function(){
                         promise_like.done(
                             function(data)
                             {
-                                $( ".tutorial_info .like_it" ).removeClass('like_it').addClass('liked_it');
                             });
+                       $( ".tutorial_info .like_it" ).removeClass('like_it').addClass('liked_it');
                     }
                     else
                     {

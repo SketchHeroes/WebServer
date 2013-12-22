@@ -2757,6 +2757,8 @@ ul.achievements_gallery li img{
     overflow:hidden; 
     text-overflow:ellipsis;
     
+    cursor: default;
+    
     /*border: 1px #FF0000 dotted;*/
 }
 

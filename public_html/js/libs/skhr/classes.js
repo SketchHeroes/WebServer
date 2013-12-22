@@ -2221,7 +2221,7 @@ TemplateGenerator.prototype.displayCommentsList= function(target, comments)
             var comment_box = $('<div class="comment_box"></div');
             single_record.append(comment_box);
                 
-                var comment_username = $('<p class="comment_username">'+comment.author.username+'</p>');
+                var comment_username = $('<p class="comment_username"><a href="profile.html?user_id='+comment.author_skhr_id+'">'+comment.author.username+'</a></p>');
                 comment_box.append(comment_username);
                 
                 var comment_comment = $('<p class="comment_comment">'+comment.comment+'</p>');
