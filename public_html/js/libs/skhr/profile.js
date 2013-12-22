@@ -304,6 +304,17 @@ $(function(){
 
                 }); 
     });
+    
+    // invite friends
+    
+    $('body').on('click', '.invite_friends', function(e)
+    { 
+        //alert('invite friends clicked');
+        FB.ui({
+            method: 'apprequests',
+            message: "Join me in Sketch Heroes"
+        });
+    });
 
   
 
