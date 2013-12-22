@@ -434,6 +434,28 @@ header.main
     margin: 0px 0px 0px -255px; 
 }
 
+#popup_welcome
+{
+    padding: 0px 0px 0px 0px;
+    /*background: #C3C3C3;*/
+        
+    top: 30px;
+    left:50%;
+    /*
+    border: 3px solid #000000;
+    border-radius: 10px 10px 10px 10px;
+    */
+
+    margin: 0px 0px 0px -300px; 
+}
+
+#popup_welcome .inner_popup img
+{
+    width: 600px;
+    height: 500px;
+
+}
+
 
 .popup form{  
     background: #C3C3C3;

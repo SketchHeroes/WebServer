@@ -304,8 +304,18 @@ $(function(){
             //alert($("#popup_login input[name=username_email]").val());
             $("#popup_login #native_error").text('');
             
-            $(".popup").fadeOut(); 
-            $("body .overlay").remove(); 
+            $(".popup").fadeOut();
+            
+            var target = $(e.target);    
+            if (target.parents('#popup_register').length) 
+            {
+                $("#popup_welcome").fadeIn();
+            }
+            else
+            {
+                $("body .overlay").remove(); 
+            }
+            
             
             fb_login(rest_caller,template_generator);
             
@@ -374,7 +384,9 @@ $(".options #logout").click(function(e)
                         handleLogin(data, rest_caller, template_generator);
 
                         $("#popup_register").fadeOut(); 
-                        $("body .overlay").remove();  
+                        //$("body .overlay").remove();
+
+                        $("#popup_welcome").fadeIn();
                     });
 
                 promise_register.fail(
@@ -384,6 +396,13 @@ $(".options #logout").click(function(e)
                         $("#popup_register #native_error").text(JSON.parse(data.responseText).error.message);
                     });
         });
+        
+        
+
+        $("#popup_welcome .close").click(function(e) { 
+                $("#popup_welcome").fadeOut(); 
+                $("body .overlay").remove();
+        }); 
         
         
         //------------------------------LEADER BOARD pop ups-----------------------------------------
