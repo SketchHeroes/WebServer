@@ -3469,15 +3469,29 @@ ul.competitions_list li{
     float: left;
     height: 23px;
     width: 160px;
+    
+    background-color: grey;
+    color: #F2F2F2;
+    font-weight: bold;
+    
+    border: 0px #779DA6 solid;
 }
 
 .searchoform input[type="button"] {
-    background-color: #FFFFFF;
-    border: 1px grey solid;
+    /*background-color: #FFFFFF;
+    border: 1px grey solid;*/
     float: left;
     height: 23px;
     overflow: hidden;
     width: 23px;
+    left: -5px;
+    
+    /*background-color: grey;*/
+    background: grey url(../../images/search_icon.png) center 0 no-repeat;
+    color: #F2F2F2;
+    font-weight: bold;
+    
+    border: 0px #779DA6 solid;
 }
 
 /* PRIVACY POLICY */

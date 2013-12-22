@@ -103,7 +103,8 @@ $(function(){
         $( ".searchoform" ).submit(function( event ) {
             //alert( "Handler for .submit() called." );
             event.preventDefault();
-            window.location.assign("category.html?filter=recent&like="+$("#search_text").val());
+            if( $("#search_text").val().length > 0)
+                window.location.assign("category.html?filter=recent&like="+$("#search_text").val());
         });
         
         $( "#search_button" ).click(function(event) 
@@ -113,7 +114,8 @@ $(function(){
 
             //alert($("#search_text").val());
             
-            window.location.assign("category.html?filter=recent&like="+$("#search_text").val());
+            if( $("#search_text").val().length > 0)
+                window.location.assign("category.html?filter=recent&like="+$("#search_text").val());
         });
 //===============================EXPANDABLE MENU BUTTONS========================
 
