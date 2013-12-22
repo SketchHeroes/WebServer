@@ -1990,7 +1990,7 @@ TemplateGenerator.prototype.addCompetitions = function(target, size)
         var item = $("<li id='competition"+i+"'></li");
         list.append(item);
         
-            var article = $('<article class="competition_info"></article>');
+            var article = $('<article class="competition_info clearfix"></article>');
             item.append(article);
 
                 var header_caption = $('<div class="header_caption"></div>');  

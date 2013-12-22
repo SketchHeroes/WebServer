@@ -2589,7 +2589,7 @@ ul.achievements_gallery li img{
 }
 #user_tutorials .heading
 {
-    border: 1px red dashed;
+    /*border: 1px red dashed;*/
     position: absolute;
     height: 30px;
     width: 380px;
@@ -3041,7 +3041,7 @@ ul.achievements_gallery li img{
 
 #other_user_tutorials #gallery_wrapper .heading
 {
-    border: 1px red dashed;
+    /*border: 1px red dashed;*/
     position: absolute;
     height: 70px;
     width: 245px;
@@ -3157,6 +3157,7 @@ ul.achievements_gallery li img{
     height: 60px;
     
     font-size: 18px;
+    font-weight: bold;
     color: #FFFFFF;
     
     position: absolute;
