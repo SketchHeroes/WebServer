@@ -1055,50 +1055,7 @@ TemplateGenerator.prototype.addGallery = function(target, size)
     {
         var single_record = $('<li></li>');
         
-            var place = $('<div class="place"></img>');
-            single_record.append(place);
-        
-            var div = $('<div class="inner"></div>');
-            single_record.append(div);
-        
-                var tutorial_title = $('<div class="tutorial_title"></div>');
-                div.append(tutorial_title);
-        
-                var thumbnail = $('<div class="thumbnail">');
-                div.append(thumbnail);
-        
-                var info_panel = $('<div class="info_panel"></div>');
-                div.append(info_panel);
-                    
-                    var image = $('<img class="likes_image tooltip" src="images/like.png" title="Likes">');
-                    info_panel.append(image);
-                    
-                    image = $('<div class="likes">');
-                    info_panel.append(image);
-                    
-                    image = $('<img class="views_image tooltip" src="images/view.png" title="Views">');
-                    info_panel.append(image);
-                    
-                    image = $('<div class="views">');
-                    info_panel.append(image);
-                    
-                    image = $('<img class="comments_image tooltip" src="images/comment.png" title="Comments">');
-                    info_panel.append(image);
-                    
-                    image = $('<div class="comments">');
-                    info_panel.append(image);
-                    
-                    var author_avatar = $('<div class="avatar">');
-                    info_panel.append(author_avatar);
-                    
-                        var avatar_frame = $('<img src="images/avatar_frame.png" alt="avatar frame" class="frame"/>');
-                        author_avatar.append(avatar_frame);
-                    
-                    var author_name = $('<div class="author_name"></div>');
-                    info_panel.append(author_name);
-                    
-            var place = $('<div class="vote_frame"></img>');
-            single_record.append(place);
+            
         
         list.append(single_record);
     };
@@ -1542,8 +1499,11 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
     $(target+' > ul.gallery > li').each(
             function()
             {
+                 $(this).find("div.place").remove();
+                 $(this).find("div.inner").remove();
+                 $(this).find("div.vote_frame").remove();
                 //clearing old data from gallery
-                
+                /*
                 $(this).find("div.tutorial_title a").remove(); 
                 $(this).find("div.thumbnail a").remove();
                 
@@ -1560,12 +1520,60 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                 
                 $(this).find(".vote_button").remove();
                 $(this).find(".place_img").remove();
+                */
                 
                 // if there is data adding new data to gallery
                 if(tutorials[i] !== undefined) 
                 { 
-                    // adding tutorial_title
+                    // =============base building=================
+                    var place = $('<div class="place"></img>');
+                    $(this).append(place);
+
+                    var div = $('<div class="inner"></div>');
+                    $(this).append(div);
+
+                        var tutorial_title = $('<div class="tutorial_title"></div>');
+                        div.append(tutorial_title);
+
+                        var thumbnail = $('<div class="thumbnail">');
+                        div.append(thumbnail);
+
+                        var info_panel = $('<div class="info_panel"></div>');
+                        div.append(info_panel);
+
+                            var image = $('<img class="likes_image tooltip" src="images/like.png" title="Likes">');
+                            info_panel.append(image);
+
+                            image = $('<div class="likes">');
+                            info_panel.append(image);
+
+                            image = $('<img class="views_image tooltip" src="images/view.png" title="Views">');
+                            info_panel.append(image);
+
+                            image = $('<div class="views">');
+                            info_panel.append(image);
+
+                            image = $('<img class="comments_image tooltip" src="images/comment.png" title="Comments">');
+                            info_panel.append(image);
+
+                            image = $('<div class="comments">');
+                            info_panel.append(image);
+
+                            var author_avatar = $('<div class="avatar">');
+                            info_panel.append(author_avatar);
+
+                                var avatar_frame = $('<img src="images/avatar_frame.png" alt="avatar frame" class="frame"/>');
+                                author_avatar.append(avatar_frame);
+
+                            var author_name = $('<div class="author_name"></div>');
+                            info_panel.append(author_name);
+
+                    var place = $('<div class="vote_frame"></img>');
+                    $(this).append(place);
                     
+                    //=======================================================//
+                    
+                    // adding tutorial_title
                     var link = $('<a href="player.html?tutorial_id='+tutorials[i].content_id+'">'+tutorials[i].title+'</a>');
                     $(this).find("div.tutorial_title").append(link); 
 
@@ -1617,8 +1625,11 @@ TemplateGenerator.prototype.displayTutorialChooseGallery = function(target, tuto
     $(target+' > ul.gallery > li').each(
             function()
             {
+                $(this).find("div.place").remove();
+                $(this).find("div.inner").remove();
+                $(this).find("div.vote_frame").remove();
                 //clearing old data from gallery
-                
+                /*
                 $(this).find("div.tutorial_title a").remove(); 
                 $(this).find("div.thumbnail a").remove();
                 
@@ -1635,10 +1646,59 @@ TemplateGenerator.prototype.displayTutorialChooseGallery = function(target, tuto
                 
                 $(this).find(".vote_button").remove();
                 $(this).find(".place_img").remove();
+                */
                 
                 // if there is data adding new data to gallery
                 if(tutorials[i] !== undefined) 
                 { 
+                    
+                    // =============base building=================
+                    var place = $('<div class="place"></img>');
+                    $(this).append(place);
+
+                    var div = $('<div class="inner"></div>');
+                    $(this).append(div);
+
+                        var tutorial_title = $('<div class="tutorial_title"></div>');
+                        div.append(tutorial_title);
+
+                        var thumbnail = $('<div class="thumbnail">');
+                        div.append(thumbnail);
+
+                        var info_panel = $('<div class="info_panel"></div>');
+                        div.append(info_panel);
+
+                            var image = $('<img class="likes_image tooltip" src="images/like.png" title="Likes">');
+                            info_panel.append(image);
+
+                            image = $('<div class="likes">');
+                            info_panel.append(image);
+
+                            image = $('<img class="views_image tooltip" src="images/view.png" title="Views">');
+                            info_panel.append(image);
+
+                            image = $('<div class="views">');
+                            info_panel.append(image);
+
+                            image = $('<img class="comments_image tooltip" src="images/comment.png" title="Comments">');
+                            info_panel.append(image);
+
+                            image = $('<div class="comments">');
+                            info_panel.append(image);
+
+                            var author_avatar = $('<div class="avatar">');
+                            info_panel.append(author_avatar);
+
+                                var avatar_frame = $('<img src="images/avatar_frame.png" alt="avatar frame" class="frame"/>');
+                                author_avatar.append(avatar_frame);
+
+                            var author_name = $('<div class="author_name"></div>');
+                            info_panel.append(author_name);
+
+                    var place = $('<div class="vote_frame"></img>');
+                    $(this).append(place);
+                    
+                    //=======================================================//
                     // adding tutorial_title
                     
                     var link = $('<a href="player.html?tutorial_id='+tutorials[i].content_id+'">'+tutorials[i].title+'</a>');
