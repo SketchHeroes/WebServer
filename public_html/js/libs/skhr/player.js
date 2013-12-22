@@ -61,8 +61,8 @@ $(function(){
             function(data)
             {
                 template_generator.user_tutorial = data.tutorial; 
-                template_generator.displayTutorial('.player_section',template_generator.user_tutorial); 
-                
+                template_generator.displayTutorial('.player_section',template_generator.user_tutorial);         
+                $('#other_user_tutorials #gallery_wrapper .heading').html('MORE FROM '+template_generator.user_tutorial.author.username+'');
                 //------------------------TUTORIALS COMMENTS-----------------------------------------
                 
                 var promise_tutorial_comments = rest_caller.getContentComments({"target_content_id":content_id});

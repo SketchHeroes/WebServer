@@ -13,6 +13,14 @@ header, section, footer, aside, nav, article, figure
     display: block; 
 }
 
+a, input[type=button]{
+    font-weight: bold;
+}
+.stat div, div.likes, div.views, div.comments{
+    font-weight: bold;
+    color: #71959E;
+}
+
 .disabled{
     opacity:0.4;
     filter:alpha(opacity=40);
@@ -1559,6 +1567,14 @@ img.comments_image{
     white-space:nowrap; 
     overflow:hidden; 
     text-overflow:ellipsis;
+    
+    text-align: center;
+    color: #000000;
+}
+
+#latest_competition .competition_caption a{ 
+    
+    color: #B47703;
 }
 
 #latest_submissions{  
@@ -1652,6 +1668,8 @@ img.comments_image{
     font:bold 10px arial,sans-serif;
     
     margin: 0px 5px 0px 5px;
+    
+    cursor: default;
     /*border:1px solid blue;*/
 }
 
@@ -1664,7 +1682,7 @@ img.comments_image{
     height: 600px;
     width:111px;
     background: #ECECEC url(../../images/slanted_border.png) left top 0 no-repeat;
-    background-size: auto 100%;
+    background-size: 100% 100%;
     
 }
 
@@ -1782,6 +1800,8 @@ img.comments_image{
     height: 100px;
     width: 100%;
     border-bottom:1px solid #CA5573;
+    
+    font-weight: bold;
 }
 
 .users_list_complex .avatar{
@@ -2337,6 +2357,8 @@ img.frame
     font-size:12px;
     text-align: right;
     line-height: 20px;
+    
+    font-weight: bold;
 }
 
 /* PROGRESS BAR WITH FALL BACK */
@@ -2435,16 +2457,17 @@ img.frame
 {
     float:left;
     
-    background: #A4D4E0;
+    background: #9AC8D6;
     
-    border: 1px #779DA6 solid;
+    border: 1px #80A8B5 solid;
     border-radius: 12px 12px 12px 12px;
     
-    color: #FFFFFF;
+    color: #E4F8FD;
     
     display: inline-block;
     
     font-size: 15px;
+    font-weight: bold;
     
     height: 40px;
     width: 120px;
@@ -2562,7 +2585,23 @@ ul.achievements_gallery li img{
     margin: 0px 0px 0px 0px; 
     width: 730px;
     height: 1050px;     
-    background: #DBD9D9 url(../../images/user_tutorials_bg.png) left top 0 no-repeat;
+    background: #F2F2F2 url(../../images/user_tutorials_bg.png) left top 0 no-repeat;
+}
+#user_tutorials .heading
+{
+    border: 1px red dashed;
+    position: absolute;
+    height: 30px;
+    width: 380px;
+    margin: 10px 0px 0px 5px;
+    
+    font-size: 20px;
+    font-weight: bold;
+    color: #A07024;
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
 }
 
 #user_tutorials_gallery
@@ -2603,8 +2642,8 @@ ul.achievements_gallery li img{
 /* USER TUTORIALS BANNER SIDE PANNEL */
 
 .user_tutorials_section #banner_side_panel{
-    margin: 0px 0px 0px 730px; 
-    height: 1050px;  
+    margin: 50px 0px 0px 740px; 
+    height: 900px;  
     width:270px;
     background: #FFFFFF;
 }
@@ -2997,6 +3036,22 @@ ul.achievements_gallery li img{
     border: 1px red hidden;
     margin: 0px 0px 0px 25px; 
     padding: 1px 0px 0px 0px; 
+}
+
+
+#other_user_tutorials #gallery_wrapper .heading
+{
+    border: 1px red dashed;
+    position: absolute;
+    height: 70px;
+    width: 245px;
+    margin: 0px 0px 0px 15px;
+    
+    font-size: 25px;
+    font-weight: bold;
+    color: #A07024;
+    
+    text-align: center;
 }
 
 #other_user_tutorials #gallery_wrapper #border_wrapper

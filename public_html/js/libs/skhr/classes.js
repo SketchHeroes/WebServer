@@ -1180,8 +1180,8 @@ TemplateGenerator.prototype.addUserListComplex = function(target, length)
                 var user_name = $('<div class="user_name">...</div>');
                 user_info.append(user_name);  
 
-                var user_fans = $('<div class="user_fans">(Fans)</div>');
-                user_info.append(user_fans);  
+                //var user_fans = $('<div class="user_fans">(Fans)</div>');
+                //user_info.append(user_fans);  
 
                 var stats = $('<div class="stats"></div>');
                 user_info.append(stats);
@@ -1265,7 +1265,7 @@ TemplateGenerator.prototype.displayUserListComlex= function(target, users)
 
                     $(this).find(".user_name").html('<a href="profile.html?user_id='+users[i].skhr_id+'">'+users[i].username+'</a>');
                     
-                    $(this).find(".user_fans").text( 'Fans('+users[i].followed.followed_skhr+')'); 
+                    //$(this).find(".user_fans").text( 'Fans('+users[i].followed.followed_skhr+')'); 
 
                     var follow_button = $('<input type="button" value="Follow" class="follow_button follow" id="'+users[i].skhr_id+'">');
                     $(this).append(follow_button);
@@ -2253,8 +2253,8 @@ TemplateGenerator.prototype.displayLatestCompetition= function(target, competiti
     link.append(thumbnail);
 
     $(target+' .competition_thumbnail').append(link);
-
-    $(target+' .competition_caption').html('('+competition.submission_start+') <a href="competition.html?competition_id='+competition.competition_id+'">'+competition.title+'</a>');
+    //$(this).find('.created_at').text(template_generator.getDateOnly(messages[i].created_at));
+    $(target+' .competition_caption').html('('+this.getDateOnly(competition.submission_start)+') <a href="competition.html?competition_id='+competition.competition_id+'">'+competition.title+'</a>');
 }; 
 
 
@@ -2291,6 +2291,8 @@ TemplateGenerator.prototype.displayUser= function(target, user)
         //alert('adding invite friends button - PROFILE');
         this.displayInviteFriendsButton(target);
     }
+    
+    $('#user_tutorials .heading').html("&#9658; "+user.username+"'s tutorials");
     
 
     
