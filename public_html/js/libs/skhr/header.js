@@ -94,8 +94,9 @@ $(function(){
         });
 
         $("#popup_contact_us .close").click(function(e) { 
-               $("#popup_contact_us").fadeOut(); 
-               $("body .overlay").remove();
+                e.preventDefault();
+                $("#popup_contact_us").fadeOut(); 
+                $("body .overlay").remove();
         });      
 //===============================SEARCH=========================================
         
@@ -204,6 +205,7 @@ $(function(){
         });
 
         $("#popup_login .close").click(function(e) { 
+                e.preventDefault();
                 $("#popup_login").fadeOut(); 
                 $("body .overlay").remove();
        }); 
@@ -220,6 +222,7 @@ $(function(){
         });
 
         $("#popup_register .close").click(function(e) { 
+                e.preventDefault();
                 $("#popup_register").fadeOut(); 
                 $("body .overlay").remove();
        }); 
@@ -231,6 +234,7 @@ $(function(){
 
        $(".button_login").click(function(e) 
         { 
+            e.preventDefault();
             //alert($("#popup_login input[name=username_email]").val());
             $("#popup_login #native_error").text('');
 
@@ -341,6 +345,7 @@ $(".options #logout").click(function(e)
 
        $(".button_register").click(function(e) 
         { 
+            e.preventDefault();
             //alert($("#popup_login input[name=username_email]").val());
             $("#popup_register #native_error").text('');
             
@@ -399,7 +404,8 @@ $(".options #logout").click(function(e)
         
         
 
-        $("#popup_welcome .close").click(function(e) { 
+        $("#popup_welcome").click(function(e) { 
+                e.preventDefault();
                 $("#popup_welcome").fadeOut(); 
                 $("body .overlay").remove();
         }); 
@@ -455,8 +461,9 @@ $(".options #logout").click(function(e)
         });
 
         $("#popup_leaderboard .close").click(function(e) { 
-                 $("#popup_leaderboard").fadeOut(); 
-                 $("body .overlay").remove();
+                e.preventDefault();
+                $("#popup_leaderboard").fadeOut(); 
+                $("body .overlay").remove();
         }); 
         
         
@@ -863,9 +870,10 @@ $(".options #logout").click(function(e)
 
          });
 
-        $("#popup_members .close").click(function(e) { 
-                 $("#popup_members").fadeOut(); 
-                 $("body .overlay").remove();
+        $("#popup_members .close").click(function(e) {
+            e.preventDefault();
+            $("#popup_members").fadeOut(); 
+            $("body .overlay").remove();
         }); 
 
 //====================================MENU======================================
@@ -1001,6 +1009,7 @@ $(".options #logout").click(function(e)
         $('body').on('click', '.fans_caller', function(e)
         //$(".fans").click(function(e) 
          { 
+             
              if( account.isLoggedIn() )
              {
                 var overlay = $('<div class="overlay"></div>');
@@ -1049,8 +1058,9 @@ $(".options #logout").click(function(e)
          });
 
         $("#popup_fans .close").click(function(e) { 
-                 $("#popup_fans").fadeOut(); 
-                 $("body .overlay").remove();
+                e.preventDefault();
+                $("#popup_fans").fadeOut(); 
+                $("body .overlay").remove();
         }); 
  
 //===========================FOLLOWING==========================================               
@@ -1105,8 +1115,9 @@ $(".options #logout").click(function(e)
         });
 
         $("#popup_following .close").click(function(e) { 
-                 $("#popup_following").fadeOut(); 
-                 $("body .overlay").remove();
+                e.preventDefault();
+                $("#popup_following").fadeOut(); 
+                $("body .overlay").remove();
         }); 
     });
     
