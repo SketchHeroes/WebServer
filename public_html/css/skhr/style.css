@@ -6,6 +6,20 @@
         Purpose of the stylesheet follows.
 */
 
+@font-face
+{
+    font-family: skhr_font;
+    src: url(CLEANVEL.TTF);
+}
+
+@font-face
+{
+    font-family: skhr_font_bold;
+    src: url(CLEANVEB_0.TTF);
+}
+
+/**{font-family:skhr_font;}*/
+
 .fb-comments, .fb-comments span, .fb-comments iframe { width: 100% !important; }
 
 header, section, footer, aside, nav, article, figure
@@ -728,7 +742,7 @@ span.pluginFaviconButtonBorder{
     margin: 120px 0px 0px 0px; 
     padding: 0px 0px 0px 0px;
     
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 #popup_contact_us .close
@@ -746,7 +760,7 @@ span.pluginFaviconButtonBorder{
     margin: 10px 0px 10px 30px;
 }
 
-#popup_contact_us form input[type="submit"]
+#popup_contact_us form input[type="button"], #popup_contact_us form input[type="submit"]
 {
     margin: 0px 0px 0px 30px;
     border: 1px solid #93C1D0;
@@ -783,6 +797,29 @@ span.pluginFaviconButtonBorder{
     width: 500px;
     
     margin: 10px 0px 0px 30px; 
+}
+
+
+
+#popup_contact_us .email_error_msg
+{
+    font-size:15px;
+    color: #FF0000;
+    height: 35px;
+    width: 370px;
+    margin: 5px 30px 5px 30px; 
+    
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    
+    position: relative;
+    top: -50px;
+    left: 130px;
+    
+    font-weight: bold;
+    
+    /*border: 1px red dotted;*/
 }
 
 /* POPUP LEADERBOARD */

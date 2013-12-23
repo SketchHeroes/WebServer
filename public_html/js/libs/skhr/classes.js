@@ -1026,6 +1026,31 @@ RestCaller.prototype.postCompetitionVote = function(params)
 };
 
 
+RestCaller.prototype.postEmail = function(params)
+{
+    //alert('in post competition vote');
+    
+    this.setResource("/email");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json");
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("name",params['name']);
+    this.setRequestParam("email",params['email']);
+    this.setRequestParam("subject",params['subject']);
+    this.setRequestParam("message",params['message']);
+    
+    return this.ajax();
+};
+
+
 //-------------------- Template class ------------------------------------------
 
 function TemplateGenerator()

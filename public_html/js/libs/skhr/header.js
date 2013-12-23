@@ -92,6 +92,64 @@ $(function(){
            
            //console.log('popup_contact_us appended');
         });
+        
+        $('body').on('click', '#contact_us_submit', function(e)
+        { 
+           
+            e.preventDefault(); 
+            
+            
+            var name            = $("#popup_contact_us input[name=name]").val().replace(" ", "");
+            var email           = $("#popup_contact_us input[name=email]").val().replace(" ", "");
+            var subject         = $("#popup_contact_us input[name=subject]").val().replace(" ", "");
+            var message         = $('#popup_contact_us #message').val().replace(" ", "");
+            
+            //alert(name+':'+email+':'+subject+':'+message);
+            //alert(name.length+':'+email.length+':'+subject.length+':'+message.length);
+            
+            if(!name.length){
+                $("#popup_contact_us #email_error").text("You must enter your name");
+                return;
+            }
+            
+            if(!account.reg_email.test(email) ){
+                $("#popup_contact_us #email_error").text("Invalid email address");
+                return;
+            }
+            
+            if(!subject.length){
+                $("#popup_contact_us #email_error").text("You must enter subject");
+                return;
+            }
+            
+            if(!message.length){
+                $("#popup_contact_us #email_error").text("You must enter message");
+                return;
+            }
+            
+            var promise_send_mail = rest_caller.postEmail({
+                                                            "name":$('#popup_contact_us #name').val(),
+                                                            "email":$('#popup_contact_us #email').val(),
+                                                            "subject":$('#popup_contact_us #subject').val(),
+                                                            "message":$('#popup_contact_us #message').val(),
+
+                                                        }); 
+            
+            promise_send_mail.done(
+                function(data)
+                {  
+                    //alert('send successful');
+                    $("#popup_contact_us").fadeOut(); 
+                    $("body .overlay").remove();
+            
+                });
+                
+            promise_send_mail.fail(
+                function(data)
+                {  
+                    $("#popup_contact_us #email_error").text(JSON.parse(data.responseText).error.message);
+                });
+        });
 
         $("#popup_contact_us .close").click(function(e) { 
                 e.preventDefault();

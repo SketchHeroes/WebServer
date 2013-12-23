@@ -335,24 +335,23 @@
             
                     <div class="popup" id="popup_contact_us">
                         <div class="inner_popup">
+                            <form method="post" action="">
                             <a href="#" class="close">X</a>
-                            <form>
                                 <label for="subject">Subject:</label><br />
-                                <input type="text" id="subject" name="subject" /><br />
+                                <input type="text" id="subject" name="subject" required /><br />
                                 
                                 <label for="name">Name:</label><br />
-                                <input type="text" id="name" name="name" /><br />
+                                <input type="text" id="name" name="name" required /><br />
                                 
                                 <label for="email">Email:</label><br />
-                                <input type="text" id="email" name="email" /><br />
+                                <input type="text" id="email" name="email" required /><br />
                                 
                                 <label for="message">Message:</label><br />
-                                <textarea id="message" name="message">
-
-                                </textarea><br />
+                                <textarea id="message" name="message" required ></textarea><br />
                                 
-                                <input type="submit" />
+                                <input id="contact_us_submit" type="submit" value="Submit"/>
                             </form>
+                            <p class="email_error_msg" id="email_error"></p>
                         </div>
                     </div>
             
