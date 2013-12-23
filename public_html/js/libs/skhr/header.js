@@ -1123,7 +1123,21 @@ $(".options #logout").click(function(e)
     
 });
 
-   
+
+
+//===============================guides_button==================================
+
+$('body').on('click', '#button_guides', function(e)
+{ 
+    window.location.assign("category.html");
+});
+
+//===============================guides_home====================================
+
+$('body').on('click', '#button_home', function(e)
+{ 
+    window.location.assign("index.html");
+});   
    
 //=====================================FUNCTIONS================================
 
