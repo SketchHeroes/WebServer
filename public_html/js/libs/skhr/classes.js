@@ -1278,15 +1278,10 @@ TemplateGenerator.prototype.displayUserListComlex= function(target, users)
                         //avatar = $('<img alt="avatar" class="pic" src="'+users[i].avatar_path+'" >');
                         $(this).find('.avatar').css("background-image", "url("+users[i].avatar_path+")"); 
                     }
-                    /*
                     else
                     {
-                        //alert('undefined');
-                        //avatar = $('<img alt="avatar" class="pic" src="images/avatar_def.png" >');
+                        $(this).find('.avatar').css("background-image", "url(images/no_avatar.png)"); 
                     }
-                    */
-
-                    //$(this).find(".avatar").append(avatar);
 
                     $(this).find(".user_name").html('<a href="profile.html?user_id='+users[i].skhr_id+'">'+users[i].username+'</a>');
                     
@@ -1623,6 +1618,10 @@ TemplateGenerator.prototype.displayTutorialGallery = function(target, tutorials)
                         //$(this).find('.avatar').append(avatar);
                         $(this).find('.avatar').css("background-image", "url("+tutorials[i].author.avatar_path+")");  
                     }
+                    else
+                    {
+                        $(this).find('.avatar').css("background-image", "url(images/no_avatar.png)"); 
+                    }
 
                     // adding author_name 
                     var link = $('<a href="profile.html?user_id='+tutorials[i].author_skhr_id+'">'+tutorials[i].author.username+'</a>');      
@@ -1749,6 +1748,10 @@ TemplateGenerator.prototype.displayTutorialChooseGallery = function(target, tuto
                         //$(this).find('.avatar').append(avatar);
                         $(this).find('.avatar').css("background-image", "url("+tutorials[i].author.avatar_path+")");  
                     }
+                    else
+                    {
+                        $(this).find('.avatar').css("background-image", "url(images/no_avatar.png)"); 
+                    }
 
                     // adding author_name 
                     var link = $('<a href="profile.html?user_id='+tutorials[i].author_skhr_id+'">'+tutorials[i].author.username+'</a>');      
@@ -1873,6 +1876,10 @@ TemplateGenerator.prototype.displayTutorialGalleryLess = function(target,tutoria
                         //var avatar = $('<img alt="avatar" class="pic" src="'+tutorials[i].author.avatar_path+'" >');
                         //$(this).find('.avatar').append(avatar);
                         $(this).find('.avatar').css("background-image", "url("+tutorials[i].author.avatar_path+")"); 
+                    }
+                    else
+                    {
+                        $(this).find('.avatar').css("background-image", "url(images/no_avatar.png)"); 
                     }
 
 
@@ -2289,7 +2296,16 @@ TemplateGenerator.prototype.displayUser= function(target, user)
     //var avatar = $('<img alt="avatar" class="pic" src="'+user.avatar_path+'" >');
     
     //$(target).find(".avatar").append(avatar);
-    $(target).find('.avatar').css("background-image", "url("+user.avatar_path+")"); 
+    
+    if(user.avatar_path !== null) 
+    {
+        $(target).find('.avatar').css("background-image", "url("+user.avatar_path+")"); 
+    }
+    else
+    {
+        $(target).find('.avatar').css("background-image", "url(images/no_avatar.png)"); 
+    }
+        
     
     
     $(target).find(".statistics .user_name").text(user.username);
