@@ -19,7 +19,7 @@
     font-weight:bold;
 }
 
-*{font-family:skhrFont;}
+*{font-family:skhrFont !important;}
 
 .fb-comments, .fb-comments span, .fb-comments iframe { width: 100% !important; }
 
@@ -437,6 +437,23 @@ header.main
     margin: 0px 0px 0px -255px; 
 }
 
+#popup_recover
+{
+    width: 490px;
+    height: 350px;
+	
+    padding: 0px 0px 0px 0px;
+    background: #C3C3C3;
+
+    top: 30px;
+    left:50%;
+
+    border: 3px solid #000000;
+    border-radius: 10px 10px 10px 10px;
+
+    margin: 0px 0px 0px -255px; 
+}
+
 #popup_register
 {
     width: 490px;
@@ -529,7 +546,7 @@ header.main
 }
 
 
-.popup .button_login, .popup .button_register{
+.popup .button_login, .popup .button_register, .popup .button_recover{
     background: #484848;
     border-radius: 15px 15px 15px 15px;
     color: #FFB400;

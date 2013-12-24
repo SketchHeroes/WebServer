@@ -390,6 +390,33 @@ $(".options #logout").click(function(e)
     handleLogout();
     
 });
+        
+//----------------------------RECOVER PASSWORD------------------------------
+//=============================================================================
+
+
+       $(".forgot_pass a").click(function(e) 
+        { 
+            //alert($("#popup_login input[name=username_email]").val());
+            $("#popup_login #native_error").text('');
+            
+            $(".popup").fadeOut();
+            
+            var target = $(e.target); 
+            
+            $("#popup_recover").fadeIn(); 
+
+        });
+        
+        
+
+        $("#popup_recover .close").click(function(e) { 
+                e.preventDefault();
+                $("#popup_recover").fadeOut(); 
+                $('.popup').fadeOut();
+                $("#popup_login").fadeIn(); 
+       });
+
 //------------------------------------- REGISTERING------------------------------
 
 
