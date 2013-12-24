@@ -725,7 +725,7 @@ span.pluginFaviconButtonBorder{
     width: 700px;
     height: 720px;
     
-    top: 50px;
+    top: 0px;
     left:50%;
 
     /*border: 1px solid #FF0000;*/
@@ -3460,6 +3460,7 @@ ul.competitions_list li{
     
     text-align: center;
     font-size: 30px;
+    font-weight: bold;
     color: #B47703;
     
     /*border: 1px red dashed;*/

@@ -79,7 +79,7 @@ $(function(){
             else
             {
                 $("#popup_login").fadeIn(); 
-                $("#popup_login input[name=username_email]").focus();
+                //$("#popup_login input[name=username_email]").focus();
             }
 
         });
@@ -207,7 +207,7 @@ $(function(){
 
                 $('.popup').fadeOut();
                 $("#popup_login").fadeIn(); 
-                $("#popup_login input[name=username_email]").focus();
+                //$("#popup_login input[name=username_email]").focus();
             }
 
         });

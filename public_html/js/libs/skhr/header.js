@@ -258,7 +258,7 @@ $(function(){
 
             $('.popup').fadeOut();
             $("#popup_login").fadeIn(); 
-            $("#popup_login input[name=username_email]").focus();
+            //$("#popup_login input[name=username_email]").focus();
 
         });
 
@@ -275,7 +275,7 @@ $(function(){
 
             $('.popup').fadeOut();
             $("#popup_register").fadeIn(); 
-            $("#popup_register input[name=username]").focus();
+            //$("#popup_register input[name=username]").focus();
 
         });
 
@@ -367,19 +367,11 @@ $(function(){
             $("#popup_login #native_error").text('');
             
             $(".popup").fadeOut();
+            $("body .overlay").remove(); 
             
-            var target = $(e.target);    
-            if (target.parents('#popup_register').length) 
-            {
-                $("#popup_welcome").fadeIn();
-            }
-            else
-            {
-                $("body .overlay").remove(); 
-            }
+            var target = $(e.target);  
             
-            
-            fb_login(rest_caller,template_generator);
+            fb_login(rest_caller,template_generator, target);
             
 
         });
@@ -987,7 +979,7 @@ $(".options #logout").click(function(e)
 
                 $('.popup').fadeOut();
                 $("#popup_login").fadeIn(); 
-                $("#popup_login input[name=username_email]").focus();
+                //$("#popup_login input[name=username_email]").focus();
             }
 
         });
@@ -1038,7 +1030,7 @@ $(".options #logout").click(function(e)
 
                 $('.popup').fadeOut();
                 $("#popup_login").fadeIn(); 
-                $("#popup_login input[name=username_email]").focus();
+                //$("#popup_login input[name=username_email]").focus();
             }
 
         });
@@ -1057,7 +1049,7 @@ $(".options #logout").click(function(e)
 
                 $('.popup').fadeOut();
                 $("#popup_login").fadeIn(); 
-                $("#popup_login input[name=username_email]").focus();
+                //$("#popup_login input[name=username_email]").focus();
             }
         });
         
@@ -1110,7 +1102,7 @@ $(".options #logout").click(function(e)
 
                 $('.popup').fadeOut();
                 $("#popup_login").fadeIn(); 
-                $("#popup_login input[name=username_email]").focus();
+                //$("#popup_login input[name=username_email]").focus();
             }
 
          });
@@ -1167,7 +1159,7 @@ $(".options #logout").click(function(e)
 
                 $('.popup').fadeOut();
                 $("#popup_login").fadeIn(); 
-                $("#popup_login input[name=username_email]").focus();
+                //$("#popup_login input[name=username_email]").focus();
             }
 
         });
@@ -1509,7 +1501,7 @@ function handleLogout()
 
 }
 
-function fb_login(rest_caller,template_generator)
+function fb_login(rest_caller,template_generator, target)
 {   
     var user = {};
     
@@ -1517,6 +1509,7 @@ function fb_login(rest_caller,template_generator)
 
         if (response.authResponse) 
         {
+            
             //console.log('Welcome!  Fetching your information.... ');
             //console.log(response); // dump complete info
             access_token    = response.authResponse.accessToken; //get access token
@@ -1543,6 +1536,11 @@ function fb_login(rest_caller,template_generator)
                 promise_login.done(
                     function(data)
                     { 
+
+                        if (target.parents('#popup_register').length) 
+                        {
+                            $("#popup_welcome").fadeIn();
+                        }
                         handleLogin(data, rest_caller, template_generator);                    
                     });  
 
