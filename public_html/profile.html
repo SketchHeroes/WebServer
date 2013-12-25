@@ -26,6 +26,9 @@ and open the template in the editor.
              
             <section class="clearfix panel_down_narrow user_info" id="user_info">
                 <div id="user_info_bg">
+                    <!--<img src="images/change-avatar.png" alt="change_avatar" class="change_avatar"/>-->
+                    <!--<input type='file' accept='image/*' onchange='openFile(event)'><br>-->
+                    <img id='output' />
                     <div class="avatar">
                         <img src="images/avatar_frame.png" alt="avatar frame" class="frame"/>
                     </div>
@@ -110,6 +113,7 @@ and open the template in the editor.
             <script type="text/javascript" src="js/libs/jquery.xdomainrequest/jquery.xdomainrequest.js"></script>
             <script type="text/javascript" src="js/libs/tooltiplster-master/jquery.tooltipster.min.js"></script>
             <!--<script type="text/javascript" src="js/libs/jqueryui-1.10.3/jquery-ui-1.10.3.custom.min.js"></script>-->
+            <script src="http://malsup.github.com/jquery.form.js"></script> 
            
             <script type="text/javascript" src="js/libs/skhr/classes.js"></script>
             <script type="text/javascript" src="js/libs/skhr/all_pages.js"></script>
@@ -123,7 +127,22 @@ and open the template in the editor.
                 });
             </script>
             
-            
+            <script>
+                /*
+                var openFile = function(event) {
+                  var input = event.target;
+
+                  var reader = new FileReader();
+                  reader.onload = function(event){
+                    var dataURL = event.target.result;
+                    var output = document.getElementById('output');
+                    output.src = dataURL;
+
+                  };
+                  reader.readAsDataURL(input.files[0]);
+                };
+                */
+            </script>
         </div>
     </body>
 </html>

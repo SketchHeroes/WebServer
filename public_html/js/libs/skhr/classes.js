@@ -16,6 +16,7 @@ function RestCaller()
     this.content_data_type  = 'application/json; charset=UTF-8';
     this.accept_data_type   = 'json';
     this.resource           = null;
+    this.process_data       = true;
     this.request_params     = {};
     this.custom_headers     = {};
     this.complete_handler   = function(data){};
@@ -31,6 +32,12 @@ function RestCaller()
 }   
 
 // setters
+
+RestCaller.prototype.setProcessData= function(process_data)
+{
+    this.process_data= process_data;
+};
+
 
 RestCaller.prototype.setDomain = function(domain)
 {
@@ -77,6 +84,11 @@ RestCaller.prototype.setRequestParam = function(key, value)
     this.request_params[key] = value;
 };
 
+RestCaller.prototype.setRequestData= function(data)
+{
+    this.request_params = data;
+};
+
 RestCaller.prototype.setCompleteHandler = function(complete_handler)
 {
     this.complete_handler = complete_handler;
@@ -117,6 +129,7 @@ RestCaller.prototype.ajax = function()
     //e.preventDefault();
     
     //alert(this.verb);
+    //alert(this.content_data_type);
     var request_data;
     if(this.verb === 'GET')
         request_data = this.request_params;
@@ -136,6 +149,7 @@ RestCaller.prototype.ajax = function()
         headers: this.custom_headers,
         crossDomain:this.cross_domain, 
         data: request_data,
+        processData: this.process_data,
         //xhrFields: {withCredentials: true},
         complete: this.complete_handler,
         success: this.success_handler,
@@ -1046,6 +1060,31 @@ RestCaller.prototype.postEmail = function(params)
     this.setRequestParam("email",params['email']);
     this.setRequestParam("subject",params['subject']);
     this.setRequestParam("message",params['message']);
+    
+    return this.ajax();
+};
+
+
+RestCaller.prototype.postUserAvatarUpload = function(data)
+{
+    //alert('in post competition vote');
+    
+    this.setResource("/user/avatar_upload");
+    this.setVerb("POST");
+    this.setProcessData(false);
+    this.setContentDataType(false);
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json");
+    this.setCustomHeader("X-Caller-SKHR-ID",localStorage.caller_skhr_id );
+    this.setCustomHeader("X-User-Token",localStorage.user_token);
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestData(data);
     
     return this.ajax();
 };
@@ -2331,6 +2370,7 @@ TemplateGenerator.prototype.displayUser= function(target, user)
     {
         //alert('adding invite friends button - PROFILE');
         this.displayInviteFriendsButton(target);
+        this.displayChangeAvatarButton(target);
     }
     
     $('#user_tutorials .heading').html("&#9658; "+user.username+"'s tutorials");
@@ -2344,6 +2384,17 @@ TemplateGenerator.prototype.displayInviteFriendsButton= function(target)
     var invite_friends = $('<input class="invite_friends" type="button" value="Invite frieds"/>)');
     $(target).find(".statistics2 .invite_friends").remove();
     $(target).find(".statistics2").append(invite_friends);
+}
+
+TemplateGenerator.prototype.displayChangeAvatarButton= function(target)
+{
+    //alert('adding invite friends button');
+    var change_avatar = $('<input type="button" class="change_avatar" value="Change Avatar" />');
+    var file_upload = $("<input type='file' accept='image/*' />)");
+    $(target).find(".change_avatar").remove();
+    $(target).find("input[type=file]").remove();
+    $(target).prepend(change_avatar);
+    $(target).prepend(file_upload);
 }
 
 

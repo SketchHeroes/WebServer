@@ -317,12 +317,124 @@ $(function(){
     });
 
   
+            
+//===============================CHANGE AVATAR=================================
 
+    $('body').on('change', '#user_info input[type=file]', function(e)
+    { 
+        var input = e.target;
+        //console.log(input.files[0]);
+        //console.log(typeof input.files[0]);
+        
+        var data = new FormData();
+        //data.append('avatar', input.files[0]);
+        
+        $.each($('#user_info input[type=file]')[0].files, function(i, file) 
+        {
+            data.append('avatar', file);
+        });
+        //console.log(typeof data);
+        
+        // doesn't work yet 
+        //rest_caller.postUserAvatarUpload(data); 
+        
+        
+        $.ajax({
+            url: "http://serverkizidev-env.elasticbeanstalk.com"+"/user/avatar_upload",
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            crossDomain:true,
+            type: 'POST',
+            headers: {
+                        "X-App-Token":this.app_token,
+                        "Accept":"application/json",
+                        "X-Caller-SKHR-ID":localStorage.caller_skhr_id,
+                        "X-User-Token":localStorage.user_token,
+                    },
+            success: function(data)
+            {
+                
+                //alert(data);
+                // get user info
+                var promise_user = rest_caller.getUser({"skhr_id":skhr_id,
+                                                        "user_related_data":{
+                                                                                "user_followed":"user_followed",
+                                                                                "user_follows":"user_follows",
+                                                                                "user_tutorials":"user_tutorials",
+                                                                                "user_views":"user_views",
+                                                                                "user_likes":"user_likes",
+                                                                                "user_comments":"user_comments"
+                                                                            }});
+
+                promise_user.done(
+                        function(data)
+                        {
+                            template_generator.user = data.user;
+                            template_generator.user['skhr_id'] = skhr_id;
+                            //template_generator.addGallery("#user_tutorials_gallery", length);
+                            template_generator.displayUser("#user_info", template_generator.user); 
+                        });
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) 
+            { 
+                //alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+            }  
+        });
+        
+        
+        /*
+        $.each($('#file')[0].files, function(i, file) 
+        {
+            data.append('file-'+i, file);
+        });
+        /*
+        var reader = new FileReader();
+        
+        reader.onload = function(event)
+        {
+          var dataURL = event.target.result;
+          console.log(JSON.stringify(event.target.result));
+          console.log(typeof JSON.stringify(event.target.result));
+          var output = document.getElementById('output');
+          output.src = dataURL;
+
+        };
+        reader.readAsDataURL(input.files[0]);
+        */
+    }); 
+
+/*
+$('input[type=file]').on('change', function(e){
+    
+    alert('uploading');
+});
+    */
+/*
+$('.change_avatar').on('click', function(){
+    
+    alert('uploading');
+});
+*/
 //==============================================================================
     
 });  
    
 /* ------------------------------FUNCTIONS----------------------------------- */
+
+var openFile = function(event) {
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(event){
+      var dataURL = event.target.result;
+      var output = document.getElementById('output');
+      output.src = dataURL;
+
+    };
+    reader.readAsDataURL(input.files[0]);
+};
    
 function scrollLeft( target, scrollsPerWindow, speedForward)
 {

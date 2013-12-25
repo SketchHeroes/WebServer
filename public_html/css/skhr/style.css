@@ -2310,6 +2310,44 @@ section#user_info{
     position: relative;
 }
 
+#user_info .change_avatar{
+    
+    position: absolute;
+    
+    margin: 40px 0px 0px 15px;
+    
+    height: 30px;
+    width: 55px;
+    
+    font-size: 10px;
+    
+    white-space: normal;
+    background-color: #BC2049;
+    border-radius: 15px 15px 15px 15px;
+    border: 1px solid #561118;
+    color: #FFFFFF;
+    
+    z-index: 5;
+    
+    cursor: pointer;
+}
+
+#user_info input[type=file]{
+    
+    opacity: 0;
+    filter: alpha(opacity=0);
+    
+    height: 30px;
+    width: 55px;
+    
+    position: absolute;
+    
+    margin: 40px 0px 0px 15px;
+    
+    z-index: 6;
+    /*left: -30px;*/
+}
+
 #user_info .avatar img.pic
 {
     width:150px;
