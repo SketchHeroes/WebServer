@@ -1,7 +1,7 @@
 <?php
     header('HTTP/1.1 200 OK');
     
-    $qry_str = "?";
+    $qry_str = "?is_premium=0";
     $ch = curl_init();
 
     // Set query data here with the URL
@@ -17,10 +17,16 @@
     $content = json_decode($content_json);
     
     echo "<categories>".PHP_EOL;
-    
-    foreach($content->categories as $category)
+    if(isset($content->categories))
     {
-        echo "<category name='".$category->title."'/>".PHP_EOL;
+        foreach($content->categories as $category)
+        {
+            echo "<category name='".$category->title."'/>".PHP_EOL;
+        }
+    }
+    else 
+    {
+        echo "<category name='Other'/>".PHP_EOL;
     }
 
     echo "</categories>".PHP_EOL;
