@@ -425,6 +425,136 @@ $(".options #logout").click(function(e)
                 $('.popup').fadeOut();
                 $("#popup_login").fadeIn(); 
        });
+       
+        // --------------------SEND VERIFICATION CODE---------------------------
+        $('.button_recover').click(function(e){
+            
+            //alert('recover');
+            
+            e.preventDefault();
+            //alert($("#popup_login input[name=username_email]").val());
+            $("#popup_recover #native_error").text('');
+
+            var username_email = $("#popup_recover input[name=username_email]").val();
+
+            // if username
+            if (account.reg_username.test(username_email) )
+            {
+                //alert(username_email+' = username');
+                var promise_login = rest_caller.userPasswordChangeUsername({"username":username_email});
+                    
+                // successful
+                promise_login.done(
+                    function(data)
+                    {
+                        template_generator.user_credentials = data.user;
+                        handleLogin(data, rest_caller, template_generator);
+
+                        $("#popup_recover").fadeOut(); 
+                        $("#popup_verify").fadeIn(); 
+                    });
+
+                promise_login.fail(
+                    function(data)
+                    {
+                        $("#popup_recover #native_error").text(JSON.parse(data.responseText).error.message);
+                    });
+            }
+            else
+            {   
+                // if email
+                if( account.reg_email.test(username_email) )
+                {
+                    //alert(username_email+' = email');
+
+                    var promise_login = rest_caller.userPasswordChangeEmail({"email":username_email});
+
+                    promise_login.done(
+                        function(data)
+                        {
+                            template_generator.user_credentials = data.user;
+                            handleLogin(data, rest_caller, template_generator);
+
+                            $("#popup_recover").fadeOut(); 
+                            $("#popup_verify").fadeIn();  
+                        });
+                        
+                    promise_login.fail(
+                        function(data)
+                        {
+                            $("#popup_recover #native_error").text(JSON.parse(data.responseText).error.message);
+                        });
+                }
+                else
+                {
+                    $("#popup_recover #native_error").text(username_email+' neither email nor username');
+                }
+            }
+
+        });
+        
+        //-------------------VERIFY---------------------------------------------
+        $('.button_verify').click(function(e){
+            
+            //alert('recover');
+            
+            e.preventDefault();
+            //alert($("#popup_login input[name=username_email]").val());
+            $("#popup_verify #native_error").text('');
+            
+            var code = $("#popup_recover input[name=verify_code]").val();
+            
+            if( code.length > 0 )
+            {
+                localStorage.code = code;
+                $("#popup_verify").fadeOut(); 
+                $("#popup_new_pass").fadeIn();  
+            }
+            else
+            {
+                $("#popup_verify #native_error").text('Please enter verification code');
+            }
+            
+        });
+            
+        //------------------ENTER NEW PASS--------------------------------------
+        $('.button_new_pass').click(function(e){
+            
+            //alert('recover');
+            
+            e.preventDefault();
+            //alert($("#popup_login input[name=username_email]").val());
+            $("#popup_new_pass #native_error").text('');
+            
+            var password1    = $("#popup_new_pass input[name=password1]").val();
+            var password2    = $("#popup_new_pass input[name=password2]").val();
+            
+            if(!account.reg_password.test(password1)){
+                $("#popup_register #native_error").text("Invalid password");
+                return;
+            }
+            
+            if(password1 !== password2){
+                $("#popup_register #native_error").text("Password confirm do not much");
+                return;
+            }
+
+            var promise_pass_change = rest_caller.userVerifyPassChange({"code":localStorage.code,"password":password1});
+                    
+            // Verify successful
+            promise_pass_change.done(
+                function(data)
+                {
+                    $("#popup_new_pass").fadeOut(); 
+                    $("body .overlay").remove(); 
+                });
+
+            promise_pass_change.fail(
+                function(data)
+                {
+                    $("#popup_new_pass #native_error").text(JSON.parse(data.responseText).error.message);
+                });
+        });
 
 //------------------------------------- REGISTERING------------------------------
 

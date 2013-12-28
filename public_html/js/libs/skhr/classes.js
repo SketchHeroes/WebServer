@@ -556,6 +556,66 @@ RestCaller.prototype.loginNativeUserUsername = function(params)
     return this.ajax();
 };
 
+RestCaller.prototype.userPasswordChangeUsername= function(params)
+{
+    this.setResource("/user/password_change_username");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json"); 
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("username",params['username']);
+    
+    return this.ajax();
+};
+
+
+
+RestCaller.prototype.userPasswordChangeEmail = function(params)
+{
+    this.setResource("/user/password_change_email");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json"); 
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("email",params['email']);
+    
+    return this.ajax();
+};
+
+RestCaller.prototype.userVerifyPassChange = function(params)
+{
+    this.setResource("/user/verify_pass_change");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json"); 
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("code",params['code']);
+    this.setRequestParam("password",params['password']);
+    
+    return this.ajax();
+};
+
 RestCaller.prototype.loginFacebook = function(params)
 {
     
@@ -1539,7 +1599,7 @@ TemplateGenerator.prototype.displayPainter = function(params)
     /*
     alert(params['competition_id'] + ", typeof: "
             + typeof params['competition_id']
-            +", lenght: "+params['competition_id'].length
+            +", length: "+params['competition_id'].length
             +", === 0: "+(params['competition_id'].length === 0)
             +", == 0: "+(params['competition_id'].length == 0));
     */

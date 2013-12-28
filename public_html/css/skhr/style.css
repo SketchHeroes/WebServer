@@ -546,7 +546,11 @@ header.main
 }
 
 
-.popup .button_login, .popup .button_register, .popup .button_recover{
+.popup .button_login, 
+.popup .button_register, 
+.popup .button_recover, 
+.popup .button_verify,
+.popup .button_new_pass{
     background: #484848;
     border-radius: 15px 15px 15px 15px;
     color: #FFB400;

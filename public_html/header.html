@@ -370,8 +370,35 @@
                                 <a href="#" class="close">X</a>
                                 <h1>Password Recovery</h1>
                                 <p><input name="username_email" type="text" placeholder="Username / Email" required /></p> 
-                                <p class="error_msg" id="email_error"></p>
+                                <p class="error_msg" id="native_error"></p>
                                 <p><input name="" class="button_recover" type="button" value="Submit" /></p>
+                            </form>
+                        </div>
+                    </div>
+                
+            
+                    <div class="popup" id="popup_verify_code">
+                        <div class="inner_popup">
+                            <form>
+                                <a href="#" class="close">X</a>
+                                <h1>Verification</h1>
+                                <p><input name="verify_code" type="text" placeholder="Verification Code" required /></p> 
+                                <p class="error_msg" id="native_error"></p>
+                                <p><input name="" class="button_verify" type="button" value="Submit" /></p>
+                            </form>
+                        </div>
+                    </div>
+                
+            
+                    <div class="popup" id="popup_new_pass">
+                        <div class="inner_popup">
+                            <form>
+                                <a href="#" class="close">X</a>
+                                <h1>New Password</h1>
+                                <p><input name="password1" type="password" placeholder="Password" required /></p>
+                                <p><input name="password2" type="password" placeholder="Confirm password" required /></p> 
+                                <p class="error_msg" id="native_error"></p>
+                                <p><input name="" class="button_new_pass" type="button" value="Submit" /></p>
                             </form>
                         </div>
                     </div>
