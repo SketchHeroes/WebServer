@@ -61,7 +61,16 @@ $(function(){
                        );
         }
 
+        var promise_categories   = rest_caller.getCategories({});
         
+        promise_categories.done(
+            function(data)
+            {
+                template_generator.categories = data.categories;
+                template_generator.displayCategories(".main_menu #guides_link", template_generator.categories);
+                
+            });
+    
 //===============================PRIVACY POLICY=================================
 
 

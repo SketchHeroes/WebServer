@@ -293,6 +293,25 @@ RestCaller.prototype.getMessages = function(params)
 }; 
 
 
+RestCaller.prototype.getCategories= function(params)
+{
+    this.setResource("/tutorial_categories");
+    this.setVerb("GET");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("Accept","application/json");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    
+    this.clearRequestParams();
+    
+    this.setRequestParam("is_premium",0);
+    
+    return this.ajax();
+}; 
+
+
 RestCaller.prototype.getContentComments = function(params)
 {
     this.setResource("/content/comments");
@@ -2265,6 +2284,24 @@ TemplateGenerator.prototype.displayUserList= function(target, users)
         var service = new Service();
         service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
     }
+};   
+
+TemplateGenerator.prototype.displayCategories= function(target, categories)
+{
+    //alert(top_users[0].username);
+    var sub_menu = $('<ul class="sub-menu">');
+    
+    $.each(categories, function( index, category ) 
+        {
+            var li = $('<li></li>');
+                
+                var link = $('<a href="category.html?category='+category.tutorial_category_id+'">'+category.title+'</a>');
+                li.append(link);       
+            
+            sub_menu.append(li);
+        });
+        
+    $(target).append(sub_menu);   
 };   
 
 
