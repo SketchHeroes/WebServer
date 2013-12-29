@@ -454,6 +454,40 @@ header.main
     margin: 0px 0px 0px -255px; 
 }
 
+#popup_verify
+{
+    width: 490px;
+    height: 450px;
+	
+    padding: 0px 0px 0px 0px;
+    background: #C3C3C3;
+
+    top: 30px;
+    left:50%;
+
+    border: 3px solid #000000;
+    border-radius: 10px 10px 10px 10px;
+
+    margin: 0px 0px 0px -255px; 
+}
+
+#popup_new_pass
+{
+    width: 490px;
+    height: 350px;
+	
+    padding: 0px 0px 0px 0px;
+    background: #C3C3C3;
+
+    top: 30px;
+    left:50%;
+
+    border: 3px solid #000000;
+    border-radius: 10px 10px 10px 10px;
+
+    margin: 0px 0px 0px -255px; 
+}
+
 #popup_register
 {
     width: 490px;
@@ -491,6 +525,41 @@ header.main
     width: 600px;
     height: 500px;
 
+}
+
+#popup_notice
+{
+    width: 300px;
+    /*height: 100px;*/
+	
+    padding: 0px 0px 0px 0px;
+    background: #FFFFFF;
+
+    top: 250px;
+    left:50%;
+
+    border: 10px solid grey;
+    border-radius: 0px 0px 0px 0px;
+
+    margin: 0px 0px 0px -150px; 
+    
+    font-weight: bold;
+}
+
+
+#popup_notice .inner_popup
+{
+    margin: 10px 10px 10px 10px; 
+    text-align: center;
+    vertical-align: central;
+    font-size: 15px;
+}
+
+#popup_notice .inner_popup .message
+{
+    margin: 0px 0px 0px 0px; 
+    text-align: center;
+    vertical-align: central;
 }
 
 

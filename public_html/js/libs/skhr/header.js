@@ -407,12 +407,10 @@ $(".options #logout").click(function(e)
        $(".forgot_pass a").click(function(e) 
         { 
             //alert($("#popup_login input[name=username_email]").val());
-            $("#popup_login #native_error").text('');
+            $("#popup_recover #native_error").text('');
             
             $(".popup").fadeOut();
-            
-            var target = $(e.target); 
-            
+            $("#popup_recover #native_error").text('');
             $("#popup_recover").fadeIn(); 
 
         });
@@ -437,26 +435,31 @@ $(".options #logout").click(function(e)
 
             var username_email = $("#popup_recover input[name=username_email]").val();
 
+            //$("#popup_recover").fadeOut(); 
             // if username
             if (account.reg_username.test(username_email) )
             {
                 //alert(username_email+' = username');
-                var promise_login = rest_caller.userPasswordChangeUsername({"username":username_email});
-                    
+                var promise_recover = rest_caller.userPasswordChangeUsername({"username":username_email});
+                 
+                $("#popup_notice").fadeIn();
+                $("#popup_notice .inner_popup .message").text('Cheking...');
                 // successful
-                promise_login.done(
+                promise_recover.done(
                     function(data)
                     {
-                        template_generator.user_credentials = data.user;
-                        handleLogin(data, rest_caller, template_generator);
-
-                        $("#popup_recover").fadeOut(); 
+                        $("#popup_notice .inner_popup .message").text('Message with verification code has been sent to your email');
+                        $("#popup_notice").delay(2000).fadeOut();
+                        $("#popup_recover").fadeOut();
+                        $("#popup_verify #native_error").text('');
                         $("#popup_verify").fadeIn(); 
                     });
 
-                promise_login.fail(
+                promise_recover.fail(
                     function(data)
                     {
+                        
+                        $("#popup_notice").fadeOut();
                         $("#popup_recover #native_error").text(JSON.parse(data.responseText).error.message);
                     });
             }
@@ -467,21 +470,23 @@ $(".options #logout").click(function(e)
                 {
                     //alert(username_email+' = email');
 
-                    var promise_login = rest_caller.userPasswordChangeEmail({"email":username_email});
-
-                    promise_login.done(
+                    var promise_recover = rest_caller.userPasswordChangeEmail({"email":username_email});
+                    
+                    $("#popup_notice").fadeIn();
+                    $("#popup_notice .inner_popup .message").text('Cheking...');
+                    promise_recover.done(
                         function(data)
                         {
-                            template_generator.user_credentials = data.user;
-                            handleLogin(data, rest_caller, template_generator);
-
-                            $("#popup_recover").fadeOut(); 
+                            $("#popup_notice .inner_popup .message").text('Message with verification code has been sent to your email');
+                            $("#popup_notice").delay(2000).fadeOut();
+                            $("#popup_recover").fadeOut();
                             $("#popup_verify").fadeIn();  
                         });
                         
-                    promise_login.fail(
+                    promise_recover.fail(
                         function(data)
                         {
+                            $("#popup_notice").fadeOut();
                             $("#popup_recover #native_error").text(JSON.parse(data.responseText).error.message);
                         });
                 }
@@ -493,6 +498,14 @@ $(".options #logout").click(function(e)
 
         });
         
+        
+
+        $("#popup_recover .close").click(function(e) { 
+                e.preventDefault();
+                $("#popup_recover").fadeOut(); 
+                $("body .overlay").remove();
+       }); 
+        
         //-------------------VERIFY---------------------------------------------
         $('.button_verify').click(function(e){
             
@@ -502,21 +515,59 @@ $(".options #logout").click(function(e)
             //alert($("#popup_login input[name=username_email]").val());
             $("#popup_verify #native_error").text('');
             
-            var code = $("#popup_recover input[name=verify_code]").val();
+            var code        = $("#popup_verify input[name=verify_code]").val();
+            var password1   = $("#popup_verify input[name=password1]").val();
+            var password2   = $("#popup_verify input[name=password2]").val();
             
-            if( code.length > 0 )
-            {
-                localStorage.code = code;
-                $("#popup_verify").fadeOut(); 
-                $("#popup_new_pass").fadeIn();  
-            }
-            else
+            
+            if( code.length <= 0 )
             {
                 $("#popup_verify #native_error").text('Please enter verification code');
+                return;
             }
             
-        });
+            if(!account.reg_password.test(password1)){
+                $("#popup_verify #native_error").text("Invalid password");
+                return;
+            }
             
+            if(password1 !== password2){
+                $("#popup_verify #native_error").text("Password confirm do not much");
+                return;
+            }
+            
+            $("#popup_notice").fadeIn();
+            $("#popup_notice .inner_popup .message").text('Cheking...');
+            
+            var promise_pass_change = rest_caller.userVerifyPassChange({"code":code,"password":password1});
+                    
+            // Verify successful
+            promise_pass_change.done(
+                function(data)
+                {
+                    $("#popup_notice .inner_popup .message").text('Your password has been successfully changed');
+                    $("#popup_notice").delay(2000).fadeOut();
+                    $("#popup_verify").fadeOut(); 
+                    $("body .overlay").remove();  
+                });
+            
+            promise_pass_change.fail(
+                function(data)
+                {
+                    $("#popup_notice").fadeOut();
+                    $("#popup_verify #native_error").text(JSON.parse(data.responseText).error.message);
+                });
+            
+        });
+        
+        
+
+        $("#popup_verify .close").click(function(e) { 
+                e.preventDefault();
+                $("#popup_verify").fadeOut(); 
+                $("body .overlay").remove();
+       }); 
+    /*
         //------------------ENTER NEW PASS--------------------------------------
         $('.button_new_pass').click(function(e){
             
@@ -555,7 +606,15 @@ $(".options #logout").click(function(e)
                     $("#popup_new_pass #native_error").text(JSON.parse(data.responseText).error.message);
                 });
         });
+        
+        
 
+        $("#popup_new_pass .close").click(function(e) { 
+                e.preventDefault();
+                $("#popup_new_pass").fadeOut(); 
+                $("body .overlay").remove();
+       }); 
+*/
 //------------------------------------- REGISTERING------------------------------
 
 
