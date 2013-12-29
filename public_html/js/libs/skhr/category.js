@@ -87,6 +87,7 @@ $(function(){
                 template_generator.category_tutorials = data.tutorials; 
                 var length = data.total_count;
                 //alert(length);
+                first_in_range = 0;
                 last_page = Math.floor((length-1)/(tutorials_per_part*2));
                 displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
                 outlinePage(gallery_page);
@@ -146,6 +147,7 @@ $(function(){
                     var length = data.total_count;
                     last_page = Math.floor((length-1)/(tutorials_per_part*2));
                     gallery_page = 0;
+                    first_in_range = 0;
                     displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
                     outlinePage(gallery_page);
                     //alert(last_page);
@@ -207,9 +209,10 @@ $(function(){
                     var length = data.total_count;
                     last_page = Math.floor((length-1)/(tutorials_per_part*2));
                     gallery_page = 0;
+                    first_in_range = 0;
                     displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
                     outlinePage(gallery_page);
-                    //alert(last_page);
+                    alert(last_page);
                 
                     template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
                                                                 ".category_tutorials .second_part", 
@@ -421,6 +424,7 @@ function switchActive(li)
 
 function outlinePage(page)
 {
+    //alert(page);
     $(".category_tutorials .navigator [id^=page]").css('border','1px red hidden');
     $(".category_tutorials .navigator [id=page"+page+"]").css('border','1px red solid');
 }
