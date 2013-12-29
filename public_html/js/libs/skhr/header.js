@@ -805,7 +805,7 @@ $(".options #logout").click(function(e)
 
         // user tutorials period buttons
 
-        $( ".expandable_period .sub-menu a" ).click(function(event) {
+        $( ".leaderboard_menu_list .expandable_period .sub-menu a" ).click(function(event) {
 
             $("#popup_leaderboard #leader_list").fadeOut();
             //alert($("#leader_list").attr('id'));

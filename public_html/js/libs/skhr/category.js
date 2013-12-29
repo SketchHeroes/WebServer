@@ -71,18 +71,22 @@ $(function(){
     var tutorial_filter = $( ".category_menu_list > li > img.active" ).attr('id');
     var promise_category_tutorials;
 
-    promise_category_tutorials = getCategoryTutorialsByFilter({
-                                                                    "category_id":category_id, 
-                                                                    "tutorial_filter":tutorial_filter,
-                                                                    "like":like
-                                                                }); 
+    template_generator.category_tutorials_query_array = {
+                                                            "start":gallery_page*tutorials_per_part*2,
+                                                            "how_many":tutorials_per_part*2,
+                                                            "category_id":category_id, 
+                                                            "tutorial_filter":tutorial_filter,
+                                                            "like":like
+                                                        }; 
+                                                                
+    promise_category_tutorials = getCategoryTutorialsByFilter(template_generator.category_tutorials_query_array);
 
     promise_category_tutorials.done(
             function(data)
             {
                 template_generator.category_tutorials = data.tutorials; 
-
-                var length = template_generator.category_tutorials.length;
+                var length = data.total_count;
+                //alert(length);
                 last_page = Math.floor((length-1)/(tutorials_per_part*2));
                 displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
                 outlinePage(gallery_page);
@@ -125,18 +129,21 @@ $(function(){
             {
                 $(".category .gallery").fadeOut();
                 var tutorial_filter = $( ".category_menu_list > li > img.active" ).attr('id');
-                var promise_category_tutorials = getCategoryTutorialsByFilter({
-                                                                                "category_id":category_id, 
-                                                                                "tutorial_filter":tutorial_filter,
-                                                                                "like":like
-                                                                                }); 
+                template_generator.category_tutorials_query_array = {
+                                                                        "start":gallery_page*tutorials_per_part*2,
+                                                                        "how_many":tutorials_per_part*2,
+                                                                        "category_id":category_id, 
+                                                                        "tutorial_filter":tutorial_filter,
+                                                                        "like":like
+                                                                    };
+                var promise_category_tutorials = getCategoryTutorialsByFilter(template_generator.category_tutorials_query_array); 
                 
                 promise_category_tutorials.done(
                 function(data)
                 {
                     template_generator.category_tutorials = data.tutorials; 
 
-                    var length = template_generator.category_tutorials.length;
+                    var length = data.total_count;
                     last_page = Math.floor((length-1)/(tutorials_per_part*2));
                     gallery_page = 0;
                     displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
@@ -162,7 +169,7 @@ $(function(){
 
     // user tutorials period buttons
 
-    $( ".expandable_period .sub-menu a" ).click(function(event) {
+    $( ".category_menu_list .expandable_period .sub-menu a" ).click(function(event) {
         
         $(".category .gallery").fadeOut();
         var period  =  event.target.id;
@@ -172,25 +179,32 @@ $(function(){
         var promise_category_tutorials;
         
         if(period === "all_time")
-            promise_category_tutorials = getCategoryTutorialsByFilter({
+            template_generator.category_tutorials_query_array =     {
+                                                                        "start":gallery_page*tutorials_per_part*2,
+                                                                        "how_many":tutorials_per_part*2,
                                                                         "category_id":category_id, 
                                                                         "tutorial_filter":tutorial_filter,
                                                                         "like":like
-                                                                    }); 
+                                                                    }; 
         else
-            promise_category_tutorials = getCategoryTutorialsByFilter({
+            template_generator.category_tutorials_query_array =     {
+                                                                        "start":gallery_page*tutorials_per_part*2,
+                                                                        "how_many":tutorials_per_part*2,
                                                                         "category_id":category_id, 
                                                                         "tutorial_filter":tutorial_filter, 
                                                                         "period":period,
                                                                         "like":like
-                                                                    }); 
+                                                                    }; 
+                                                                
+        
+        promise_category_tutorials = getCategoryTutorialsByFilter(template_generator.category_tutorials_query_array);
 
         promise_category_tutorials.done(
                 function(data)
                 {
                     template_generator.category_tutorials = data.tutorials; 
 
-                    var length = template_generator.category_tutorials.length;
+                    var length = data.total_count;
                     last_page = Math.floor((length-1)/(tutorials_per_part*2));
                     gallery_page = 0;
                     displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
@@ -212,20 +226,30 @@ $(function(){
             gallery_page--;
             
             $(".category .gallery").fadeOut();
-              
-            template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
-                                                        ".category_tutorials .second_part", 
-                                                        tutorials_per_part, 
-                                                        gallery_page);
             
-            if(gallery_page<first_in_range)
-            {
-                first_in_range = gallery_page;
-                displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
-            }
-            outlinePage(gallery_page);
+            template_generator.category_tutorials_query_array['start'] = gallery_page*tutorials_per_part*2,  
+            promise_category_tutorials = getCategoryTutorialsByFilter(template_generator.category_tutorials_query_array);
+
+            promise_category_tutorials.done(
+                    function(data)
+                    {
+                        template_generator.category_tutorials = data.tutorials;
+                        
+                        template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
+                                                                    ".category_tutorials .second_part", 
+                                                                    tutorials_per_part, 
+                                                                    gallery_page);
+
+                        if(gallery_page<first_in_range)
+                        {
+                            first_in_range = gallery_page;
+                            displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
+                        }
+                        outlinePage(gallery_page);
+
+                        $(".category .gallery").fadeIn();
             
-            $(".category .gallery").fadeIn();
+                    });
         }
         
     });
@@ -238,22 +262,32 @@ $(function(){
             gallery_page++;
             
             $(".category .gallery").fadeOut();
-              
-            template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
-                                                        ".category_tutorials .second_part", 
-                                                        tutorials_per_part, 
-                                                        gallery_page);
-            
-            if(gallery_page>=first_in_range+nav_pages_length)
-            {
-                first_in_range = gallery_page;
-                displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
-            }
-                                                        
-            outlinePage(gallery_page);
             
             
-            $(".category .gallery").fadeIn();
+            template_generator.category_tutorials_query_array['start'] = gallery_page*tutorials_per_part*2,  
+            promise_category_tutorials = getCategoryTutorialsByFilter(template_generator.category_tutorials_query_array);
+
+            promise_category_tutorials.done(
+                    function(data)
+                    {  
+                        template_generator.category_tutorials = data.tutorials;
+                        
+                        template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
+                                                                    ".category_tutorials .second_part", 
+                                                                    tutorials_per_part, 
+                                                                    gallery_page);
+            
+                        if(gallery_page>=first_in_range+nav_pages_length)
+                        {
+                            first_in_range = gallery_page;
+                            displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
+                        }
+
+                        outlinePage(gallery_page);
+
+
+                        $(".category .gallery").fadeIn();
+                    });
         }
     });
     
@@ -264,22 +298,32 @@ $(function(){
             gallery_page = 0;
             
             $(".category .gallery").fadeOut();
-              
-            template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
-                                                        ".category_tutorials .second_part", 
-                                                        tutorials_per_part, 
-                                                        gallery_page);
-            
-            if(gallery_page<first_in_range)
-            {
-                first_in_range = gallery_page;
-                displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
-            }
-                                                        
-            outlinePage(gallery_page);
             
             
-            $(".category .gallery").fadeIn();
+            template_generator.category_tutorials_query_array['start'] = gallery_page*tutorials_per_part*2,  
+            promise_category_tutorials = getCategoryTutorialsByFilter(template_generator.category_tutorials_query_array);
+
+            promise_category_tutorials.done(
+                    function(data)
+                    {  
+                        template_generator.category_tutorials = data.tutorials;
+                          
+                        template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
+                                                                    ".category_tutorials .second_part", 
+                                                                    tutorials_per_part, 
+                                                                    gallery_page);
+
+                        if(gallery_page<first_in_range)
+                        {
+                            first_in_range = gallery_page;
+                            displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
+                        }
+
+                        outlinePage(gallery_page);
+
+
+                        $(".category .gallery").fadeIn();
+                    });
         }
         
     });
@@ -292,22 +336,31 @@ $(function(){
             gallery_page = last_page;
             
             $(".category .gallery").fadeOut();
-              
-            template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
-                                                        ".category_tutorials .second_part", 
-                                                        tutorials_per_part, 
-                                                        gallery_page);
             
-            if(gallery_page>=first_in_range+nav_pages_length)
-            {
-                first_in_range = gallery_page;
-                displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
-            }
-                                                        
-            outlinePage(gallery_page);
-            
-            $(".category .gallery").fadeIn();
-            
+            template_generator.category_tutorials_query_array['start'] = gallery_page*tutorials_per_part*2,        
+            promise_category_tutorials = getCategoryTutorialsByFilter(template_generator.category_tutorials_query_array);
+
+            promise_category_tutorials.done(
+                    function(data)
+                    {  
+                        template_generator.category_tutorials = data.tutorials;
+                          
+                        template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
+                                                                    ".category_tutorials .second_part", 
+                                                                    tutorials_per_part, 
+                                                                    gallery_page);
+
+                        if(gallery_page>=first_in_range+nav_pages_length)
+                        {
+                            first_in_range = gallery_page;
+                            displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
+                        }
+
+                        outlinePage(gallery_page);
+
+                        $(".category .gallery").fadeIn();
+                    });
+
         }
     });
     
@@ -323,15 +376,23 @@ $(function(){
             gallery_page = new_page;
             
             $(".category .gallery").fadeOut();
-              
-            template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
-                                                        ".category_tutorials .second_part", 
-                                                        tutorials_per_part, 
-                                                        gallery_page);
-                                                        
-            outlinePage(gallery_page);
             
-            $(".category .gallery").fadeIn();
+            template_generator.category_tutorials_query_array['start'] = gallery_page*tutorials_per_part*2,        
+            promise_category_tutorials = getCategoryTutorialsByFilter(template_generator.category_tutorials_query_array);
+
+            promise_category_tutorials.done(
+                    function(data)
+                    {  
+                        template_generator.category_tutorials = data.tutorials;  
+                        template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
+                                                                    ".category_tutorials .second_part", 
+                                                                    tutorials_per_part, 
+                                                                    gallery_page);
+
+                        outlinePage(gallery_page);
+
+                        $(".category .gallery").fadeIn();
+                    });
         }
         
     });
@@ -387,6 +448,8 @@ function getCategoryTutorialsByFilter(params)
         case "featured":
             promise_category_tutorials = rest_caller.getCategoryTutorials(
                                                             {
+                                                                "start":params["start"],
+                                                                "how_many":params["how_many"],
                                                                 "tutorial_category_id":params['category_id'],
                                                                 "featured":1,
                                                                 "like":params['like']
@@ -396,6 +459,8 @@ function getCategoryTutorialsByFilter(params)
         case "recent":
             promise_category_tutorials = rest_caller.getCategoryTutorials(
                                                                 {
+                                                                    "start":params["start"],
+                                                                    "how_many":params["how_many"],
                                                                     "tutorial_category_id":params['category_id'],
                                                                     "like":params['like']
                                                                 });
@@ -408,6 +473,8 @@ function getCategoryTutorialsByFilter(params)
             { 
                 
                 promise_category_tutorials = rest_caller.getCategoryTutorials({
+                                                                "start":params["start"],
+                                                                "how_many":params["how_many"],
                                                                 "tutorial_category_id":params['category_id'],
                                                                 "tutorial_count":{"count_views_skhr":"DESC"},
                                                                 "like":params['like']
@@ -417,6 +484,8 @@ function getCategoryTutorialsByFilter(params)
             else
             {
                 promise_category_tutorials = rest_caller.getCategoryTutorials({
+                                                                "start":params["start"],
+                                                                "how_many":params["how_many"],
                                                                 "tutorial_category_id":params['category_id'],
                                                                 "time_constraint":params['period'],
                                                                 "tutorial_count":{"count_views_skhr":"DESC"},
@@ -428,6 +497,8 @@ function getCategoryTutorialsByFilter(params)
         default:
             promise_category_tutorials = rest_caller.getCategoryTutorials(
                                                                 {
+                                                                    "start":params["start"],
+                                                                    "how_many":params["how_many"],
                                                                     "tutorial_category_id":params['category_id'],
                                                                     "like":params['like']
                                                                 });

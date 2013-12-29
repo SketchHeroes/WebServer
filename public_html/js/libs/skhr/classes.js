@@ -8,9 +8,10 @@
 
 function RestCaller()
 {
-    this.domain             = "http://serverkizidev-env.elasticbeanstalk.com"
-    //this.domain             = "http://local.foo.com/Server";
-    this.cross_domain       = true;
+    //this.domain             = "http://serverkizidev-env.elasticbeanstalk.com"
+    this.domain             = "http://local.foo.com/Server";
+    //this.cross_domain       = true;
+    this.cross_domain       = false;
     this.verb               = null;
     this.cache              = false;
     this.content_data_type  = 'application/json; charset=UTF-8';
@@ -2500,11 +2501,11 @@ TemplateGenerator.prototype.displayTwoPartGallery= function(part_one_target, par
     
     this.removeGallery(part_one_target);
     this.addGallery(part_one_target, tutorials_per_part);
-    this.displayTutorialGallery(part_one_target, this.category_tutorials.slice(page*tutorials_per_part*2,page*tutorials_per_part*2+tutorials_per_part));
+    this.displayTutorialGallery(part_one_target, this.category_tutorials.slice(0,tutorials_per_part));
 
     this.removeGallery(part_two_target);
     this.addGallery(part_two_target, tutorials_per_part);
-    this.displayTutorialGallery(part_two_target, this.category_tutorials.slice(page*tutorials_per_part*2+tutorials_per_part,page*tutorials_per_part*2+tutorials_per_part*2));
+    this.displayTutorialGallery(part_two_target, this.category_tutorials.slice(tutorials_per_part,tutorials_per_part*2));
 
     /*
     var account = new Account();          
