@@ -42,7 +42,7 @@ $(function(){
         var leader_board_length  = 50;
         
         // configurations for member navigation
-        var members_per_page = 4;
+        var members_per_page = 5;
         var members_gallery_page = 0;
         var members_nav_pages_length = 5;
         var members_first_in_range = 0;
@@ -877,10 +877,10 @@ $(".options #logout").click(function(e)
                             members_last_page = Math.floor((length-1)/(members_per_page));
                             displayMembersPagination("#popup_members .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
                             outlineMembersPage(members_gallery_page);
-                            //alert(last_page);
+                            alert(members_last_page);
 
                             var promise_users = rest_caller.getUsers({  "start":members_gallery_page*members_per_page,
-                                                                        "how_many":members_gallery_page*members_per_page+members_per_page,
+                                                                        "how_many":members_per_page,
                                                                         "user_related_data":{
                                                                                                 "user_followed":"user_followed",
                                                                                                 "user_follows":"user_follows",
@@ -916,7 +916,7 @@ $(".options #logout").click(function(e)
                                     $("#members_list").fadeOut();
 
                                     var promise_users = rest_caller.getUsers({  "start":members_gallery_page*members_per_page,
-                                                                        "how_many":members_gallery_page*members_per_page+members_per_page,
+                                                                        "how_many":members_per_page,
                                                                         "user_related_data":{
                                                                                                 "user_followed":"user_followed",
                                                                                                 "user_follows":"user_follows",
@@ -937,16 +937,16 @@ $(".options #logout").click(function(e)
 
                                                    //alert(tutorial_filter);
 
+                                                    if(members_gallery_page<members_first_in_range)
+                                                    {
+                                                        members_first_in_range = members_gallery_page;
+                                                        displayMembersPagination("#popup_members .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
+                                                    }
+                                                    outlineMembersPage(members_gallery_page);
+
+                                                    $("#members_list").fadeIn();
+
                                                }); 
-
-                                    if(members_gallery_page<members_first_in_range)
-                                    {
-                                        members_first_in_range = members_gallery_page;
-                                        displayMembersPagination("#popup_members .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
-                                    }
-                                    outlineMembersPage(members_gallery_page);
-
-                                    $("#members_list").fadeIn();
                                 }
 
                             });
@@ -961,7 +961,7 @@ $(".options #logout").click(function(e)
                                     $("#members_list").fadeOut();
 
                                     var promise_users = rest_caller.getUsers({  "start":members_gallery_page*members_per_page,
-                                                                        "how_many":members_gallery_page*members_per_page+members_per_page,
+                                                                        "how_many":members_per_page,
                                                                         "user_related_data":{
                                                                                                 "user_followed":"user_followed",
                                                                                                 "user_follows":"user_follows",
@@ -982,18 +982,18 @@ $(".options #logout").click(function(e)
 
                                                    //alert(tutorial_filter);
 
+                                                    if(members_gallery_page>=members_first_in_range+members_nav_pages_length)
+                                                    {
+                                                        members_first_in_range = members_gallery_page;
+                                                        displayMembersPagination("#popup_members  .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
+                                                    }
+
+                                                    outlineMembersPage(members_gallery_page);
+
+
+                                                    $("#members_list").fadeIn();
+
                                                }); 
-
-                                    if(members_gallery_page>=members_first_in_range+members_nav_pages_length)
-                                    {
-                                        members_first_in_range = members_gallery_page;
-                                        displayMembersPagination("#popup_members  .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
-                                    }
-
-                                    outlineMembersPage(members_gallery_page);
-
-
-                                    $("#members_list").fadeIn();
                                 }
                             });
 
@@ -1006,7 +1006,7 @@ $(".options #logout").click(function(e)
                                     $("#members_list").fadeOut();
 
                                     var promise_users = rest_caller.getUsers({  "start":members_gallery_page*members_per_page,
-                                                                        "how_many":members_gallery_page*members_per_page+members_per_page,
+                                                                        "how_many":members_per_page,
                                                                         "user_related_data":{
                                                                                                 "user_followed":"user_followed",
                                                                                                 "user_follows":"user_follows",
@@ -1027,18 +1027,18 @@ $(".options #logout").click(function(e)
 
                                                    //alert(tutorial_filter);
 
+                                                    if(members_gallery_page<members_first_in_range)
+                                                    {
+                                                        members_first_in_range = members_gallery_page;
+                                                        displayMembersPagination("#popup_members  .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
+                                                    }
+
+                                                    outlineMembersPage(members_gallery_page);
+
+
+                                                    $("#members_list").fadeIn();
+
                                                }); 
-
-                                    if(members_gallery_page<members_first_in_range)
-                                    {
-                                        members_first_in_range = members_gallery_page;
-                                        displayMembersPagination("#popup_members  .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
-                                    }
-
-                                    outlineMembersPage(members_gallery_page);
-
-
-                                    $("#members_list").fadeIn();
                                 }
 
                             });
@@ -1050,12 +1050,12 @@ $(".options #logout").click(function(e)
                                 {
                                     members_gallery_page = members_last_page;
                                     
-                                    //alert('members_last_page: '+members_last_page);
+                                    //alert('members_last_page: '+members_last_page+' members_gallery_page: '+members_gallery_page);
 
                                     $("#members_list").fadeOut();
 
                                     var promise_users = rest_caller.getUsers({  "start":members_gallery_page*members_per_page,
-                                                                        "how_many":members_gallery_page*members_per_page+members_per_page,
+                                                                        "how_many":members_per_page,
                                                                         "user_related_data":{
                                                                                                 "user_followed":"user_followed",
                                                                                                 "user_follows":"user_follows",
@@ -1076,17 +1076,17 @@ $(".options #logout").click(function(e)
 
                                                    //alert(tutorial_filter);
 
+                                                    if(members_gallery_page>=members_first_in_range+members_nav_pages_length)
+                                                    {
+                                                        members_first_in_range = members_gallery_page;
+                                                        displayMembersPagination("#popup_members  .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
+                                                    }
+
+                                                    outlineMembersPage(members_gallery_page);
+
+                                                    $("#members_list").fadeIn();
+
                                                }); 
-
-                                    if(members_gallery_page>=members_first_in_range+members_nav_pages_length)
-                                    {
-                                        members_first_in_range = members_gallery_page;
-                                        displayMembersPagination("#popup_members  .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
-                                    }
-
-                                    outlineMembersPage(members_gallery_page);
-
-                                    $("#members_list").fadeIn();
 
                                 }
                             });
@@ -1105,7 +1105,7 @@ $(".options #logout").click(function(e)
                                     $("#members_list").fadeOut();
 
                                     var promise_users = rest_caller.getUsers({  "start":members_gallery_page*members_per_page,
-                                                                        "how_many":members_gallery_page*members_per_page+members_per_page,
+                                                                        "how_many":members_per_page,
                                                                         "user_related_data":{
                                                                                                 "user_followed":"user_followed",
                                                                                                 "user_follows":"user_follows",
@@ -1126,11 +1126,11 @@ $(".options #logout").click(function(e)
 
                                                    //alert(tutorial_filter);
 
+                                                    outlineMembersPage(members_gallery_page);
+
+                                                    $("#members_list").fadeIn();
+
                                                }); 
-
-                                    outlineMembersPage(members_gallery_page);
-
-                                    $("#members_list").fadeIn();
                                 }
 
                             });
@@ -1797,7 +1797,7 @@ function fb_login(rest_caller,template_generator, target)
 function outlineMembersPage(page)
 {
     $("#popup_members .navigator [id^=page]").css('border','1px red hidden');
-    $("#popup_members .navigator [id=page"+page+"]").css('border','1px red solid');
+    $("#popup_members .navigator [value="+(page+1)+"]").css('border','1px red solid');
 }
 
 function displayMembersPagination(navigator_target, nav_pages_length, page, last_page, first_in_range)
