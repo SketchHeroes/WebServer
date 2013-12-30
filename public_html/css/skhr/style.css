@@ -562,6 +562,165 @@ header.main
     vertical-align: central;
 }
 
+#popup_ipad
+{
+    width: 700px;
+    height: 510px;
+	
+    padding: 0px 0px 0px 0px;
+    background: #FABC49;
+
+    top: 30px;
+    left:50%;
+    
+    color: #754D24;
+    font-weight: bold;
+    
+    border-radius: 10px 10px 10px 10px;
+
+    margin: 0px 0px 0px -350px; 
+}
+
+#popup_ipad header
+{
+    width: 100%;
+    height: 100px;
+	
+    padding: 0px 0px 0px 0px;
+    /*background: #C3C3C3;*/
+
+    margin: 0px 0px 0px 0px; 
+}
+
+#popup_ipad header #heading
+{
+    float: left;
+    
+    padding: 0px 0px 0px 0px;
+    font-weight: bold;
+    font-size: 30px;
+    /*background: #C3C3C3;*/
+
+    margin: 30px 0px 10px 10px; 
+}
+
+#popup_ipad section
+{
+    width: 100%;
+    height: 300px;
+	
+    padding: 0px 0px 0px 0px;
+    background: #A4D5E2;
+
+    margin: 0px 0px 0px 0px; 
+}
+
+#popup_ipad section article
+{
+    float: left;
+    
+    width: 400px;
+    height: 300px;
+	
+    padding: 0px 0px 0px 0px;
+    background: #A4D5E2;
+
+    margin: 0px 0px 0px 0px; 
+    
+    background-image: url(../../images/ipad.png);
+    background-size:100% 100%;
+}
+
+#popup_ipad section aside
+{
+    width: 300px;
+    height: 300px;
+	
+    padding: 0px 0px 0px 0px;
+    background: #A4D5E2;
+    
+    border: 3px #C18D33 solid;
+
+    margin: 0px 0px 0px 400px; 
+}
+
+#popup_ipad section aside #desc
+{
+    padding: 0px 0px 0px 0px;
+
+    margin: 10px 10px 10px 10px; 
+}
+
+
+#popup_ipad section aside #desc h3
+{
+    font-weight: bold;
+    margin: 10px 0px 10px 0px;
+}
+
+
+#popup_ipad section aside #desc ul
+{
+    font-weight: bold;
+    list-style-position:inside;
+    color: #FABC49;
+}
+
+
+#popup_ipad section aside #desc ul li
+{
+    font-weight: bold;
+    margin: 10px 0px 10px 0px;
+}
+
+#popup_ipad footer
+{
+    width: 100%;
+    height: 100px;
+	
+    padding: 0px 0px 0px 0px;
+    /*background: #C3C3C3;*/
+    
+    background: url(../../images/ipad_footer_bg.png) left top 0 no-repeat;
+    background-size:100% 80px;
+
+    margin: 0px 0px 0px 0px; 
+}
+
+#popup_ipad footer #input
+{
+    
+    margin: 25px 80px 0px 100px; 
+}
+
+#popup_ipad footer #input input[type=text]
+{
+    
+    height: 40px;
+    width: 380px;
+    
+    font-weight: bold;
+    font-size: 30px;
+    
+    padding-left: 40px;
+    
+    background: #FFFFFF url(../../images/email.png) 5px 5px no-repeat;
+    background-size:35px 25px;
+}
+
+#popup_ipad footer #input input[type=button]
+{
+    
+    height: 40px;
+    width: 120px;
+    
+    background: #71BF44;
+    border: 1px solid;
+    border-radius: 15px 15px 15px 15px;
+    color: #754D24;
+    font-size: 25px;
+}
+
 
 .popup form{  
     background: #C3C3C3;

@@ -48,6 +48,16 @@ $(function(){
         var members_first_in_range = 0;
         var members_last_page = 0;
         
+        var isiPad = navigator.userAgent.match(/iPad/i) != null;
+        if( isiPad && !sessionStorage.ipad_application_sent )
+        {
+            //alert("ipad");
+            $("#popup_ipad").fadeIn();
+        }
+        else
+        {
+            //alert("NOT ipad: "+navigator.userAgent);
+        }
         //$('.searchoform').attr("action","category.html?filter=recent&like="+$("#search_text").val());
         
         if( account.isLoggedIn() )
@@ -69,7 +79,50 @@ $(function(){
                 template_generator.categories = data.categories;
                 template_generator.displayCategories(".main_menu #guides_link", template_generator.categories);
                 
-            });
+            }); 
+
+
+//===============================submit email for iPad app======================
+
+        $('body').on('click', '.button_ipad', function(e)
+        { 
+            var email = $("#popup_ipad input[name=email]").val().replace(" ", "");
+
+            if(!account.reg_email.test(email) ){
+                $("#popup_ipad #email_error").text("Invalid email address");
+                return;
+            }
+
+            var promise_send_mail = rest_caller.postEmail({
+                                                            "name":email+" applicant",
+                                                            "email":email,
+                                                            "subject":"iPad app application",
+                                                            "message":"I would like to be an iPad user, my email is: "+email,
+
+                                                        }); 
+
+            promise_send_mail.done(
+                function(data)
+                {  
+                    //alert('send successful');
+                    sessionStorage.ipad_application_sent = 1;
+                    $("#popup_ipad").fadeOut(); 
+                    $("body .overlay").remove();
+
+                });
+
+            promise_send_mail.fail(
+                function(data)
+                {  
+                    $("#popup_ipad #email_error").text(JSON.parse(data.responseText).error.message);
+                });
+        });
+        
+        $("#popup_ipad .close").click(function(e) { 
+                e.preventDefault();
+                $("#popup_ipad").fadeOut(); 
+                $("body .overlay").remove();
+        });  
     
 //===============================PRIVACY POLICY=================================
 
@@ -1395,24 +1448,24 @@ $(".options #logout").click(function(e)
                 $("body .overlay").remove();
         }); 
     });
+
+
+
+    //===============================guides_button==================================
+
+    $('body').on('click', '#button_guides', function(e)
+    { 
+        window.location.assign("category.html");
+    });
+
+    //===============================guides_home====================================
+
+    $('body').on('click', '#button_home', function(e)
+    { 
+        window.location.assign("index.html");
+    });  
     
 });
-
-
-
-//===============================guides_button==================================
-
-$('body').on('click', '#button_guides', function(e)
-{ 
-    window.location.assign("category.html");
-});
-
-//===============================guides_home====================================
-
-$('body').on('click', '#button_home', function(e)
-{ 
-    window.location.assign("index.html");
-});   
    
 //=====================================FUNCTIONS================================
 
