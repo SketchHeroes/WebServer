@@ -429,9 +429,9 @@ function switchActive(li)
 
 function outlinePage(page)
 {
-    //alert(page);
+    //alert(page+1);
     $(".category_tutorials .navigator [id^=page]").css('border','1px red hidden');
-    $(".category_tutorials .navigator [id=page"+page+"]").css('border','1px red solid');
+    $(".category_tutorials .navigator [value="+(page+1)+"]").css('border','1px red solid');
 }
 
 function displayPagination(navigator_target, nav_pages_length, page, last_page, first_in_range)
