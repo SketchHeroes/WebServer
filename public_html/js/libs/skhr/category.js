@@ -112,7 +112,8 @@ $(function(){
         $( ".category_menu_list > li > img" ).click(function(event) {
 
             event.stopPropagation(); 
-
+            //alert("pressed");
+            
             var li = $(event.target).parent();
             
             if( !$("#"+li.attr('id')+" > img").hasClass('active') )
@@ -124,10 +125,14 @@ $(function(){
             
             if( li.hasClass("expandable_period") )
             {
+                //alert("expandable");
                 $("#"+li.attr('id')+" .sub-menu").css("display", "block"); 
             }
             else
             {
+                
+                gallery_page = 0;
+                //alert("non expandable");
                 $(".category .gallery").fadeOut();
                 var tutorial_filter = $( ".category_menu_list > li > img.active" ).attr('id');
                 template_generator.category_tutorials_query_array = {
@@ -175,7 +180,7 @@ $(function(){
         
         $(".category .gallery").fadeOut();
         var period  =  event.target.id;
-    
+        gallery_page = 0;
         //alert(tutorial_filter+":"+period);
         var tutorial_filter = $( ".category_menu_list > li > img.active" ).attr('id');
         var promise_category_tutorials;
@@ -212,7 +217,7 @@ $(function(){
                     first_in_range = 0;
                     displayPagination(".category_tutorials .navigator", nav_pages_length, gallery_page, last_page, first_in_range);
                     outlinePage(gallery_page);
-                    alert(last_page);
+                    //alert(last_page);
                 
                     template_generator.displayTwoPartGallery(   ".category_tutorials .first_part",
                                                                 ".category_tutorials .second_part", 
