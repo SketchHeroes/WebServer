@@ -8,8 +8,8 @@
 
 function RestCaller()
 {
-    this.domain             = "http://serverkizidev-env.elasticbeanstalk.com"
-    //this.domain             = "http://local.foo.com/Server";
+    //this.domain             = "http://serverkizidev-env.elasticbeanstalk.com"
+    this.domain             = "http://local.foo.com/Server";
     //this.cross_domain       = true;
     this.cross_domain       = false;
     this.verb               = null;
@@ -1038,8 +1038,38 @@ RestCaller.prototype.viewTutorial = function(params)
     this.setCustomHeader("X-App-Token",this.app_token);
     this.setCustomHeader("Accept","application/json");
     
-    this.setCustomHeader("X-Caller-SKHR-ID",params['caller_skhr_id'] );
-    this.setCustomHeader("X-User-Token",params['user_token']);
+    
+    
+    if(typeof params['caller_skhr_id'] !== 'undefined' && typeof params['user_token'] !== 'undefined')
+    {  
+        this.setCustomHeader("X-Caller-SKHR-ID",params['caller_skhr_id'] );
+        this.setCustomHeader("X-User-Token",params['user_token']);
+    }
+    
+    //alert('email: '+params['email']+", password: "+params['password']+".");
+    
+    this.clearRequestParams();
+    this.setRequestParam("content_id",params['content_id']);
+    
+    return this.ajax();
+};
+
+RestCaller.prototype.fbLikeTutorial = function(params)
+{
+    this.setResource("/tutorial/fb_like");
+    this.setVerb("POST");
+    //this.clearCustomHeaders();
+    
+    this.clearCustomHeaders();
+    this.setCustomHeader("Content-Type","application/json"+"; charset=utf-8");
+    this.setCustomHeader("X-App-Token",this.app_token);
+    this.setCustomHeader("Accept","application/json");
+    
+    if(typeof params['caller_skhr_id'] !== 'undefined' && typeof params['user_token'] !== 'undefined')
+    {  
+        this.setCustomHeader("X-Caller-SKHR-ID",params['caller_skhr_id'] );
+        this.setCustomHeader("X-User-Token",params['user_token']);
+    }
     
     //alert('email: '+params['email']+", password: "+params['password']+".");
     

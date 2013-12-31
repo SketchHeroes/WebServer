@@ -33,6 +33,23 @@ $(function(){
            $("#fb_share_placeholder").html('<div class="fb-share-button" data-href="'+url+'" data-type="button_count"></div>');
            $("#facebook_comments").html('<div class="fb-comments" data-href="'+url+'" data-numposts="5" data-colorscheme="light"></div>');
            //FB.XFBML.parse(document.getElementById("fb_like_placeholder"));
+           
+            FB.Event.subscribe('edge.create',
+                function(href, widget) {
+                    //alert('You liked the URL: ' + href);
+                    var promise_fb_like= rest_caller.fbLikeTutorial({
+                                                    'caller_skhr_id':localStorage.caller_skhr_id,
+                                                    'user_token':localStorage.user_token,
+                                                    "content_id":content_id
+                                                });
+
+                    promise_fb_like.done(
+                        function(data)
+                        {
+
+                        });
+                }
+            );
         });
     $("#googleplus_like_placeholder").html('<div class="g-plusone" data-href="'+url+'"></div>');
     $("#twitter_like_placeholder").html('<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+url+'" data-lang="en">Tweet</a>');
