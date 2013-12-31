@@ -313,6 +313,16 @@ $(function(){
         FB.ui({
             method: 'apprequests',
             message: "Join me in Sketch Heroes"
+        }, 
+        function(data){
+            if(data)
+            {
+                alert(JSON.stringify(data));
+            }
+            else
+            { 
+               //cancelled the dialog
+            }
         });
     });
 
