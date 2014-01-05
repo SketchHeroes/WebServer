@@ -8,8 +8,8 @@
 
 function RestCaller()
 {
-    this.domain             = "http://serverkizidev-env.elasticbeanstalk.com"
-    //this.domain             = "http://local.foo.com/Server";
+    //this.domain             = "http://serverkizidev-env.elasticbeanstalk.com"
+    this.domain             = "http://local.foo.com/Server";
     //this.cross_domain       = true;
     this.cross_domain       = false;
     this.verb               = null;
