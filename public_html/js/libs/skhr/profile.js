@@ -317,14 +317,15 @@ $(function(){
         function(data){
             if(data)
             {
-                alert(JSON.stringify(data));
+                //alert('invited '+JSON.stringify(data));
             }
             else
             { 
-               //cancelled the dialog
+                //alert('canceled');
             }
         });
     });
+
 
   
             
@@ -385,7 +386,7 @@ $(function(){
                             template_generator.user['skhr_id'] = skhr_id;
                             //template_generator.addGallery("#user_tutorials_gallery", length);
                             template_generator.displayUser("#user_info", template_generator.user); 
-                            alert('redisplaying user');
+                            //alert('redisplaying user');
                         });
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) 

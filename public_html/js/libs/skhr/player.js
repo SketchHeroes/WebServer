@@ -24,7 +24,7 @@ $(function(){
     
     var url = ""+window.location;
     url = url.replace('localhost','127.0.0.1');
-    //url = 'http://www.sketchheroes.com';
+    //url = 'http://serverkizidev-env.elasticbeanstalk.com/public_html/test_object.php?tutorial_id='+content_id;
     //alert(url);
     
     $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT BEING LISTENED FOR

@@ -10,8 +10,8 @@ function RestCaller()
 {
     this.domain             = "http://serverkizidev-env.elasticbeanstalk.com"
     //this.domain             = "http://local.foo.com/Server";
-    this.cross_domain       = true;
-    //this.cross_domain       = false;
+    //this.cross_domain       = true;
+    this.cross_domain       = false;
     this.verb               = null;
     this.cache              = false;
     this.content_data_type  = 'application/json; charset=UTF-8';
@@ -1493,15 +1493,28 @@ TemplateGenerator.prototype.displayNotificationList= function(target, messages)
                 
                 if(messages[i] !== undefined) 
                 {
-                    var link;
-                    if((messages[i].link_path).length)
-                        link = $('<a href="'+messages[i].link_path+'"></a>')
-                    else
-                        link = $('<a href="#"></a>')
-                    $(this).append(link);
+                    //console.log('displaying message number: '+i);
                     
-                        var thumbnail = $('<img class="msg_thumbnail" src="'+messages[i].thumbnail_path+'"/>')
-                        link.append(thumbnail);
+                    var link;
+                    if( messages[i].link_path !== null)
+                    {
+                        link = $('<a href="'+messages[i].link_path+'"></a>');
+                        if( messages[i].thumbnail_path !== null)
+                        {
+                            var thumbnail = $('<img class="msg_thumbnail" src="'+messages[i].thumbnail_path+'"/>')
+                            link.append(thumbnail);
+                        }  
+                        
+                        $(this).append(link); 
+                    }
+                    else
+                    {
+                        if( messages[i].thumbnail_path !== null)
+                        {
+                            var thumbnail = $('<img class="msg_thumbnail" src="'+messages[i].thumbnail_path+'"/>')
+                            $(this).append(thumbnail);
+                        } 
+                    } 
                     
                     var payload = $('<div class="msg_payload">'+messages[i].payload+'</div>')
                     $(this).append(payload);
@@ -2391,6 +2404,13 @@ TemplateGenerator.prototype.displayCategories= function(target, categories)
             
             sub_menu.append(li);
         });
+        
+        var li = $('<li></li>');
+
+            var link = $('<a href="category.html">All Categories</a>');
+            li.append(link);       
+
+        sub_menu.append(li);
         
     $(target).append(sub_menu);   
 };   

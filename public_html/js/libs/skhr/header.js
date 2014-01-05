@@ -53,6 +53,7 @@ $(function(){
         {
             //alert("ipad");
             $("#popup_ipad").fadeIn();
+            window.scrollTo(0,0);
         }
         else
         {
@@ -150,6 +151,7 @@ $(function(){
            //console.log('overlay appended');
 
            $("#popup_contact_us").fadeIn(); 
+           window.scrollTo(0,0);
            //$("#popup_contact_us .inner_popup").focus();
            
            //console.log('popup_contact_us appended');
@@ -239,7 +241,7 @@ $(function(){
                 window.location.assign("category.html?filter=recent&like="+$("#search_text").val());
         });
 //===============================EXPANDABLE MENU BUTTONS========================
-
+        /*
         $( ".expandable > img" ).click(function(event) {
 
             event.stopPropagation(); 
@@ -259,23 +261,22 @@ $(function(){
 
             $( ".sub-menu" ).not("#"+expandable.attr('id')+" .sub-menu").css("display", "none"); 
         });
+        */
 
         $( "html" ).click(function(event) {
             $( ".sub-menu" ).css("display", "none"); 
         });  
 
-        $(".expandable > img").mouseleave(function(event){
-
-            var expandable = $(event.target).parent();
-
-            //$("#"+expandable.attr('id')+" .sub-menu").css("display", "none"); 
-            $("#"+expandable.attr('id')+" img").attr("src", "images/"+expandable.attr('id')+"_unselected.png"); 
+        $(".expandable").mouseleave(function(event){
+            
+            $(this).find(".sub-menu").css("display", "none"); 
+            $(this).find("img").attr("src", "images/"+$(this).attr('id')+"_unselected.png");  
         });
 
         $(".expandable > img").mouseover(function(event){
 
             var expandable = $(event.target).parent();
-            //$("#"+expandable.attr('id')+" .sub-menu").css("display", "block"); 
+            $("#"+expandable.attr('id')+" .sub-menu").css("display", "block"); 
             $("#"+expandable.attr('id')+" img").attr("src", "images/"+expandable.attr('id')+"_selected.png"); 
         });
 
@@ -320,6 +321,7 @@ $(function(){
 
             $('.popup').fadeOut();
             $("#popup_login").fadeIn(); 
+            window.scrollTo(0,0);
             //$("#popup_login input[name=username_email]").focus();
 
         });
@@ -336,7 +338,8 @@ $(function(){
             $("body").append(overlay);
 
             $('.popup').fadeOut();
-            $("#popup_register").fadeIn(); 
+            $("#popup_register").fadeIn();  
+            window.scrollTo(0,0);
             //$("#popup_register input[name=username]").focus();
 
         });
@@ -464,7 +467,8 @@ $(".options #logout").click(function(e)
             
             $(".popup").fadeOut();
             $("#popup_recover #native_error").text('');
-            $("#popup_recover").fadeIn(); 
+            $("#popup_recover").fadeIn();  
+            window.scrollTo(0,0);
 
         });
         
@@ -474,7 +478,8 @@ $(".options #logout").click(function(e)
                 e.preventDefault();
                 $("#popup_recover").fadeOut(); 
                 $('.popup').fadeOut();
-                $("#popup_login").fadeIn(); 
+                $("#popup_login").fadeIn();  
+                window.scrollTo(0,0);
        });
        
         // --------------------SEND VERIFICATION CODE---------------------------
@@ -495,7 +500,8 @@ $(".options #logout").click(function(e)
                 //alert(username_email+' = username');
                 var promise_recover = rest_caller.userPasswordChangeUsername({"username":username_email});
                  
-                $("#popup_notice").fadeIn();
+                $("#popup_notice").fadeIn(); 
+                window.scrollTo(0,0);
                 $("#popup_notice .inner_popup .message").text('Cheking...');
                 // successful
                 promise_recover.done(
@@ -505,7 +511,8 @@ $(".options #logout").click(function(e)
                         $("#popup_notice").delay(2000).fadeOut();
                         $("#popup_recover").fadeOut();
                         $("#popup_verify #native_error").text('');
-                        $("#popup_verify").fadeIn(); 
+                        $("#popup_verify").fadeIn();  
+                        window.scrollTo(0,0);
                     });
 
                 promise_recover.fail(
@@ -525,7 +532,8 @@ $(".options #logout").click(function(e)
 
                     var promise_recover = rest_caller.userPasswordChangeEmail({"email":username_email});
                     
-                    $("#popup_notice").fadeIn();
+                    $("#popup_notice").fadeIn(); 
+                    window.scrollTo(0,0);
                     $("#popup_notice .inner_popup .message").text('Cheking...');
                     promise_recover.done(
                         function(data)
@@ -534,6 +542,7 @@ $(".options #logout").click(function(e)
                             $("#popup_notice").delay(2000).fadeOut();
                             $("#popup_recover").fadeOut();
                             $("#popup_verify").fadeIn();  
+                            window.scrollTo(0,0); 
                         });
                         
                     promise_recover.fail(
@@ -589,7 +598,8 @@ $(".options #logout").click(function(e)
                 return;
             }
             
-            $("#popup_notice").fadeIn();
+            $("#popup_notice").fadeIn(); 
+            window.scrollTo(0,0);
             $("#popup_notice .inner_popup .message").text('Cheking...');
             
             var promise_pass_change = rest_caller.userVerifyPassChange({"code":code,"password":password1});
@@ -719,7 +729,8 @@ $(".options #logout").click(function(e)
                         $("#popup_register").fadeOut(); 
                         //$("body .overlay").remove();
 
-                        $("#popup_welcome").fadeIn();
+                        $("#popup_welcome").fadeIn(); 
+                        window.scrollTo(0,0);
                     });
 
                 promise_register.fail(
@@ -751,6 +762,7 @@ $(".options #logout").click(function(e)
             $("body").append(overlay);
 
             $("#popup_leaderboard").fadeIn(); 
+            window.scrollTo(0,0); 
             $("#popup_leaderboard .inner_popup").focus();
 
 
@@ -844,7 +856,8 @@ $(".options #logout").click(function(e)
                     }
                     */
                     
-                    $("#popup_leaderboard #leader_list").fadeIn();   
+                    $("#popup_leaderboard #leader_list").fadeIn();    
+                    window.scrollTo(0,0);
                 }); 
             }
             
@@ -890,7 +903,8 @@ $(".options #logout").click(function(e)
                             service.updateFollowButtons({"caller_skhr_id":localStorage.caller_skhr_id});
                         } 
                         */
-                        $("#popup_leaderboard #leader_list").fadeIn(); 
+                        $("#popup_leaderboard #leader_list").fadeIn();  
+                        window.scrollTo(0,0);
                         //alert('fadeIn');         
                     }); 
         });
@@ -905,11 +919,12 @@ $(".options #logout").click(function(e)
         {
              //alert('leaderboard bitches');
              
-             var overlay = $('<div class="overlay"></div>');
-             $("body").append(overlay);
+            var overlay = $('<div class="overlay"></div>');
+            $("body").append(overlay);
 
-             $("#popup_members").fadeIn(); 
-             $("#popup_members .inner_popup").focus();
+            $("#popup_members").fadeIn();  
+            window.scrollTo(0,0);
+            $("#popup_members .inner_popup").focus();
              
 
              // get members- only the first time user presses members button
@@ -930,7 +945,7 @@ $(".options #logout").click(function(e)
                             members_last_page = Math.floor((length-1)/(members_per_page));
                             displayMembersPagination("#popup_members .navigator", members_nav_pages_length, members_gallery_page, members_last_page, members_first_in_range);
                             outlineMembersPage(members_gallery_page);
-                            alert(members_last_page);
+                            //alert(members_last_page);
 
                             var promise_users = rest_caller.getUsers({  "start":members_gallery_page*members_per_page,
                                                                         "how_many":members_per_page,
@@ -1256,7 +1271,8 @@ $(".options #logout").click(function(e)
                 $("body").append(overlay);
 
                 $('.popup').fadeOut();
-                $("#popup_login").fadeIn(); 
+                $("#popup_login").fadeIn();  
+                window.scrollTo(0,0);
                 //$("#popup_login input[name=username_email]").focus();
             }
 
@@ -1307,7 +1323,8 @@ $(".options #logout").click(function(e)
                 $("body").append(overlay);
 
                 $('.popup').fadeOut();
-                $("#popup_login").fadeIn(); 
+                $("#popup_login").fadeIn();  
+                window.scrollTo(0,0);
                 //$("#popup_login input[name=username_email]").focus();
             }
 
@@ -1326,7 +1343,8 @@ $(".options #logout").click(function(e)
                 $("body").append(overlay);
 
                 $('.popup').fadeOut();
-                $("#popup_login").fadeIn(); 
+                $("#popup_login").fadeIn();  
+                window.scrollTo(0,0);
                 //$("#popup_login input[name=username_email]").focus();
             }
         });
@@ -1344,6 +1362,7 @@ $(".options #logout").click(function(e)
                 $("body").append(overlay);
 
                 $("#popup_fans").fadeIn(); 
+                window.scrollTo(0,0); 
                 $("#popup_fans .inner_popup").focus();
                 // get user fans - only the first time user presses fans button
                 //if(typeof template_generator.user_followed === 'undefined')
@@ -1380,6 +1399,7 @@ $(".options #logout").click(function(e)
 
                 $('.popup').fadeOut();
                 $("#popup_login").fadeIn(); 
+                window.scrollTo(0,0); 
                 //$("#popup_login input[name=username_email]").focus();
             }
 
@@ -1400,7 +1420,8 @@ $(".options #logout").click(function(e)
                 var overlay = $('<div class="overlay"></div>');
                 $("body").append(overlay);
 
-                $("#popup_following").fadeIn(); 
+                $("#popup_following").fadeIn();  
+                window.scrollTo(0,0);
                 $("#popup_following .inner_popup").focus();
 
                 // get user fans - only the first time user presses fans button
@@ -1436,7 +1457,8 @@ $(".options #logout").click(function(e)
                 $("body").append(overlay);
 
                 $('.popup').fadeOut();
-                $("#popup_login").fadeIn(); 
+                $("#popup_login").fadeIn();  
+                window.scrollTo(0,0);
                 //$("#popup_login input[name=username_email]").focus();
             }
 
@@ -1817,7 +1839,8 @@ function fb_login(rest_caller,template_generator, target)
 
                         if (target.parents('#popup_register').length) 
                         {
-                            $("#popup_welcome").fadeIn();
+                            $("#popup_welcome").fadeIn(); 
+                            window.scrollTo(0,0);
                         }
                         handleLogin(data, rest_caller, template_generator);                    
                     });  
