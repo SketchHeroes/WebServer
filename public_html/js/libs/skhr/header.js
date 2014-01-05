@@ -11,7 +11,7 @@ $(function(){
     //$(".fb_like_placeholder").html('<div class="fb-like" data-href="'+window.location+'" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>');
     
     $.ajaxSetup({ cache: true, crossDomain:true });
-    $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+    $.getScript('http://connect.facebook.net/en_UK/all.js', function(){
         FB.init({
           appId: '390754447617631',
           status     : true, // check login status
@@ -30,7 +30,7 @@ $(function(){
     });
     
     
-    
+    $.ajaxSetup({ cache: false, crossDomain:false });
     $("header.main").load("header.html", function() {
         //alert( "Load was performed." );
 
